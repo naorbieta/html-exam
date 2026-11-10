@@ -1,0 +1,4546 @@
+﻿"分野","レッスン番号","設問","回答形式","選択肢","正解","初期コード","解答例","補足","不正解時のメッセージ","ヒント","言語","採点方法","採点コード","参照HTML","採点ルール","設問ID","設問番号","必須","参照コードの編集","設問の説明"
+"JavaScript / 初級","1","JavaScriptのコードをここに入力してください。","コード","","","","console.log(""Hello World!"");","","console.logで表示する文字列を確認してください。","","js","登録済み","","","quiz-01-answer-2","quiz-01-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","2","JavaScriptのコードをここに入力してください。","コード","","","","console.log(5+3);
+console.log(5-3);
+console.log(5*3);
+console.log(5/3);","","加算・減算・乗算・除算の数値の結果を、それぞれconsole.logで表示してください。","","js","登録済み","","","quiz-02-answer-2","quiz-02-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","3","①
+console.log(8 + 2);
+コンソールに出力される結果は何でしょう？","短文","","10","","","","出力結果や用語をもう一度確認してください。","","","正解と照合","","","","quiz-03-answer-1","1","はい","いいえ",""
+"JavaScript / 初級","3","②
+console.log('8' + '2');
+コンソールに出力される結果は何でしょう？","短文","","82
+'82'
+""82""","","","","出力結果や用語をもう一度確認してください。","","","正解と照合","","","","quiz-03-answer-2","2","はい","いいえ",""
+"JavaScript / 初級","3","③ この式の結果のデータ型はどちらでしょう？","単一選択","文字列
+数値","文字列","","","console.log('8' + '2');","引用符の有無と、+演算子で何が行われるかを確認してください。","","","正解と照合","","","","quiz-03-answer-3","3","はい","いいえ",""
+"JavaScript / 初級","4","①A. コンピュータに命令する内容をまとめた文章に当てはまる用語は？","単一選択","プログラム
+プログラミング言語
+プログラミング
+コード","プログラム","","","","対象の用語・コードと、選んだ内容が対応しているか確認してください。","","","正解と照合","","","","quiz-04-answer-1-1","1","はい","いいえ",""
+"JavaScript / 初級","4","①B. プログラムを書くための言語に当てはまる用語は？","単一選択","プログラム
+プログラミング言語
+プログラミング
+コード","プログラミング言語","","","","対象の用語・コードと、選んだ内容が対応しているか確認してください。","","","正解と照合","","","","quiz-04-answer-1-2","2","はい","いいえ",""
+"JavaScript / 初級","4","①C. プログラムを作成することに当てはまる用語は？","単一選択","プログラム
+プログラミング言語
+プログラミング
+コード","プログラミング","","","","対象の用語・コードと、選んだ内容が対応しているか確認してください。","","","正解と照合","","","","quiz-04-answer-1-3","3","はい","いいえ",""
+"JavaScript / 初級","4","①D. プログラムを含む、ルールに基づいて書かれた文字の集まりに当てはまる用語は？","単一選択","プログラム
+プログラミング言語
+プログラミング
+コード","コード","","","","対象の用語・コードと、選んだ内容が対応しているか確認してください。","","","正解と照合","","","","quiz-04-answer-1-4","4","はい","いいえ",""
+"JavaScript / 初級","4","②A. Web（ブラウザ上で動作）に使われる、次のコードの言語は？","単一選択","JavaScript
+PHP
+Python
+C言語
+Java","JavaScript","","","console.log(""Hello"");","対象の用語・コードと、選んだ内容が対応しているか確認してください。","","","正解と照合","","","","quiz-04-answer-2-1","5","はい","いいえ",""
+"JavaScript / 初級","4","②B. Web（サーバー上で動作）に使われる、次のコードの言語は？","単一選択","JavaScript
+PHP
+Python
+C言語
+Java","PHP","","","<?php echo ""Hello""; ?>","対象の用語・コードと、選んだ内容が対応しているか確認してください。","","","正解と照合","","","","quiz-04-answer-2-2","6","はい","いいえ",""
+"JavaScript / 初級","4","②C. データ解析・機械学習に使われる、次のコードの言語は？","単一選択","JavaScript
+PHP
+Python
+C言語
+Java","Python","","","print(""Hello"")","対象の用語・コードと、選んだ内容が対応しているか確認してください。","","","正解と照合","","","","quiz-04-answer-2-3","7","はい","いいえ",""
+"JavaScript / 初級","4","②D. 機械制御・OS開発に使われる、次のコードの言語は？","単一選択","JavaScript
+PHP
+Python
+C言語
+Java","C言語","","","#include <stdio.h>
+int main(void) { printf(""Hello""); return 0; }","対象の用語・コードと、選んだ内容が対応しているか確認してください。","","","正解と照合","","","","quiz-04-answer-2-4","8","はい","いいえ",""
+"JavaScript / 初級","4","②E. 基幹システム・Android開発に使われる、次のコードの言語は？","単一選択","JavaScript
+PHP
+Python
+C言語
+Java","Java","","","class Main { public static void main(String[] args) { System.out.println(""Hello""); } }","対象の用語・コードと、選んだ内容が対応しているか確認してください。","","","正解と照合","","","","quiz-04-answer-2-5","9","はい","いいえ",""
+"JavaScript / 初級","5","①（画像参照）
+このダイアログボックスを表示するコードを記述してください。","コード","","","","alert('こんにちは');","","alertで「こんにちは」を表示してください。","","js","登録済み","","","quiz-05-answer-2","quiz-05-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","5","②（画像参照）
+このダイアログボックスを表示するコードを記述してください。","コード","","","","confirm('この内容でよろしいですか？');","","はい・いいえの確認にはconfirmを使用します。","","js","登録済み","","","quiz-05-answer-3","quiz-05-answer-3","2","はい","いいえ",""
+"JavaScript / 初級","5","③（画像参照）
+このダイアログボックスを表示するコードを記述してください。","コード","","","","prompt('名前を入力してください。');","","文字列の入力にはpromptを使用します。","","js","登録済み","","","quiz-05-answer-4","quiz-05-answer-4","3","はい","いいえ",""
+"JavaScript / 初級","6","①
+変数を、適当な名前で宣言（用意）しましょう！","コード","","","","let myNumber;","","letなどで変数を宣言してください。","","js","登録済み","","","quiz-06-answer-2","quiz-06-answer-2","1","はい","いいえ","コードを記述してください。
+
+
+
+今回は、人の名前を入れるための変数という想定で、
+変数名は、記憶する変数値を予想できる名前にしましょう。"
+"JavaScript / 初級","6","②
+①で宣言した変数に、値を代入しましょう！","コード","","","","let myNumber;
+myNumber = 10;","","①で宣言した変数に値を代入してください。","①のコードに続けて実行します。同じ変数名を使ってください。","js","登録済み","","","quiz-06-answer-3","quiz-06-answer-3","2","はい","いいえ","コードを記述してください。
+
+
+
+適当な人の名前を代入します。"
+"JavaScript / 初級","6","③
+①にちゃんと値が入ったか、コンソールに出力して
+確認してみましょう！","コード","","","","let myNumber;
+myNumber = 10;
+console.log(myNumber);","","①②で作成した変数の値を出力してください。","①②のコードに続けて実行します。","js","登録済み","","","quiz-06-answer-4","quiz-06-answer-4","3","はい","いいえ","コードを記述してください。"
+"JavaScript / 初級","7","（画像参照）
+ダイアログボックスに入れた名前で、
+あいさつがかえってくるプログラムを書いてみましょう。","コード","","","","const name = prompt('名前を入力してください。');
+alert('こんにちは、' + name + 'さん。');","","promptの入力を変数で受け取り、名前に合わせたあいさつを表示してください。","","js","登録済み","","","quiz-07-answer-2","quiz-07-answer-2","1","はい","いいえ","コードを記述してください。"
+"JavaScript / 初級","8","プログラムの各処理について、コメントを挿入してください。","コード","","","let weight;
+weight = prompt('まずはあなたの体重(kg)を入力してください');
+
+let height;
+height = prompt('次にあなたの身長(m)を入力してください');
+
+let bmi = weight / (height * height);
+let message = 'あなたのBMIは「' + bmi + '」です。';
+alert(message);","// 体重を入力してもらう
+let weight = prompt('体重(kg)');
+// 身長を入力してもらう
+let height = prompt('身長(m)');
+// BMIを計算して表示する
+let bmi = weight / (height * height);
+alert('あなたのBMIは「' + bmi + '」です。');","","BMIの計算処理を保ち、体重・身長・BMIの処理についてコメントを入れてください。","プログラム全体を入力してください。コメントに「体重」「身長」「BMI」の説明があるかも確認します。","js","登録済み","","","quiz-08-answer-2","quiz-08-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","9","①
+このような、リクエストとレスポンスが
+ずれたタイミングで行われる通信方式のことを、
+何通信というでしょう。","短文","","非同期通信
+非同期","","","","出力結果や用語をもう一度確認してください。","","","正解と照合","","","","quiz-09-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","9","② JavaScriptで非同期にデータを取得し、ページを更新する手法をアルファベット4文字で何と呼びますか？","短文","","Ajax","","","","出力結果や用語をもう一度確認してください。","","","正解と照合","","","","quiz-09-answer-3","2","はい","いいえ",""
+"JavaScript / 初級","10","① ReferenceError: great is not defined は何を示していますか？","単一選択","greatという名前を、この場所で参照できない
+文字列をシングルクォートで囲めない
+alertでは文字列を表示できない","greatという名前を、この場所で参照できない","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","quiz-10-answer-2-choice","1","はい","いいえ",""
+"JavaScript / 初級","10","②
+エラーを修正してください。","コード","","","let greet = 'こんにちは';
+alert(great);","let greet = 'こんにちは';
+alert(greet);","","宣言した変数とalertに渡す変数の名前をそろえてください。","","js","登録済み","","","quiz-10-answer-3","quiz-10-answer-3","2","はい","いいえ",""
+"JavaScript / 初級","11","① SyntaxError: Unexpected token ':' は何を示していますか？","単一選択","timeという変数の値が大きすぎる
+文字列にコロンを含められない
+コロンが文法上使えない位置にある","コロンが文法上使えない位置にある","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","quiz-11-answer-2-choice","1","はい","いいえ",""
+"JavaScript / 初級","11","②
+エラーを修正してください。","コード","","","let time = 60:
+time = time * 60;
+alert(time);","let time = 60;
+time = time * 60;
+alert(time);","","コロンを修正し、60×60の結果を表示してください。","","js","登録済み","","","quiz-11-answer-3","quiz-11-answer-3","2","はい","いいえ",""
+"JavaScript / 初級","12","①(画像参照)
+エスケープシーケンスを用いて、
+画像のダイアログボックスを再現するコードを記述してください。","コード","","","","alert('こんにちは、\n太郎さん。');","","改行のエスケープシーケンスを使い、画像と同じメッセージにしてください。","","js","登録済み","","","quiz-12-answer-2","quiz-12-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","12","②
+「''」で囲んである文字列の中に、
+「'」を文字として出したいときの
+エスケープシーケンスは何でしょう。","短文","","\'
+¥'
+￥'","","","","出力結果や用語をもう一度確認してください。","","","正解と照合","","","","quiz-12-answer-3","2","はい","いいえ",""
+"JavaScript / 初級","12","③
+バックスラッシュを文字として出したいときの
+エスケープシーケンスは何でしょう。","短文","","\\
+¥¥
+￥￥","","","","出力結果や用語をもう一度確認してください。","","","正解と照合","","","","quiz-12-answer-4","3","はい","いいえ",""
+"JavaScript / 初級","13","(画像参照)
+このプログラムについて、
+
+「条件分岐」と白塗りされているところに入れるコードを
+ここに記述してください。","コード","","","const wallet = Number(prompt('今いくら持っていますか？'));
+// ここに条件分岐を書いてください
+","const wallet = Number(prompt('今いくら持っていますか？'));
+if (wallet >= 10000) {
+  alert('お金持ちですね！');
+}","","境界の10000円を含め、金額ごとの分岐を確認してください。","白塗りの箇所を補い、プログラム全体を入力してください。","js","登録済み","","","quiz-13-answer-2","quiz-13-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","14","(画像参照)
+このプログラムについて、
+
+「条件分岐」と白塗りされているところに入れるコードを
+ここに記述してください。","コード","","","const wallet = Number(prompt('今いくら持っていますか？'));
+// ここに条件分岐を書いてください
+","const wallet = Number(prompt('今いくら持っていますか？'));
+if (wallet >= 10000) {
+  alert('お金持ちですね！');
+} else {
+  alert('また今度');
+}","","境界の10000円を含め、金額ごとの分岐を確認してください。","白塗りの箇所を補い、プログラム全体を入力してください。","js","登録済み","","","quiz-14-answer-2","quiz-14-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","15","(画像参照)
+画像の通り動作するプログラムを
+ここに記述してください。","コード","","","","if (!confirm('財布を持っていますか？')) {
+ alert('財布を取りに家に帰ろう');
+} else {
+ const money=Number(prompt('今いくら持っていますか？'));
+ if(money>=1500) alert('ハンバーガーセットを注文しました。');
+ else if(money>=500) alert('ポテトのみ注文しました。');
+ else alert('注文しませんでした。');
+}","","財布の有無と、500円・1500円の境界を確認してください。","","js","登録済み","","","quiz-15-answer-2","quiz-15-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","16","(画像参照)
+画像の通り動作するプログラムを
+ここに記述してください。","コード","","","","const money=Number(prompt('今いくら持っていますか？'));
+const hungry=confirm('今、おなかが空いていますか？');
+if(money>=1500 && hungry) alert('コーヒーとケーキのセットを注文しました。');
+else if(money>=500) alert('コーヒーのみ注文しました。');
+else alert('節約しておこう');","","1500円以上でも空腹でなければコーヒーだけ、500円未満なら節約です。","","js","登録済み","","","quiz-16-answer-2","quiz-16-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","17","①
+(n == '1')
+
+真か偽か、どちらでしょう。","単一選択","真 (true)
+偽 (false)","真 (true)","","","n = 1 のとき","出力結果や用語をもう一度確認してください。","","","正解と照合","","","","quiz-17-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","17","②
+(n === '1')
+
+真か偽か、どちらでしょう。","単一選択","真 (true)
+偽 (false)","偽 (false)","","","n = 1 のとき","出力結果や用語をもう一度確認してください。","","","正解と照合","","","","quiz-17-answer-3","2","はい","いいえ",""
+"JavaScript / 初級","17","③
+(n !== 1)
+
+真か偽か、どちらでしょう。","単一選択","真 (true)
+偽 (false)","偽 (false)","","","n = 1 のとき","出力結果や用語をもう一度確認してください。","","","正解と照合","","","","quiz-17-answer-4","3","はい","いいえ",""
+"JavaScript / 初級","18","① 画像の①のコードで、コンソールに出力される数値は？","短文","","1000
+1,000","","","","出力結果や用語をもう一度確認してください。","","","正解と照合","","","","quiz-18-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","18","② 画像の②のコードを実行するとどうなりますか？","単一選択","1000が表示される
+エラーになり、console.logまで進まない
+1が表示される","エラーになり、console.logまで進まない","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","quiz-18-answer-3-choice","2","はい","いいえ",""
+"JavaScript / 初級","18","③ 画像の②のコードがエラーになる理由は？","単一選択","constで宣言した変数には再代入できないため
+console.logは変数を受け取れないため
+変数に1000を掛けることはできないため","constで宣言した変数には再代入できないため","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","quiz-18-answer-4-choice","3","はい","いいえ",""
+"JavaScript / 初級","19","① 画像の上段（var）のコードで、コンソールに出力される数値は？","短文","","1000
+1,000","","","","出力結果や用語をもう一度確認してください。","","","正解と照合","","","","quiz-19-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","19","② 画像の下段（let）のコードを実行するとどうなりますか？","単一選択","1000が表示される
+エラーになり、console.logまで進まない
+1が表示される","エラーになり、console.logまで進まない","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","quiz-19-answer-3-choice","2","はい","いいえ",""
+"JavaScript / 初級","19","③ 画像の下段（let）のコードがエラーになる理由は？","単一選択","letでは同じスコープで同じ名前の変数を再宣言できないため
+console.logは変数を受け取れないため
+変数に1000を掛けることはできないため","letでは同じスコープで同じ名前の変数を再宣言できないため","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","quiz-19-answer-4-choice","3","はい","いいえ",""
+"JavaScript / 初級","20","①(画像参照)
+この 「console.log(x);」
+コンソールには何と表示されるでしょう。","短文","","2","","","","出力結果や用語をもう一度確認してください。","","","正解と照合","","","","quiz-20-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","20","②(画像参照)
+この 「console.log(x * z);」
+コンソールには何と表示されるでしょう。","短文","","4000
+4,000","","","","出力結果や用語をもう一度確認してください。","","","正解と照合","","","","quiz-20-answer-3","2","はい","いいえ",""
+"JavaScript / 初級","20","③ ブロック外のconsole.log(x * y)を実行するとどうなりますか？","単一選択","4000が表示される
+2000が表示される
+yを参照できず、ReferenceErrorになる","yを参照できず、ReferenceErrorになる","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","quiz-20-answer-4-choice","3","はい","いいえ",""
+"JavaScript / 初級","21","(画像参照)
+画像の通り動作するプログラムを
+ここに記述してください。","コード","","","","const age=Number(prompt('今、何歳ですか？'));
+alert('4年後は、'+(age+4)+'歳ですね！');","","promptの結果を数値に変換してから4を足してください。","","js","登録済み","","","quiz-21-answer-2","quiz-21-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","22","(画像参照)
+画像の通り動作するプログラムを
+ここに記述してください。","コード","","","","const day=prompt('曜日を入力してください。');
+switch(day){
+ case '土曜日': case '日曜日': alert('今日は'+day+'です。ゆっくり休みましょう！');break;
+ case '月曜日':case '火曜日':case '水曜日':case '木曜日':case '金曜日':alert('今日は'+day+'です。がんばりましょう！');break;
+ default:alert('曜日を正しく指定してください。');
+}","","switchで曜日を分岐し、休日・平日・不正な入力を処理してください。","","js","登録済み","","","quiz-22-answer-2","quiz-22-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","23","画像のコードをフォールスルーを使用した
+○日、○時間、○分を秒に変換するプログラムになるように書き換えましょう。","コード","","","let unit = prompt(""変換する単位を入力してください（日、時間、分）"");
+let value = parseFloat(prompt(""変換する値を入力してください""));
+let seconds = value;
+
+switch (unit) {
+  case ""日"":
+    seconds *= 24;
+    break;
+  case ""時間"":
+    seconds *= 60;
+    break;
+  case ""分"":
+    seconds *= 60;
+    break;
+  default:
+    alert(""不正な入力です"");
+}
+alert(value + unit + ""は"" + seconds + ""秒です"");","const unit=prompt('単位');
+const value=Number(prompt('数値'));
+let seconds=value;
+switch(unit){
+ case '日': seconds*=24;
+ case '時間': seconds*=60;
+ case '分': seconds*=60; break;
+ default: alert('不正な入力です');
+}
+alert(value+unit+'は'+seconds+'秒です');","","日を指定した場合にも、時間・分の倍率を続けて掛けてください。","switchのフォールスルーを使って、プログラム全体を入力してください。","js","登録済み","","","quiz-23-answer-2","quiz-23-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","24","①
+文章中の下線部①「関数に渡したい値や変数」
+これは何という用語で呼ばれていますか？","短文","","引数
+argument
+arguments","","","","出力結果や用語をもう一度確認してください。","","","正解と照合","","","","quiz-24-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","24","②
+文章中の下線部②「結果の値が返ってきます。」
+これは何という用語で呼ばれていますか？","短文","","戻り値
+返り値
+return value","","","","出力結果や用語をもう一度確認してください。","","","正解と照合","","","","quiz-24-answer-3","2","はい","いいえ",""
+"JavaScript / 初級","24","③(画像参照)
+円の面積を求める関数を用意しました。
+この関数を用いて、
+半径が、5cmの円の面積を
+alertダイアログボックスに表示するプログラムを書いてみましょう。","コード","","","function calculateCircleArea(radius){return radius*radius*3.14;}","alert(calculateCircleArea(5));","","calculateCircleAreaに5を渡し、戻り値をalertで表示してください。","calculateCircleArea(radius)は、画像の定義どおり用意されています。","js","登録済み","","","quiz-24-answer-4","quiz-24-answer-4","3","はい","いいえ",""
+"JavaScript / 初級","25","function maxNumber に続いてコードを記述し、
+どちらの数字が大きいかを判定して返ってくるようにしてみましょう。","コード","","","function maxNumber(a, b) {
+  // 大きい方をreturnしてください
+}
+
+alert(maxNumber(5, 10));
+alert(maxNumber(3, 4));
+alert(maxNumber(103, 17));","function maxNumber(a,b){
+ return a>b ? a : b;
+}","","引数の大小を比較し、大きい方を戻り値にしてください。","","js","登録済み","","","quiz-25-answer-2","quiz-25-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","26","function greet に続いてデフォルト引数を使用したコードを記述し、
+あいさつが返ってくる関数を完成させてください。","コード","","","function greet(name = /* 省略時の名前 */) {
+  // あいさつを表示してください
+}
+
+greet();
+greet(""太郎"");","function greet(name='名無し'){
+ alert('こんにちは、'+name+'さん。');
+}","","デフォルト引数を定義して、引数を省略した場合にもあいさつしてください。","","js","登録済み","","","quiz-26-answer-2","quiz-26-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","27","for文を用いた、
+「n回目！こんにちは！」という文字列を
+20回コンソールに表示させるプログラムを記述してください。","コード","","","","for(let n=1;n<=20;n++){
+ console.log(n+'回目！こんにちは！');
+}","","for文で1〜20回目を表示してください。","","js","登録済み","","","quiz-27-answer-2","quiz-27-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","28","数字が100以下になる前まで、
+
+nを2で割り続けるプログラムを
+while文を用いて記述してください。","コード","","","let n=2000;","while(n>100){
+ console.log(n);
+ n=n/2;
+}","","画像どおり2000から125までを表示し、100以下になる前に止めてください。","n=2000は用意されています。while文を入力してください。","js","登録済み","","","quiz-28-answer-2","quiz-28-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","29","条件に合うプログラムを記述してください。","コード","","","for (let i = 1; i <= 10; i++) {
+    let num = Math.floor(Math.random() * 10) + 1;
+    console.log(num);
+
+
+}","for(let i=1;i<=10;i++){
+ const num=Math.floor(Math.random()*10)+1;
+ console.log(num);
+ if(num===7){alert('当たり');break;}
+ if(i===10) alert('ハズレ');
+}","","当たりの数字を1つ決め、当たりならbreak、10回外れたらハズレを表示してください。","プログラム全体を入力してください。「当たり」「ハズレ」に相当する表示と試行回数を採点します。","js","登録済み","","","quiz-29-answer-2","quiz-29-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","30","continueを交えて分岐を追加し、
+
+完成させたコードをここに貼ってください！","コード","","","diceGame(5);
+
+function diceGame(tryTimes) { // tryTimes: 抽選回数
+    let hit = false; // 当たりが出たかどうかのフラグ
+    alert('サイコロゲーム!\n\n6が出たら当たり!\nチャンスは' + tryTimes + '回!');
+    for (let i = 1; i <= tryTimes; i++) {
+        let diceResult = Math.floor(Math.random() * 6) + 1; // 1~6までの数値をランダムに生成
+        console.log(i +'回目: ' + diceResult);
+        if (diceResult === 6) {
+            alert(i +'回目: ' + diceResult + '\n\n6が出た!\n当たり!👏');
+            hit = true;
+            break;
+        }
+        if (i < tryTimes) {
+            alert(i +'回目: ' + diceResult + '\nハズレ!もう一回!');
+        } else {
+            alert(i +'回目: ' + diceResult + '\nハズレ!');
+        }
+    }
+    if (!hit) { // 当たりが出ていない場合
+        alert(""終了!ざんねん!"");
+    }
+}","diceGame(5);
+function diceGame(tryTimes){
+ let hit=false;
+ for(let i=1;i<=tryTimes;i++){
+  const diceResult=Math.floor(Math.random()*6)+1;
+  console.log(i+'回目: '+diceResult);
+  if(diceResult===6){alert('当たり');hit=true;break;}
+  if(diceResult===5){i++;continue;}
+ }
+ if(!hit) alert('終了！ざんねん！');
+}","","5のときはループ変数を1つ進めてcontinueし、次の回へ進んでください。","","js","登録済み","","","quiz-30-answer-3","quiz-30-answer-3","1","はい","いいえ",""
+"JavaScript / 初級","31","①
+ブラウザのウィンドウ自体を表すオブジェクトの名前はなんでしょう？","短文","","window
+windowオブジェクト","","","","出力結果や用語をもう一度確認してください。","","","正解と照合","","","","quiz-31-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","31","② windowのプロパティで、Webページの文書を表すオブジェクト名は？","短文","","document
+documentオブジェクト","","","","出力結果や用語をもう一度確認してください。","","","正解と照合","","","","quiz-31-answer-3","2","はい","いいえ",""
+"JavaScript / 初級","32","①
+JavaScriptからWebページのHTML要素を操作するための仕組みのことを、アルファベット3文字で何といいますか？","短文","","DOM
+Document Object Model","","","","出力結果や用語をもう一度確認してください。","","","正解と照合","","","","quiz-32-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","32","② DOMでは、要素・属性・テキストなどの各オブジェクトを何と呼びますか？","短文","","ノード
+node
+nodes","","","","出力結果や用語をもう一度確認してください。","","","正解と照合","","","","quiz-32-answer-3","2","はい","いいえ",""
+"JavaScript / 初級","33","HTML上の<div id=""text"">を、getElementByIdを使って取得し、
+文字を書き換えてください。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div id=""text"">
+                こんにちは
+            </div>
+        </div>
+        <style>
+            #text {
+                background: #f7f7f7;
+                box-shadow: 0 2px 3px rgb(0 0 0 / 15%);
+                padding: 2em;
+            }
+        </style>
+    <script>
+
+</script>
+</body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div id=""text"">
+                こんにちは
+            </div>
+        </div>
+        <style>
+            #text {
+                background: #f7f7f7;
+                box-shadow: 0 2px 3px rgb(0 0 0 / 15%);
+                padding: 2em;
+            }
+        </style>
+    <script>
+document.getElementById('text').textContent='こんばんは';
+</script>
+</body>
+</html>","","getElementByIdで要素を取得し、テキストを書き換えてください。","","html","登録済み","","","quiz-33-answer-2","quiz-33-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","34","HTML上の<div class=""text"">を、querySelectorを使って取得し、
+文字色を変更してください。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""text"">
+                こんにちは
+            </div>
+        </div>
+        <style>
+            .text {
+                background: #f7f7f7;
+                box-shadow: 0 2px 3px rgb(0 0 0 / 15%);
+                padding: 2em;
+            }
+        </style>
+    <script>
+
+</script>
+</body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""text"">
+                こんにちは
+            </div>
+        </div>
+        <style>
+            .text {
+                background: #f7f7f7;
+                box-shadow: 0 2px 3px rgb(0 0 0 / 15%);
+                padding: 2em;
+            }
+        </style>
+    <script>
+document.querySelector('.text').style.color='red';
+</script>
+</body>
+</html>","","querySelectorで取得し、style.colorを変更してください。","","html","登録済み","","","quiz-34-answer-2","quiz-34-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","35","①(画像参照)
+赤枠の部分、正しく背景色が変更されるように書き換えてください。","コード","","","<!doctype html><html><body><div class=""wrapper""><div class=""text"">こんにちは</div></div><style>.text{background:#f7f7f7;box-shadow:0 2px 3px rgb(0 0 0 / 15%);padding:2em}</style><script>
+const text = document.querySelector("".text"");
+text.style.background-color = ""#ffff00"";
+</script></body></html>","text.style.backgroundColor='#ff0000';","","background-colorは、JSではbackgroundColorと記述します。","textは.text要素として用意されています。修正する行を入力してください。","js","登録済み","","","quiz-35-answer-2","quiz-35-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","35","②
+このように、複数の英単語を繋ぐとき、
+先頭は小文字で、スペースを空けず、続く単語の頭文字を大文字にする
+表記の仕方を何といいますか？","短文","","キャメルケース
+camelCase
+camel case
+ローワーキャメルケース","","","","出力結果や用語をもう一度確認してください。","","","正解と照合","","","","quiz-35-answer-3","2","はい","いいえ",""
+"JavaScript / 初級","36","JavaScriptを使って、
+<div id=""add_element""></div>を、HTML上の<div class=""text""></div>の前に追加してください。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""text"">
+                こんにちは
+            </div>
+        </div>
+        <style>
+            .text {
+                background: #f7f7f7;
+                box-shadow: 0 2px 3px rgb(0 0 0 / 15%);
+                padding: 2em;
+            }
+        </style>
+    <script>
+
+</script>
+</body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""text"">
+                こんにちは
+            </div>
+        </div>
+        <style>
+            .text {
+                background: #f7f7f7;
+                box-shadow: 0 2px 3px rgb(0 0 0 / 15%);
+                padding: 2em;
+            }
+        </style>
+    <script>
+const el=document.createElement('div');
+el.id='add_element';
+const text=document.querySelector('.text');
+text.parentNode.insertBefore(el,text);
+</script>
+</body>
+</html>","","新しく作成したdivを、.text要素の直前に追加してください。","","html","登録済み","","","quiz-36-answer-2","quiz-36-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","37","removeChildメソッドを使って、
+「こんばんは」というテキストボックスを削除してみましょう！","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div id=""afternoon"" class=""text"">
+                こんにちは
+            </div>
+            <div id=""evening"" class=""text"">
+                こんばんは
+            </div>
+        </div>
+        <style>
+            .wrapper > * + * {margin-top: 2em;}
+            .text {
+                background: #f7f7f7;
+                box-shadow: 0 2px 3px rgb(0 0 0 / 15%);
+                padding: 2em;
+            }
+        </style>
+
+    <script>
+
+</script>
+</body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div id=""afternoon"" class=""text"">
+                こんにちは
+            </div>
+            <div id=""evening"" class=""text"">
+                こんばんは
+            </div>
+        </div>
+        <style>
+            .wrapper > * + * {margin-top: 2em;}
+            .text {
+                background: #f7f7f7;
+                box-shadow: 0 2px 3px rgb(0 0 0 / 15%);
+                padding: 2em;
+            }
+        </style>
+
+    <script>
+const evening=document.getElementById('evening');
+evening.parentNode.removeChild(evening);
+</script>
+</body>
+</html>","","removeChildを使い、#evening要素を削除してください。","","html","登録済み","","","quiz-37-answer-2","quiz-37-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","38","ボタンをクリックしたとき、
+テキストボックスが開閉するようにしてみましょう。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <button id=""toggle-btn"">開閉ボタン</button>
+            <div class=""text"" style=""display: none;"">
+                こんにちは
+            </div>
+        </div>
+        <style>
+            .wrapper > * + * {margin-top: 2em;}
+            .text {
+                background: #f7f7f7;
+                box-shadow: 0 2px 3px rgb(0 0 0 / 15%);
+                padding: 2em;
+            }
+        </style>
+    <script>
+
+</script>
+</body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <button id=""toggle-btn"">開閉ボタン</button>
+            <div class=""text"" style=""display: none;"">
+                こんにちは
+            </div>
+        </div>
+        <style>
+            .wrapper > * + * {margin-top: 2em;}
+            .text {
+                background: #f7f7f7;
+                box-shadow: 0 2px 3px rgb(0 0 0 / 15%);
+                padding: 2em;
+            }
+        </style>
+    <script>
+const btn=document.getElementById('toggle-btn');
+const text=document.querySelector('.text');
+btn.addEventListener('click',()=>{text.style.display=text.style.display==='none'?'block':'none';});
+</script>
+</body>
+</html>","","ボタンをクリックするたびに表示・非表示を切り替えてください。","","html","登録済み","","","quiz-38-answer-2","quiz-38-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","39","テキストボックスに、押したキーの名前が
+出るようにしてみましょう。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""text"">
+                押されたキーを判定します。
+            </div>
+        </div>
+        <style>
+            .wrapper > * + * {margin-top: 2em;}
+            .text {
+                background: #f7f7f7;
+                box-shadow: 0 2px 3px rgb(0 0 0 / 15%);
+                padding: 2em;
+            }
+        </style>
+    <script>
+
+</script>
+</body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""text"">
+                押されたキーを判定します。
+            </div>
+        </div>
+        <style>
+            .wrapper > * + * {margin-top: 2em;}
+            .text {
+                background: #f7f7f7;
+                box-shadow: 0 2px 3px rgb(0 0 0 / 15%);
+                padding: 2em;
+            }
+        </style>
+    <script>
+document.addEventListener('keydown',event=>{document.querySelector('.text').textContent=event.key;});
+</script>
+</body>
+</html>","","イベントオブジェクトのkeyから押されたキーを取得してください。","","html","登録済み","","","quiz-39-answer-2","quiz-39-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","40","テキストエリアの文字数が出るようにしてください。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""text"">
+                入力された文字数を判定します。
+            </div>
+            <textarea id=""textarea"" cols=""50"" rows=""10""></textarea>
+        </div>
+        <style>
+            .wrapper > * + * {margin-top: 2em;}
+            .text {
+                background: #f7f7f7;
+                box-shadow: 0 2px 3px rgb(0 0 0 / 15%);
+                padding: 2em;
+            }
+        </style>
+    <script>
+
+</script>
+</body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""text"">
+                入力された文字数を判定します。
+            </div>
+            <textarea id=""textarea"" cols=""50"" rows=""10""></textarea>
+        </div>
+        <style>
+            .wrapper > * + * {margin-top: 2em;}
+            .text {
+                background: #f7f7f7;
+                box-shadow: 0 2px 3px rgb(0 0 0 / 15%);
+                padding: 2em;
+            }
+        </style>
+    <script>
+const ta=document.getElementById('textarea');
+ta.addEventListener('input',()=>{document.querySelector('.text').textContent=ta.value.length;});
+</script>
+</body>
+</html>","","入力イベントに合わせて、textarea.value.lengthを表示してください。","","html","登録済み","","","quiz-40-answer-2","quiz-40-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","41","画像の「？」のところに書き加えて、
+カウントダウンのプログラムを完成させてください。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""text"">
+                <button id=""trigger"">スタート</button>
+            </div>
+        </div>
+        <style>
+            .wrapper > * + * {margin-top: 2em;}
+            .text {
+                background: #f7f7f7;
+                box-shadow: 0 2px 3px rgb(0 0 0 / 15%);
+                padding: 2em;
+            }
+        </style>
+        <script>
+            const text = document.querySelector('.text');
+            const btn = document.getElementById('trigger');
+            btn.addEventListener('click', function() {
+                let count = 5;
+                text.innerHTML = count;
+		「？」
+            });
+        </script>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""text"">
+                <button id=""trigger"">スタート</button>
+            </div>
+        </div>
+        <style>
+            .wrapper > * + * {margin-top: 2em;}
+            .text {
+                background: #f7f7f7;
+                box-shadow: 0 2px 3px rgb(0 0 0 / 15%);
+                padding: 2em;
+            }
+        </style>
+        <script>
+            const text = document.querySelector('.text');
+            const btn = document.getElementById('trigger');
+            btn.addEventListener('click', function() {
+                let count = 5;
+                text.innerHTML = count;
+		const timer=setInterval(()=>{
+ count--;
+ if(count>0) text.innerHTML=count;
+ else {text.innerHTML='ドーン！';clearInterval(timer);}
+},1000);
+            });
+        </script>
+    </body>
+</html>","","1秒ごとに5から1へ減らし、最後にドーン！を表示してタイマーを停止してください。","画像の「？」の部分だけを入力します。text、btn、countは画像のコードどおり用意されています。","html","登録済み","","","quiz-41-answer-3","quiz-41-answer-3","1","はい","いいえ",""
+"JavaScript / 初級","42","画像の「？」のところに追記して、
+5秒以内にEnterを10回押したら「クリア！」
+押せなかったら「失敗！」
+と表示されるようにしてみましょう。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""text"">
+                <button id=""trigger"">スタート</button>
+            </div>
+        </div>
+        <style>
+            .wrapper > * + * {margin-top: 2em;}
+            .text {
+                background: #f7f7f7;
+                box-shadow: 0 2px 3px rgb(0 0 0 / 15%);
+                padding: 2em;
+            }
+        </style>
+        <script>
+            const text = document.querySelector('.text');
+            const btn = document.getElementById('trigger');
+            btn.addEventListener('click', function() {
+                let count = 0;
+                let flag = true;
+                text.innerHTML = '5秒以内にEnterを10回連打せよ!';
+                「？」
+            });
+        </script>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""text"">
+                <button id=""trigger"">スタート</button>
+            </div>
+        </div>
+        <style>
+            .wrapper > * + * {margin-top: 2em;}
+            .text {
+                background: #f7f7f7;
+                box-shadow: 0 2px 3px rgb(0 0 0 / 15%);
+                padding: 2em;
+            }
+        </style>
+        <script>
+            const text = document.querySelector('.text');
+            const btn = document.getElementById('trigger');
+            btn.addEventListener('click', function() {
+                let count = 0;
+                let flag = true;
+                text.innerHTML = '5秒以内にEnterを10回連打せよ!';
+                document.addEventListener('keydown',event=>{
+ if(flag && event.key==='Enter'){
+  count++;
+  if(count>=10){flag=false;text.innerHTML='クリア！';}
+ }
+});
+setTimeout(()=>{if(flag){flag=false;text.innerHTML='失敗！';}},5000);
+            });
+        </script>
+    </body>
+</html>","","成功と時間切れの両方でflagを切り替え、それ以降の状態変更を止めてください。","画像の「？」の部分だけを入力します。text、btn、count、flagは用意されています。","html","登録済み","","","quiz-42-answer-3","quiz-42-answer-3","1","はい","いいえ",""
+"JavaScript / 初級","43","①(画像参照)
+配列「fruits」の1番目の要素を
+alertメッセージで表示させてみましょう。","コード","","","let fruits = [""りんご"", ""バナナ"", ""オレンジ""];","alert(fruits[0]);","","配列の先頭の添字は0です。","fruitsは問題文どおり用意されています。","js","登録済み","","","quiz-43-answer-2","quiz-43-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","43","②(画像参照)
+配列「fruits」にいくつの要素が入っているか、
+数字をalertメッセージで表示させてみましょう。","コード","","","let fruits = [""りんご"", ""バナナ"", ""オレンジ""];","alert(fruits.length);","","lengthで配列の要素数を取得してください。","fruitsは問題文どおり用意されています。","js","登録済み","","","quiz-43-answer-3","quiz-43-answer-3","2","はい","いいえ",""
+"JavaScript / 初級","44","consoleに配列のデータをすべて表示しましょう！","コード","","","let fruits = [""りんご"", ""バナナ"", ""オレンジ""];","for(const fruit of fruits){console.log(fruit);}","","配列の全要素をconsole.logで表示してください。","fruitsは問題文どおり用意されています。","js","登録済み","","","quiz-44-answer-2","quiz-44-answer-2","1","はい","いいえ","※配列に入っているデータ数がいくつかを参照して、回数分の繰り返しを行いましょう。"
+"JavaScript / 初級","45","①(画像参照)
+personのnameに入っているデータを
+consoleに表示してみましょう。","コード","","","let person = {
+           name: 'ヒカキン',
+           hometown: '新潟県'
+};","console.log(person.name);","","person.nameをconsoleに表示してください。","personは問題文どおり用意されています。","js","登録済み","","","quiz-45-answer-2","quiz-45-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","45","②
+personに、年齢のデータを追加記述してみましょう。","コード","","","let person = {
+           name: 'ヒカキン',
+           hometown: '新潟県'
+};","person.age=35;","","personに年齢を表す数値のプロパティを追加してください。","personは問題文どおり用意されています。","js","登録済み","","","quiz-45-answer-3","quiz-45-answer-3","2","はい","いいえ","※すでに記述してあるコードも含めて提出してください。"
+"JavaScript / 初級","46","① ブラウザーの通常のscriptのトップレベルで、thisは何を指しますか？","単一選択","window
+myObject
+myButtonのbutton要素","window","","","console.log(this);","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","quiz-46-answer-2-choice","1","はい","いいえ","※トップレベル（グローバルスコープ）でthisを使った場合
+モジュールではないscriptで実行する場合。"
+"JavaScript / 初級","46","② myObject.myMethod()内のthisは何を指しますか？","単一選択","window
+myObject
+myButtonのbutton要素","myObject","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","quiz-46-answer-3-choice","2","はい","いいえ","※オブジェクトのメソッド内でthisを使った場合"
+"JavaScript / 初級","46","③ 通常のfunctionで登録したクリック処理内のthisは何を指しますか？","単一選択","window
+myObject
+クリック処理を登録したbutton要素","クリック処理を登録したbutton要素","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","quiz-46-answer-4-choice","3","はい","いいえ","※イベント内でthisを使った場合"
+"JavaScript / 初級","47","①(画像参照)
+この結果はどちらになるでしょうか？","単一選択","null
+undefined","undefined","","","","出力結果や用語をもう一度確認してください。","","","正解と照合","","","","quiz-47-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","47","②(画像参照)
+この結果はどちらになるでしょうか？","単一選択","null
+undefined","null","","","","出力結果や用語をもう一度確認してください。","","","正解と照合","","","","quiz-47-answer-3","2","はい","いいえ",""
+"JavaScript / 初級","47","③(画像参照)
+この結果はどちらになるでしょうか？","単一選択","true
+false","false","","","","出力結果や用語をもう一度確認してください。","","","正解と照合","","","","quiz-47-answer-4","3","はい","いいえ",""
+"JavaScript / 初級","48","①
+.productの在庫数を読み取って、
+consoleに表示してみましょう。","コード","","","<html><body><div class=""product"" data-stock=""3"">この商品はあと3つしかありません。</div><div class=""product2"">在庫がたくさんあります</div><script>
+
+</script>
+</body></html>","<html><body><div class=""product"" data-stock=""3"">この商品はあと3つしかありません。</div><div class=""product2"">在庫がたくさんあります</div><script>
+console.log(document.querySelector('.product').dataset.stock);
+</script>
+</body></html>","","data-stockを読み取って表示してください。","","html","登録済み","","","quiz-48-answer-2","quiz-48-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","48","②
+.product2に対して、
+JSで新たにカスタムデータ属性をセットしてみましょう。","コード","","","<html><body><div class=""product"" data-stock=""3"">この商品はあと3つしかありません。</div><div class=""product2"">在庫がたくさんあります</div><script>
+
+</script>
+</body></html>","<html><body><div class=""product"" data-stock=""3"">この商品はあと3つしかありません。</div><div class=""product2"">在庫がたくさんあります</div><script>
+document.querySelector('.product2').dataset.stock='10';
+</script>
+</body></html>","","product2のdataset、またはsetAttributeでカスタムデータ属性を設定してください。","","html","登録済み","","","quiz-48-answer-3","quiz-48-answer-3","2","はい","いいえ",""
+"JavaScript / 初級","49","①(画像参照)
+これをテンプレートリテラルを使って、
+置き換えてください。","コード","","","let friendName = ""太郎"";
+let message = ""こんにちは、"" + friendName + ""!\n今日は何をしましょうか?\n公園で遊ぶのはどうですか?"";
+console.log(message);","let message = `こんにちは、${friendName}！
+今日は何をしましょうか？
+公園で遊ぶのはどうですか？`;
+console.log(message);","","バッククォートと${}を使い、名前と改行を含む同じ文章を表示してください。","friendName=""太郎""は用意されています。","js","登録済み","","","quiz-49-answer-2","quiz-49-answer-2","1","はい","いいえ",""
+"JavaScript / 初級","49","②(画像参照)
+これをテンプレートリテラルを使って、
+置き換えてください。","コード","","","let number1 = 5;
+let number2 = 7;
+console.log(number1 + ""と"" + number2 + ""を足した値は、"" + (number1 + number2) + ""です。"");","console.log(`${number1}と${number2}を足した値は、${number1+number2}です。`);","","テンプレートリテラルの中に、変数と加算の結果を埋め込んでください。","number1=5、number2=7は用意されています。","js","登録済み","","","quiz-49-answer-3","quiz-49-answer-3","2","はい","いいえ",""
+"JavaScript / 初級","50","画像とキャプションが切り替わるスライダーを、HTML・CSS・JSで作成してください。","コード","","","<!doctype html>
+<html lang=""ja"">
+<body>
+  <img id=""main-image"" src=""data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20360%22%3E%3Crect%20width%3D%22600%22%20height%3D%22360%22%20fill%3D%22%23247ba0%22%2F%3E%3Ctext%20x%3D%22300%22%20y%3D%22210%22%20font-size%3D%22100%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3E1%3C%2Ftext%3E%3C%2Fsvg%3E"" alt=""メイン画像"">
+  <p id=""caption"">キャプション1</p>
+  <img class=""thumbnail"" src=""data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20360%22%3E%3Crect%20width%3D%22600%22%20height%3D%22360%22%20fill%3D%22%23247ba0%22%2F%3E%3Ctext%20x%3D%22300%22%20y%3D%22210%22%20font-size%3D%22100%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3E1%3C%2Ftext%3E%3C%2Fsvg%3E"" data-caption=""キャプション1"" alt=""画像1"">
+  <img class=""thumbnail"" src=""data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20360%22%3E%3Crect%20width%3D%22600%22%20height%3D%22360%22%20fill%3D%22%2370c1b3%22%2F%3E%3Ctext%20x%3D%22300%22%20y%3D%22210%22%20font-size%3D%22100%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3E2%3C%2Ftext%3E%3C%2Fsvg%3E"" data-caption=""キャプション2"" alt=""画像2"">
+  <img class=""thumbnail"" src=""data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20360%22%3E%3Crect%20width%3D%22600%22%20height%3D%22360%22%20fill%3D%22%23f3a712%22%2F%3E%3Ctext%20x%3D%22300%22%20y%3D%22210%22%20font-size%3D%22100%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3E3%3C%2Ftext%3E%3C%2Fsvg%3E"" data-caption=""キャプション3"" alt=""画像3"">
+  <script>
+    // サムネイルをクリックすると、画像と説明を切り替えてください
+  </script>
+</body>
+</html>","<!doctype html>
+<html lang=""ja"">
+<body>
+  <img id=""main-image"" src=""image-1.jpg"" alt=""メイン画像"">
+  <p id=""caption"">キャプション1</p>
+  <img class=""thumbnail"" src=""image-1.jpg"" data-caption=""キャプション1"" alt=""画像1"">
+  <img class=""thumbnail"" src=""image-2.jpg"" data-caption=""キャプション2"" alt=""画像2"">
+  <img class=""thumbnail"" src=""image-3.jpg"" data-caption=""キャプション3"" alt=""画像3"">
+  <script>
+    document.querySelectorAll('.thumbnail').forEach(thumb=>{
+      thumb.addEventListener('click',()=>{
+        document.getElementById('main-image').src=thumb.src;
+        document.getElementById('caption').textContent=thumb.dataset.caption;
+      });
+    });
+  </script>
+</body>
+</html>","","サムネイルをクリックしたときに、対応する大きな画像と説明を切り替えてください。","HTML・CSS・JSを1つのHTMLとして入力します。ひな形のID・class・data-captionを使ってください。見た目の装飾は採点対象に含みません。","html","登録済み","","","quiz-50-answer-2","quiz-50-answer-2","1","はい","いいえ",""
+"HTML・CSS・Web基礎","2","CSSの役割はどれですか？","単一選択","ページの構造や文章の意味を定義する
+ページの色・文字の大きさ・配置を指定する
+ページにクリックなどに応じた動きを付ける","ページの色・文字の大きさ・配置を指定する","","","","CSSとHTML、JavaScriptの役割の違いを確認してください。","","","正解と照合","","","","web-02-role","1","はい","いいえ",""
+"HTML・CSS・Web基礎","3","要望通りのコードに書き直して下さい","コード","","","<form  method=""post""  action=""form.php"">
+  <input type=""number"" name=""id"" value=""123"" />
+
+  <input type=""text"" name=""name"" value="""" />
+  <input type=""submit"" value=""送信"" />
+
+</form>","<form method=""post"" action=""form.php""><input type=""hidden"" name=""id"" value=""123""><input type=""email"" name=""mail""><input type=""submit"" value=""送信""></form>","","HTMLの要素・属性と問題の条件を確認してください。","","html","登録済み","","","web-03-answer-1","web-03-answer-1","1","はい","いいえ",""
+"HTML・CSS・Web基礎","5","ol要素の使いどころはどれですか？","単一選択","順序に意味がある項目のリスト
+順序に意味がない項目のリスト
+用語と説明などを組にしたリスト","順序に意味がある項目のリスト","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-05-answer-1-choice","1","はい","いいえ",""
+"HTML・CSS・Web基礎","5","ul要素の使いどころはどれですか？","単一選択","順序に意味がある項目のリスト
+順序に意味がない項目のリスト
+用語と説明などを組にしたリスト","順序に意味がない項目のリスト","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-05-answer-2-choice","2","はい","いいえ",""
+"HTML・CSS・Web基礎","5","dl要素の使いどころはどれですか？","単一選択","順序に意味がある項目のリスト
+順序に意味がない項目のリスト
+用語と説明などを組にしたリスト","用語と説明などを組にしたリスト","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-05-answer-3-choice","3","はい","いいえ",""
+"HTML・CSS・Web基礎","6","解答欄","コード","","","<div>
+<div>テキスト</div>
+</div>","<div style=""position:relative;background:gray;width:200px;height:200px""><div style=""position:absolute;bottom:0;right:0"">テキスト</div></div>","","HTMLの要素・属性と問題の条件を確認してください。","","html","登録済み","","","web-06-answer-1","web-06-answer-1","1","はい","いいえ",""
+"HTML・CSS・Web基礎","7","test.jpgの完全なURLは？","短文","","","","https://example.com/image/test.jpg","","基準となるページからの階層と、ファイル名の大文字・小文字を確認してください。","","","登録済み","","","web-07-answer-1-path","web-07-answer-1-path","1","はい","いいえ",""
+"HTML・CSS・Web基礎","7","top.htmlからtest.jpgへの相対パスは？","短文","","","","../image/test.jpg","","基準となるページからの階層と、ファイル名の大文字・小文字を確認してください。","","","登録済み","","","web-07-answer-2-path","web-07-answer-2-path","2","はい","いいえ",""
+"HTML・CSS・Web基礎","8","解答","コード","","","<form method=""get"" action=""radio.php"">
+<input type=""submit"" value=""送信"" />
+</form>","<form method=""get"" action=""radio.php""><input type=""radio"" name=""fruits"" value=""apple"">りんご<input type=""radio"" name=""fruits"" value=""peach"" checked>もも<input type=""radio"" name=""fruits"" value=""grape"">ぶどう<input type=""submit"" value=""送信""></form>","","HTMLの要素・属性と問題の条件を確認してください。","","html","登録済み","","","web-08-answer-1","web-08-answer-1","1","はい","いいえ",""
+"HTML・CSS・Web基礎","9","このHTMLは、CSSを指定しない場合どう表示されますか？","単一選択","すべて同じ行に表示される
+「Webスクールでクイズに答えて」「ガンガン」「スキルアップ！！」がそれぞれ別の行に表示される
+spanの前後だけで改行される","「Webスクールでクイズに答えて」「ガンガン」「スキルアップ！！」がそれぞれ別の行に表示される","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-09-answer-1-choice","1","はい","いいえ",""
+"HTML・CSS・Web基礎","9","HTMLの要素の入れ子として誤っている部分は？","単一選択","p要素の中にspan要素を置いている部分
+span要素の中に文字を書いている部分
+p要素の中にdiv要素を置いている部分","p要素の中にdiv要素を置いている部分","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-09-answer-2-choice","2","はい","いいえ",""
+"HTML・CSS・Web基礎","10","解答欄","コード","","","","<!DOCTYPE html><html><head></head><body><h1>Hello!みなさん！</h1></body></html>","","HTMLの要素・属性と問題の条件を確認してください。","","html","登録済み","","","web-10-answer-1","web-10-answer-1","1","はい","いいえ",""
+"HTML・CSS・Web基礎","11","①の方法でCSS指定","コード","","","<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+    <p>この文字は18pxの半透明の赤色で、太文字で表示されています。</p>
+</body>
+</html>","<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+    <p style=""font-size:18px;color:rgba(255,0,0,.5);font-weight:bold"">この文字は18pxの半透明の赤色で、太文字で表示されています。</p>
+</body>
+</html>","","問題の条件と回答をもう一度確認してください。","","html","登録済み","","","web-11-answer-1","web-11-answer-1","1","はい","いいえ",""
+"HTML・CSS・Web基礎","11","②の方法でCSS指定","コード","","","<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+    <p>この文字は18pxの半透明の赤色で、太文字で表示されています。</p>
+</body>
+</html>","<!DOCTYPE html>
+<html>
+<head><style>p {font-size:18px;color:rgba(255,0,0,.5);font-weight:bold}</style></head>
+<body>
+    <p>この文字は18pxの半透明の赤色で、太文字で表示されています。</p>
+</body>
+</html>","","問題の条件と回答をもう一度確認してください。","","html","登録済み","","","web-11-answer-2","web-11-answer-2","2","はい","いいえ",""
+"HTML・CSS・Web基礎","11","③の方法でCSS指定","コード","","","<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+    <p>この文字は18pxの半透明の赤色で、太文字で表示されています。</p>
+</body>
+</html>","<link rel=""stylesheet"" href=""css/design.css"">","","HTMLの要素・属性と問題の条件を確認してください。","","html","登録済み","","","web-11-answer-3","web-11-answer-3","3","いいえ","いいえ",""
+"HTML・CSS・Web基礎","12","光のR・G・Bをまとめて何と呼びますか？","単一選択","光の三原色
+色料の三原色
+補色","光の三原色","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-12-answer-1-choice","1","はい","いいえ",""
+"HTML・CSS・Web基礎","12","赤・緑・青の光を、すべて最大の強さで重ねると何色になりますか？","単一選択","赤
+青
+緑
+黄
+黒
+白","白","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-12-answer-2-choice","2","はい","いいえ",""
+"HTML・CSS・Web基礎","13","PNGの説明に当てはまる番号は？","単一選択","①
+②
+③
+④
+⑤
+⑥","②","","","","対象の用語・コードと、選んだ内容が対応しているか確認してください。","","","正解と照合","","","","web-13-answer-1-PNG","1","はい","いいえ",""
+"HTML・CSS・Web基礎","13","JPEGの説明に当てはまる番号は？","単一選択","①
+②
+③
+④
+⑤
+⑥","③","","","","対象の用語・コードと、選んだ内容が対応しているか確認してください。","","","正解と照合","","","","web-13-answer-1-JPEG","2","はい","いいえ",""
+"HTML・CSS・Web基礎","13","BMPの説明に当てはまる番号は？","単一選択","①
+②
+③
+④
+⑤
+⑥","⑥","","","","対象の用語・コードと、選んだ内容が対応しているか確認してください。","","","正解と照合","","","","web-13-answer-1-BMP","3","はい","いいえ",""
+"HTML・CSS・Web基礎","13","GIFの説明に当てはまる番号は？","単一選択","①
+②
+③
+④
+⑤
+⑥","④","","","","対象の用語・コードと、選んだ内容が対応しているか確認してください。","","","正解と照合","","","","web-13-answer-1-GIF","4","はい","いいえ",""
+"HTML・CSS・Web基礎","13","WebPの説明に当てはまる番号は？","単一選択","①
+②
+③
+④
+⑤
+⑥","⑤","","","","対象の用語・コードと、選んだ内容が対応しているか確認してください。","","","正解と照合","","","","web-13-answer-1-WebP","5","はい","いいえ",""
+"HTML・CSS・Web基礎","13","SVGの説明に当てはまる番号は？","単一選択","①
+②
+③
+④
+⑤
+⑥","①","","","","対象の用語・コードと、選んだ内容が対応しているか確認してください。","","","正解と照合","","","","web-13-answer-1-SVG","6","はい","いいえ",""
+"HTML・CSS・Web基礎","14","ワイヤーフレームは何を示すものですか？","単一選択","ページの構成や情報の配置を示す設計図
+公開後のアクセス数を示す集計表
+サーバー障害の原因を記録するログ","ページの構成や情報の配置を示す設計図","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-14-answer-1-choice","1","はい","いいえ",""
+"HTML・CSS・Web基礎","14","モックアップを作る主な目的は？","単一選択","検索順位を自動的に上げる
+完成時の見た目やデザインを確認する
+データベースの内容を暗号化する","完成時の見た目やデザインを確認する","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-14-answer-2-choice","2","はい","いいえ",""
+"HTML・CSS・Web基礎","14","顧客が必要とする機能や制約を整理し、開発する範囲を決める工程は？","単一選択","実装
+運用監視
+要件定義","要件定義","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-14-answer-3-choice","3","はい","いいえ",""
+"HTML・CSS・Web基礎","15","画像のグローバルナビゲーションに当てはまる番号は？","単一選択","①
+②
+③
+④
+⑤
+⑥
+⑦","⑤","","","","対象の用語・コードと、選んだ内容が対応しているか確認してください。","","","正解と照合","","","","web-15-answer-1-global","1","はい","いいえ",""
+"HTML・CSS・Web基礎","15","画像のサイドバーに当てはまる番号は？","単一選択","①
+②
+③
+④
+⑤
+⑥
+⑦","②","","","","対象の用語・コードと、選んだ内容が対応しているか確認してください。","","","正解と照合","","","","web-15-answer-1-side","2","はい","いいえ",""
+"HTML・CSS・Web基礎","15","画像のコンテンツエリアに当てはまる番号は？","単一選択","①
+②
+③
+④
+⑤
+⑥
+⑦","③","","","","対象の用語・コードと、選んだ内容が対応しているか確認してください。","","","正解と照合","","","","web-15-answer-1-content","3","はい","いいえ",""
+"HTML・CSS・Web基礎","15","画像のローカルナビゲーションに当てはまる番号は？","単一選択","①
+②
+③
+④
+⑤
+⑥
+⑦","⑦","","","","対象の用語・コードと、選んだ内容が対応しているか確認してください。","","","正解と照合","","","","web-15-answer-1-local","4","はい","いいえ",""
+"HTML・CSS・Web基礎","15","画像のフッターに当てはまる番号は？","単一選択","①
+②
+③
+④
+⑤
+⑥
+⑦","④","","","","対象の用語・コードと、選んだ内容が対応しているか確認してください。","","","正解と照合","","","","web-15-answer-1-footer","5","はい","いいえ",""
+"HTML・CSS・Web基礎","15","画像のヘッダーエリアに当てはまる番号は？","単一選択","①
+②
+③
+④
+⑤
+⑥
+⑦","①","","","","対象の用語・コードと、選んだ内容が対応しているか確認してください。","","","正解と照合","","","","web-15-answer-1-header","6","はい","いいえ",""
+"HTML・CSS・Web基礎","15","画像のパンくずリストに当てはまる番号は？","単一選択","①
+②
+③
+④
+⑤
+⑥
+⑦","⑥","","","","対象の用語・コードと、選んだ内容が対応しているか確認してください。","","","正解と照合","","","","web-15-answer-1-breadcrumb","7","はい","いいえ",""
+"HTML・CSS・Web基礎","16","解答","コード","","","","<style>body{margin:0}.welcome{width:800px;height:300px;margin:100px auto 0;display:flex;align-items:center;justify-content:center}</style><div class=""welcome"">Welcome!</div>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-16-answer-1","web-16-answer-1","1","はい","いいえ",""
+"HTML・CSS・Web基礎","17","staff.jsの相対パス","短文","","","","../../../items/js/staff.js","","基準となるページからの階層と、ファイル名の大文字・小文字を確認してください。","","","登録済み","","","web-17-answer-1-path","web-17-answer-1-path","1","はい","いいえ",""
+"HTML・CSS・Web基礎","17","staff.jpgの相対パス","短文","","","","../../../items/image/staff/staff.jpg","","基準となるページからの階層と、ファイル名の大文字・小文字を確認してください。","","","登録済み","","","web-17-answer-2-path","web-17-answer-2-path","2","はい","いいえ",""
+"HTML・CSS・Web基礎","18","解答欄","コード","","","","<table><tr><td colspan=""2"">コンテンツA</td></tr><tr><td rowspan=""2"">画像A</td><td></td></tr><tr><td rowspan=""2"">画像B</td></tr><tr><td></td></tr></table>","","HTMLの要素・属性と問題の条件を確認してください。","","html","登録済み","","","web-18-answer-1","web-18-answer-1","1","はい","いいえ",""
+"HTML・CSS・Web基礎","19","左のテーブルの解答","コード","","","","<table><tr><td colspan=""3"">タイトル</td></tr><tr><td>1</td><td>2</td><td>3</td></tr><tr><td>A</td><td>B</td><td>C</td></tr></table>","","HTMLの要素・属性と問題の条件を確認してください。","","html","登録済み","","","web-19-answer-1","web-19-answer-1","1","はい","いいえ",""
+"HTML・CSS・Web基礎","19","右のテーブルの解答","コード","","","","<table><tr><td rowspan=""3"">タイトル</td><td>1</td><td>A</td></tr><tr><td>2</td><td>B</td></tr><tr><td>3</td><td>C</td></tr></table>","","HTMLの要素・属性と問題の条件を確認してください。","","html","登録済み","","","web-19-answer-2","web-19-answer-2","2","はい","いいえ",""
+"HTML・CSS・Web基礎","20","paddingで指定する部分は？","単一選択","①
+②
+③
+④
+⑤","②","","","","対象の用語・コードと、選んだ内容が対応しているか確認してください。","","","正解と照合","","","","web-20-answer-1-padding","1","はい","いいえ",""
+"HTML・CSS・Web基礎","20","marginで指定する部分は？","単一選択","①
+②
+③
+④
+⑤","①","","","","対象の用語・コードと、選んだ内容が対応しているか確認してください。","","","正解と照合","","","","web-20-answer-1-margin","2","はい","いいえ",""
+"HTML・CSS・Web基礎","20","heightで指定する部分は？","単一選択","①
+②
+③
+④
+⑤","③","","","","対象の用語・コードと、選んだ内容が対応しているか確認してください。","","","正解と照合","","","","web-20-answer-1-height","3","はい","いいえ",""
+"HTML・CSS・Web基礎","20","widthで指定する部分は？","単一選択","①
+②
+③
+④
+⑤","④","","","","対象の用語・コードと、選んだ内容が対応しているか確認してください。","","","正解と照合","","","","web-20-answer-1-width","4","はい","いいえ",""
+"HTML・CSS・Web基礎","20","③に200px、②の上下左右に20pxを指定したとき、③の長さは何pxですか？","短文","","200
+200px","","","","内容領域と、その上下に加わるpaddingを確認してください。","","","正解と照合","","","","web-20-answer-2-inner","5","はい","いいえ","box-sizingはcontent-box、borderは0とします。"
+"HTML・CSS・Web基礎","20","③に200px、②の上下左右に20pxを指定したとき、⑤の長さは何pxですか？","短文","","240
+240px","","","","内容領域と、その上下に加わるpaddingを確認してください。","","","正解と照合","","","","web-20-answer-2-outer","6","はい","いいえ","box-sizingはcontent-box、borderは0とします。"
+"HTML・CSS・Web基礎","22","MS Pゴシック、メイリオ、総称フォントsans-serifの順に使う指定は？","単一選択","font-family: ""MS Pゴシック,メイリオ,sans-serif"";
+font-family: ""MS Pゴシック"", ""メイリオ"", sans-serif;
+font-family: ""MS Pゴシック"" + ""メイリオ"" + sans-serif;","font-family: ""MS Pゴシック"", ""メイリオ"", sans-serif;","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-22-answer-1-choice","1","はい","いいえ",""
+"HTML・CSS・Web基礎","22","font-familyに複数のフォントを指定する理由は？","単一選択","すべてのフォントを重ねて描画するため
+文字数に応じてフォントを順番に切り替えるため
+先のフォントを使えない場合に、後のフォントを試すため","先のフォントを使えない場合に、後のフォントを試すため","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-22-answer-2-choice","2","はい","いいえ",""
+"HTML・CSS・Web基礎","23","解答欄","コード","","","<html>
+<head></head>
+<body>Web School!</body>
+</html>","<html><head><meta charset=""UTF-8""><meta name=""description"" content=""ページの概要""><meta name=""viewport"" content=""width=device-width""><meta name=""keywords"" content=""Web制作,スクール,HTML基礎""><title>Webスクール</title></head><body>Web School!</body></html>","","HTMLの要素・属性と問題の条件を確認してください。","","html","登録済み","","","web-23-answer-1","web-23-answer-1","1","はい","いいえ",""
+"HTML・CSS・Web基礎","24","Aのdivに追加するCSS","コード","","","<!DOCTYPE html>
+<html>
+<head>
+<style>
+.a, .b {
+    height: 100px;
+    width: 100px;
+    padding: 20px;
+    margin: 20px;
+}
+.a { background: cyan; }
+.b { background: #9146e6; }
+</style>
+</head>
+<body>
+<div class=""a"">A</div>
+<div class=""b"">B</div>
+</body>
+</html>","<!DOCTYPE html>
+<html>
+<head>
+<style>
+.a, .b {
+    height: 100px;
+    width: 100px;
+    padding: 20px;
+    margin: 20px;
+}
+.a { background: cyan; }
+.b { background: #9146e6; }
+.a { box-sizing: border-box; }
+</style>
+</head>
+<body>
+<div class=""a"">A</div>
+<div class=""b"">B</div>
+</body>
+</html>","","表示や動作が指定された条件と一致しません。","","css","登録済み","","","web-24-answer-1","web-24-answer-1","1","はい","いいえ",""
+"HTML・CSS・Web基礎","25","解答","コード","","","<form method=""post"" action=""test.php"">
+<input type=""text"" name=""name"" value="""" />
+</form>
+
+
+<button type=""submit"">送信</button>","<form id=""form"" method=""post"" action=""test.php""><input type=""text"" name=""name""></form><button type=""submit"" form=""form"">送信</button>","","HTMLの要素・属性と問題の条件を確認してください。","","html","登録済み","","","web-25-answer-1","web-25-answer-1","1","はい","いいえ",""
+"HTML・CSS・Web基礎","26","font-sizeに3remを指定したとき、対象の文字サイズは何pxですか？","短文","","96
+96px","","","","問題の条件と回答をもう一度確認してください。","","","正解と照合","","","","web-26-answer-1","1","はい","いいえ",""
+"HTML・CSS・Web基礎","26","font-sizeに2emを指定したとき、対象の文字サイズは何pxですか？","短文","","128
+128px","","","","問題の条件と回答をもう一度確認してください。","","","正解と照合","","","","web-26-answer-2","2","はい","いいえ",""
+"HTML・CSS・Web基礎","26","font-sizeに2remを指定したとき、対象の文字サイズは何pxですか？","短文","","64
+64px","","","","問題の条件と回答をもう一度確認してください。","","","正解と照合","","","","web-26-answer-3","3","はい","いいえ",""
+"HTML・CSS・Web基礎","27","①の解答","複数選択","１
+２
+３
+４
+５
+６","３
+４","","","","問題の条件と回答をもう一度確認してください。","","","正解と照合","","","","web-27-answer-1","1","はい","いいえ","複数選択可能
+文字が赤色になる番号を全て選択してください！"
+"HTML・CSS・Web基礎","27","②の解答","複数選択","１
+２
+３
+４
+５
+６","２
+４
+６","","","","問題の条件と回答をもう一度確認してください。","","","正解と照合","","","","web-27-answer-2","2","はい","いいえ","複数選択可能
+文字が赤色になる番号を全て選択してください！"
+"HTML・CSS・Web基礎","27","③の解答","複数選択","１
+２
+３
+４
+５
+６","３
+４
+５
+６","","","","問題の条件と回答をもう一度確認してください。","","","正解と照合","","","","web-27-answer-3","3","はい","いいえ","複数選択可能
+文字が赤色になる番号を全て選択してください！"
+"HTML・CSS・Web基礎","28","①の解答","複数選択","１
+２
+３
+４
+５
+６
+７
+８
+９
+どれも赤くならない","２
+４
+６
+８","","","","問題の条件と回答をもう一度確認してください。","","","正解と照合","","","","web-28-answer-1","1","はい","いいえ","複数選択可能
+正解だと思うものを全て選択してください！
+"
+"HTML・CSS・Web基礎","28","②の解答","複数選択","１
+２
+３
+４
+５
+６
+７
+８
+９
+どれも赤くならない","どれも赤くならない","","","","問題の条件と回答をもう一度確認してください。","","","正解と照合","","","","web-28-answer-2","2","はい","いいえ","複数選択可能
+正解だと思うものを全て選択してください！
+"
+"HTML・CSS・Web基礎","28","③の解答","複数選択","１
+２
+３
+４
+５
+６
+７
+８
+９
+どれも赤くならない","３
+６
+９","","","","問題の条件と回答をもう一度確認してください。","","","正解と照合","","","","web-28-answer-3","3","はい","いいえ","複数選択可能
+正解だと思うものを全て選択してください！
+"
+"HTML・CSS・Web基礎","29","box-sizing: content-boxでは、widthとheightはどの範囲の寸法ですか？","単一選択","内容領域の寸法。paddingとborderは外側に加わる
+paddingとborderを含む寸法
+marginまで含む寸法","内容領域の寸法。paddingとborderは外側に加わる","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-29-answer-1-choice","1","はい","いいえ","※width、height、padding、border
+の関係について、当てはまる説明を選んでください。"
+"HTML・CSS・Web基礎","29","box-sizing: border-boxでは、widthとheightはどの範囲の寸法ですか？","単一選択","内容領域だけの寸法
+内容領域・padding・borderを含む寸法
+marginまで含む寸法","内容領域・padding・borderを含む寸法","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-29-answer-2-choice","2","はい","いいえ","※width、height、padding、border
+の関係について、当てはまる説明を選んでください。"
+"HTML・CSS・Web基礎","29","基本的に、
+初期値はどちらですか？","単一選択","content-box
+border-box","content-box","","","","問題の条件と回答をもう一度確認してください。","","","正解と照合","","","","web-29-answer-3","3","はい","いいえ",""
+"HTML・CSS・Web基礎","30","解答コード","コード","","","<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+<style>
+ul{
+            width: 300px;
+            height: 300px;
+            list-style: none;
+            border: 3px solid black;
+        }
+        li{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        li.center{
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+        }
+        li.right{
+        }
+</style>
+
+
+<ul>
+        <li class=""left"">左</li>
+        <li class=""center"">中</li>
+        <li class=""right"">右</li>
+    </ul>
+</body>
+</html>","<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+<style>
+ul{
+            width: 300px;
+            height: 300px;
+            list-style: none;
+            border: 3px solid black;
+        }
+        li{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        li.center{
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+        }
+        li.right{
+        }
+</style>
+
+
+<ul>
+        <li class=""left"">左</li>
+        <li class=""center"">中</li>
+        <li class=""right"">右</li>
+    </ul>
+<style>
+ul{position:relative;padding:0}li.left{position:absolute;top:0;left:0}li.right{position:absolute;bottom:0;right:0}li.center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1}
+</style>
+</body>
+</html>","","表示や動作が指定された条件と一致しません。","","css","登録済み","","","web-30-answer-1","web-30-answer-1","1","はい","いいえ",""
+"HTML・CSS・Web基礎","31","①のCSSでは、
+どの「この文字は赤色？」の文字が
+赤くなるでしょう？","複数選択","１
+２
+３
+４
+５","２
+３
+４
+５","","","","問題の条件と回答をもう一度確認してください。","","","正解と照合","","","","web-31-answer-1","1","はい","いいえ","複数選択可能
+正解だと思うものを全て選択してください！
+"
+"HTML・CSS・Web基礎","31","②空のpタグが記述されています。
+「:empty」を使って、
+CSSだけで、ここに何か文字を表示してみましょう。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <section>
+            <h1>クイズ第３１問！</h1>
+            <p>【１】この文字は赤色？</p>
+            <p>【２】この文字は赤色？</p>
+            <p>【３】この文字は赤色？</p>
+            <p>【４】この文字は赤色？</p>
+            <p>【５】この文字は赤色？</p>
+            <!-- ② -->
+            <p></p>
+        </section>
+        <style>
+            /* ① */
+            section p:not(:first-of-type) {
+                color: red;
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <section>
+            <h1>クイズ第３１問！</h1>
+            <p>【１】この文字は赤色？</p>
+            <p>【２】この文字は赤色？</p>
+            <p>【３】この文字は赤色？</p>
+            <p>【４】この文字は赤色？</p>
+            <p>【５】この文字は赤色？</p>
+            <!-- ② -->
+            <p></p>
+        </section>
+        <style>
+            /* ① */
+            section p:not(:first-of-type) {
+                color: red;
+            }
+        </style>
+    </body>
+<style>
+p:empty::before{content:""文字""}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-31-answer-2","web-31-answer-2","2","はい","いいえ","CSSを記述してください。"
+"HTML・CSS・Web基礎","32","①のCSSでは、
+どの「この文字は赤色？」の文字が赤くなるでしょう？","複数選択","１
+２
+３
+４
+５","２","","","","問題の条件と回答をもう一度確認してください。","","","正解と照合","","","","web-32-answer-1","1","はい","いいえ","複数選択可能
+正解だと思うものを全て選択してください！
+"
+"HTML・CSS・Web基礎","32","②のCSSでは、
+どの「この文字は赤色？」の文字が赤くなるでしょう？","複数選択","１
+２
+３
+４
+５","５","","","","問題の条件と回答をもう一度確認してください。","","","正解と照合","","","","web-32-answer-2","2","はい","いいえ","複数選択可能
+正解だと思うものを全て選択してください！
+"
+"HTML・CSS・Web基礎","32","③テキスト入力欄があります。
+属性セレクタを使って、これらの横幅を長くしてみましょう。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <section>
+            <h1>クイズ第３２問！</h1>
+            <a href=""https://example.com/"" target=""_blank"">【１】この文字は赤色？</a>
+            <a href=""#example"">【２】この文字は赤色？</a>
+            <a href=""/question/"">【３】この文字は赤色？</a>
+            <a href=""hogehoge.jpg"">【４】この文字は赤色？</a>
+            <a href=""fugaguga.pdf"">【５】この文字は赤色？</a>
+        </section>
+        <section id=""example"">
+            <h1>Example</h1>
+            <form action=""#"" method=""post"">
+                <!-- ③ ここから -->
+                <input type=""text"" name=""text1"">
+                <input type=""text"" name=""text2"">
+                <!-- ③ ここまで -->
+                <input type=""submit"" name=""button"">
+            </form>
+        </section>
+        <style>
+            /* ① */
+            a[href^=""#""] {
+                color: red;
+            }
+            /* ② */
+            a[href$="".pdf""] {
+                color: red;
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <section>
+            <h1>クイズ第３２問！</h1>
+            <a href=""https://example.com/"" target=""_blank"">【１】この文字は赤色？</a>
+            <a href=""#example"">【２】この文字は赤色？</a>
+            <a href=""/question/"">【３】この文字は赤色？</a>
+            <a href=""hogehoge.jpg"">【４】この文字は赤色？</a>
+            <a href=""fugaguga.pdf"">【５】この文字は赤色？</a>
+        </section>
+        <section id=""example"">
+            <h1>Example</h1>
+            <form action=""#"" method=""post"">
+                <!-- ③ ここから -->
+                <input type=""text"" name=""text1"">
+                <input type=""text"" name=""text2"">
+                <!-- ③ ここまで -->
+                <input type=""submit"" name=""button"">
+            </form>
+        </section>
+        <style>
+            /* ① */
+            a[href^=""#""] {
+                color: red;
+            }
+            /* ② */
+            a[href$="".pdf""] {
+                color: red;
+            }
+        </style>
+    </body>
+<style>
+input[type=""text""]{width:300px}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-32-answer-3","web-32-answer-3","3","はい","いいえ","CSSを記述してください。
+"
+"HTML・CSS・Web基礎","33","①下記のとき、
+重なり順は？","単一選択","１→２
+２→１","２→１","","","","問題の条件と回答をもう一度確認してください。","","","正解と照合","","","","web-33-answer-1","1","はい","いいえ","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""box""></div><!-- この箱が １ -->
+        <div class=""box2""></div><!-- この箱が ２ -->
+        <style>
+            .box {
+                width: 100px;
+                height: 100px;
+                background: #f00;
+                z-index: 2;
+            }
+            .box2 {
+                width: 100px;
+                height: 100px;
+                background: #0f0;
+                z-index: 1;
+                margin: -20px;
+            }
+        </style>
+    </body>
+</html>
+
+上に重なる→下に重なる
+の順で解答してください。"
+"HTML・CSS・Web基礎","33","②下記のとき、
+重なり順は？","単一選択","１→２→３
+１→３→２
+２→１→３
+２→３→１
+３→１→２
+３→２→１","３→２→１","","","","親が作るスタッキングコンテキスト内では、負のz-indexの子も親の背景より後に描かれます。","","","正解と照合","","","","web-33-answer-2","2","はい","いいえ","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""box""><!-- この箱が １ -->
+            <div class=""box_bg""></div><!-- この箱が ２ -->
+        </div>
+        <div class=""box2""></div><!-- この箱が ３ -->
+        <style>
+            .box {
+                width: 100px;
+                height: 100px;
+                background: #f00;
+                position: relative;
+                z-index: 2;
+            }
+            .box_bg {
+                width: 100px;
+                height: 100px;
+                background: #0f0;
+                position: relative;
+                top: 20px;
+                left: 20px;
+                z-index: -1;
+            }
+            .box2 {
+                width: 100px;
+                height: 100px;
+                background: #00f;
+                position: relative;
+                bottom: 20px;
+                z-index: 3;
+            }
+        </style>
+    </body>
+</html>
+
+上に重なる→下に重なる
+の順で解答してください。"
+"HTML・CSS・Web基礎","34","①box2を、boxのちょうど真ん中に配置してください。(画像参照)","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""box"">
+            <div class=""box2""></div>
+        </div>
+        <style>
+            .box {
+                width: 400px;
+                height: 400px;
+                background: #f00;
+            }
+            .box2 {
+                width: 100px;
+                height: 100px;
+                background: #0f0;
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""box"">
+            <div class=""box2""></div>
+        </div>
+        <style>
+            .box {
+                width: 400px;
+                height: 400px;
+                background: #f00;
+            }
+            .box2 {
+                width: 100px;
+                height: 100px;
+                background: #0f0;
+            }
+        </style>
+    </body>
+<style>
+.box{position:relative}.box2{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-34-answer-1","web-34-answer-1","1","はい","いいえ","CSSを記述してください。
+※positionを使ってください。
+※たとえwidthやheightが変わったとしても
+位置がずれないようにしてみましょう。
+"
+"HTML・CSS・Web基礎","34","②box2の左端をboxの左端にそろえ、boxのすぐ下に配置してください。 (画像参照)","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""box"">
+            <div class=""box2""></div>
+        </div>
+        <style>
+            .box {
+                width: 400px;
+                height: 400px;
+                background: #f00;
+            }
+            .box2 {
+                width: 100px;
+                height: 100px;
+                background: #0f0;
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""box"">
+            <div class=""box2""></div>
+        </div>
+        <style>
+            .box {
+                width: 400px;
+                height: 400px;
+                background: #f00;
+            }
+            .box2 {
+                width: 100px;
+                height: 100px;
+                background: #0f0;
+            }
+        </style>
+    </body>
+<style>
+.box{position:relative}.box2{position:absolute;top:100%;left:0}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-34-answer-2","web-34-answer-2","2","はい","いいえ","CSSを記述してください。
+※positionを使ってください。
+※たとえwidthやheightが変わったとしても
+位置がずれないようにしてみましょう。
+"
+"HTML・CSS・Web基礎","34","③box2の中心を、boxの右下の角に合わせて配置してください。 (画像参照)","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""box"">
+            <div class=""box2""></div>
+        </div>
+        <style>
+            .box {
+                width: 400px;
+                height: 400px;
+                background: #f00;
+            }
+            .box2 {
+                width: 100px;
+                height: 100px;
+                background: #0f0;
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""box"">
+            <div class=""box2""></div>
+        </div>
+        <style>
+            .box {
+                width: 400px;
+                height: 400px;
+                background: #f00;
+            }
+            .box2 {
+                width: 100px;
+                height: 100px;
+                background: #0f0;
+            }
+        </style>
+    </body>
+<style>
+.box{position:relative}.box2{position:absolute;top:100%;left:100%;transform:translate(-50%,-50%)}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-34-answer-3","web-34-answer-3","3","はい","いいえ","CSSを記述してください。
+※positionを使ってください。
+※たとえwidthやheightが変わったとしても
+位置がずれないようにしてみましょう。
+"
+"HTML・CSS・Web基礎","35","要件を満たすバックアップ計画はどれですか？","単一選択","ア
+イ
+ウ
+エ","ウ","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-35-answer-1-choice","1","はい","いいえ",""
+"HTML・CSS・Web基礎","36","① 画像の周りに文章を回り込ませるのに適した指定と、その理由は？","単一選択","float：要素の周りに文章を回り込ませる
+flexbox：一方向に並ぶ要素の幅や間隔を調整する
+grid：行と列を組み合わせて二次元に配置する","float：要素の周りに文章を回り込ませる","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-36-answer-1-choice","1","はい","いいえ",""
+"HTML・CSS・Web基礎","36","② 一列に並ぶ要素の幅や間隔を調整するのに適した指定と、その理由は？","単一選択","float：要素の周りに文章を回り込ませる
+flexbox：一方向に並ぶ要素の幅や間隔を調整する
+grid：行と列を組み合わせて二次元に配置する","flexbox：一方向に並ぶ要素の幅や間隔を調整する","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-36-answer-2-choice","2","はい","いいえ",""
+"HTML・CSS・Web基礎","36","③ 行と列をまたぐ要素を配置するのに適した指定と、その理由は？","単一選択","float：要素の周りに文章を回り込ませる
+flexbox：一方向に並ぶ要素の幅や間隔を調整する
+grid：行と列を組み合わせて二次元に配置する","grid：行と列を組み合わせて二次元に配置する","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-36-answer-3-choice","3","はい","いいえ",""
+"HTML・CSS・Web基礎","37","①以下のCSSのとき、赤い箱(.box)の横幅はいくつ？","短文","","300
+300px","","","","calc内の式と、親要素の幅・文字サイズを確認してください。","","","正解と照合","","","","web-37-answer-1","1","はい","いいえ",".box {
+    width: calc(100px + 200px);
+}"
+"HTML・CSS・Web基礎","37","② 以下のCSSのとき、赤い箱(.box)の横幅はいくつ？","短文","","380
+380px","","","","calc内の式と、親要素の幅・文字サイズを確認してください。","","","正解と照合","","","","web-37-answer-2","2","はい","いいえ",".box {
+    width: calc((100% - 30px) / 3);
+}"
+"HTML・CSS・Web基礎","37","③ 以下のCSSのとき、「クイズ第３７問！」の文字の大きさはいくつ？","短文","","20
+20px","","","","calc内の式と、親要素の幅・文字サイズを確認してください。","","","正解と照合","","","","web-37-answer-3","3","はい","いいえ",".box {
+    font-size: calc(1em + 4px);
+}"
+"HTML・CSS・Web基礎","38","① test.htmlに追加するCSS","コード","","","<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+<style>
+
+</style>
+<h1>タイトル</h1>
+<div style=""height:1500px"">コンテンツ</div>
+<h2>ここを表示</h2>
+</body>
+</html>","<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+<style>
+
+</style>
+<h1>タイトル</h1>
+<div style=""height:1500px"">コンテンツ</div>
+<h2>ここを表示</h2>
+<style>
+html{scroll-behavior:smooth}
+</style>
+</body>
+</html>","","表示や動作が指定された条件と一致しません。","","css","登録済み","","","web-38-answer-1","web-38-answer-1","1","はい","いいえ",""
+"HTML・CSS・Web基礎","38","② h2要素に、移動先を識別するためのid属性を追加してください。","短文","","","","id=""target""","<h2 ②>ここを表示</h2>","空白を含まないidを、h2要素の属性として指定してください。","","","登録済み","","","web-38-answer-2-attribute","web-38-answer-2-attribute","2","はい","いいえ",""
+"HTML・CSS・Web基礎","38","③ test.htmlの、②で付けたidの見出しへ移動する相対URLは？","短文","","","","/test.html#target","<a href=""③"">ここを表示へ移動</a>","test.htmlへのパスと、#以降が②のidと一致しているか確認してください。","","","登録済み","","","web-38-answer-3-link","web-38-answer-3-link","3","はい","いいえ",""
+"HTML・CSS・Web基礎","39","①の記述","コード","","","<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        footer{
+            ①
+            height: 30px;
+            background-color: gray;
+        }
+       </style>
+</head>
+<body>
+    <main>
+        <h1>タイトル</h1>
+        <section> <!-- A -->
+            <h2>タイトル2</h2>
+            <div style=""height:200px;background-color: red;"">コンテンツ</div>
+        </section>
+        <section> <!-- B -->
+            <h2>タイトル3</h2>
+            <div style=""height:2000px;background-color: red;"">コンテンツ</div>
+        </section>
+    </main>
+    <footer>フッター</footer>
+</div>
+</body>
+</html>","<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        footer{
+            ①
+            height: 30px;
+            background-color: gray;
+        }
+       </style>
+</head>
+<body>
+    <main>
+        <h1>タイトル</h1>
+        <section> <!-- A -->
+            <h2>タイトル2</h2>
+            <div style=""height:200px;background-color: red;"">コンテンツ</div>
+        </section>
+        <section> <!-- B -->
+            <h2>タイトル3</h2>
+            <div style=""height:2000px;background-color: red;"">コンテンツ</div>
+        </section>
+    </main>
+    <footer>フッター</footer>
+</div>
+</body>
+<style>
+footer{position:fixed;bottom:0;width:100%;}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-39-answer-1","web-39-answer-1","1","はい","いいえ",""
+"HTML・CSS・Web基礎","40","①「吾輩は猫である」の冒頭文が書いてあります。
+これをCSSを書いて画像のように2段にしてください。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""box"">
+                吾輩は猫である。名前はまだ無い。
+                どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌に載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。この時妙なものだと思った感じが今でも残っている。第一毛をもって装飾されべきはずの顔がつるつるしてまるで薬缶だ。その後猫にもだいぶ逢ったがこんな片輪には一度も出会わした事がない。
+                のみならず顔の真中があまりに突起している。そうしてその穴の中から時々ぷうぷうと……
+            </div>
+        </div>
+        <style>
+            .wrapper {
+                width: 1170px;
+                margin: 0 auto;
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""box"">
+                吾輩は猫である。名前はまだ無い。
+                どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌に載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。この時妙なものだと思った感じが今でも残っている。第一毛をもって装飾されべきはずの顔がつるつるしてまるで薬缶だ。その後猫にもだいぶ逢ったがこんな片輪には一度も出会わした事がない。
+                のみならず顔の真中があまりに突起している。そうしてその穴の中から時々ぷうぷうと……
+            </div>
+        </div>
+        <style>
+            .wrapper {
+                width: 1170px;
+                margin: 0 auto;
+            }
+        </style>
+    </body>
+<style>
+.box{column-count:2;column-gap:2em;column-rule:1px solid #333}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-40-answer-1","web-40-answer-1","1","はい","いいえ","※2段組にして、中央に縦線を引き、
+適当な余白をあけてください。"
+"HTML・CSS・Web基礎","40","②今度は、
+ひとつの段が12文字になるようにして、
+自動で段数が設定されるようにしてください。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""box"">
+                吾輩は猫である。名前はまだ無い。
+                どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌に載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。この時妙なものだと思った感じが今でも残っている。第一毛をもって装飾されべきはずの顔がつるつるしてまるで薬缶だ。その後猫にもだいぶ逢ったがこんな片輪には一度も出会わした事がない。
+                のみならず顔の真中があまりに突起している。そうしてその穴の中から時々ぷうぷうと……
+            </div>
+        </div>
+        <style>
+            .wrapper {
+                width: 1170px;
+                margin: 0 auto;
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""box"">
+                吾輩は猫である。名前はまだ無い。
+                どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌に載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。この時妙なものだと思った感じが今でも残っている。第一毛をもって装飾されべきはずの顔がつるつるしてまるで薬缶だ。その後猫にもだいぶ逢ったがこんな片輪には一度も出会わした事がない。
+                のみならず顔の真中があまりに突起している。そうしてその穴の中から時々ぷうぷうと……
+            </div>
+        </div>
+        <style>
+            .wrapper {
+                width: 1170px;
+                margin: 0 auto;
+            }
+        </style>
+    </body>
+<style>
+.box{column-width:12em;column-gap:2em;column-rule:1px solid #333}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-40-answer-2","web-40-answer-2","2","はい","いいえ","※段の区切りには縦線を引き、
+適当な余白をあけてください。"
+"HTML・CSS・Web基礎","41","①「クリックで開く」のところに、マウスカーソルをもっていっても、
+何も反応せず、押せるのかどうかがわかりづらくなっています。
+
+マウスカーソルが変わるようにして、クリックできることを明示しましょう。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <input id=""acd-lock"" class=""acd-lock"" type=""checkbox"">
+        <input id=""acd-check"" class=""acd-check"" type=""checkbox"">
+        <label class=""acd-label"" for=""acd-check"">クリックで開く</label>
+        <div class=""acd-content"">
+            <p>クイズ第４１問</p>
+        </div>
+        <style>
+            .acd-check{
+                display: none;
+            }
+            .acd-label{
+                background: #333;
+                color: #fff;
+                display: block;
+                margin-bottom: 1px;
+                padding: 10px;
+            }
+            .acd-content{
+                border: 1px solid #333;
+                height: 0;
+                opacity: 0;
+                padding: 0 10px;
+                visibility: hidden;
+            }
+            .acd-check:checked + .acd-label + .acd-content{
+                height: 40px;
+                opacity: 1;
+                padding: 10px;
+                visibility: visible;
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <input id=""acd-lock"" class=""acd-lock"" type=""checkbox"">
+        <input id=""acd-check"" class=""acd-check"" type=""checkbox"">
+        <label class=""acd-label"" for=""acd-check"">クリックで開く</label>
+        <div class=""acd-content"">
+            <p>クイズ第４１問</p>
+        </div>
+        <style>
+            .acd-check{
+                display: none;
+            }
+            .acd-label{
+                background: #333;
+                color: #fff;
+                display: block;
+                margin-bottom: 1px;
+                padding: 10px;
+            }
+            .acd-content{
+                border: 1px solid #333;
+                height: 0;
+                opacity: 0;
+                padding: 0 10px;
+                visibility: hidden;
+            }
+            .acd-check:checked + .acd-label + .acd-content{
+                height: 40px;
+                opacity: 1;
+                padding: 10px;
+                visibility: visible;
+            }
+        </style>
+    </body>
+<style>
+.acd-label{cursor:pointer}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-41-answer-1","web-41-answer-1","1","はい","いいえ","※CSSを記述してください。"
+"HTML・CSS・Web基礎","41","②今度は、
+「クリックで開く」のところをクリックしても
+何も起こらないようにしてみましょう。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <input id=""acd-lock"" class=""acd-lock"" type=""checkbox"">
+        <input id=""acd-check"" class=""acd-check"" type=""checkbox"">
+        <label class=""acd-label"" for=""acd-check"">クリックで開く</label>
+        <div class=""acd-content"">
+            <p>クイズ第４１問</p>
+        </div>
+        <style>
+            .acd-check{
+                display: none;
+            }
+            .acd-label{
+                background: #333;
+                color: #fff;
+                display: block;
+                margin-bottom: 1px;
+                padding: 10px;
+            }
+            .acd-content{
+                border: 1px solid #333;
+                height: 0;
+                opacity: 0;
+                padding: 0 10px;
+                visibility: hidden;
+            }
+            .acd-check:checked + .acd-label + .acd-content{
+                height: 40px;
+                opacity: 1;
+                padding: 10px;
+                visibility: visible;
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <input id=""acd-lock"" class=""acd-lock"" type=""checkbox"">
+        <input id=""acd-check"" class=""acd-check"" type=""checkbox"">
+        <label class=""acd-label"" for=""acd-check"">クリックで開く</label>
+        <div class=""acd-content"">
+            <p>クイズ第４１問</p>
+        </div>
+        <style>
+            .acd-check{
+                display: none;
+            }
+            .acd-label{
+                background: #333;
+                color: #fff;
+                display: block;
+                margin-bottom: 1px;
+                padding: 10px;
+            }
+            .acd-content{
+                border: 1px solid #333;
+                height: 0;
+                opacity: 0;
+                padding: 0 10px;
+                visibility: hidden;
+            }
+            .acd-check:checked + .acd-label + .acd-content{
+                height: 40px;
+                opacity: 1;
+                padding: 10px;
+                visibility: visible;
+            }
+        </style>
+    </body>
+<style>
+.acd-label{pointer-events:none}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-41-answer-2","web-41-answer-2","2","はい","いいえ","※CSSを記述してください。"
+"HTML・CSS・Web基礎","41","③最後に……
+一番上にチェックボックスがあります。
+チェックをつけたときだけ、「クリックで開く」が
+反応するようにしてみましょう。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <input id=""acd-lock"" class=""acd-lock"" type=""checkbox"">
+        <input id=""acd-check"" class=""acd-check"" type=""checkbox"">
+        <label class=""acd-label"" for=""acd-check"">クリックで開く</label>
+        <div class=""acd-content"">
+            <p>クイズ第４１問</p>
+        </div>
+        <style>
+            .acd-check{
+                display: none;
+            }
+            .acd-label{
+                background: #333;
+                color: #fff;
+                display: block;
+                margin-bottom: 1px;
+                padding: 10px;
+            }
+            .acd-content{
+                border: 1px solid #333;
+                height: 0;
+                opacity: 0;
+                padding: 0 10px;
+                visibility: hidden;
+            }
+            .acd-check:checked + .acd-label + .acd-content{
+                height: 40px;
+                opacity: 1;
+                padding: 10px;
+                visibility: visible;
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <input id=""acd-lock"" class=""acd-lock"" type=""checkbox"">
+        <input id=""acd-check"" class=""acd-check"" type=""checkbox"">
+        <label class=""acd-label"" for=""acd-check"">クリックで開く</label>
+        <div class=""acd-content"">
+            <p>クイズ第４１問</p>
+        </div>
+        <style>
+            .acd-check{
+                display: none;
+            }
+            .acd-label{
+                background: #333;
+                color: #fff;
+                display: block;
+                margin-bottom: 1px;
+                padding: 10px;
+            }
+            .acd-content{
+                border: 1px solid #333;
+                height: 0;
+                opacity: 0;
+                padding: 0 10px;
+                visibility: hidden;
+            }
+            .acd-check:checked + .acd-label + .acd-content{
+                height: 40px;
+                opacity: 1;
+                padding: 10px;
+                visibility: visible;
+            }
+        </style>
+    </body>
+<style>
+.acd-label{pointer-events:none}#acd-lock:checked~.acd-label{pointer-events:auto}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-41-answer-3","web-41-answer-3","3","はい","いいえ","※CSSを記述してください。"
+"HTML・CSS・Web基礎","42","Photoshopで「クイズ」という文字が書いてあります。(画像参照)
+隣にあるのは、この文字の設定のパネルです。
+
+この情報をもとに
+画像の文字の見た目をCSSで再現してください。","コード","","","<!DOCTYPE html>
+<html>
+    <head>
+        <link rel=""preconnect"" href=""https://fonts.googleapis.com"">
+        <link rel=""preconnect"" href=""https://fonts.gstatic.com"" crossorigin>
+        <link href=""https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"" rel=""stylesheet"">
+    </head>
+    <body>
+        <p>クイズ<br>クイズ<br>クイズ</p>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head>
+        <link rel=""preconnect"" href=""https://fonts.googleapis.com"">
+        <link rel=""preconnect"" href=""https://fonts.gstatic.com"" crossorigin>
+        <link href=""https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"" rel=""stylesheet"">
+    </head>
+    <body>
+        <p>クイズ<br>クイズ<br>クイズ</p>
+    </body>
+<style>
+p{font-family:""Noto Sans JP"",sans-serif;font-size:72px;font-weight:500;letter-spacing:.05em;line-height:1.8;color:#000}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-42-answer-1","web-42-answer-1","1","はい","いいえ",""
+"HTML・CSS・Web基礎","43","①CSSが指定してあります。
+
+「【１】ここの文字は何色？」の文字は
+何色でしょう？","単一選択","赤
+青
+緑
+黄
+黒
+白","黒","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-43-answer-1-choice","1","はい","いいえ",""
+"HTML・CSS・Web基礎","43","②
+「【２】この箱の背景色は何色？」の
+背景色は何色でしょう？","単一選択","赤
+青
+緑
+黄
+黒
+白","緑","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-43-answer-2-choice","2","はい","いいえ",""
+"HTML・CSS・Web基礎","44","①セルに枠線をつけたら、
+二重線みたいになってしまいました。
+画像の①のような見た目にしましょう。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <table>
+                <tr>
+                    <th>新宿駅</th>
+                    <td>2,404,763人</td>
+                    <td>東京都</td>
+                </tr>
+                <tr>
+                    <th>渋谷駅</th>
+                    <td>2,284,302人</td>
+                    <td>東京都</td>
+                </tr>
+                <tr>
+                    <th>池袋駅</th>
+                    <td>1,926,362人</td>
+                    <td>東京都</td>
+                </tr>
+                <tr>
+                    <th>横浜駅</th>
+                    <td>1,673,613人</td>
+                    <td>神奈川県</td>
+                </tr>
+                <tr>
+                    <th>梅田駅</th>
+                    <td>838,158人</td>
+                    <td>大阪府</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+    <style>
+        .wrapper {
+            width: 900px;
+            margin: 0 auto;
+        }
+        table {
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #333;
+        }
+    </style>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <table>
+                <tr>
+                    <th>新宿駅</th>
+                    <td>2,404,763人</td>
+                    <td>東京都</td>
+                </tr>
+                <tr>
+                    <th>渋谷駅</th>
+                    <td>2,284,302人</td>
+                    <td>東京都</td>
+                </tr>
+                <tr>
+                    <th>池袋駅</th>
+                    <td>1,926,362人</td>
+                    <td>東京都</td>
+                </tr>
+                <tr>
+                    <th>横浜駅</th>
+                    <td>1,673,613人</td>
+                    <td>神奈川県</td>
+                </tr>
+                <tr>
+                    <th>梅田駅</th>
+                    <td>838,158人</td>
+                    <td>大阪府</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+    <style>
+        .wrapper {
+            width: 900px;
+            margin: 0 auto;
+        }
+        table {
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #333;
+        }
+    </style>
+<style>
+table{border-collapse:collapse}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-44-answer-1","web-44-answer-1","1","はい","いいえ","※追加するCSSを記述してください。"
+"HTML・CSS・Web基礎","44","②テーブルの列の幅がバラバラです。
+均等の幅になるようにしましょう。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <table>
+                <tr>
+                    <th>新宿駅</th>
+                    <td>2,404,763人</td>
+                    <td>東京都</td>
+                </tr>
+                <tr>
+                    <th>渋谷駅</th>
+                    <td>2,284,302人</td>
+                    <td>東京都</td>
+                </tr>
+                <tr>
+                    <th>池袋駅</th>
+                    <td>1,926,362人</td>
+                    <td>東京都</td>
+                </tr>
+                <tr>
+                    <th>横浜駅</th>
+                    <td>1,673,613人</td>
+                    <td>神奈川県</td>
+                </tr>
+                <tr>
+                    <th>梅田駅</th>
+                    <td>838,158人</td>
+                    <td>大阪府</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+    <style>
+        .wrapper {
+            width: 900px;
+            margin: 0 auto;
+        }
+        table {
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #333;
+        }
+    </style>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <table>
+                <tr>
+                    <th>新宿駅</th>
+                    <td>2,404,763人</td>
+                    <td>東京都</td>
+                </tr>
+                <tr>
+                    <th>渋谷駅</th>
+                    <td>2,284,302人</td>
+                    <td>東京都</td>
+                </tr>
+                <tr>
+                    <th>池袋駅</th>
+                    <td>1,926,362人</td>
+                    <td>東京都</td>
+                </tr>
+                <tr>
+                    <th>横浜駅</th>
+                    <td>1,673,613人</td>
+                    <td>神奈川県</td>
+                </tr>
+                <tr>
+                    <th>梅田駅</th>
+                    <td>838,158人</td>
+                    <td>大阪府</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+    <style>
+        .wrapper {
+            width: 900px;
+            margin: 0 auto;
+        }
+        table {
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #333;
+        }
+    </style>
+<style>
+table{table-layout:fixed;width:100%}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-44-answer-2","web-44-answer-2","2","はい","いいえ","※追加するCSSを記述してください。"
+"HTML・CSS・Web基礎","44","③セルを縦に並べて、
+縦1列になるようにしてみましょう。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <table>
+                <tr>
+                    <th>新宿駅</th>
+                    <td>2,404,763人</td>
+                    <td>東京都</td>
+                </tr>
+                <tr>
+                    <th>渋谷駅</th>
+                    <td>2,284,302人</td>
+                    <td>東京都</td>
+                </tr>
+                <tr>
+                    <th>池袋駅</th>
+                    <td>1,926,362人</td>
+                    <td>東京都</td>
+                </tr>
+                <tr>
+                    <th>横浜駅</th>
+                    <td>1,673,613人</td>
+                    <td>神奈川県</td>
+                </tr>
+                <tr>
+                    <th>梅田駅</th>
+                    <td>838,158人</td>
+                    <td>大阪府</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+    <style>
+        .wrapper {
+            width: 900px;
+            margin: 0 auto;
+        }
+        table {
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #333;
+        }
+    </style>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <table>
+                <tr>
+                    <th>新宿駅</th>
+                    <td>2,404,763人</td>
+                    <td>東京都</td>
+                </tr>
+                <tr>
+                    <th>渋谷駅</th>
+                    <td>2,284,302人</td>
+                    <td>東京都</td>
+                </tr>
+                <tr>
+                    <th>池袋駅</th>
+                    <td>1,926,362人</td>
+                    <td>東京都</td>
+                </tr>
+                <tr>
+                    <th>横浜駅</th>
+                    <td>1,673,613人</td>
+                    <td>神奈川県</td>
+                </tr>
+                <tr>
+                    <th>梅田駅</th>
+                    <td>838,158人</td>
+                    <td>大阪府</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+    <style>
+        .wrapper {
+            width: 900px;
+            margin: 0 auto;
+        }
+        table {
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #333;
+        }
+    </style>
+<style>
+td,th{display:block}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-44-answer-3","web-44-answer-3","3","はい","いいえ","※追加するCSSを記述してください。"
+"HTML・CSS・Web基礎","45","①
+<!-- 【ここに何か必要】 -->　と書いてあるところがあります。
+<head>タグの中にviewportのタグというのを書くことから始まります。
+書いてみましょう。","コード","","","<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 【ここに何か必要】 -->
+    </head>
+    <body>
+        <div class=""wrapper"">
+            <ul>
+                <li class=""box"">
+                    <h1>タイトル</h1>
+                    <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                </li>
+                <li class=""box"">
+                    <h1>タイトル</h1>
+                    <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                </li>
+                <li class=""box"">
+                    <h1>タイトル</h1>
+                    <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                </li>
+            </ul>
+        </div>
+    </body>
+    <style>
+        .wrapper {
+            width: 900px;
+            margin: 0 auto;
+        }
+        ul {
+            display: flex;
+            list-style-type: none;
+        }
+        .box {
+            width: calc(100% / 3);
+            background: #ccc;
+        }
+    </style>
+</html>","<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 【ここに何か必要】 -->
+    <meta name=""viewport"" content=""width=device-width, initial-scale=1"">
+</head>
+    <body>
+        <div class=""wrapper"">
+            <ul>
+                <li class=""box"">
+                    <h1>タイトル</h1>
+                    <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                </li>
+                <li class=""box"">
+                    <h1>タイトル</h1>
+                    <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                </li>
+                <li class=""box"">
+                    <h1>タイトル</h1>
+                    <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                </li>
+            </ul>
+        </div>
+    </body>
+    <style>
+        .wrapper {
+            width: 900px;
+            margin: 0 auto;
+        }
+        ul {
+            display: flex;
+            list-style-type: none;
+        }
+        .box {
+            width: calc(100% / 3);
+            background: #ccc;
+        }
+    </style>
+</html>","","HTMLの要素・属性と問題の条件を確認してください。","","html","登録済み","","","web-45-answer-1","web-45-answer-1","1","はい","いいえ",""
+"HTML・CSS・Web基礎","45","②
+横並びのコンテンツがあります。
+スマホで見たときは、そのままだと見づらいので
+メディアクエリというのを使って、縦並びに変えましょう。","コード","","","<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 【ここに何か必要】 -->
+    </head>
+    <body>
+        <div class=""wrapper"">
+            <ul>
+                <li class=""box"">
+                    <h1>タイトル</h1>
+                    <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                </li>
+                <li class=""box"">
+                    <h1>タイトル</h1>
+                    <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                </li>
+                <li class=""box"">
+                    <h1>タイトル</h1>
+                    <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                </li>
+            </ul>
+        </div>
+    </body>
+    <style>
+        .wrapper {
+            width: 900px;
+            margin: 0 auto;
+        }
+        ul {
+            display: flex;
+            list-style-type: none;
+        }
+        .box {
+            width: calc(100% / 3);
+            background: #ccc;
+        }
+    </style>
+</html>","<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 【ここに何か必要】 -->
+    <meta name=""viewport"" content=""width=device-width, initial-scale=1"">
+</head>
+    <body>
+        <div class=""wrapper"">
+            <ul>
+                <li class=""box"">
+                    <h1>タイトル</h1>
+                    <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                </li>
+                <li class=""box"">
+                    <h1>タイトル</h1>
+                    <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                </li>
+                <li class=""box"">
+                    <h1>タイトル</h1>
+                    <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                </li>
+            </ul>
+        </div>
+    </body>
+    <style>
+        .wrapper {
+            width: 900px;
+            margin: 0 auto;
+        }
+        ul {
+            display: flex;
+            list-style-type: none;
+        }
+        .box {
+            width: calc(100% / 3);
+            background: #ccc;
+        }
+    </style>
+<style>
+@media(max-width:767px){.wrapper{width:100%}ul{display:block;padding:0}.box{width:100%}}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-45-answer-2","web-45-answer-2","2","はい","いいえ","※CSSを記述してください。
+このとき、コンテンツが画面をはみださないように調整しましょう。
+"
+"HTML・CSS・Web基礎","46","①
+「【１】この箱の背景色は？」のところ
+背景色をお答えください。","単一選択","赤
+青
+緑
+黄
+黒
+白","赤","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-46-answer-1-choice","1","はい","いいえ",""
+"HTML・CSS・Web基礎","46","②
+「【２】この箱の背景色は？」のところ
+背景色をお答えください。","単一選択","赤
+青
+緑
+黄
+黒
+白","緑","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-46-answer-2-choice","2","はい","いいえ",""
+"HTML・CSS・Web基礎","46","③
+「【３】この文の文字色は？」のところ
+文字の色をお答えください。","単一選択","赤
+青
+緑
+黄
+黒
+白","黄","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-46-answer-3-choice","3","はい","いいえ",""
+"HTML・CSS・Web基礎","47","hsl(60, 100%, 80%)の1番目の数値60を変えると、どの成分が変わりますか？","単一選択","色相：色の種類
+彩度：色の鮮やかさ
+明度：色の明るさ","色相：色の種類","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-47-answer-1-choice","1","はい","いいえ",""
+"HTML・CSS・Web基礎","47","hsl(60, 100%, 80%)の2番目の数値100%を変えると、どの成分が変わりますか？","単一選択","色相：色の種類
+彩度：色の鮮やかさ
+明度：色の明るさ","彩度：色の鮮やかさ","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-47-answer-2-choice","2","はい","いいえ",""
+"HTML・CSS・Web基礎","47","hsl(60, 100%, 80%)の3番目の数値80%を変えると、どの成分が変わりますか？","単一選択","色相：色の種類
+彩度：色の鮮やかさ
+明度：色の明るさ","明度：色の明るさ","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-47-answer-3-choice","3","はい","いいえ",""
+"HTML・CSS・Web基礎","48","①(画像参照)
+このグラデーションをCSSで再現してください。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""box gradation1"">
+            </div>
+            <div class=""box gradation2"">
+            </div>
+            <div class=""box gradation3"">
+            </div>
+        </div>
+    </body>
+    <style>
+        .wrapper {
+            width: 900px;
+            margin: 0 auto;
+            display: flex;
+            gap: 5em;
+        }
+        .box {
+            width: 200px;
+            height: 200px;
+            background: #ccc;
+        }
+    </style>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""box gradation1"">
+            </div>
+            <div class=""box gradation2"">
+            </div>
+            <div class=""box gradation3"">
+            </div>
+        </div>
+    </body>
+    <style>
+        .wrapper {
+            width: 900px;
+            margin: 0 auto;
+            display: flex;
+            gap: 5em;
+        }
+        .box {
+            width: 200px;
+            height: 200px;
+            background: #ccc;
+        }
+    </style>
+<style>
+.gradation1{background:linear-gradient(to bottom,red,yellow);}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-48-answer-1","web-48-answer-1","1","はい","いいえ","※.gradation1 に対して、CSSを記述してください。"
+"HTML・CSS・Web基礎","48","②(画像参照)
+このグラデーションをCSSで再現してください。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""box gradation1"">
+            </div>
+            <div class=""box gradation2"">
+            </div>
+            <div class=""box gradation3"">
+            </div>
+        </div>
+    </body>
+    <style>
+        .wrapper {
+            width: 900px;
+            margin: 0 auto;
+            display: flex;
+            gap: 5em;
+        }
+        .box {
+            width: 200px;
+            height: 200px;
+            background: #ccc;
+        }
+    </style>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""box gradation1"">
+            </div>
+            <div class=""box gradation2"">
+            </div>
+            <div class=""box gradation3"">
+            </div>
+        </div>
+    </body>
+    <style>
+        .wrapper {
+            width: 900px;
+            margin: 0 auto;
+            display: flex;
+            gap: 5em;
+        }
+        .box {
+            width: 200px;
+            height: 200px;
+            background: #ccc;
+        }
+    </style>
+<style>
+.gradation2{background:linear-gradient(to bottom right,blue,transparent);}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-48-answer-2","web-48-answer-2","2","はい","いいえ","※.gradation2 に対して、CSSを記述してください。"
+"HTML・CSS・Web基礎","48","③(画像参照)
+このグラデーションをCSSで再現してください。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""box gradation1"">
+            </div>
+            <div class=""box gradation2"">
+            </div>
+            <div class=""box gradation3"">
+            </div>
+        </div>
+    </body>
+    <style>
+        .wrapper {
+            width: 900px;
+            margin: 0 auto;
+            display: flex;
+            gap: 5em;
+        }
+        .box {
+            width: 200px;
+            height: 200px;
+            background: #ccc;
+        }
+    </style>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""box gradation1"">
+            </div>
+            <div class=""box gradation2"">
+            </div>
+            <div class=""box gradation3"">
+            </div>
+        </div>
+    </body>
+    <style>
+        .wrapper {
+            width: 900px;
+            margin: 0 auto;
+            display: flex;
+            gap: 5em;
+        }
+        .box {
+            width: 200px;
+            height: 200px;
+            background: #ccc;
+        }
+    </style>
+<style>
+.gradation3{background:radial-gradient(circle,lime,white);}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-48-answer-3","web-48-answer-3","3","はい","いいえ","※.gradation3 に対して、CSSを記述してください。"
+"HTML・CSS・Web基礎","49","①
+「 <!-- ここに埋め込み --> 」のところに
+YouTubeの動画を、なんでもいいので探してきて
+1つ埋め込みましょう。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <!-- ここに埋め込み -->
+        </div>
+        <style>
+            .wrapper {
+                width: 80vw;
+                margin: 0 auto;
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <iframe src=""https://www.youtube.com/embed/aqz-KE-bpKQ"" title=""動画""></iframe>
+        </div>
+        <style>
+            .wrapper {
+                width: 80vw;
+                margin: 0 auto;
+            }
+        </style>
+    </body>
+</html>","","HTMLの要素・属性と問題の条件を確認してください。","","html","登録済み","","","web-49-answer-1","web-49-answer-1","1","はい","いいえ","※「 <!-- ここに埋め込み --> 」のところに書くコードを記述してください。
+"
+"HTML・CSS・Web基礎","49","②
+埋め込んだ動画を、
+.wrapperの幅いっぱいになるようにして、
+さらに、ウィンドウ幅が変わっても
+動画のアスペクト比が維持されるようにしてください。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <!-- ここに埋め込み -->
+        </div>
+        <style>
+            .wrapper {
+                width: 80vw;
+                margin: 0 auto;
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <iframe src=""https://www.youtube.com/embed/aqz-KE-bpKQ"" title=""動画""></iframe>
+        </div>
+        <style>
+            .wrapper {
+                width: 80vw;
+                margin: 0 auto;
+            }
+        </style>
+    </body>
+<style>
+iframe{width:100%;aspect-ratio:16/9;height:auto;border:0}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-49-answer-2","web-49-answer-2","2","はい","いいえ","※CSSを記述してください。
+"
+"HTML・CSS・Web基礎","50","①
+CSSで、「正三角形」を描いてください。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""triangle""></div>
+        </div>
+        <style>
+            .wrapper {
+                width: 80vw;
+                margin: 5em auto;
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""triangle""></div>
+        </div>
+        <style>
+            .wrapper {
+                width: 80vw;
+                margin: 5em auto;
+            }
+        </style>
+    </body>
+<style>
+.triangle{width:0;height:0;border-left:50px solid transparent;border-right:50px solid transparent;border-bottom:86.6px solid cyan}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-50-answer-1","web-50-answer-1","1","はい","いいえ","※ .triangle に対して、CSSを記述してください。(もちろん擬似要素は可)
+※ どんなプロパティを使うかなど、やり方はおまかせします。
+
+(ただし、コードがぐちゃぐちゃにならないように注意してください。)
+"
+"HTML・CSS・Web基礎","50","②
+①で作った正三角形にマウスカーソルをのせたときに
+くるっと180度回転させて、逆三角形になるようにしてみましょう。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""triangle""></div>
+        </div>
+        <style>
+            .wrapper {
+                width: 80vw;
+                margin: 5em auto;
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""triangle""></div>
+        </div>
+        <style>
+            .wrapper {
+                width: 80vw;
+                margin: 5em auto;
+            }
+        </style>
+    </body>
+<style>
+.triangle{width:0;height:0;border-left:50px solid transparent;border-right:50px solid transparent;border-bottom:86.6px solid cyan}
+</style>
+<style>
+.triangle{transition:transform 1s}.triangle:hover{transform:rotate(180deg)}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-50-answer-2","web-50-answer-2","2","はい","いいえ","※CSSを記述してください。
+※ パッと切り替わるのではなく、簡単なアニメーションをつけましょう。
+※ 回転したとき、もとの位置から大きくずれることがないようにしましょう。
+"
+"HTML・CSS・Web基礎","51","①(画像参照)
+CSSで、この図形を描いてください。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""balloon""></div>
+            <div class=""trapezoid""></div>
+        </div>
+        <style>
+            .wrapper {
+                width: 30vw;
+                margin: 5em auto;
+            }
+            .wrapper > * + * {
+                margin-top: 20em;
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""balloon""></div>
+            <div class=""trapezoid""></div>
+        </div>
+        <style>
+            .wrapper {
+                width: 30vw;
+                margin: 5em auto;
+            }
+            .wrapper > * + * {
+                margin-top: 20em;
+            }
+        </style>
+    </body>
+<style>
+.balloon{height:200px;background:#10c1ed;position:relative}.balloon:after{content:"""";position:absolute;top:100%;left:50%;transform:translateX(-50%);border-left:84px solid transparent;border-right:84px solid transparent;border-top:50px solid #10c1ed}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-51-answer-1","web-51-answer-1","1","はい","いいえ","※ .balloon に対して、CSSを記述してください。(もちろん擬似要素は可)
+
+※ 横幅は .wrapperの幅いっぱいにしてください。
+※ 練習なので、正確に画像と同じ形でなくても構いません。
+ただし、ウィンドウ幅を変えたときに、図形が変形しないように注意してください。
+
+※ どんなプロパティを使うかなど、やり方はおまかせします。
+(ただし、コードがぐちゃぐちゃにならないように注意してください。)
+"
+"HTML・CSS・Web基礎","51","②(画像参照)
+CSSで、この図形を描いてください。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""balloon""></div>
+            <div class=""trapezoid""></div>
+        </div>
+        <style>
+            .wrapper {
+                width: 30vw;
+                margin: 5em auto;
+            }
+            .wrapper > * + * {
+                margin-top: 20em;
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""balloon""></div>
+            <div class=""trapezoid""></div>
+        </div>
+        <style>
+            .wrapper {
+                width: 30vw;
+                margin: 5em auto;
+            }
+            .wrapper > * + * {
+                margin-top: 20em;
+            }
+        </style>
+    </body>
+<style>
+.trapezoid{height:200px;background:#10c1ed;clip-path:polygon(100px 0,100% 0,100% 100%,0 100%)}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-51-answer-2","web-51-answer-2","2","はい","いいえ","※ .trapezoid に対して、CSSを記述してください。(もちろん擬似要素は可)
+
+
+※ 横幅は .wrapperの幅いっぱいにしてください。
+
+※ 練習なので、正確に画像と同じ形でなくても構いません。
+ただし、ウィンドウ幅を変えたときに、図形が変形しないように注意してください。
+
+
+※ どんなプロパティを使うかなど、やり方はおまかせします。
+(ただし、コードがぐちゃぐちゃにならないように注意してください。)
+"
+"HTML・CSS・Web基礎","52","①
+有名な俳句が書いてあります。
+これをCSSで縦書きにしましょう。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <blockquote class=""haiku"">
+                <p>五月雨を<br>集めてはやし<br>最上川</p>
+                <p class=""author"">松尾芭蕉<br>(寛永<span class=""digits"">21</span>年 - 元禄<span class=""digits"">7</span>年)</p>
+            </blockquote>
+        </div>
+        <style>
+            .wrapper {
+                width: 30vw;
+                margin: 0 auto;
+            }
+            .haiku {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                margin: 0;
+                border: 3px solid green;
+                line-height: 2;
+                padding: 20% 10%;
+                box-sizing: border-box;
+            }
+            .author {
+                margin-top: 3em;
+            }
+            .author:before {
+                content: '―――';
+                margin-top: -3em;
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <blockquote class=""haiku"">
+                <p>五月雨を<br>集めてはやし<br>最上川</p>
+                <p class=""author"">松尾芭蕉<br>(寛永<span class=""digits"">21</span>年 - 元禄<span class=""digits"">7</span>年)</p>
+            </blockquote>
+        </div>
+        <style>
+            .wrapper {
+                width: 30vw;
+                margin: 0 auto;
+            }
+            .haiku {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                margin: 0;
+                border: 3px solid green;
+                line-height: 2;
+                padding: 20% 10%;
+                box-sizing: border-box;
+            }
+            .author {
+                margin-top: 3em;
+            }
+            .author:before {
+                content: '―――';
+                margin-top: -3em;
+            }
+        </style>
+    </body>
+<style>
+.haiku{writing-mode:vertical-rl}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-52-answer-1","web-52-answer-1","1","はい","いいえ","※追加するCSSを記述してください。
+"
+"HTML・CSS・Web基礎","52","②
+次に、数字が90度横になっていて、読みにくいです。
+これを縦中横にしましょう。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <blockquote class=""haiku"">
+                <p>五月雨を<br>集めてはやし<br>最上川</p>
+                <p class=""author"">松尾芭蕉<br>(寛永<span class=""digits"">21</span>年 - 元禄<span class=""digits"">7</span>年)</p>
+            </blockquote>
+        </div>
+        <style>
+            .wrapper {
+                width: 30vw;
+                margin: 0 auto;
+            }
+            .haiku {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                margin: 0;
+                border: 3px solid green;
+                line-height: 2;
+                padding: 20% 10%;
+                box-sizing: border-box;
+            }
+            .author {
+                margin-top: 3em;
+            }
+            .author:before {
+                content: '―――';
+                margin-top: -3em;
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <blockquote class=""haiku"">
+                <p>五月雨を<br>集めてはやし<br>最上川</p>
+                <p class=""author"">松尾芭蕉<br>(寛永<span class=""digits"">21</span>年 - 元禄<span class=""digits"">7</span>年)</p>
+            </blockquote>
+        </div>
+        <style>
+            .wrapper {
+                width: 30vw;
+                margin: 0 auto;
+            }
+            .haiku {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                margin: 0;
+                border: 3px solid green;
+                line-height: 2;
+                padding: 20% 10%;
+                box-sizing: border-box;
+            }
+            .author {
+                margin-top: 3em;
+            }
+            .author:before {
+                content: '―――';
+                margin-top: -3em;
+            }
+        </style>
+    </body>
+<style>
+.haiku{writing-mode:vertical-rl}
+</style>
+<style>
+.digits{text-combine-upright:all}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-52-answer-2","web-52-answer-2","2","はい","いいえ","※追加するCSSを記述してください。
+※縦中横とは、縦書きの中の数字2～3桁くらいを
+横並びに組み込むことです。
+"
+"HTML・CSS・Web基礎","53","CSSを記述して、
+タイトルの左となりに、番号を、
+自動で上から1、2、3と振ってください。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <article>
+            <section>
+                <h2>タイトルタイトル</h2>
+                <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+            </section>
+            <section>
+                <h2>タイトルタイトル</h2>
+                <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+            </section>
+            <section>
+                <h2>タイトルタイトル</h2>
+                <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+            </section>
+        </article>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <article>
+            <section>
+                <h2>タイトルタイトル</h2>
+                <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+            </section>
+            <section>
+                <h2>タイトルタイトル</h2>
+                <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+            </section>
+            <section>
+                <h2>タイトルタイトル</h2>
+                <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+            </section>
+        </article>
+    </body>
+<style>
+body{counter-reset:section}h2::before{counter-increment:section;content:counter(section)}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-53-answer-1","web-53-answer-1","1","はい","いいえ",""
+"HTML・CSS・Web基礎","54","SVGを直接、インラインで埋め込みました。
+これの色を自由に変えてください。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <svg version=""1.1"" id=""_x32_"" xmlns=""http://www.w3.org/2000/svg"" xmlns:xlink=""http://www.w3.org/1999/xlink"" x=""0px"" y=""0px"" viewBox=""0 0 512 512"" style=""width: 256px; height: 256px; opacity: 1;"" xml:space=""preserve"">
+                <g>
+                    <path class=""st0"" d=""M378.409,0H208.294h-13.176l-9.314,9.315L57.017,138.101l-9.314,9.315v13.176v265.513
+                        c0,47.36,38.528,85.896,85.895,85.896h244.811c47.361,0,85.888-38.535,85.888-85.896V85.896C464.297,38.528,425.77,0,378.409,0z
+                         M432.493,426.104c0,29.877-24.214,54.091-54.084,54.091H133.598c-29.877,0-54.091-24.214-54.091-54.091V160.592h83.717
+                        c24.884,0,45.07-20.179,45.07-45.071V31.804h170.114c29.87,0,54.084,24.214,54.084,54.091V426.104z""></path>
+                    <path class=""st0"" d=""M180.296,296.668l-4.846-0.67c-10.63-1.487-14.265-4.978-14.265-10.104c0-5.78,4.309-9.817,12.383-9.817
+                        c5.653,0,11.305,1.62,15.745,3.764c1.886,0.942,3.903,1.487,5.789,1.487c4.845,0,8.612-3.63,8.612-8.616
+                        c0-3.226-1.481-5.921-4.71-7.939c-5.384-3.372-15.476-6.06-25.572-6.06c-19.781,0-32.436,11.171-32.436,27.998
+                        c0,16.15,10.232,24.898,28.938,27.454l4.846,0.67c10.903,1.48,14.129,4.846,14.129,10.229c0,6.326-5.247,10.766-14.939,10.766
+                        c-6.727,0-12.111-1.745-19.645-5.921c-1.616-0.942-3.634-1.62-5.788-1.62c-5.115,0-8.885,3.91-8.885,8.756
+                        c0,3.226,1.616,6.326,4.713,8.344c6.054,3.764,15.878,7.8,28.798,7.8c23.823,0,35.934-12.24,35.934-28.795
+                        C209.097,307.84,199.273,299.356,180.296,296.668z""></path>
+                    <path class=""st0"" d=""M281.108,259.382c-4.577,0-7.939,2.43-9.556,7.674l-16.69,54.51h-0.402l-17.634-54.51
+                        c-1.745-5.244-4.978-7.674-9.551-7.674c-5.653,0-9.692,4.176-9.692,9.287c0,1.347,0.269,2.834,0.67,4.175l23.286,68.104
+                        c2.96,8.477,6.727,11.57,12.652,11.57c5.785,0,9.555-3.093,12.516-11.57l23.282-68.104c0.406-1.341,0.674-2.828,0.674-4.175
+                        C290.664,263.558,286.76,259.382,281.108,259.382z""></path>
+                    <path class=""st0"" d=""M364.556,300.836h-18.841c-5.114,0-8.344,3.1-8.344,7.806c0,4.713,3.23,7.814,8.344,7.814h6.193
+                        c0.538,0,0.803,0.258,0.803,0.803c0,3.505-0.265,6.598-1.075,9.014c-1.882,5.796-7.67,9.426-14.669,9.426
+                        c-7.943,0-12.921-3.903-14.939-10.096c-1.075-3.365-1.48-7.8-1.48-19.648c0-11.842,0.405-16.15,1.48-19.516
+                        c2.018-6.325,6.867-10.228,14.67-10.228c5.924,0,10.362,1.885,13.859,6.724c2.695,3.777,5.387,4.852,8.749,4.852
+                        c4.981,0,9.021-3.638,9.021-8.888c0-2.151-0.674-4.035-1.752-5.921c-4.842-8.204-15.071-14.264-29.877-14.264
+                        c-16.287,0-28.935,7.408-33.644,22.204c-2.022,6.466-2.559,11.576-2.559,25.038c0,13.454,0.538,18.573,2.559,25.031
+                        c4.709,14.802,17.357,22.204,33.644,22.204c16.286,0,28.668-8.204,33.374-22.881c1.617-5.111,2.29-12.645,2.29-20.716v-0.95
+                        C372.362,303.664,369.538,300.836,364.556,300.836z""></path>
+                </g>
+            </svg>
+        </div>
+        <style>
+            .wrapper {
+                width: 900px;
+                margin: 0 auto;
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <svg version=""1.1"" id=""_x32_"" xmlns=""http://www.w3.org/2000/svg"" xmlns:xlink=""http://www.w3.org/1999/xlink"" x=""0px"" y=""0px"" viewBox=""0 0 512 512"" style=""width: 256px; height: 256px; opacity: 1;"" xml:space=""preserve"">
+                <g>
+                    <path class=""st0"" d=""M378.409,0H208.294h-13.176l-9.314,9.315L57.017,138.101l-9.314,9.315v13.176v265.513
+                        c0,47.36,38.528,85.896,85.895,85.896h244.811c47.361,0,85.888-38.535,85.888-85.896V85.896C464.297,38.528,425.77,0,378.409,0z
+                         M432.493,426.104c0,29.877-24.214,54.091-54.084,54.091H133.598c-29.877,0-54.091-24.214-54.091-54.091V160.592h83.717
+                        c24.884,0,45.07-20.179,45.07-45.071V31.804h170.114c29.87,0,54.084,24.214,54.084,54.091V426.104z""></path>
+                    <path class=""st0"" d=""M180.296,296.668l-4.846-0.67c-10.63-1.487-14.265-4.978-14.265-10.104c0-5.78,4.309-9.817,12.383-9.817
+                        c5.653,0,11.305,1.62,15.745,3.764c1.886,0.942,3.903,1.487,5.789,1.487c4.845,0,8.612-3.63,8.612-8.616
+                        c0-3.226-1.481-5.921-4.71-7.939c-5.384-3.372-15.476-6.06-25.572-6.06c-19.781,0-32.436,11.171-32.436,27.998
+                        c0,16.15,10.232,24.898,28.938,27.454l4.846,0.67c10.903,1.48,14.129,4.846,14.129,10.229c0,6.326-5.247,10.766-14.939,10.766
+                        c-6.727,0-12.111-1.745-19.645-5.921c-1.616-0.942-3.634-1.62-5.788-1.62c-5.115,0-8.885,3.91-8.885,8.756
+                        c0,3.226,1.616,6.326,4.713,8.344c6.054,3.764,15.878,7.8,28.798,7.8c23.823,0,35.934-12.24,35.934-28.795
+                        C209.097,307.84,199.273,299.356,180.296,296.668z""></path>
+                    <path class=""st0"" d=""M281.108,259.382c-4.577,0-7.939,2.43-9.556,7.674l-16.69,54.51h-0.402l-17.634-54.51
+                        c-1.745-5.244-4.978-7.674-9.551-7.674c-5.653,0-9.692,4.176-9.692,9.287c0,1.347,0.269,2.834,0.67,4.175l23.286,68.104
+                        c2.96,8.477,6.727,11.57,12.652,11.57c5.785,0,9.555-3.093,12.516-11.57l23.282-68.104c0.406-1.341,0.674-2.828,0.674-4.175
+                        C290.664,263.558,286.76,259.382,281.108,259.382z""></path>
+                    <path class=""st0"" d=""M364.556,300.836h-18.841c-5.114,0-8.344,3.1-8.344,7.806c0,4.713,3.23,7.814,8.344,7.814h6.193
+                        c0.538,0,0.803,0.258,0.803,0.803c0,3.505-0.265,6.598-1.075,9.014c-1.882,5.796-7.67,9.426-14.669,9.426
+                        c-7.943,0-12.921-3.903-14.939-10.096c-1.075-3.365-1.48-7.8-1.48-19.648c0-11.842,0.405-16.15,1.48-19.516
+                        c2.018-6.325,6.867-10.228,14.67-10.228c5.924,0,10.362,1.885,13.859,6.724c2.695,3.777,5.387,4.852,8.749,4.852
+                        c4.981,0,9.021-3.638,9.021-8.888c0-2.151-0.674-4.035-1.752-5.921c-4.842-8.204-15.071-14.264-29.877-14.264
+                        c-16.287,0-28.935,7.408-33.644,22.204c-2.022,6.466-2.559,11.576-2.559,25.038c0,13.454,0.538,18.573,2.559,25.031
+                        c4.709,14.802,17.357,22.204,33.644,22.204c16.286,0,28.668-8.204,33.374-22.881c1.617-5.111,2.29-12.645,2.29-20.716v-0.95
+                        C372.362,303.664,369.538,300.836,364.556,300.836z""></path>
+                </g>
+            </svg>
+        </div>
+        <style>
+            .wrapper {
+                width: 900px;
+                margin: 0 auto;
+            }
+        </style>
+    </body>
+<style>
+svg{fill:red}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-54-answer-1","web-54-answer-1","1","はい","いいえ","※追加するCSSを記述してください。"
+"HTML・CSS・Web基礎","54","SVGは、どんな種類の画像のとき
+使うと便利でしょうか？","複数選択","風景画像
+ロゴ
+アイコン
+人物の画像","ロゴ
+アイコン","","","","問題の条件と回答をもう一度確認してください。","","","正解と照合","","","","web-54-answer-2","2","はい","いいえ","※複数選択可
+"
+"HTML・CSS・Web基礎","55","検証ツールで、下の投稿の本文を書き換えてください。","ページ編集","","","","{""text"": ""こんにちは"", ""color"": ""rgb(15, 20, 25)"", ""visible"": true}","","投稿の本文が変わっているか確認してください。","","","登録済み","","","web-55-answer-1","web-55-answer-1","1","はい","いいえ",""
+"HTML・CSS・Web基礎","55","検証ツールで、投稿の文字色を変えてください。","ページ編集","","","","{""text"": ""こんにちは"", ""color"": ""rgb(0, 0, 255)"", ""visible"": true}","","本文を保ったまま、文字色を変更してください。","","","登録済み","","","web-55-answer-2","web-55-answer-2","2","はい","いいえ",""
+"HTML・CSS・Web基礎","56","検証ツールで、箱にマウスを重ねたときに変わるCSSプロパティと値を調べてください。","CSS調査","","","","width:300px; height:300px; background:red;","","ホバー時に変わるプロパティと値を確認してください。","","","登録済み","","","web-56-answer-1","web-56-answer-1","1","はい","いいえ",""
+"HTML・CSS・Web基礎","57","① タイトルを長くしたとき、どの問題が起こりますか？","単一選択","タイトルと右上のボタンが重なる
+タイトルの文字色が変わる
+右上のボタンが左下に移動する","タイトルと右上のボタンが重なる","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-57-answer-1-choice","1","はい","はい","HTMLのタイトルを書き換え、プレビューで確かめてください。
+
+※レスポンシブデザインがない 等は、今回の問題の対象外です。"
+"HTML・CSS・Web基礎","57","②
+それは、どのようにCSSを記述すると
+解消できますか？","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <ul>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトルテキスト</p>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                        <div class=""button"">
+                            <span class=""dot""></span>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトルテキストタイトルテキスト</p>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                        <div class=""button"">
+                            <span class=""dot""></span>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトルテキストタイトルテキスト</p>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                        <div class=""button"">
+                            <span class=""dot""></span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            .wrapper {
+                width: 1200px;
+                margin: 0 auto;
+            }
+            ul {
+                list-style-type: none;
+                display: flex;
+                flex-wrap: wrap;
+                padding: 0;
+                gap: 5%;
+            }
+            li {
+                width: 30%;
+                padding: 1%;
+                border: 1px solid #eee;
+                border-radius: 5px;
+            }
+            .card {
+                position: relative;
+            }
+            .title {
+                font-size: 1.2em;
+                font-weight: 700;
+            }
+            .button {
+                width: 30px;
+                height: 30px;
+                position: absolute;
+                top: 0;
+                right: 0;
+                cursor: pointer;
+            }
+            .dot {
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                margin: auto;
+            }
+            .dot, .dot::before, .dot::after {
+                display: block;
+                position: absolute;
+                border-radius: 50%;
+                width: 3px;
+                height: 3px;
+                background-color: #333;
+            }
+            .dot::before {
+                content: '';
+                top: -6px;
+            }
+
+            .dot::after {
+                content: '';
+                top: 6px;
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <ul>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトルテキスト</p>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                        <div class=""button"">
+                            <span class=""dot""></span>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトルテキストタイトルテキスト</p>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                        <div class=""button"">
+                            <span class=""dot""></span>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトルテキストタイトルテキスト</p>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                        <div class=""button"">
+                            <span class=""dot""></span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            .wrapper {
+                width: 1200px;
+                margin: 0 auto;
+            }
+            ul {
+                list-style-type: none;
+                display: flex;
+                flex-wrap: wrap;
+                padding: 0;
+                gap: 5%;
+            }
+            li {
+                width: 30%;
+                padding: 1%;
+                border: 1px solid #eee;
+                border-radius: 5px;
+            }
+            .card {
+                position: relative;
+            }
+            .title {
+                font-size: 1.2em;
+                font-weight: 700;
+            }
+            .button {
+                width: 30px;
+                height: 30px;
+                position: absolute;
+                top: 0;
+                right: 0;
+                cursor: pointer;
+            }
+            .dot {
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                margin: auto;
+            }
+            .dot, .dot::before, .dot::after {
+                display: block;
+                position: absolute;
+                border-radius: 50%;
+                width: 3px;
+                height: 3px;
+                background-color: #333;
+            }
+            .dot::before {
+                content: '';
+                top: -6px;
+            }
+
+            .dot::after {
+                content: '';
+                top: 6px;
+            }
+        </style>
+    </body>
+<style>
+.title{padding-right:30px}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-57-answer-2","web-57-answer-2","2","はい","いいえ","※追加するCSSを記述してください。"
+"HTML・CSS・Web基礎","58","① .tag内のspan要素を増やしたとき、どの問題が起こりますか？","単一選択","タグの文字がすべて消える
+折り返した行のタグ同士が重なる
+カードの背景色が変わる","折り返した行のタグ同士が重なる","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-58-answer-1-choice","1","はい","はい","タグを増やし、プレビューで確かめてください。"
+"HTML・CSS・Web基礎","58","②
+それは、どのようにCSSを記述すると
+解消できますか？","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <ul>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトル</p>
+                        </div>
+                        <div class=""tag"">
+                            <span>ブログ</span>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトルテキスト</p>
+                        </div>
+                        <div class=""tag"">
+                            <span>ブログ</span>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトルテキストタイトルテキスト</p>
+                        </div>
+                        <div class=""tag"">
+                            <span>ブログ</span><span>新着情報</span>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトルテキスト</p>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトル</p>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトル</p>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            .wrapper {
+                width: 1200px;
+                margin: 0 auto;
+            }
+            ul {
+                list-style-type: none;
+                display: flex;
+                flex-wrap: wrap;
+                padding: 0;
+                gap: 3em 5%;
+            }
+            li {
+                width: 30%;
+                padding: 1%;
+                border: 1px solid #eee;
+                border-radius: 5px;
+            }
+            .card {
+                position: relative;
+            }
+            .title {
+                font-size: 1.2em;
+                font-weight: 700;
+            }
+            .tag span {
+                font-size: 0.8em;
+                padding: 0.5em 1em;
+                background: rgb(142, 169, 226);
+                border-radius: 9999px;
+            }
+            .tag span + span {
+                margin-left: 0.5em;
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <ul>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトル</p>
+                        </div>
+                        <div class=""tag"">
+                            <span>ブログ</span>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトルテキスト</p>
+                        </div>
+                        <div class=""tag"">
+                            <span>ブログ</span>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトルテキストタイトルテキスト</p>
+                        </div>
+                        <div class=""tag"">
+                            <span>ブログ</span><span>新着情報</span>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトルテキスト</p>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトル</p>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトル</p>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            .wrapper {
+                width: 1200px;
+                margin: 0 auto;
+            }
+            ul {
+                list-style-type: none;
+                display: flex;
+                flex-wrap: wrap;
+                padding: 0;
+                gap: 3em 5%;
+            }
+            li {
+                width: 30%;
+                padding: 1%;
+                border: 1px solid #eee;
+                border-radius: 5px;
+            }
+            .card {
+                position: relative;
+            }
+            .title {
+                font-size: 1.2em;
+                font-weight: 700;
+            }
+            .tag span {
+                font-size: 0.8em;
+                padding: 0.5em 1em;
+                background: rgb(142, 169, 226);
+                border-radius: 9999px;
+            }
+            .tag span + span {
+                margin-left: 0.5em;
+            }
+        </style>
+    </body>
+<style>
+.tag{display:flex;flex-wrap:wrap;gap:.5em}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-58-answer-2","web-58-answer-2","2","はい","いいえ","※追加するCSSを自由に記述してください。
+"
+"HTML・CSS・Web基礎","59","① カードを増やして最後の行が2枚になったとき、どの問題が起こりますか？","単一選択","2枚のカードが上下に重なる
+カードの文字がすべて消える
+2枚が両端に寄り、間隔が大きく空く","2枚が両端に寄り、間隔が大きく空く","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-59-answer-1-choice","1","はい","はい","li要素を2つ追加し、プレビューで最後の行を確かめてください。
+
+※レスポンシブなど（ウィンドウ幅を縮めたとき、うまく表示されないなど）は
+今回の問題の対象外です。"
+"HTML・CSS・Web基礎","59","②
+それは、どのようにCSSを記述すると
+解消できますか？","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <ul>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトル</p>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトルテキスト</p>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトルテキストタイトルテキスト</p>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトルテキスト</p>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトル</p>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトル</p>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            .wrapper {
+                width: 1200px;
+                margin: 0 auto;
+            }
+            ul {
+                list-style-type: none;
+                display: flex;
+                flex-wrap: wrap;
+                padding: 0;
+                justify-content: space-between;
+            }
+            li {
+                width: 30%;
+                padding: 1%;
+                border: 1px solid #eee;
+                border-radius: 5px;
+            }
+            li:nth-child(n+4) {
+                margin-top: 5%;
+            }
+            .card {
+                position: relative;
+            }
+            .title {
+                font-size: 1.2em;
+                font-weight: 700;
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <ul>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトル</p>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトルテキスト</p>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトルテキストタイトルテキスト</p>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトルテキスト</p>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトル</p>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class=""card"">
+                        <div class=""title"">
+                            <p>タイトル</p>
+                        </div>
+                        <div class=""text"">
+                            <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            .wrapper {
+                width: 1200px;
+                margin: 0 auto;
+            }
+            ul {
+                list-style-type: none;
+                display: flex;
+                flex-wrap: wrap;
+                padding: 0;
+                justify-content: space-between;
+            }
+            li {
+                width: 30%;
+                padding: 1%;
+                border: 1px solid #eee;
+                border-radius: 5px;
+            }
+            li:nth-child(n+4) {
+                margin-top: 5%;
+            }
+            .card {
+                position: relative;
+            }
+            .title {
+                font-size: 1.2em;
+                font-weight: 700;
+            }
+        </style>
+    </body>
+<style>
+ul{justify-content:flex-start;gap:5%}li:nth-child(n+4){margin-top:0}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-59-answer-2","web-59-answer-2","2","はい","いいえ","※修正・追記するCSSを自由に記述してください。
+"
+"HTML・CSS・Web基礎","60","画像のような、
+2回転をちょっとこえるくらいの回転をして、
+最後キュッと定位置にもどるような
+アニメーションを作ってみてください。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""box""></div>
+        </div>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            .wrapper {
+                width: 900px;
+                margin: 0 auto;
+                padding: 5em 0;
+            }
+            .box {
+                width: 100px;
+                height: 100px;
+                background: linear-gradient(to bottom, #FFC778, #F89174 50%, #748af8);
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""box""></div>
+        </div>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            .wrapper {
+                width: 900px;
+                margin: 0 auto;
+                padding: 5em 0;
+            }
+            .box {
+                width: 100px;
+                height: 100px;
+                background: linear-gradient(to bottom, #FFC778, #F89174 50%, #748af8);
+            }
+        </style>
+    </body>
+<style>
+@keyframes turn{0%{transform:rotate(0deg)}90%{transform:rotate(750deg)}100%{transform:rotate(720deg)}}.box{animation:turn 2s}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-60-answer-1","web-60-answer-1","1","はい","いいえ","※追加するCSSを記述してください。
+"
+"HTML・CSS・Web基礎","61","（上の画像を参照）
+画像の円形に切り取られた一部分が跳ねて、
+そのあと、画像の全体が見えるようになる
+アニメーションを作ってみましょう。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""box"">
+                <img src=""https://i.postimg.cc/YCbHZBQR/sunset-7504891-1920.jpg"">
+            </div>
+        </div>
+        <style>
+            .wrapper {
+                width: 900px;
+                margin: 0 auto;
+            }
+            .box img {
+                width: 100%;
+                display: block;
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""box"">
+                <img src=""https://i.postimg.cc/YCbHZBQR/sunset-7504891-1920.jpg"">
+            </div>
+        </div>
+        <style>
+            .wrapper {
+                width: 900px;
+                margin: 0 auto;
+            }
+            .box img {
+                width: 100%;
+                display: block;
+            }
+        </style>
+    </body>
+<style>
+@keyframes reveal{0%{clip-path:circle(10%)}50%{clip-path:circle(10%);transform:translateY(50px)}100%{clip-path:circle(100%)}}.box img{animation:reveal 2s}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-61-answer-1","web-61-answer-1","1","はい","いいえ","※追加するCSSを記述してください。
+"
+"HTML・CSS・Web基礎","62","① この画像の使い方で確認すべきことは？","単一選択","配布元の利用条件と、外部URLを直接指定してよいか
+img要素を使うことがHTMLで禁止されていないか
+画像の拡張子をすべて.htmlに変えたか","配布元の利用条件と、外部URLを直接指定してよいか","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-62-answer-1-choice","1","はい","いいえ",""
+"HTML・CSS・Web基礎","62","② 他サイトの画像URLを自分のページのimg要素に直接指定することを、俗に何と呼びますか？","短文","","直リンク
+画像の直リンク
+ホットリンク
+hotlink
+hotlinking","","","","問題の条件と回答をもう一度確認してください。","","","正解と照合","","","","web-62-answer-2","2","はい","いいえ",""
+"HTML・CSS・Web基礎","63","① 歌詞などをブログへ掲載する前に確認すべきことは？","単一選択","記事の文字数が偶数になっているか
+権利者の許諾や、引用として利用できる条件を満たすか
+ブログに広告が1つ以上あるか","権利者の許諾や、引用として利用できる条件を満たすか","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-63-answer-1-choice","1","はい","いいえ",""
+"HTML・CSS・Web基礎","63","② 著作権で保護される他者の文章を、権利者の許諾を得ずに引用する場合の説明として適切なのは？","単一選択","出典を書けば、内容や分量に関係なく全文を載せられる
+非営利のブログなら、引用の条件を確認する必要はない
+公表された著作物を、引用の目的上正当な範囲で、公正な慣行に沿って利用し、出所も示す","公表された著作物を、引用の目的上正当な範囲で、公正な慣行に沿って利用し、出所も示す","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-63-answer-2-choice","2","はい","いいえ",""
+"HTML・CSS・Web基礎","64","①
+【１】～【４】の
+4つの色違いの文字のうち、
+背景色に対して、コントラスト比が、
+4.5以上なのは、どれですか？","複数選択","【１】の文字
+【２】の文字
+【３】の文字
+【４】の文字","【２】の文字","","","","各色と背景のコントラスト比を確認してください。","","","正解と照合","","","","web-64-answer-1","1","はい","いいえ",""
+"HTML・CSS・Web基礎","64","② 「私を読みやすくして！」の文字色を、背景とのコントラスト比が4.5以上になる16進カラーコードで指定してください。","短文","","","","#333333","","この文字色は背景に対してコントラスト比4.5未満です。","","","登録済み","","","web-64-answer-2","web-64-answer-2","2","はい","いいえ","#RGBまたは#RRGGBBの形式。"
+"HTML・CSS・Web基礎","65","①(画像参照)
+赤丸で囲った部分、
+これを何と言いますか？","短文","","セリフ
+serif
+うろこ
+鱗","","","","問題の条件と回答をもう一度確認してください。","","","正解と照合","","","","web-65-answer-1","1","はい","いいえ",""
+"HTML・CSS・Web基礎","65","②(画像参照)
+①のような飾りのある書体のことを
+何と言いますか？","短文","","セリフ体
+セリフ
+serif","","","","問題の条件と回答をもう一度確認してください。","","","正解と照合","","","","web-65-answer-2","2","はい","いいえ",""
+"HTML・CSS・Web基礎","65","③(画像参照)
+①のような飾りがない書体のことを
+何と言いますか？","短文","","サンセリフ体
+サンセリフ
+sans-serif
+sans serif","","","","問題の条件と回答をもう一度確認してください。","","","正解と照合","","","","web-65-answer-3","3","はい","いいえ",""
+"HTML・CSS・Web基礎","66","①(画像参照)
+ここでは、ゴシック体（和文）やサンセリフ体（欧文）が使われています。
+これらのフォントを見て、どのような印象がありますか？","複数選択","高級感
+親近感
+カジュアル
+和風
+力強い
+大人っぽい","親近感
+カジュアル
+力強い","","","","フォントの特徴に合う選択肢を選んでください。","","","正解と照合","","","","web-66-answer-1","1","はい","いいえ",""
+"HTML・CSS・Web基礎","66","②(画像参照)
+今度は、明朝体（和文）やセリフ体（欧文）が使われています。
+これらのフォントを見て、どのような印象がありますか？","複数選択","高級感
+親近感
+カジュアル
+和風
+力強い
+大人っぽい","高級感
+和風
+大人っぽい","","","","フォントの特徴に合う選択肢を選んでください。","","","正解と照合","","","","web-66-answer-2","2","はい","いいえ",""
+"HTML・CSS・Web基礎","66","③ 遠くから駅名を読む用途で、①の書体を使う利点は？","単一選択","小さい飾りを増やして、文字の輪郭を複雑にできる
+文字を識別しやすく、駅名を読み取りやすい
+文字の意味を知らなくても、翻訳して表示できる","文字を識別しやすく、駅名を読み取りやすい","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-66-answer-3-choice","3","はい","いいえ","このような視点だとGOODです:
+駅の看板って、遠いところから見るので……"
+"HTML・CSS・Web基礎","67","画像の①で、左側の見本文字に使われている書体はどれですか？","単一選択","Helvetica
+Didot
+DIN","Helvetica","","","","見本文字の形と、各書体の特徴を見比べてください。","","","正解と照合","","","","web-67-answer-1-choice","1","はい","いいえ",""
+"HTML・CSS・Web基礎","67","画像の②で、左側の見本文字に使われている書体はどれですか？","単一選択","Helvetica
+Didot
+DIN","Didot","","","","見本文字の形と、各書体の特徴を見比べてください。","","","正解と照合","","","","web-67-answer-2-choice","2","はい","いいえ",""
+"HTML・CSS・Web基礎","67","画像の③で、左側の見本文字に使われている書体はどれですか？","単一選択","Helvetica
+Didot
+DIN","DIN","","","","見本文字の形と、各書体の特徴を見比べてください。","","","正解と照合","","","","web-67-answer-3-choice","3","はい","いいえ",""
+"HTML・CSS・Web基礎","68","① img要素を使うのに適した画像は？","単一選択","記事の内容を伝える写真や図
+本文と無関係な繰り返し模様
+余白を埋めるだけの背景模様","記事の内容を伝える写真や図","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-68-answer-1-choice","1","はい","いいえ",""
+"HTML・CSS・Web基礎","68","② background-imageを使うのに適した画像は？","単一選択","商品を識別するための商品写真
+本文と無関係な背景の装飾模様
+記事の内容を説明するグラフ","本文と無関係な背景の装飾模様","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-68-answer-2-choice","2","はい","いいえ",""
+"HTML・CSS・Web基礎","68","③(画像参照)
+このようなレイアウトのとき、
+imgタグと、background-image、
+どちらを使いますか？","単一選択","imgタグ
+background-image","imgタグ","","","","問題の条件と回答をもう一度確認してください。","","","正解と照合","","","","web-68-answer-3","3","はい","いいえ",""
+"HTML・CSS・Web基礎","69","① どの説明文がどの画像に対応するか分かりにくい原因は？","単一選択","画像ファイルの拡張子が同じだから
+すべての文章が日本語だから
+画像と対応する説明文が離れ、別の組との区別が弱いから","画像と対応する説明文が離れ、別の組との区別が弱いから","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-69-answer-1-choice","1","はい","いいえ",""
+"HTML・CSS・Web基礎","69","② 関連する情報の配置を改善するには？","単一選択","対応する画像と説明を近づけ、別の組とは余白で区切る
+すべての要素を同じ間隔で離す
+画像と対応する説明を画面の両端に分ける","対応する画像と説明を近づけ、別の組とは余白で区切る","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-69-answer-2-choice","2","はい","いいえ",""
+"HTML・CSS・Web基礎","70","①(画像参照)
+画面のサイズを表すときに使う「○○インチ」、
+これはどこの大きさのことを言っているのでしょうか？","単一選択","❶の長さ
+❷の長さ
+❸の長さ
+❶と❷を足した長さ
+❶と❷を掛けた面積","❸の長さ","","","","問題の条件と回答をもう一度確認してください。","","","正解と照合","","","","web-70-answer-1","1","はい","いいえ",""
+"HTML・CSS・Web基礎","70","② デジタル画像のピクセルとは何ですか？","単一選択","画像ファイルの保存先を示す文字列
+画像を構成する、色の情報を持つ最小単位
+画面の対角線の長さを表す単位","画像を構成する、色の情報を持つ最小単位","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-70-answer-2-choice","2","はい","いいえ",""
+"HTML・CSS・Web基礎","70","③
+4000×3000ピクセルの写真があったとき、
+これの「画素数」はいくつですか？","短文","","12000000
+12,000,000
+1200万
+1,200万
+1200万画素
+12000000画素
+12,000,000画素
+1,200万画素","","","","問題の条件と回答をもう一度確認してください。","","","正解と照合","","","","web-70-answer-3","3","はい","いいえ",""
+"HTML・CSS・Web基礎","71","画像の①で、左側の見本文字に使われている書体はどれですか？","単一選択","ヒラギノ角ゴ
+A1明朝
+Noto Sans","ヒラギノ角ゴ","","","","見本文字の形と、各書体の特徴を見比べてください。","","","正解と照合","","","","web-71-answer-1-choice","1","はい","いいえ",""
+"HTML・CSS・Web基礎","71","画像の②で、左側の見本文字に使われている書体はどれですか？","単一選択","ヒラギノ角ゴ
+A1明朝
+Noto Sans","A1明朝","","","","見本文字の形と、各書体の特徴を見比べてください。","","","正解と照合","","","","web-71-answer-2-choice","2","はい","いいえ",""
+"HTML・CSS・Web基礎","71","画像の③で、左側の見本文字に使われている書体はどれですか？","単一選択","ヒラギノ角ゴ
+A1明朝
+Noto Sans","Noto Sans","","","","見本文字の形と、各書体の特徴を見比べてください。","","","正解と照合","","","","web-71-answer-3-choice","3","はい","いいえ",""
+"HTML・CSS・Web基礎","72","①(画像参照)
+この効果を適用するCSSを書きましょう。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""box"">
+                <img src=""https://i.postimg.cc/YCbHZBQR/sunset-7504891-1920.jpg"">
+            </div>
+        </div>
+        <style>
+            .wrapper {
+                width: 900px;
+                margin: 0 auto;
+            }
+            .box img {
+                width: 100%;
+                display: block;
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""box"">
+                <img src=""https://i.postimg.cc/YCbHZBQR/sunset-7504891-1920.jpg"">
+            </div>
+        </div>
+        <style>
+            .wrapper {
+                width: 900px;
+                margin: 0 auto;
+            }
+            .box img {
+                width: 100%;
+                display: block;
+            }
+        </style>
+    </body>
+<style>
+img{filter:grayscale(100%);}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-72-answer-1","web-72-answer-1","1","はい","いいえ","※追加するCSSを記述してください。
+"
+"HTML・CSS・Web基礎","72","②(画像参照)
+この効果を適用するCSSを書きましょう。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""box"">
+                <img src=""https://i.postimg.cc/YCbHZBQR/sunset-7504891-1920.jpg"">
+            </div>
+        </div>
+        <style>
+            .wrapper {
+                width: 900px;
+                margin: 0 auto;
+            }
+            .box img {
+                width: 100%;
+                display: block;
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""box"">
+                <img src=""https://i.postimg.cc/YCbHZBQR/sunset-7504891-1920.jpg"">
+            </div>
+        </div>
+        <style>
+            .wrapper {
+                width: 900px;
+                margin: 0 auto;
+            }
+            .box img {
+                width: 100%;
+                display: block;
+            }
+        </style>
+    </body>
+<style>
+img{filter:blur(5px);transform:scale(1.03)}.box{overflow:hidden}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-72-answer-2","web-72-answer-2","2","はい","いいえ","※追加するCSSを記述してください。
+
+※画像のふちが、ボケないように注意！"
+"HTML・CSS・Web基礎","72","③(画像参照)
+この効果を適用するCSSを書きましょう。","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""box"">
+                <img src=""https://i.postimg.cc/YCbHZBQR/sunset-7504891-1920.jpg"">
+            </div>
+        </div>
+        <style>
+            .wrapper {
+                width: 900px;
+                margin: 0 auto;
+            }
+            .box img {
+                width: 100%;
+                display: block;
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""box"">
+                <img src=""https://i.postimg.cc/YCbHZBQR/sunset-7504891-1920.jpg"">
+            </div>
+        </div>
+        <style>
+            .wrapper {
+                width: 900px;
+                margin: 0 auto;
+            }
+            .box img {
+                width: 100%;
+                display: block;
+            }
+        </style>
+    </body>
+<style>
+img{filter:hue-rotate(180deg);}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-72-answer-3","web-72-answer-3","3","はい","いいえ","※追加するCSSを記述してください。
+"
+"HTML・CSS・Web基礎","73","CSSを記述して、
+画像の見た目を再現してください！","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""box red""></div>
+            <div class=""box green""></div>
+            <div class=""box blue""></div>
+            <div class=""box yellow""></div>
+        </div>
+        <style>
+            .wrapper {
+                width: 900px;
+                margin: 0 auto;
+            }
+            .box {
+                width: 100%;
+                min-height: 100px;
+            }
+            .red {background: #f00;}
+            .green {background: #0f0;}
+            .blue {background: #00f;}
+            .yellow {background: #ff0;}
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""box red""></div>
+            <div class=""box green""></div>
+            <div class=""box blue""></div>
+            <div class=""box yellow""></div>
+        </div>
+        <style>
+            .wrapper {
+                width: 900px;
+                margin: 0 auto;
+            }
+            .box {
+                width: 100%;
+                min-height: 100px;
+            }
+            .red {background: #f00;}
+            .green {background: #0f0;}
+            .blue {background: #00f;}
+            .yellow {background: #ff0;}
+        </style>
+    </body>
+<style>
+.wrapper{display:grid;grid-template-columns:150px 1fr;grid-template-rows:150px 300px 200px}.red{grid-column:1/3}.yellow{grid-column:1/3}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-73-answer-1","web-73-answer-1","1","はい","いいえ","※追加するCSSを記述してください。
+"
+"HTML・CSS・Web基礎","74","CSSを記述して、
+画像の見た目を再現してください！","コード","","","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""box""></div>
+            <div class=""box""></div>
+            <div class=""box""></div>
+            <div class=""box""></div>
+            <div class=""box""></div>
+            <div class=""box""></div>
+            <div class=""box""></div>
+            <div class=""box""></div>
+            <div class=""box""></div>
+        </div>
+        <style>
+            .wrapper {
+                width: 80vw;
+                margin: 0 auto;
+            }
+            .box {
+                width: 100%;
+                min-height: 100px;
+                background: #adadad;
+            }
+        </style>
+    </body>
+</html>","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""wrapper"">
+            <div class=""box""></div>
+            <div class=""box""></div>
+            <div class=""box""></div>
+            <div class=""box""></div>
+            <div class=""box""></div>
+            <div class=""box""></div>
+            <div class=""box""></div>
+            <div class=""box""></div>
+            <div class=""box""></div>
+        </div>
+        <style>
+            .wrapper {
+                width: 80vw;
+                margin: 0 auto;
+            }
+            .box {
+                width: 100%;
+                min-height: 100px;
+                background: #adadad;
+            }
+        </style>
+    </body>
+<style>
+.wrapper{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+</style>
+</html>","","表示や動作が指定された条件と一致しません。","","html","登録済み","","","web-74-answer-1","web-74-answer-1","1","はい","いいえ","※追加するCSSを記述してください。
+"
+"HTML・CSS・Web基礎","75","拡張子.mp4が表すファイル形式は？","単一選択","動画や音声を格納するメディア形式
+表計算のブック形式
+CSSのスタイルシート形式","動画や音声を格納するメディア形式","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-75-answer-1-choice","1","はい","いいえ",""
+"HTML・CSS・Web基礎","75","拡張子.docxが表すファイル形式は？","単一選択","JPEG画像の形式
+Word文書の形式
+JavaScriptのプログラム形式","Word文書の形式","","","","設問の対象と、それぞれの選択肢の違いを確認してください。","","","正解と照合","","","","web-75-answer-2-choice","2","はい","いいえ",""
+"HTML・CSS・Web基礎","75","JavaScriptファイル（.js）を作成し、選択してください。","ファイル","",".js","","","","拡張子が.jsのファイルを選んでください。","","","ファイル拡張子","","","","web-75-answer-3-file","3","はい","いいえ","中身は空で構いません。"

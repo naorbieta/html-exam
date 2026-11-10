@@ -1,0 +1,646 @@
+id,quiz_id,position,type,title,description,required,context,language,reference_editable
+quiz-01-answer-2,quiz-01,1,code,JavaScriptのコードをここに入力してください。,,true,,js,
+quiz-02-answer-2,quiz-02,1,code,JavaScriptのコードをここに入力してください。,,true,,js,
+quiz-03-answer-1,quiz-03,1,short_text,"①
+console.log(8 + 2);
+コンソールに出力される結果は何でしょう？",,true,,,
+quiz-03-answer-2,quiz-03,2,short_text,"②
+console.log('8' + '2');
+コンソールに出力される結果は何でしょう？",,true,,,
+quiz-03-answer-3,quiz-03,3,multiple_choice,③ この式の結果のデータ型はどちらでしょう？,,true,console.log('8' + '2');,,
+quiz-04-answer-1-1,quiz-04,1,multiple_choice,①A. コンピュータに命令する内容をまとめた文章に当てはまる用語は？,,true,,,
+quiz-04-answer-1-2,quiz-04,2,multiple_choice,①B. プログラムを書くための言語に当てはまる用語は？,,true,,,
+quiz-04-answer-1-3,quiz-04,3,multiple_choice,①C. プログラムを作成することに当てはまる用語は？,,true,,,
+quiz-04-answer-1-4,quiz-04,4,multiple_choice,①D. プログラムを含む、ルールに基づいて書かれた文字の集まりに当てはまる用語は？,,true,,,
+quiz-04-answer-2-1,quiz-04,5,multiple_choice,②A. Web（ブラウザ上で動作）に使われる、次のコードの言語は？,,true,"console.log(""Hello"");",,
+quiz-04-answer-2-2,quiz-04,6,multiple_choice,②B. Web（サーバー上で動作）に使われる、次のコードの言語は？,,true,"<?php echo ""Hello""; ?>",,
+quiz-04-answer-2-3,quiz-04,7,multiple_choice,②C. データ解析・機械学習に使われる、次のコードの言語は？,,true,"print(""Hello"")",,
+quiz-04-answer-2-4,quiz-04,8,multiple_choice,②D. 機械制御・OS開発に使われる、次のコードの言語は？,,true,"#include <stdio.h>
+int main(void) { printf(""Hello""); return 0; }",,
+quiz-04-answer-2-5,quiz-04,9,multiple_choice,②E. 基幹システム・Android開発に使われる、次のコードの言語は？,,true,"class Main { public static void main(String[] args) { System.out.println(""Hello""); } }",,
+quiz-05-answer-2,quiz-05,1,code,"①（画像参照）
+このダイアログボックスを表示するコードを記述してください。",,true,,js,
+quiz-05-answer-3,quiz-05,2,code,"②（画像参照）
+このダイアログボックスを表示するコードを記述してください。",,true,,js,
+quiz-05-answer-4,quiz-05,3,code,"③（画像参照）
+このダイアログボックスを表示するコードを記述してください。",,true,,js,
+quiz-06-answer-2,quiz-06,1,code,"①
+変数を、適当な名前で宣言（用意）しましょう！","コードを記述してください。
+
+
+
+今回は、人の名前を入れるための変数という想定で、
+変数名は、記憶する変数値を予想できる名前にしましょう。",true,,js,
+quiz-06-answer-3,quiz-06,2,code,"②
+①で宣言した変数に、値を代入しましょう！","コードを記述してください。
+
+
+
+適当な人の名前を代入します。",true,,js,
+quiz-06-answer-4,quiz-06,3,code,"③
+①にちゃんと値が入ったか、コンソールに出力して
+確認してみましょう！",コードを記述してください。,true,,js,
+quiz-07-answer-2,quiz-07,1,code,"（画像参照）
+ダイアログボックスに入れた名前で、
+あいさつがかえってくるプログラムを書いてみましょう。",コードを記述してください。,true,,js,
+quiz-08-answer-2,quiz-08,1,code,プログラムの各処理について、コメントを挿入してください。,,true,,js,
+quiz-09-answer-2,quiz-09,1,short_text,"①
+このような、リクエストとレスポンスが
+ずれたタイミングで行われる通信方式のことを、
+何通信というでしょう。",,true,,,
+quiz-09-answer-3,quiz-09,2,short_text,② JavaScriptで非同期にデータを取得し、ページを更新する手法をアルファベット4文字で何と呼びますか？,,true,,,
+quiz-10-answer-2-choice,quiz-10,1,multiple_choice,① ReferenceError: great is not defined は何を示していますか？,,true,,,
+quiz-10-answer-3,quiz-10,2,code,"②
+エラー箇所を特定し、解消させたプログラムを、
+ここに貼り付けてください。",,true,,js,
+quiz-11-answer-2-choice,quiz-11,1,multiple_choice,① SyntaxError: Unexpected token ':' は何を示していますか？,,true,,,
+quiz-11-answer-3,quiz-11,2,code,"②
+エラー箇所を特定し、解消させたプログラムを、
+ここに貼り付けてください。",,true,,js,
+quiz-12-answer-2,quiz-12,1,code,"①(画像参照)
+エスケープシーケンスを用いて、
+画像のダイアログボックスを再現するコードを記述してください。",,true,,js,
+quiz-12-answer-3,quiz-12,2,short_text,"②
+「''」で囲んである文字列の中に、
+「'」を文字として出したいときの
+エスケープシーケンスは何でしょう。",,true,,,
+quiz-12-answer-4,quiz-12,3,short_text,"③
+バックスラッシュを文字として出したいときの
+エスケープシーケンスは何でしょう。",,true,,,
+quiz-13-answer-2,quiz-13,1,code,"(画像参照)
+このプログラムについて、
+
+「条件分岐」と白塗りされているところに入れるコードを
+ここに記述してください。",,true,,js,
+quiz-14-answer-2,quiz-14,1,code,"(画像参照)
+このプログラムについて、
+
+「条件分岐」と白塗りされているところに入れるコードを
+ここに記述してください。",,true,,js,
+quiz-15-answer-2,quiz-15,1,code,"(画像参照)
+画像の通り動作するプログラムを
+ここに記述してください。",,true,,js,
+quiz-16-answer-2,quiz-16,1,code,"(画像参照)
+画像の通り動作するプログラムを
+ここに記述してください。",,true,,js,
+quiz-17-answer-2,quiz-17,1,multiple_choice,"①
+(n == '1')
+
+真か偽か、どちらでしょう。",,true,n = 1 のとき,,
+quiz-17-answer-3,quiz-17,2,multiple_choice,"②
+(n === '1')
+
+真か偽か、どちらでしょう。",,true,n = 1 のとき,,
+quiz-17-answer-4,quiz-17,3,multiple_choice,"③
+(n !== 1)
+
+真か偽か、どちらでしょう。",,true,n = 1 のとき,,
+quiz-18-answer-2,quiz-18,1,short_text,① 画像の①のコードで、コンソールに出力される数値は？,,true,,,
+quiz-18-answer-3-choice,quiz-18,2,multiple_choice,② 画像の②のコードを実行するとどうなりますか？,,true,,,
+quiz-18-answer-4-choice,quiz-18,3,multiple_choice,③ 画像の②のコードがエラーになる理由は？,,true,,,
+quiz-19-answer-2,quiz-19,1,short_text,① 画像の①のコードで、コンソールに出力される数値は？,,true,,,
+quiz-19-answer-3-choice,quiz-19,2,multiple_choice,② 画像の②のコードを実行するとどうなりますか？,,true,,,
+quiz-19-answer-4-choice,quiz-19,3,multiple_choice,③ 画像の②のコードがエラーになる理由は？,,true,,,
+quiz-20-answer-2,quiz-20,1,short_text,"①(画像参照)
+この 「console.log(x);」
+コンソールには何と表示されるでしょう。",,true,,,
+quiz-20-answer-3,quiz-20,2,short_text,"②(画像参照)
+この 「console.log(x * z);」
+コンソールには何と表示されるでしょう。",,true,,,
+quiz-20-answer-4-choice,quiz-20,3,multiple_choice,③ ブロック外のconsole.log(x * y)を実行するとどうなりますか？,,true,,,
+quiz-21-answer-2,quiz-21,1,code,"(画像参照)
+画像の通り動作するプログラムを
+ここに記述してください。",,true,,js,
+quiz-22-answer-2,quiz-22,1,code,"(画像参照)
+画像の通り動作するプログラムを
+ここに記述してください。",,true,,js,
+quiz-23-answer-2,quiz-23,1,code,"画像のコードをフォールスルーを使用した
+○日、○時間、○分を秒に変換するプログラムになるように書き換えましょう。",,true,,js,
+quiz-24-answer-2,quiz-24,1,short_text,"①
+文章中の下線部①「関数に渡したい値や変数」
+これは何という用語で呼ばれていますか？",,true,,,
+quiz-24-answer-3,quiz-24,2,short_text,"②
+文章中の下線部②「結果の値が返ってきます。」
+これは何という用語で呼ばれていますか？",,true,,,
+quiz-24-answer-4,quiz-24,3,code,"③(画像参照)
+円の面積を求める関数を用意しました。
+この関数を用いて、
+半径が、5cmの円の面積を
+alertダイアログボックスに表示するプログラムを書いてみましょう。",,true,,js,
+quiz-25-answer-2,quiz-25,1,code,"function maxNumber に続いてコードを記述し、
+どちらの数字が大きいかを判定して返ってくるようにしてみましょう。",,true,,js,
+quiz-26-answer-2,quiz-26,1,code,"function greet に続いてデフォルト引数を使用したコードを記述し、
+あいさつが返ってくる関数を完成させてください。",,true,,js,
+quiz-27-answer-2,quiz-27,1,code,"for文を用いた、
+「n回目！こんにちは！」という文字列を
+20回コンソールに表示させるプログラムを記述してください。",,true,,js,
+quiz-28-answer-2,quiz-28,1,code,"数字が100以下になる前まで、
+
+nを2で割り続けるプログラムを
+while文を用いて記述してください。",,true,,js,
+quiz-29-answer-2,quiz-29,1,code,条件に合うプログラムを記述してください。,,true,,js,
+quiz-30-answer-3,quiz-30,1,code,"continueを交えて分岐を追加し、
+
+完成させたコードをここに貼ってください！",,true,,js,
+quiz-31-answer-2,quiz-31,1,short_text,"①
+ブラウザのウィンドウ自体を表すオブジェクトの名前はなんでしょう？",,true,,,
+quiz-31-answer-3,quiz-31,2,short_text,② windowのプロパティで、Webページの文書を表すオブジェクト名は？,,true,,,
+quiz-32-answer-2,quiz-32,1,short_text,"①
+JavaScriptからWebページのHTML要素を操作するための仕組みのことを、アルファベット3文字で何といいますか？",,true,,,
+quiz-32-answer-3,quiz-32,2,short_text,② DOMでは、要素・属性・テキストなどの各オブジェクトを何と呼びますか？,,true,,,
+quiz-33-answer-2,quiz-33,1,code,"HTML上の<div id=""text"">を、getElementByIdを使って取得し、
+文字を書き換えてください。",※JSのコードだけ回答してもらえればOKです,true,,html,
+quiz-34-answer-2,quiz-34,1,code,"HTML上の<div class=""text"">を、querySelectorを使って取得し、
+文字色を変更してください。",※JSのコードだけ回答してもらえればOKです,true,,html,
+quiz-35-answer-2,quiz-35,1,code,"①(画像参照)
+赤枠の部分、正しく背景色が変更されるように書き換えてください。",,true,,js,
+quiz-35-answer-3,quiz-35,2,short_text,"②
+このように、複数の英単語を繋ぐとき、
+先頭は小文字で、スペースを空けず、続く単語の頭文字を大文字にする
+表記の仕方を何といいますか？",,true,,,
+quiz-36-answer-2,quiz-36,1,code,"JavaScriptを使って、
+<div id=""add_element""></div>を、HTML上の<div class=""text""></div>の前に追加してください。",,true,,html,
+quiz-37-answer-2,quiz-37,1,code,"removeChildメソッドを使って、
+「こんばんは」というテキストボックスを削除してみましょう！",,true,,html,
+quiz-38-answer-2,quiz-38,1,code,"ボタンをクリックしたとき、
+テキストボックスが開閉するようにしてみましょう。",,true,,html,
+quiz-39-answer-2,quiz-39,1,code,"テキストボックスに、押したキーの名前が
+出るようにしてみましょう。",,true,,html,
+quiz-40-answer-2,quiz-40,1,code,テキストエリアの文字数が出るようにしてください。,,true,,html,
+quiz-41-answer-3,quiz-41,1,code,"画像の「？」のところに書き加えて、
+カウントダウンのプログラムを完成させてください。",,true,,html,
+quiz-42-answer-3,quiz-42,1,code,"画像の「？」のところに追記して、
+5秒以内にEnterを10回押したら「クリア！」
+押せなかったら「失敗！」
+と表示されるようにしてみましょう。",,true,,html,
+quiz-43-answer-2,quiz-43,1,code,"①(画像参照)
+配列「fruits」の1番目の要素を
+alertメッセージで表示させてみましょう。",,true,,js,
+quiz-43-answer-3,quiz-43,2,code,"②(画像参照)
+配列「fruits」にいくつの要素が入っているか、
+数字をalertメッセージで表示させてみましょう。",,true,,js,
+quiz-44-answer-2,quiz-44,1,code,consoleに配列のデータをすべて表示しましょう！,※配列に入っているデータ数がいくつかを参照して、回数分の繰り返しを行いましょう。,true,,js,
+quiz-45-answer-2,quiz-45,1,code,"①(画像参照)
+personのnameに入っているデータを
+consoleに表示してみましょう。",,true,,js,
+quiz-45-answer-3,quiz-45,2,code,"②
+personに、年齢のデータを追加記述してみましょう。",※すでに記述してあるコードも含めて提出してください。,true,,js,
+quiz-46-answer-2-choice,quiz-46,1,multiple_choice,① ブラウザーの通常のscriptのトップレベルで、thisは何を指しますか？,"※トップレベル（グローバルスコープ）でthisを使った場合
+モジュールではないscriptで実行する場合。",true,console.log(this);,,
+quiz-46-answer-3-choice,quiz-46,2,multiple_choice,② myObject.myMethod()内のthisは何を指しますか？,※オブジェクトのメソッド内でthisを使った場合,true,,,
+quiz-46-answer-4-choice,quiz-46,3,multiple_choice,③ 通常のfunctionで登録したクリック処理内のthisは何を指しますか？,※イベント内でthisを使った場合,true,,,
+quiz-47-answer-2,quiz-47,1,multiple_choice,"①(画像参照)
+この結果はどちらになるでしょうか？",,true,,,
+quiz-47-answer-3,quiz-47,2,multiple_choice,"②(画像参照)
+この結果はどちらになるでしょうか？",,true,,,
+quiz-47-answer-4,quiz-47,3,multiple_choice,"③(画像参照)
+この結果はどちらになるでしょうか？",,true,,,
+quiz-48-answer-2,quiz-48,1,code,"①
+.productの在庫数を読み取って、
+consoleに表示してみましょう。",,true,,html,
+quiz-48-answer-3,quiz-48,2,code,"②
+.product2に対して、
+JSで新たにカスタムデータ属性をセットしてみましょう。",,true,,html,
+quiz-49-answer-2,quiz-49,1,code,"①(画像参照)
+これをテンプレートリテラルを使って、
+置き換えてください。",,true,,js,
+quiz-49-answer-3,quiz-49,2,code,"②(画像参照)
+これをテンプレートリテラルを使って、
+置き換えてください。",,true,,js,
+quiz-50-answer-2,quiz-50,1,code,画像とキャプションが切り替わるスライダーを、HTML・CSS・JSで作成してください。,HTML・CSS・JavaScriptを、この欄にまとめて入力してください。,true,,html,
+web-02-role,web-02,1,multiple_choice,CSSの役割はどれですか？,,true,,,
+web-03-answer-1,web-03,1,code,要望通りのコードに書き直して下さい,,true,,html,
+web-05-answer-1-choice,web-05,1,multiple_choice,ol要素の使いどころはどれですか？,,true,,,
+web-05-answer-2-choice,web-05,2,multiple_choice,ul要素の使いどころはどれですか？,,true,,,
+web-05-answer-3-choice,web-05,3,multiple_choice,dl要素の使いどころはどれですか？,,true,,,
+web-06-answer-1,web-06,1,code,解答欄,,true,,html,
+web-07-answer-1-path,web-07,1,short_text,test.jpgの完全なURLは？,,true,,,
+web-07-answer-2-path,web-07,2,short_text,top.htmlからtest.jpgへの相対パスは？,,true,,,
+web-08-answer-1,web-08,1,code,解答,,true,,html,
+web-09-answer-1-choice,web-09,1,multiple_choice,このHTMLは、CSSを指定しない場合どう表示されますか？,,true,,,
+web-09-answer-2-choice,web-09,2,multiple_choice,HTMLの要素の入れ子として誤っている部分は？,,true,,,
+web-10-answer-1,web-10,1,code,解答欄,,true,,html,
+web-11-answer-1,web-11,1,code,①の方法でCSS指定,,true,,html,
+web-11-answer-2,web-11,2,code,②の方法でCSS指定,,true,,html,
+web-11-answer-3,web-11,3,code,③の方法でCSS指定,,false,,html,
+web-12-answer-1-choice,web-12,1,multiple_choice,光のR・G・Bをまとめて何と呼びますか？,,true,,,
+web-12-answer-2-choice,web-12,2,multiple_choice,赤・緑・青の光を、すべて最大の強さで重ねると何色になりますか？,,true,,,
+web-13-answer-1-PNG,web-13,1,multiple_choice,PNGの説明に当てはまる番号は？,,true,,,
+web-13-answer-1-JPEG,web-13,2,multiple_choice,JPEGの説明に当てはまる番号は？,,true,,,
+web-13-answer-1-BMP,web-13,3,multiple_choice,BMPの説明に当てはまる番号は？,,true,,,
+web-13-answer-1-GIF,web-13,4,multiple_choice,GIFの説明に当てはまる番号は？,,true,,,
+web-13-answer-1-WebP,web-13,5,multiple_choice,WebPの説明に当てはまる番号は？,,true,,,
+web-13-answer-1-SVG,web-13,6,multiple_choice,SVGの説明に当てはまる番号は？,,true,,,
+web-14-answer-1-choice,web-14,1,multiple_choice,ワイヤーフレームは何を示すものですか？,,true,,,
+web-14-answer-2-choice,web-14,2,multiple_choice,モックアップを作る主な目的は？,,true,,,
+web-14-answer-3-choice,web-14,3,multiple_choice,顧客が必要とする機能や制約を整理し、開発する範囲を決める工程は？,,true,,,
+web-15-answer-1-global,web-15,1,multiple_choice,画像のグローバルナビゲーションに当てはまる番号は？,,true,,,
+web-15-answer-1-side,web-15,2,multiple_choice,画像のサイドバーに当てはまる番号は？,,true,,,
+web-15-answer-1-content,web-15,3,multiple_choice,画像のコンテンツエリアに当てはまる番号は？,,true,,,
+web-15-answer-1-local,web-15,4,multiple_choice,画像のローカルナビゲーションに当てはまる番号は？,,true,,,
+web-15-answer-1-footer,web-15,5,multiple_choice,画像のフッターに当てはまる番号は？,,true,,,
+web-15-answer-1-header,web-15,6,multiple_choice,画像のヘッダーエリアに当てはまる番号は？,,true,,,
+web-15-answer-1-breadcrumb,web-15,7,multiple_choice,画像のパンくずリストに当てはまる番号は？,,true,,,
+web-16-answer-1,web-16,1,code,解答,,true,,html,
+web-17-answer-1-path,web-17,1,short_text,staff.jsの相対パス,,true,,,
+web-17-answer-2-path,web-17,2,short_text,staff.jpgの相対パス,,true,,,
+web-18-answer-1,web-18,1,code,解答欄,,true,,html,
+web-19-answer-1,web-19,1,code,左のテーブルの解答,,true,,html,
+web-19-answer-2,web-19,2,code,右のテーブルの解答,,true,,html,
+web-20-answer-1-padding,web-20,1,multiple_choice,paddingで指定する部分は？,,true,,,
+web-20-answer-1-margin,web-20,2,multiple_choice,marginで指定する部分は？,,true,,,
+web-20-answer-1-height,web-20,3,multiple_choice,heightで指定する部分は？,,true,,,
+web-20-answer-1-width,web-20,4,multiple_choice,widthで指定する部分は？,,true,,,
+web-20-answer-2-inner,web-20,5,short_text,③に200px、②の上下左右に20pxを指定したとき、③の長さは何pxですか？,box-sizingはcontent-box、borderは0とします。,true,,,
+web-20-answer-2-outer,web-20,6,short_text,③に200px、②の上下左右に20pxを指定したとき、⑤の長さは何pxですか？,box-sizingはcontent-box、borderは0とします。,true,,,
+web-22-answer-1-choice,web-22,1,multiple_choice,MS Pゴシック、メイリオ、総称フォントsans-serifの順に使う指定は？,,true,,,
+web-22-answer-2-choice,web-22,2,multiple_choice,font-familyに複数のフォントを指定する理由は？,,true,,,
+web-23-answer-1,web-23,1,code,解答欄,,true,,html,
+web-24-answer-1,web-24,1,code,Aのdivに追加するCSS,,true,,css,
+web-25-answer-1,web-25,1,code,解答,,true,,html,
+web-26-answer-1,web-26,1,short_text,font-sizeに3remを指定したとき、対象の文字サイズは何pxですか？,,true,,,
+web-26-answer-2,web-26,2,short_text,font-sizeに2emを指定したとき、対象の文字サイズは何pxですか？,,true,,,
+web-26-answer-3,web-26,3,short_text,font-sizeに2remを指定したとき、対象の文字サイズは何pxですか？,,true,,,
+web-27-answer-1,web-27,1,checkboxes,①の解答,"複数選択可能
+文字が赤色になる番号を全て選択してください！",true,,,
+web-27-answer-2,web-27,2,checkboxes,②の解答,"複数選択可能
+文字が赤色になる番号を全て選択してください！",true,,,
+web-27-answer-3,web-27,3,checkboxes,③の解答,"複数選択可能
+文字が赤色になる番号を全て選択してください！",true,,,
+web-28-answer-1,web-28,1,checkboxes,①の解答,"複数選択可能
+正解だと思うものを全て選択してください！
+",true,,,
+web-28-answer-2,web-28,2,checkboxes,②の解答,"複数選択可能
+正解だと思うものを全て選択してください！
+",true,,,
+web-28-answer-3,web-28,3,checkboxes,③の解答,"複数選択可能
+正解だと思うものを全て選択してください！
+",true,,,
+web-29-answer-1-choice,web-29,1,multiple_choice,box-sizing: content-boxでは、widthとheightはどの範囲の寸法ですか？,"※width、height、padding、border
+の関係について、当てはまる説明を選んでください。",true,,,
+web-29-answer-2-choice,web-29,2,multiple_choice,box-sizing: border-boxでは、widthとheightはどの範囲の寸法ですか？,"※width、height、padding、border
+の関係について、当てはまる説明を選んでください。",true,,,
+web-29-answer-3,web-29,3,multiple_choice,"基本的に、
+初期値はどちらですか？",,true,,,
+web-30-answer-1,web-30,1,code,解答コード,,true,,css,
+web-31-answer-1,web-31,1,checkboxes,"①のCSSでは、
+どの「この文字は赤色？」の文字が
+赤くなるでしょう？","複数選択可能
+正解だと思うものを全て選択してください！
+",true,,,
+web-31-answer-2,web-31,2,code,"②空のpタグが記述されています。
+「:empty」を使って、
+CSSだけで、ここに何か文字を表示してみましょう。",CSSを記述してください。,true,,html,
+web-32-answer-1,web-32,1,checkboxes,"①のCSSでは、
+どの「この文字は赤色？」の文字が赤くなるでしょう？","複数選択可能
+正解だと思うものを全て選択してください！
+",true,,,
+web-32-answer-2,web-32,2,checkboxes,"②のCSSでは、
+どの「この文字は赤色？」の文字が赤くなるでしょう？","複数選択可能
+正解だと思うものを全て選択してください！
+",true,,,
+web-32-answer-3,web-32,3,code,"③テキスト入力欄があります。
+属性セレクタを使って、これらの横幅を長くしてみましょう。","CSSを記述してください。
+",true,,html,
+web-33-answer-1,web-33,1,multiple_choice,"①下記のとき、
+重なり順は？","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""box""></div><!-- この箱が １ -->
+        <div class=""box2""></div><!-- この箱が ２ -->
+        <style>
+            .box {
+                width: 100px;
+                height: 100px;
+                background: #f00;
+                z-index: 2;
+            }
+            .box2 {
+                width: 100px;
+                height: 100px;
+                background: #0f0;
+                z-index: 1;
+                margin: -20px;
+            }
+        </style>
+    </body>
+</html>
+
+上に重なる→下に重なる
+の順で解答してください。",true,,,
+web-33-answer-2,web-33,2,multiple_choice,"②下記のとき、
+重なり順は？","<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class=""box""><!-- この箱が １ -->
+            <div class=""box_bg""></div><!-- この箱が ２ -->
+        </div>
+        <div class=""box2""></div><!-- この箱が ３ -->
+        <style>
+            .box {
+                width: 100px;
+                height: 100px;
+                background: #f00;
+                position: relative;
+                z-index: 2;
+            }
+            .box_bg {
+                width: 100px;
+                height: 100px;
+                background: #0f0;
+                position: relative;
+                top: 20px;
+                left: 20px;
+                z-index: -1;
+            }
+            .box2 {
+                width: 100px;
+                height: 100px;
+                background: #00f;
+                position: relative;
+                bottom: 20px;
+                z-index: 3;
+            }
+        </style>
+    </body>
+</html>
+
+上に重なる→下に重なる
+の順で解答してください。",true,,,
+web-34-answer-1,web-34,1,code,①box2を、boxのちょうど真ん中に配置してください。(画像参照),"CSSを記述してください。
+※positionを使ってください。
+※たとえwidthやheightが変わったとしても
+位置がずれないようにしてみましょう。
+",true,,html,
+web-34-answer-2,web-34,2,code,②box2を、boxのちょうど下に配置してください。 (画像参照),"CSSを記述してください。
+※positionを使ってください。
+※たとえwidthやheightが変わったとしても
+位置がずれないようにしてみましょう。
+",true,,html,
+web-34-answer-3,web-34,3,code,③box2を、boxの右下に配置してください。 (画像参照),"CSSを記述してください。
+※positionを使ってください。
+※たとえwidthやheightが変わったとしても
+位置がずれないようにしてみましょう。
+",true,,html,
+web-35-answer-1-choice,web-35,1,multiple_choice,要件を満たすバックアップ計画はどれですか？,,true,,,
+web-36-answer-1-choice,web-36,1,multiple_choice,① 画像の周りに文章を回り込ませるのに適した指定と、その理由は？,,true,,,
+web-36-answer-2-choice,web-36,2,multiple_choice,② 一列に並ぶ要素の幅や間隔を調整するのに適した指定と、その理由は？,,true,,,
+web-36-answer-3-choice,web-36,3,multiple_choice,③ 行と列をまたぐ要素を配置するのに適した指定と、その理由は？,,true,,,
+web-37-answer-1,web-37,1,short_text,①以下のCSSのとき、赤い箱(.box)の横幅はいくつ？,".box {
+    width: calc(100px + 200px);
+}",true,,,
+web-37-answer-2,web-37,2,short_text,② 以下のCSSのとき、赤い箱(.box)の横幅はいくつ？,".box {
+    width: calc((100% - 30px) / 3);
+}",true,,,
+web-37-answer-3,web-37,3,short_text,③ 以下のCSSのとき、「クイズ第３７問！」の文字の大きさはいくつ？,".box {
+    font-size: calc(1em + 4px);
+}",true,,,
+web-38-answer-1,web-38,1,code,① test.htmlに追加するCSS,,true,,css,
+web-38-answer-2-attribute,web-38,2,short_text,② h2要素に、移動先を識別するためのid属性を追加してください。,,true,<h2 ②>ここを表示</h2>,,
+web-38-answer-3-link,web-38,3,short_text,③ test.htmlの、②で付けたidの見出しへ移動する相対URLは？,,true,"<a href=""③"">ここを表示へ移動</a>",,
+web-39-answer-1,web-39,1,code,①の記述,,true,,html,
+web-40-answer-1,web-40,1,code,"①「吾輩は猫である」の冒頭文が書いてあります。
+これをCSSを書いて画像のように2段にしてください。","※2段組にして、中央に縦線を引き、
+適当な余白をあけてください。",true,,html,
+web-40-answer-2,web-40,2,code,"②今度は、
+ひとつの段が12文字になるようにして、
+自動で段数が設定されるようにしてください。","※段の区切りには縦線を引き、
+適当な余白をあけてください。",true,,html,
+web-41-answer-1,web-41,1,code,"①「クリックで開く」のところに、マウスカーソルをもっていっても、
+何も反応せず、押せるのかどうかがわかりづらくなっています。
+
+マウスカーソルが変わるようにして、クリックできることを明示しましょう。","※CSSを記述してください。
+（既に記述されているCSSは書かなくて大丈夫です！
+追加するCSSを書いてください！）
+",true,,html,
+web-41-answer-2,web-41,2,code,"②今度は、
+「クリックで開く」のところをクリックしても
+何も起こらないようにしてみましょう。","※CSSを記述してください。
+
+（既に記述されているCSSは書かなくて大丈夫です！
+追加するCSSを書いてください！）
+",true,,html,
+web-41-answer-3,web-41,3,code,"③最後に……
+一番上にチェックボックスがあります。
+チェックをつけたときだけ、「クリックで開く」が
+反応するようにしてみましょう。","※CSSを記述してください。
+
+（既に記述されているCSSは書かなくて大丈夫です！
+追加するCSSを書いてください！）
+",true,,html,
+web-42-answer-1,web-42,1,code,"Photoshopで「クイズ」という文字が書いてあります。(画像参照)
+隣にあるのは、この文字の設定のパネルです。
+
+この情報をもとに
+画像の文字の見た目をCSSで再現してください。",,true,,html,
+web-43-answer-1-choice,web-43,1,multiple_choice,"①CSSが指定してあります。
+
+「【１】ここの文字は何色？」の文字は
+何色でしょう？",,true,,,
+web-43-answer-2-choice,web-43,2,multiple_choice,"②
+「【２】この箱の背景色は何色？」の
+背景色は何色でしょう？",,true,,,
+web-44-answer-1,web-44,1,code,"①セルに枠線をつけたら、
+二重線みたいになってしまいました。
+画像の①のような見た目にしましょう。",※追加するCSSを記述してください。,true,,html,
+web-44-answer-2,web-44,2,code,"②テーブルの列の幅がバラバラです。
+均等の幅になるようにしましょう。",※追加するCSSを記述してください。,true,,html,
+web-44-answer-3,web-44,3,code,"③セルを縦に並べて、
+縦1列になるようにしてみましょう。",※追加するCSSを記述してください。,true,,html,
+web-45-answer-1,web-45,1,code,"①
+<!-- 【ここに何か必要】 -->　と書いてあるところがあります。
+<head>タグの中にviewportのタグというのを書くことから始まります。
+書いてみましょう。",,true,,html,
+web-45-answer-2,web-45,2,code,"②
+横並びのコンテンツがあります。
+スマホで見たときは、そのままだと見づらいので
+メディアクエリというのを使って、縦並びに変えましょう。","※CSSを記述してください。
+このとき、コンテンツが画面をはみださないように調整しましょう。
+",true,,html,
+web-46-answer-1-choice,web-46,1,multiple_choice,"①
+「【１】この箱の背景色は？」のところ
+背景色をお答えください。",,true,,,
+web-46-answer-2-choice,web-46,2,multiple_choice,"②
+「【２】この箱の背景色は？」のところ
+背景色をお答えください。",,true,,,
+web-46-answer-3-choice,web-46,3,multiple_choice,"③
+「【３】この文の文字色は？」のところ
+文字の色をお答えください。",,true,,,
+web-47-answer-1-choice,web-47,1,multiple_choice,"hsl(60, 100%, 80%)の1番目の数値60を変えると、どの成分が変わりますか？",,true,,,
+web-47-answer-2-choice,web-47,2,multiple_choice,"hsl(60, 100%, 80%)の2番目の数値100%を変えると、どの成分が変わりますか？",,true,,,
+web-47-answer-3-choice,web-47,3,multiple_choice,"hsl(60, 100%, 80%)の3番目の数値80%を変えると、どの成分が変わりますか？",,true,,,
+web-48-answer-1,web-48,1,code,"①(画像参照)
+このグラデーションをCSSで再現してください。",※.gradation1 に対して、CSSを記述してください。,true,,html,
+web-48-answer-2,web-48,2,code,"②(画像参照)
+このグラデーションをCSSで再現してください。",※.gradation2 に対して、CSSを記述してください。,true,,html,
+web-48-answer-3,web-48,3,code,"③(画像参照)
+このグラデーションをCSSで再現してください。",※.gradation3 に対して、CSSを記述してください。,true,,html,
+web-49-answer-1,web-49,1,code,"①
+「 <!-- ここに埋め込み --> 」のところに
+YouTubeの動画を、なんでもいいので探してきて
+1つ埋め込みましょう。","※「 <!-- ここに埋め込み --> 」のところに書くコードを記述してください。
+",true,,html,
+web-49-answer-2,web-49,2,code,"②
+埋め込んだ動画を、
+.wrapperの幅いっぱいになるようにして、
+さらに、ウィンドウ幅が変わっても
+動画のアスペクト比が維持されるようにしてください。","※CSSを記述してください。
+",true,,html,
+web-50-answer-1,web-50,1,code,"①
+CSSで、「正三角形」を描いてください。","※ .triangle に対して、CSSを記述してください。(もちろん擬似要素は可)
+※ どんなプロパティを使うかなど、やり方はおまかせします。
+
+(ただし、コードがぐちゃぐちゃにならないように注意してください。)
+",true,,html,
+web-50-answer-2,web-50,2,code,"②
+①で作った正三角形にマウスカーソルをのせたときに
+くるっと180度回転させて、逆三角形になるようにしてみましょう。","※CSSを記述してください。
+※ パッと切り替わるのではなく、簡単なアニメーションをつけましょう。
+※ 回転したとき、もとの位置から大きくずれることがないようにしましょう。
+",true,,html,
+web-51-answer-1,web-51,1,code,"①(画像参照)
+CSSで、この図形を描いてください。","※ .balloon に対して、CSSを記述してください。(もちろん擬似要素は可)
+
+※ 横幅は .wrapperの幅いっぱいにしてください。
+※ 練習なので、正確に画像と同じ形でなくても構いません。
+ただし、ウィンドウ幅を変えたときに、図形が変形しないように注意してください。
+
+※ どんなプロパティを使うかなど、やり方はおまかせします。
+(ただし、コードがぐちゃぐちゃにならないように注意してください。)
+",true,,html,
+web-51-answer-2,web-51,2,code,"②(画像参照)
+CSSで、この図形を描いてください。","※ .trapezoid に対して、CSSを記述してください。(もちろん擬似要素は可)
+
+
+※ 横幅は .wrapperの幅いっぱいにしてください。
+
+※ 練習なので、正確に画像と同じ形でなくても構いません。
+ただし、ウィンドウ幅を変えたときに、図形が変形しないように注意してください。
+
+
+※ どんなプロパティを使うかなど、やり方はおまかせします。
+(ただし、コードがぐちゃぐちゃにならないように注意してください。)
+",true,,html,
+web-52-answer-1,web-52,1,code,"①
+有名な俳句が書いてあります。
+これをCSSで縦書きにしましょう。","※追加するCSSを記述してください。
+",true,,html,
+web-52-answer-2,web-52,2,code,"②
+次に、数字が90度横になっていて、読みにくいです。
+これを縦中横にしましょう。","※追加するCSSを記述してください。
+※縦中横とは、縦書きの中の数字2～3桁くらいを
+横並びに組み込むことです。
+",true,,html,
+web-53-answer-1,web-53,1,code,"CSSを記述して、
+タイトルの左となりに、番号を、
+自動で上から1、2、3と振ってください。",,true,,html,
+web-54-answer-1,web-54,1,code,"SVGを直接、インラインで埋め込みました。
+これの色を自由に変えてください。",※追加するCSSを記述してください。,true,,html,
+web-54-answer-2,web-54,2,checkboxes,"SVGは、どんな種類の画像のとき
+使うと便利でしょうか？","※複数選択可
+",true,,,
+web-55-answer-1,web-55,1,dom_task,検証ツールで、下の投稿の本文を書き換えてください。,,true,,,
+web-55-answer-2,web-55,2,dom_task,検証ツールで、投稿の文字色を変えてください。,,true,,,
+web-56-answer-1,web-56,1,inspection,検証ツールで、箱にマウスを重ねたときに変わるCSSプロパティと値を調べてください。,,true,,,
+web-57-answer-1-choice,web-57,1,multiple_choice,① タイトルを長くしたとき、どの問題が起こりますか？,"HTMLのタイトルを書き換え、プレビューで確かめてください。
+
+※レスポンシブデザインがない 等は、今回の問題の対象外です。",true,,,true
+web-57-answer-2,web-57,2,code,"②
+それは、どのようにCSSを記述すると
+解消できますか？",※追加するCSSを記述してください。,true,,html,
+web-58-answer-1-choice,web-58,1,multiple_choice,① .tag内のspan要素を増やしたとき、どの問題が起こりますか？,タグを増やし、プレビューで確かめてください。,true,,,true
+web-58-answer-2,web-58,2,code,"②
+それは、どのようにCSSを記述すると
+解消できますか？","※追加するCSSを自由に記述してください。
+",true,,html,
+web-59-answer-1-choice,web-59,1,multiple_choice,① カードを増やして最後の行が2枚になったとき、どの問題が起こりますか？,"li要素を2つ追加し、プレビューで最後の行を確かめてください。
+
+※レスポンシブなど（ウィンドウ幅を縮めたとき、うまく表示されないなど）は
+今回の問題の対象外です。",true,,,true
+web-59-answer-2,web-59,2,code,"②
+それは、どのようにCSSを記述すると
+解消できますか？","※修正・追記するCSSを自由に記述してください。
+",true,,html,
+web-60-answer-1,web-60,1,code,"画像のような、
+2回転をちょっとこえるくらいの回転をして、
+最後キュッと定位置にもどるような
+アニメーションを作ってみてください。","※追加するCSSを記述してください。
+",true,,html,
+web-61-answer-1,web-61,1,code,"（上の画像を参照）
+画像の円形に切り取られた一部分が跳ねて、
+そのあと、画像の全体が見えるようになる
+アニメーションを作ってみましょう。","※追加するCSSを記述してください。
+",true,,html,
+web-62-answer-1-choice,web-62,1,multiple_choice,① この画像の使い方で確認すべきことは？,,true,,,
+web-62-answer-2,web-62,2,short_text,② 他サイトの画像URLを自分のページのimg要素に直接指定することを、俗に何と呼びますか？,,true,,,
+web-63-answer-1-choice,web-63,1,multiple_choice,① 歌詞などをブログへ掲載する前に確認すべきことは？,,true,,,
+web-63-answer-2-choice,web-63,2,multiple_choice,② 著作権で保護される他者の文章を、権利者の許諾を得ずに引用する場合の説明として適切なのは？,,true,,,
+web-64-answer-1,web-64,1,checkboxes,"①
+【１】～【４】の
+4つの色違いの文字のうち、
+背景色に対して、コントラスト比が、
+4.5以上なのは、どれですか？",,true,,,
+web-64-answer-2,web-64,2,short_text,② 「私を読みやすくして！」の文字色を、背景とのコントラスト比が4.5以上になる16進カラーコードで指定してください。,#RGBまたは#RRGGBBの形式。,true,,,
+web-65-answer-1,web-65,1,short_text,"①(画像参照)
+赤丸で囲った部分、
+これを何と言いますか？",,true,,,
+web-65-answer-2,web-65,2,short_text,"②(画像参照)
+①のような飾りのある書体のことを
+何と言いますか？",,true,,,
+web-65-answer-3,web-65,3,short_text,"③(画像参照)
+①のような飾りがない書体のことを
+何と言いますか？",,true,,,
+web-66-answer-1,web-66,1,checkboxes,"①(画像参照)
+ここでは、ゴシック体（和文）やサンセリフ体（欧文）が使われています。
+これらのフォントを見て、どのような印象がありますか？",,true,,,
+web-66-answer-2,web-66,2,checkboxes,"②(画像参照)
+今度は、明朝体（和文）やセリフ体（欧文）が使われています。
+これらのフォントを見て、どのような印象がありますか？",,true,,,
+web-66-answer-3-choice,web-66,3,multiple_choice,③ 遠くから駅名を読む用途で、①の書体を使う利点は？,"このような視点だとGOODです:
+駅の看板って、遠いところから見るので……",true,,,
+web-67-answer-1-choice,web-67,1,multiple_choice,画像の①で、左側の見本文字に使われている書体はどれですか？,,true,,,
+web-67-answer-2-choice,web-67,2,multiple_choice,画像の②で、左側の見本文字に使われている書体はどれですか？,,true,,,
+web-67-answer-3-choice,web-67,3,multiple_choice,画像の③で、左側の見本文字に使われている書体はどれですか？,,true,,,
+web-68-answer-1-choice,web-68,1,multiple_choice,① img要素を使うのに適した画像は？,,true,,,
+web-68-answer-2-choice,web-68,2,multiple_choice,② background-imageを使うのに適した画像は？,,true,,,
+web-68-answer-3,web-68,3,multiple_choice,"③(画像参照)
+このようなレイアウトのとき、
+imgタグと、background-image、
+どちらを使いますか？",,true,,,
+web-69-answer-1-choice,web-69,1,multiple_choice,① どの説明文がどの画像に対応するか分かりにくい原因は？,,true,,,
+web-69-answer-2-choice,web-69,2,multiple_choice,② 関連する情報の配置を改善するには？,,true,,,
+web-70-answer-1,web-70,1,multiple_choice,"①(画像参照)
+画面のサイズを表すときに使う「○○インチ」、
+これはどこの大きさのことを言っているのでしょうか？",,true,,,
+web-70-answer-2-choice,web-70,2,multiple_choice,② デジタル画像のピクセルとは何ですか？,,true,,,
+web-70-answer-3,web-70,3,short_text,"③
+4000×3000ピクセルの写真があったとき、
+これの「画素数」はいくつですか？",,true,,,
+web-71-answer-1-choice,web-71,1,multiple_choice,画像の①で、左側の見本文字に使われている書体はどれですか？,,true,,,
+web-71-answer-2-choice,web-71,2,multiple_choice,画像の②で、左側の見本文字に使われている書体はどれですか？,,true,,,
+web-71-answer-3-choice,web-71,3,multiple_choice,画像の③で、左側の見本文字に使われている書体はどれですか？,,true,,,
+web-72-answer-1,web-72,1,code,"①(画像参照)
+この効果を適用するCSSを書きましょう。","※追加するCSSを記述してください。
+",true,,html,
+web-72-answer-2,web-72,2,code,"②(画像参照)
+この効果を適用するCSSを書きましょう。","※追加するCSSを記述してください。
+
+※画像のふちが、ボケないように注意！",true,,html,
+web-72-answer-3,web-72,3,code,"③(画像参照)
+この効果を適用するCSSを書きましょう。","※追加するCSSを記述してください。
+",true,,html,
+web-73-answer-1,web-73,1,code,"CSSを記述して、
+画像の見た目を再現してください！","※追加するCSSを記述してください。
+",true,,html,
+web-74-answer-1,web-74,1,code,"CSSを記述して、
+画像の見た目を再現してください！","※追加するCSSを記述してください。
+",true,,html,
+web-75-answer-1-choice,web-75,1,multiple_choice,拡張子.mp4が表すファイル形式は？,,true,,,
+web-75-answer-2-choice,web-75,2,multiple_choice,拡張子.docxが表すファイル形式は？,,true,,,
+web-75-answer-3,web-75,3,code,"JavaScriptのファイル(○○○○.js)を作成して、
+圧縮してアップロードしてください！
+
+(形式は問いません)","※テキストエディタなどを使用することで作成可能です。
+※中身は空で問題ありません。",true,,js,

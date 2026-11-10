@@ -1,0 +1,14 @@
+{
+  "repository": "https://github.com/stackblitz/tutorialkit",
+  "commit": "80cb118647a45cc0dcef1f8018ebc0eef845c8eb",
+  "license": "MIT",
+  "adaptations": {
+    "react/Panels/EditorPanel.tsx": "Accessible code editor labels and non-submit editor buttons.",
+    "react/core/CodeMirrorEditor/index.tsx": "Synchronous updates, accessible label and answer length limit.",
+    "astro": "Reference sources for the React page layout in src/tutorial-layout.jsx.",
+    "styles": "Unmodified default theme styles.",
+    "react/core/FileTree.tsx": "Catalog-owned fields with file operations disabled.",
+    "react/Nav.tsx": "Accessible navigation labels, local interpolation helper and course groups initially collapsed when multiple courses are available.",
+    "react/core/CodeMirrorEditor/languages.ts": "JavaScript, HTML and CSS language support for the exercise catalog."
+  }
+}

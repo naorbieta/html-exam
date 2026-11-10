@@ -13,6 +13,8 @@ export async function checkCssWriting(catalog) {
       ['小数の透明度',documentFor('font-weight:700;color:rgba(255 0 0 / .5);font-size:18px',inline),true],
       ['色成分のパーセント',documentFor('font-size:18px;color:rgba(100% 0% 0% / 50%);font-weight:700',inline),true],
       ['赤色の別指定',documentFor('font-size:18px;color:rgba(200 20 20 / 50%);font-weight:800',inline),true],
+      ['hexの透明度',documentFor('font-size:18px;color:#ff000080;font-weight:bold',inline),true],
+      ['hslの半透明',documentFor('font-size:18px;color:hsl(0 100% 50% / 50%);font-weight:700',inline),true],
       ['サイズ違い',documentFor('font-size:19px;color:rgba(255 0 0 /50%);font-weight:700',inline),false],
       ['太字なし',documentFor('font-size:18px;color:rgba(255 0 0 /50%);font-weight:400',inline),false],
       ['青色',documentFor('font-size:18px;color:rgba(0 0 255 /50%);font-weight:700',inline),false],

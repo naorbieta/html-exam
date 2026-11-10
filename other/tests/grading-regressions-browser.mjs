@@ -4,6 +4,17 @@ import { gradeRenderedAnswer } from '../../src/render-grader.mjs';
 export async function checkGradingRegressions(catalog) {
   const items = new Map(catalog.flatMap(quiz=>quiz.items.map(item=>[item.id,item]))), lines=[];
   const cases=[
+    ['web-06-answer-1','模範のインライン指定','<div style="position:relative;background:gray;width:200px;height:200px"><div style="position:absolute;bottom:0;right:0">テキスト</div></div>',true],
+    ['web-06-answer-1','0pxと#808080','<div style="position:relative;background:#808080;width:200px;height:200px"><div style="position:absolute;bottom:0px;right:0px">テキスト</div></div>',true],
+    ['web-06-answer-1','rgbとinset','<div style="width:200px;height:200px;background-color:rgb(128,128,128);position:relative"><div style="position:absolute;inset:auto 0 0 auto">テキスト</div></div>',true],
+    ['web-06-answer-1','greyキーワード','<div style="position:relative;background:grey;width:200px;height:200px"><div style="position:absolute;right:0;bottom:0">テキスト</div></div>',true],
+    ['web-06-answer-1','style要素だけ（インラインでない）','<style>div{position:relative;background:gray;width:200px;height:200px}div div{position:absolute;bottom:0;right:0}</style><div><div>テキスト</div></div>',false],
+    ['web-06-answer-1','右下でない','<div style="position:relative;background:gray;width:200px;height:200px"><div style="position:absolute;top:0;left:0">テキスト</div></div>',false],
+    ['web-06-answer-1','サイズ違い','<div style="position:relative;background:gray;width:100px;height:100px"><div style="position:absolute;bottom:0;right:0">テキスト</div></div>',false],
+    ['web-06-answer-1','背景が赤','<div style="position:relative;background:red;width:200px;height:200px"><div style="position:absolute;bottom:0;right:0">テキスト</div></div>',false],
+    ['web-31-answer-2',':emptyで文字表示','p:empty::before{content:"文字"}',true],
+    ['web-31-answer-2','::afterでも可','p:empty::after{content:"OK"}',true],
+    ['web-31-answer-2',':emptyなしのlast-child','p:last-child::before{content:"文字"}',false],
     ['web-32-answer-3','タグ名を省略した属性セレクタ','[type="text"]{width:300px}',true],
     ['web-32-answer-3','大文字の属性セレクタ','INPUT[TYPE="text"]{width:300px}',true],
     ['web-32-answer-3','nameの属性セレクタ','[name^="text"]{width:300px}',true],

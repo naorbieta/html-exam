@@ -172,3 +172,37 @@ test('検証ツールの文字色編集は前の本文を保ち、色そのも�
  assert.equal(gradeAnswer(field,red,{'web-55-answer-1':red}).passed,false);
  assert.equal(gradeAnswer(field,prior,{'web-55-answer-1':red}).passed,true);
 });
+
+test('文字色の変更は色の書き方が違っても結果で正解にする', () => {
+  const field = catalog.find(quiz => quiz.id === 'quiz-34').items[0];
+  for (const source of [
+    'document.querySelector(".text").style.color="red";',
+    'document.querySelector(".text").style.color="#f00";',
+    'document.querySelector(".text").style.color="rgb(255,0,0)";',
+    'document.querySelector(".text").style.setProperty("color","blue");',
+  ]) {
+    assert.equal(gradeAnswer(field, source).passed, true, source);
+  }
+  assert.equal(gradeAnswer(field, 'document.querySelector(".text");').passed, false);
+});
+
+test('背景色の変更は色の書き方が違っても結果で正解にする', () => {
+  const field = catalog.find(quiz => quiz.id === 'quiz-35').items[0];
+  for (const source of [
+    'text.style.backgroundColor="red";',
+    'text.style.backgroundColor="#ff0000";',
+    'text.style.background="rgb(0, 128, 0)";',
+    'text.style.setProperty("background-color","yellow");',
+  ]) {
+    assert.equal(gradeAnswer(field, source).passed, true, source);
+  }
+  assert.equal(gradeAnswer(field, 'text.style.color="red";').passed, false);
+});
+
+test('開閉ボタンはdisplayやhiddenの切替でも正解にする', () => {
+  const field = catalog.find(quiz => quiz.id === 'quiz-38').items[0];
+  const script = source => `<!doctype html><html><body><div class="wrapper"><button id="toggle-btn">開閉ボタン</button><div class="text" style="display:none">こんにちは</div></div><script>${source}<\/script></body></html>`;
+  assert.equal(gradeAnswer(field, script('document.getElementById("toggle-btn").addEventListener("click",()=>{const t=document.querySelector(".text");t.style.display=t.style.display==="none"?"block":"none";});')).passed, true, 'display toggle');
+  assert.equal(gradeAnswer(field, script('const t=document.querySelector(".text");t.style.display="";t.hidden=true;document.getElementById("toggle-btn").addEventListener("click",()=>{t.hidden=!t.hidden;});')).passed, true, 'hidden toggle');
+  assert.equal(gradeAnswer(field, script('document.getElementById("toggle-btn").addEventListener("click",()=>{});')).passed, false);
+});

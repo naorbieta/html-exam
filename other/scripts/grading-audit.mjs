@@ -6,6 +6,7 @@ import { build,transform } from 'esbuild';
 import { parseHTML } from 'linkedom/worker';
 import { readAuthoringData } from './data.mjs';
 import { catalogFromTables } from '../../src/catalog.mjs';
+import { openHeadless, wantsHeadless } from './headless-chrome.mjs';
 
 const catalog=catalogFromTables(await readAuthoringData()), variations={};
 const js = async source => (await transform(source,{loader:'js',minifyWhitespace:true,charset:'utf8',target:'es2022'})).code;
@@ -39,8 +40,22 @@ document.querySelector('#run').onclick=async()=>{
  });
  document.querySelector('#progress').textContent='完了 '+new Set(rows.map(row=>row.id)).size+'設問 '+rows.length+'件、失敗 '+rows.filter(row=>!row.ok).length+'件';
  await fetch('/results',{method:'POST',body:JSON.stringify(rows,null,2)});document.querySelector('#run').disabled=false;
-};</script>`;
+};if(location.search.includes('autorun'))document.querySelector('#run').click();</script>`;
+const resultFile=path.join(output,'results.json');
 http.createServer(async(req,res)=>{
- if(req.method==='POST'){let body='';for await(const part of req)body+=part;await writeFile(path.join(output,'results.json'),body);res.end('ok');return;}
+ if(req.method==='POST'){let body='';for await(const part of req)body+=part;await writeFile(resultFile,body);res.end('ok');return;}
  res.setHeader('Content-Type','text/html; charset=utf-8');res.end(page);
-}).listen(4176,'127.0.0.1',()=>console.log(`http://127.0.0.1:4176/ → 検証する（結果: ${output}/results.json）`));
+}).listen(4176,'127.0.0.1',async()=>{
+ console.log(`http://127.0.0.1:4176/ → 検証する（結果: ${resultFile}）`);
+ if(!wantsHeadless())return;
+ console.log('headless audit http://127.0.0.1:4176/?autorun');
+ await openHeadless('http://127.0.0.1:4176/?autorun',resultFile,{timeoutMs:300000});
+ const rows=JSON.parse(await readFile(resultFile,'utf8'));
+ const failures=rows.filter(row=>!row.ok);
+ console.log(`完了 ${new Set(rows.map(row=>row.id)).size}設問 ${rows.length}件、失敗 ${failures.length}件`);
+ if(failures.length){
+  for(const row of failures)console.log(JSON.stringify(row));
+  process.exit(1);
+ }
+ process.exit(0);
+});

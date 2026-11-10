@@ -1,0 +1,11 @@
+import type { Grader } from '../../../grader.ts';
+
+const grader: Grader = {
+  kind: "render",
+  htmlAnswer: true,
+  check(h) {
+    const p=h.el('p'),s=h.css(p),nodes=[];for(let e=p;e;e=e.parentElement)nodes.push(e);h.near(parseFloat(s.fontSize),18,'文字サイズを18pxにしてください。',.01);const channels=s.color.match(/[\d.]+/g)?.map(Number)||[];h.assert(channels.length===4&&channels[0]>channels[1]&&channels[0]>channels[2]&&Math.abs(channels[3]-.5)<.005,'文字色を半透明の赤色にしてください。');h.assert(Number(s.fontWeight)>=600,'文字を太字にしてください。');h.assert(nodes.every(e=>Number(getComputedStyle(e).opacity)===1),'opacityではなく、文字色の透明度を指定してください。');h.assert(h.rect(p).width>0&&h.rect(p).height>0&&s.visibility==='visible','文字を表示してください。');const properties=['font-size','color','font-weight'];const applicable=[];const collect=rules=>{for(const rule of rules){if(rule.type===CSSRule.MEDIA_RULE&&!matchMedia(rule.conditionText).matches)continue;if(rule.type===CSSRule.SUPPORTS_RULE&&!CSS.supports(rule.conditionText))continue;if(rule.selectorText&&nodes.some(e=>{try{return e.matches(rule.selectorText);}catch{return false;}}))applicable.push(rule.style);if(rule.cssRules)collect(rule.cssRules);}};for(const sheet of h.document.styleSheets)collect(sheet.cssRules);h.assert(properties.every(key=>applicable.some(style=>style.getPropertyValue(key))),'style要素内で、対象のpタグに文字サイズ・色・太さを指定してください。');
+  }
+};
+
+export default grader;

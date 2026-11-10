@@ -1,9 +1,9 @@
 import React, { useMemo, useRef, useState } from 'react';
 import { ExerciseFrame, readExercise } from './exercise-frame.jsx';
 import { splitEditorFiles } from './editor-files.mjs';
-import { EditorPanel } from '../vendor/tutorialkit/react/Panels/EditorPanel.tsx';
+import { EditorPanel } from './vendor/tutorialkit/react/Panels/EditorPanel.tsx';
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
-import resizeStyles from '../vendor/tutorialkit/react/styles/resize-panel.module.css';
+import resizeStyles from './vendor/tutorialkit/react/styles/resize-panel.module.css';
 import { CodePreview } from './code-preview.jsx';
 import { isUploadedFile } from './uploaded-file.mjs';
 

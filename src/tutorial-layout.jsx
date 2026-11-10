@@ -1,7 +1,7 @@
-// Adapted from TutorialKit's default Astro components; see vendor/tutorialkit/SOURCE.json.
+// Adapted from TutorialKit's default Astro components; see src/vendor/tutorialkit/SOURCE.json.
 import React from 'react';
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
-import resizeStyles from '../vendor/tutorialkit/react/styles/resize-panel.module.css';
+import resizeStyles from './vendor/tutorialkit/react/styles/resize-panel.module.css';
 
 export const topBarButton = 'flex items-center text-2xl text-tk-elements-topBar-iconButton-iconColor hover:text-tk-elements-topBar-iconButton-iconColorHover transition-theme bg-tk-elements-topBar-iconButton-backgroundColor hover:bg-tk-elements-topBar-iconButton-backgroundColorHover p-1 rounded-md';
 

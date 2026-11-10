@@ -1,4 +1,4 @@
-@import '../vendor/tutorialkit/styles/base.css';
+@import './vendor/tutorialkit/styles/base.css';
 
 /* Native answer fields share TutorialKit's panel and theme tokens. */
 html,body,#app{height:100%;margin:0}

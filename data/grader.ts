@@ -1,0 +1,77 @@
+/** 問題フォルダの採点TSが import type するための型です。実行時には使われません。 */
+export type GraderHelpers = {
+  assert: (condition: unknown, message?: string) => void;
+  source: string;
+  document: any;
+  window: any;
+  logs: unknown[][];
+  alerts: string[];
+  doctype?: { name: string } | null;
+  logText: () => string[];
+  text: (selector: string) => string;
+  fire: (target: any, type: string, properties?: Record<string, unknown>) => void;
+  click: (selector: string) => void;
+  key: (key: string) => void;
+  advance: (duration: number) => void;
+  promptCount: number;
+  confirmCalls: number;
+  randomCount: number;
+  css?: (selector: string, pseudo?: string) => CSSStyleDeclaration;
+  el?: (selector: string) => Element;
+  all?: (selector: string) => Element[];
+  rect?: (selector: string) => DOMRect;
+  near?: (actual: number, expected: number, message: string, tolerance?: number) => void;
+  overlap?: (a: string, b: string) => boolean;
+  hover?: (selector: string) => void;
+  polygon?: (selector: string) => number[][];
+  animations?: (selector: string) => Animation[];
+  sample?: (animation: Animation, fraction: number) => void;
+  frame?: () => Promise<void>;
+  rules?: (selector: string) => CSSStyleRule[];
+  gradient?: (selector: string) => { type: string; direction: number; colors: { r: number; g: number; b: number; a: number }[] };
+  answer?: string;
+  answers?: Record<string, string>;
+};
+
+export type GraderCase = {
+  label?: string;
+  prompts?: string[];
+  confirms?: boolean[];
+  randoms?: number[];
+  prefix?: string;
+  html?: string;
+  width?: number;
+  height?: number;
+  check?: string | ((h: GraderHelpers) => unknown);
+};
+
+export type Grader = {
+  kind: 'text' | 'code' | 'render' | 'dom' | 'file' | 'manual';
+  check?: string | ((h: GraderHelpers) => unknown);
+  cases?: GraderCase[];
+  requires?: string[];
+  requirementHint?: string;
+  previous?: string | string[];
+  completeProgram?: boolean;
+  context?: { name: string; code: string }[];
+  aggregate?: string;
+  html?: string;
+  documentAnswer?: boolean;
+  htmlAnswer?: boolean;
+  scaffold?: { detect: string; prefix?: string; after?: string };
+  resolveUrl?: boolean;
+  target?: string;
+  htmlId?: boolean;
+  fragmentFor?: string;
+  task?: string;
+  selector?: string;
+  initialText?: string;
+  initialColor?: string;
+  exerciseHtml?: string;
+  contrast?: { background: string; minimum: number };
+  accept?: string[];
+  acceptSets?: string[][];
+  pairs?: { labels: string[]; numbers: string[] }[];
+  extension?: string;
+  [key: string]: unknown;
+};

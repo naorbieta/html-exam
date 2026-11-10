@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { Nav } from '../vendor/tutorialkit/react/Nav.tsx';
-import { Button } from '../vendor/tutorialkit/react/Button.tsx';
+import { Nav } from './vendor/tutorialkit/react/Nav.tsx';
+import { Button } from './vendor/tutorialkit/react/Button.tsx';
 import { gradeRenderedAnswer } from './render-grader.mjs';
 import { AnswerWorkspace, CodeWorkspace } from './answer-workspace.jsx';
 import { codeSource } from './editor-files.mjs';

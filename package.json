@@ -3,11 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node scripts/build.mjs",
-    "dev": "node scripts/serve.mjs",
-    "test": "node --test tests/*.test.mjs",
-    "check:browser": "node scripts/check-render-grading.mjs",
-    "check:grading": "node scripts/grading-audit.mjs"
+    "build": "node other/scripts/build.mjs",
+    "dev": "node other/scripts/serve.mjs",
+    "test": "node --test other/tests/*.test.mjs",
+    "check:browser": "node other/scripts/check-render-grading.mjs",
+    "check:grading": "node other/scripts/grading-audit.mjs"
   },
   "engines": {
     "node": ">=22"
@@ -15,6 +15,7 @@
   "dependencies": {
     "@codemirror/autocomplete": "6.20.3",
     "@codemirror/commands": "^6.11.1",
+    "@codemirror/lang-css": "6.3.1",
     "@codemirror/lang-html": "6.4.12",
     "@codemirror/lang-javascript": "6.2.5",
     "@codemirror/language": "6.13.1",
@@ -27,13 +28,13 @@
     "linkedom": "^0.18.13",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-resizable-panels": "2.1.9",
-    "@codemirror/lang-css": "6.3.1"
+    "react-resizable-panels": "2.1.9"
   },
   "devDependencies": {
+    "@tutorialkit/theme": "1.6.0",
     "@unocss/reset": "0.59.4",
     "esbuild": "^0.28.2",
     "unocss": "0.59.4",
-    "@tutorialkit/theme": "1.6.0"
+    "yaml": "^2.9.1"
   }
 }

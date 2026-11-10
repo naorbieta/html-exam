@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Button } from '../vendor/tutorialkit/react/Button.tsx';
+import { Button } from './vendor/tutorialkit/react/Button.tsx';
 
 export function exerciseDocument(html) {
   return '<!doctype html><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; style-src \'unsafe-inline\'; base-uri \'none\'; form-action \'none\'"><style>body{margin:0;padding:16px;font-family:system-ui,sans-serif;color:#0f1419;background:#fff}p{font-size:24px;line-height:1.6;overflow-wrap:anywhere}</style>' + html;

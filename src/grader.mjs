@@ -49,7 +49,7 @@ export function executeCode(source, rule, scenario = {}) {
     target.dispatchEvent(event);
     if (typeof target['on' + type] === 'function') target['on' + type].call(target, event);
   };
-  const h = { logs, alerts, document, window, assert, source,
+  const h = { logs, alerts, document, window, assert, source, doctype: document.doctype,
     get promptCount() { return promptCount; }, get randomCount() { return randomCount; },
     get confirmCalls() { return confirmCalls; },
     text: selector => document.querySelector(selector)?.textContent.trim() || '',
@@ -72,6 +72,7 @@ export function executeCode(source, rule, scenario = {}) {
     }
   };
   let code = source;
+  try { h.doctype = parseHTML(source).document.doctype; } catch {}
   if (rule.htmlAnswer || rule.documentAnswer && /^\s*<(?:!doctype\s+html|html\b|form\b)/i.test(source)) {
     const student = parseHTML(/<html[\s>]/i.test(source) ? source : '<!doctype html><html><head></head><body>' + source + '</body></html>');
     document.documentElement.innerHTML = student.document.documentElement.innerHTML;

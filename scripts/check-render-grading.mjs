@@ -4,7 +4,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { build } from 'esbuild';
 import { readAuthoringData } from './data.mjs';
-import { catalogFromTables } from '../../src/catalog.mjs';
+import { catalogFromTables } from '../src/catalog.mjs';
 import { openHeadless, wantsHeadless } from './headless-chrome.mjs';
 const tables=await readAuthoringData();
 const catalog=catalogFromTables(tables);

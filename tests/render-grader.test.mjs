@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { renderDocument } from '../../src/render-grader.mjs';
+import { renderDocument } from '../src/render-grader.mjs';
 import { parseHTML } from 'linkedom/worker';
 
 test('提出HTMLで採点フレームのスクリプトやCSPを抜けられない',()=>{

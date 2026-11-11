@@ -1,1 +1,1 @@
-export { parseCsv, stringifyCsv } from '../../src/csv.mjs';
+export { parseCsv, stringifyCsv } from '../src/csv.mjs';

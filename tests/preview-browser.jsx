@@ -1,8 +1,8 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { flushSync } from 'react-dom';
-import { CodePreview } from '../../src/code-preview.jsx';
-import { splitEditorFiles } from '../../src/editor-files.mjs';
+import { CodePreview } from '../src/code-preview.jsx';
+import { splitEditorFiles } from '../src/editor-files.mjs';
 
 export async function checkPreview() {
   const host = document.createElement('div'); document.body.append(host);

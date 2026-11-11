@@ -1,6 +1,6 @@
-import { gradeAnswer } from '../../src/grader.mjs';
-import { gradeRenderedAnswer } from '../../src/render-grader.mjs';
-import { splitEditorFiles } from '../../src/editor-files.mjs';
+import { gradeAnswer } from '../src/grader.mjs';
+import { gradeRenderedAnswer } from '../src/render-grader.mjs';
+import { splitEditorFiles } from '../src/editor-files.mjs';
 
 export async function checkCssWriting(catalog) {
   const quiz = catalog.find(quiz => quiz.id === 'web-11'), lines = [];

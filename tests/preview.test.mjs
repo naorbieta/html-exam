@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { parseHTML } from 'linkedom';
-import { splitEditorFiles } from '../../src/editor-files.mjs';
-import { previewSource, previewDocument } from '../../src/preview.mjs';
+import { splitEditorFiles } from '../src/editor-files.mjs';
+import { previewSource, previewDocument } from '../src/preview.mjs';
 
 test('編集したHTMLとCSSをプレビューに使い、採点用の条件や解答例を混ぜない', () => {
   const item = { language: 'html', grading: { kind: 'render', config: { documentAnswer: true, check: 'SECRET_CHECK' }, example: 'SECRET_ANSWER' } };

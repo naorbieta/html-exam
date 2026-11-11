@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { jsonHtmlDocument, parseJsonHtml, packImageFiles, assembleImages } from '../../src/gas-data.mjs';
+import { jsonHtmlDocument, parseJsonHtml, packImageFiles, assembleImages } from '../src/gas-data.mjs';
 
 test('埋め込みHTMLからJSONを復元する', () => {
   const html = jsonHtmlDocument('Catalog', { hello: 'a<b', items: [1] });

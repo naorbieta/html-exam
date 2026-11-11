@@ -4,11 +4,11 @@ import vm from 'node:vm';
 import { parseHTML } from 'linkedom';
 import { readFile } from 'node:fs/promises';
 import { parseCsv } from '../scripts/csv.mjs';
-import { catalogFromTables } from '../../src/catalog.mjs';
-import { parseJsonHtml, assembleImages, GAS_HTML_BYTE_LIMIT } from '../../src/gas-data.mjs';
+import { catalogFromTables } from '../src/catalog.mjs';
+import { parseJsonHtml, assembleImages, GAS_HTML_BYTE_LIMIT } from '../src/gas-data.mjs';
 import { build } from '../scripts/build.mjs';
-import { lessonDescription } from '../../src/lesson-content.mjs';
-import { withInitialAnswers } from '../../src/step-progress.mjs';
+import { lessonDescription } from '../src/lesson-content.mjs';
+import { withInitialAnswers } from '../src/step-progress.mjs';
 
 const fixture = () => ({
   quizzes: [['id','number','title','description'],['q1',1,'データ型','改行\nと "引用符", を保つ']],
@@ -49,7 +49,7 @@ test('関連先のない行・重複ID・列ずれを検出する', () => {
 
 test('採用した問題・画像・採点条件をGAS向けに生成する', async () => {
   const { catalog, tables, imageData, app, previewHtml, browserModules } = await build();
-  const original = JSON.parse(await readFile(new URL('../archive/forms.json', import.meta.url), 'utf8')).forms;
+  const original = JSON.parse(await readFile(new URL('./fixtures/forms.json', import.meta.url), 'utf8')).forms;
   const removed = new Set(['web-01']);
   const expandedCounts = { 'quiz-04': 9, 'web-13': 6, 'web-15': 7, 'web-20': 6 };
   const quizId = form => `${form.collection === 'web' ? 'web' : 'quiz'}-${String(form.number).padStart(2,'0')}`;
@@ -57,7 +57,7 @@ test('採用した問題・画像・採点条件をGAS向けに生成する', as
   assert.deepEqual(catalog.map(quiz => quiz.id).sort(), retained.map(quizId).sort());
   assert.ok(!JSON.stringify(tables).match(/owlet/i), '配信データには製品固有の記載を含めない');
   assert.doesNotMatch(JSON.stringify(tables), /ガーディアン|guardian/i);
-  const inventory=JSON.parse(await readFile(new URL('../archive/forms.json',import.meta.url),'utf8')).source.inventory;
+  const inventory=JSON.parse(await readFile(new URL('./fixtures/forms.json', import.meta.url),'utf8')).source.inventory;
   assert.deepEqual([...original.map(f=>f.formId)].sort(),inventory.map(f=>f.formId).sort());
   assert.deepEqual([...new Set(catalog.map(q=>q.course))],['JavaScript / 初級','HTML・CSS・Web基礎']);
   for (const form of retained) {

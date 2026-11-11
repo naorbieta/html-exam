@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readAuthoringData } from '../scripts/data.mjs';
-import { catalogFromTables } from '../../src/catalog.mjs';
-import { gradeAnswer } from '../../src/grader.mjs';
+import { catalogFromTables } from '../src/catalog.mjs';
+import { gradeAnswer } from '../src/grader.mjs';
 const tables=await readAuthoringData();
 const catalog=catalogFromTables(tables);
 const item=(number,index=0)=>catalog.find(quiz=>quiz.number===number).items[index];

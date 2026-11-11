@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { splitEditorFiles, codeSource, isFileAnswer } from '../../src/editor-files.mjs';
-import { gradeAnswer } from '../../src/grader.mjs';
-import { withInitialAnswers } from '../../src/step-progress.mjs';
+import { splitEditorFiles, codeSource, isFileAnswer } from '../src/editor-files.mjs';
+import { gradeAnswer } from '../src/grader.mjs';
+import { withInitialAnswers } from '../src/step-progress.mjs';
 
 const source = '<html><head><style>p{color:red}</style><style media="print">p{font-size:12px}</style></head><body><p>本文</p></body></html>';
 

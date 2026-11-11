@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import { readFile } from 'node:fs/promises';
-import { validateSubmission, sheetText } from '../../src/submission.mjs';
+import { validateSubmission, sheetText } from '../src/submission.mjs';
 
 const catalog = [{ id: 'q1', items: [
   { id: 'code', type: 'code', required: true },
@@ -41,7 +41,7 @@ function answerBook(rows, options = {}) {
 
 async function loadServer(contextExtras) {
   const context = vm.createContext({ console, HtmlService: { createHtmlOutputFromFile() { throw new Error('Catalog should be stubbed'); } }, ...contextExtras });
-  vm.runInContext((await readFile(new URL('../../src/editor-files.mjs', import.meta.url), 'utf8') + '\n' + await readFile(new URL('../../src/gas-data.mjs', import.meta.url), 'utf8') + '\n' + await readFile(new URL('../../src/submission.mjs', import.meta.url), 'utf8')).replace(/^import .*;\n/gm, '').replace(/^export /gm, '') + '\n' + await readFile(new URL('../../src/gas/Code.gs', import.meta.url), 'utf8'), context);
+  vm.runInContext((await readFile(new URL('../src/editor-files.mjs', import.meta.url), 'utf8') + '\n' + await readFile(new URL('../src/gas-data.mjs', import.meta.url), 'utf8') + '\n' + await readFile(new URL('../src/submission.mjs', import.meta.url), 'utf8')).replace(/^import .*;\n/gm, '').replace(/^export /gm, '') + '\n' + await readFile(new URL('../src/gas/Code.gs', import.meta.url), 'utf8'), context);
   return context;
 }
 

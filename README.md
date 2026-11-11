@@ -15,7 +15,7 @@ npm run dev
 
 ## GASへ配置する
 
-問題データは `data/test/` が正本です。ビルドすると設問・採点・参考画像が `dist/app` の中（`Catalog.html` と分割した画像HTML）に埋め込まれ、アプリと一緒にデプロイされます。スプレッドシートには回答ログだけを記録します。
+問題データは `data/exam/`（試験）と `data/test/`（練習）が正本です。ビルドすると設問・採点・参考画像が `dist/app` の中（`Catalog.html` と分割した画像HTML）に埋め込まれ、アプリと一緒にデプロイされます。画面では試験が先に並び、練習用レッスンはその後ろに残ります。スプレッドシートには回答ログだけを記録します。
 
 手元で初めて出すときは、Apps Script のスクリプトIDを `.clasp.json` に書き、`npx clasp login` のあと `npm run deploy` を実行します。詳細と GitHub Actions（`main` への push で自動デプロイ）の設定は[GASへの自動デプロイ](docs/deploy.md)を参照してください。
 
@@ -30,11 +30,17 @@ GASではHTML内にCSSとJavaScriptを埋め込んで配信します。画面と
 
 ## 問題を追加・編集する
 
-正本は `data/test/` 以下のMarkdownとTypeScriptです。編集後に `npm run build` すると、採点TSがJavaScriptへコンパイルされ、問題データごと `dist/app` に埋め込まれます。
+正本は `data/exam/`（試験）と `data/test/`（練習）以下のMarkdownとTypeScriptです。編集後に `npm run build` すると、採点TSがJavaScriptへコンパイルされ、問題データごと `dist/app` に埋め込まれます。
 
-フォルダは1レッスン単位です。
+フォルダは1レッスン単位です。試験はカテゴリごとに1レッスンへまとめています。
 
 ```text
+data/exam/html-css/01-exam/
+data/exam/javascript/01-exam/
+data/exam/php/01-exam/
+data/exam/git/01-exam/
+data/exam/terminal/01-exam/
+data/exam/design/01-exam/
 data/test/js/01-hajimete-no-javascript/
   lesson.md          レッスンの導入文と参考画像
   01-code.md         設問（問題文とメタデータ）
@@ -43,7 +49,7 @@ data/test/js/01-hajimete-no-javascript/
 data/test/html-css/10-html-structure/
 ```
 
-`js/` は「JavaScript / 初級」、`html-css/` は「HTML・CSS・Web基礎」です。具体的な書き方は[問題の編集手順](docs/editing-questions.md)を参照してください。
+`data/exam/` の各フォルダは「試験 / HTML・CSS」など6つの試験カテゴリに、`data/test/js/` は「JavaScript / 初級」、`data/test/html-css/` は「HTML・CSS・Web基礎」に対応します。具体的な書き方は[問題の編集手順](docs/editing-questions.md)を参照してください。
 
 エディタ、プレビュー、採点エンジンはアプリ側（`src/`）にあり、各問題の採点TSはそれを呼び出して判定します。コードを書く問題は、模範解答の文字列と一致するかではなく、実行・描画した結果が条件を満たすかで判定します。レッスンの主題が特定の構文そのもの（例: `switch` 文を使う、テンプレートリテラルを使う）である場合に限り、ソース上の構文チェックを併用します。
 
@@ -57,7 +63,8 @@ HTMLのstyle要素は、エディタではindex.htmlとstyle.cssに分けて表�
 src/                 画面・採点エンジン・GASサーバー
 src/scripts/         ビルドとローカル表示
 src/tests/           テスト
-data/test/           問題の正本（Markdown・TypeScript・素材）
+data/exam/           試験問題の正本（Markdown・TypeScript）
+data/test/           練習問題の正本（Markdown・TypeScript・素材）
 data/grader.ts       採点TS用の型
 dist/app/            GASへ配置するアプリと問題データ（ビルド成果）
 docs/                編集手順などの文書

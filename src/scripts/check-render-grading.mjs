@@ -20,10 +20,17 @@ const invalid = {
  'web-45-answer-2':'@media(max-width:767px){.wrapper{display:block}}',
  'web-57-answer-2':'.unrelated{padding-right:30px}',
  'web-72-answer-2':'img{filter:blur(5px)}',
- 'web-74-answer-1':'.wrapper{display:grid;grid-template-columns:repeat(4,200px);gap:20px}'
+ 'web-74-answer-1':'.wrapper{display:grid;grid-template-columns:repeat(4,200px);gap:20px}',
+ 'exam-html-12':'footer{position:relative;bottom:0;left:0;width:100%}'
+};
+const valid = {
+ 'exam-html-12':[
+  'footer{position:fixed;inset:auto 0 0 0}',
+  '#footer{position:fixed;bottom:0;left:0;right:0}'
+ ]
 };
 const page=`<!doctype html><meta charset="utf-8"><title>表示採点の検証</title><button id="run">検証する</button><pre id="results"></pre><script>${bundle.outputFiles[0].text.replaceAll('</script','<\\/script')}</script><script>
-const catalog=${JSON.stringify(catalog).replaceAll('<','\\u003c')};const invalid=${JSON.stringify(invalid)};
+const catalog=${JSON.stringify(catalog).replaceAll('<','\\u003c')};const invalid=${JSON.stringify(invalid)};const valid=${JSON.stringify(valid)};
 document.querySelector('#run').onclick=async()=>{
  const output=document.querySelector('#results');output.textContent='';let failures=0,count=0;
  for(const quiz of catalog.filter(q=>!location.search.includes('preview')&&!location.search.includes('css-writing')&&!location.search.includes('regressions')&&(!location.search.includes('exercise')||['web-55','web-56'].includes(q.id)))){const answers=Object.fromEntries(quiz.items.map(i=>[i.id,i.type==='code' ? renderGrader.splitEditorFiles(i.grading.example)||i.grading.example : i.grading.example]));
@@ -31,6 +38,7 @@ document.querySelector('#run').onclick=async()=>{
    const result=await renderGrader.gradeRenderedAnswer(item,answers[item.id],answers);count++;if(!result.passed)failures++;
    output.textContent+=item.id+' '+(result.passed?'PASS':'FAIL '+result.feedback)+'\\n';
    if(item.id==='web-56-answer-1'){const copied=await renderGrader.gradeRenderedAnswer(item,'.box:hover{width:300px;height:300px;background:#f00}',answers);count++;if(!copied.passed)failures++;output.textContent+=item.id+' hoverセレクタ '+(copied.passed?'PASS':'FAIL '+copied.feedback)+'\\n';}
+   if(valid[item.id]){for(const alt of valid[item.id]){const copied=await renderGrader.gradeRenderedAnswer(item,alt,answers);count++;if(!copied.passed)failures++;output.textContent+=item.id+' 別解 '+(copied.passed?'PASS':'FAIL '+copied.feedback)+'\\n';}}
    if(invalid[item.id]){const wrong=await renderGrader.gradeRenderedAnswer(item,invalid[item.id],answers);count++;if(wrong.passed)failures++;output.textContent+=item.id+' 誤答 '+(!wrong.passed?'PASS':'FAIL 誤答を受理')+'\\n';}
   }
  }

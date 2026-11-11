@@ -4,10 +4,21 @@ import { transform } from 'esbuild';
 import { pathToFileURL } from 'node:url';
 import { parseFrontmatter } from './frontmatter.mjs';
 
-export const courseFolders = {
+export const practiceCourseFolders = {
   js: 'JavaScript / 初級',
   'html-css': 'HTML・CSS・Web基礎'
 };
+
+export const examCourseFolders = {
+  'html-css': '試験 / HTML・CSS',
+  javascript: '試験 / JavaScript',
+  php: '試験 / PHP',
+  git: '試験 / Git',
+  terminal: '試験 / ターミナル操作',
+  design: '試験 / デザイン理論'
+};
+
+export const courseFolders = practiceCourseFolders;
 
 export const answerTypes = {
   '短文': 'short_text',
@@ -132,23 +143,27 @@ function exampleOf(data, type, grader, file) {
   return '';
 }
 
-async function listLessonDirs(root) {
-  const found = [];
-  const tests = path.join(root, 'data', 'test');
+async function listLessonsIn(base, folders, found) {
   let entries;
-  try { entries = await readdir(tests, { withFileTypes: true }); }
-  catch { throw new Error('data/test がありません。'); }
+  try { entries = await readdir(base, { withFileTypes: true }); }
+  catch { return; }
   const names = entries.filter(entry => entry.isDirectory()).map(entry => entry.name);
-  const preferred = Object.keys(courseFolders);
-  const categories = [...preferred.filter(name => names.includes(name)), ...names.filter(name => !preferred.includes(name)).sort()]
-    .map(name => entries.find(entry => entry.name === name));
-  for (const category of categories) {
-    const dir = path.join(tests, category.name);
+  const preferred = Object.keys(folders);
+  const categories = [...preferred.filter(name => names.includes(name)), ...names.filter(name => !preferred.includes(name)).sort()];
+  for (const name of categories) {
+    const dir = path.join(base, name);
     const lessons = await readdir(dir, { withFileTypes: true });
     for (const lesson of lessons.filter(entry => entry.isDirectory()).sort((a, b) => a.name.localeCompare(b.name))) {
-      found.push({ category: category.name, slug: lesson.name, dir: path.join(dir, lesson.name) });
+      found.push({ category: name, slug: lesson.name, dir: path.join(dir, lesson.name), courseDefault: folders[name] });
     }
   }
+}
+
+async function listLessonDirs(root) {
+  const found = [];
+  await listLessonsIn(path.join(root, 'data', 'exam'), examCourseFolders, found);
+  await listLessonsIn(path.join(root, 'data', 'test'), practiceCourseFolders, found);
+  if (!found.length) throw new Error('data/exam または data/test にレッスンフォルダがありません。');
   return found;
 }
 
@@ -237,14 +252,13 @@ export async function loadLessons(root) {
   const ids = new Set();
   const itemIds = new Set();
   const lessons = await listLessonDirs(root);
-  if (!lessons.length) throw new Error('data/test にレッスンフォルダがありません。');
   for (const lesson of lessons) {
     const lessonFile = path.join(lesson.dir, 'lesson.md');
     let source;
     try { source = await readFile(lessonFile, 'utf8'); }
     catch { fail(lesson.dir, 'lesson.md がありません。'); }
     const { data, body } = parseFrontmatter(source);
-    const course = data.course || courseFolders[lesson.category];
+    const course = data.course || lesson.courseDefault;
     const number = Number(data.number);
     const title = String(data.title || '').trim();
     const id = String(data.id || '').trim();

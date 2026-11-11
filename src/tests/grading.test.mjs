@@ -5,7 +5,7 @@ import { catalogFromTables } from '../catalog.mjs';
 import { gradeAnswer } from '../grader.mjs';
 const tables=await readAuthoringData();
 const catalog=catalogFromTables(tables);
-const item=(number,index=0)=>catalog.find(quiz=>quiz.number===number).items[index];
+const item=(number,index=0)=>catalog.find(quiz=>quiz.id===`quiz-${String(number).padStart(2,'0')}`).items[index];
 
 test('変数の宣言・代入・表示では日本語の有効な変数名も受け付ける', () => {
   const fields=catalog.find(quiz=>quiz.id==='quiz-06').items;

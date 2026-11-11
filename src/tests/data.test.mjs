@@ -54,14 +54,18 @@ test('採用した問題・画像・採点条件をGAS向けに生成する', as
   const expandedCounts = { 'quiz-04': 9, 'web-13': 6, 'web-15': 7, 'web-20': 6 };
   const quizId = form => `${form.collection === 'web' ? 'web' : 'quiz'}-${String(form.number).padStart(2,'0')}`;
   const retained = original.filter(form => !removed.has(quizId(form)));
-  assert.deepEqual(catalog.map(quiz => quiz.id).sort(), retained.map(quizId).sort());
+  const practice = catalog.filter(quiz => !quiz.id.startsWith('exam-'));
+  const exam = catalog.filter(quiz => quiz.id.startsWith('exam-'));
+  assert.deepEqual(practice.map(quiz => quiz.id).sort(), retained.map(quizId).sort());
+  assert.deepEqual(exam.map(quiz => quiz.id), ['exam-html', 'exam-js', 'exam-php', 'exam-git', 'exam-terminal', 'exam-design']);
+  assert.equal(exam.flatMap(quiz => quiz.items).length, 37);
   assert.ok(!JSON.stringify(tables).match(/owlet/i), '配信データには製品固有の記載を含めない');
   assert.doesNotMatch(JSON.stringify(tables), /ガーディアン|guardian/i);
   const inventory=JSON.parse(await readFile(new URL('./fixtures/forms.json', import.meta.url),'utf8')).source.inventory;
   assert.deepEqual([...original.map(f=>f.formId)].sort(),inventory.map(f=>f.formId).sort());
-  assert.deepEqual([...new Set(catalog.map(q=>q.course))],['JavaScript / 初級','HTML・CSS・Web基礎']);
+  assert.deepEqual([...new Set(catalog.map(q=>q.course))],['試験 / HTML・CSS','試験 / JavaScript','試験 / PHP','試験 / Git','試験 / ターミナル操作','試験 / デザイン理論','JavaScript / 初級','HTML・CSS・Web基礎']);
   for (const form of retained) {
-    const quiz = catalog.find(q => q.id === quizId(form));
+    const quiz = practice.find(q => q.id === quizId(form));
     assert.ok(quiz.items.every(item => item.grading));
     for (const item of quiz.items) assert.doesNotMatch(lessonDescription(quiz, item), /<!doctype\s+html>|<html\b/i, `${item.id}: 参照HTMLが問題文に残っている`);
     for (const item of quiz.items.filter(item => item.type === 'code')) {
@@ -74,7 +78,7 @@ test('採用した問題・画像・採点条件をGAS向けに生成する', as
     assert.deepEqual(quiz.images.map(i => i.path), sourceImages);
     for (const image of quiz.images) assert.match(imageData[image.path], /^data:image\/(png|gif|jpeg|webp);base64,/);
   }
-  assert.equal(catalog.flatMap(quiz=>quiz.items).length, retained.reduce((sum, form) => sum + (expandedCounts[quizId(form)] || form.items.filter(item => item.type !== 'image').length),0));
+  assert.equal(practice.flatMap(quiz=>quiz.items).length, retained.reduce((sum, form) => sum + (expandedCounts[quizId(form)] || form.items.filter(item => item.type !== 'image').length),0));
   assert.equal(Object.keys(imageData).length, new Set(catalog.flatMap(quiz => quiz.images.map(image => image.path))).size);
   const { readdir } = await import('node:fs/promises');
   const appFiles = (await readdir(app)).sort();

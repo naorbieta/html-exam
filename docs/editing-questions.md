@@ -1,12 +1,18 @@
 # 問題の編集手順
 
-正本は `data/test/` のレッスンフォルダです。編集したら `npm run build` で `dist/app` に問題データを埋め込みます。GASへ出す手順は[GASへの自動デプロイ](deploy.md)を参照してください。
+正本は `data/exam/`（試験）と `data/test/`（練習）のレッスンフォルダです。編集したら `npm run build` で `dist/app` に問題データを埋め込みます。画面では試験が先に表示されます。GASへ出す手順は[GASへの自動デプロイ](deploy.md)を参照してください。
 
 ## レッスンの置き方
 
 ```text
-data/test/js/01-hajimete-no-javascript/     JavaScript / 初級
-data/test/html-css/10-html-structure/       HTML・CSS・Web基礎
+data/exam/html-css/01-exam/                  試験 / HTML・CSS
+data/exam/javascript/01-exam/               試験 / JavaScript
+data/exam/php/01-exam/                      試験 / PHP
+data/exam/git/01-exam/                      試験 / Git
+data/exam/terminal/01-exam/                 試験 / ターミナル操作
+data/exam/design/01-exam/                   試験 / デザイン理論
+data/test/js/01-hajimete-no-javascript/     JavaScript / 初級（練習）
+data/test/html-css/10-html-structure/       HTML・CSS・Web基礎（練習）
 ```
 
 フォルダ名は `{レッスン番号2桁}-{スラッグ}` にします。番号は分野ごとに付け、欠番があってもそのまま使います。各フォルダには `lesson.md` と、設問ごとの Markdown を置きます。採点が必要な設問には、同じ名前の TypeScript を添えます。画像は `images/` に入れ、`lesson.md` から参照します。

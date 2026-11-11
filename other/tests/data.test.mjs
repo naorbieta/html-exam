@@ -4,8 +4,8 @@ import vm from 'node:vm';
 import { parseHTML } from 'linkedom';
 import { readFile } from 'node:fs/promises';
 import { parseCsv } from '../scripts/csv.mjs';
-import { tablesFromPack } from '../../src/pack.mjs';
 import { catalogFromTables } from '../../src/catalog.mjs';
+import { parseJsonHtml, assembleImages, GAS_HTML_BYTE_LIMIT } from '../../src/gas-data.mjs';
 import { build } from '../scripts/build.mjs';
 import { lessonDescription } from '../../src/lesson-content.mjs';
 import { withInitialAnswers } from '../../src/step-progress.mjs';
@@ -48,7 +48,7 @@ test('関連先のない行・重複ID・列ずれを検出する', () => {
 });
 
 test('採用した問題・画像・採点条件をGAS向けに生成する', async () => {
-  const { catalog, tables, imageData, app, sheetFile, previewHtml, browserModules } = await build();
+  const { catalog, tables, imageData, app, previewHtml, browserModules } = await build();
   const original = JSON.parse(await readFile(new URL('../archive/forms.json', import.meta.url), 'utf8')).forms;
   const removed = new Set(['web-01']);
   const expandedCounts = { 'quiz-04': 9, 'web-13': 6, 'web-15': 7, 'web-20': 6 };
@@ -76,11 +76,24 @@ test('採用した問題・画像・採点条件をGAS向けに生成する', as
   }
   assert.equal(catalog.flatMap(quiz=>quiz.items).length, retained.reduce((sum, form) => sum + (expandedCounts[quizId(form)] || form.items.filter(item => item.type !== 'image').length),0));
   assert.equal(Object.keys(imageData).length, new Set(catalog.flatMap(quiz => quiz.images.map(image => image.path))).size);
-  const sheetRows = parseCsv(await readFile(sheetFile, 'utf8'));
-  assert.deepEqual(catalogFromTables(tablesFromPack(sheetRows)).map(quiz => quiz.id), catalog.map(quiz => quiz.id));
-  assert.equal(catalogFromTables(tablesFromPack(sheetRows)).flatMap(quiz => quiz.items).length, catalog.flatMap(quiz => quiz.items).length);
-  const appFiles = (await import('node:fs/promises')).readdir(app);
-  assert.deepEqual((await appFiles).sort(), ['Client.html', 'Code.gs', 'Grader.html', 'Index.html', 'Styles.html', 'appsscript.json']);
+  const { readdir } = await import('node:fs/promises');
+  const appFiles = (await readdir(app)).sort();
+  assert.ok(appFiles.includes('Catalog.html'));
+  const imageFileNames = appFiles.filter(name => /^Images\d+\.html$/.test(name));
+  assert.ok(imageFileNames.length > 0);
+  assert.deepEqual(appFiles.filter(name => name !== 'Catalog.html' && !/^Images\d+\.html$/.test(name)), ['Client.html', 'Code.gs', 'Grader.html', 'Index.html', 'Styles.html', 'appsscript.json']);
+  const bundled = parseJsonHtml(await readFile(`${app}/Catalog.html`, 'utf8'));
+  assert.deepEqual(bundled.catalog.map(quiz => quiz.id), catalog.map(quiz => quiz.id));
+  assert.equal(bundled.catalog.flatMap(quiz => quiz.items).length, catalog.flatMap(quiz => quiz.items).length);
+  const payloads = [];
+  for (const name of imageFileNames) {
+    const html = await readFile(`${app}/${name}`, 'utf8');
+    assert.ok(html.length <= GAS_HTML_BYTE_LIMIT + 2_000, `${name} が大きすぎます: ${html.length}`);
+    payloads.push(parseJsonHtml(html));
+  }
+  const assembled = assembleImages(payloads);
+  assert.equal(Object.keys(assembled).length, Object.keys(imageData).length);
+  for (const [path, url] of Object.entries(imageData)) assert.equal(assembled[path], url);
   const html = previewHtml;
   const workerTag = await readFile(`${app}/Grader.html`, 'utf8');
   assert.ok(html.includes(workerTag), '採点エンジン内の$などを置換せず、そのまま埋め込む');

@@ -1,0 +1,3 @@
+# clasp の rootDir は dist/app です。そこに出力された .gs / .html / appsscript.json だけを推します。
+**/*.md
+**/*.map

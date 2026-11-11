@@ -1,0 +1,41 @@
+name: Deploy GAS
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: clasp の認証と scriptId を書き出す
+        env:
+          CLASPRC_JSON: ${{ secrets.CLASPRC_JSON }}
+          SCRIPT_ID: ${{ secrets.SCRIPT_ID }}
+        run: |
+          if [ -z "$CLASPRC_JSON" ] || [ -z "$SCRIPT_ID" ]; then
+            echo "GitHub Secrets に CLASPRC_JSON と SCRIPT_ID を設定してください。" >&2
+            exit 1
+          fi
+          printf '%s\n' "$CLASPRC_JSON" > "$HOME/.clasprc.json"
+          printf '{"scriptId":"%s","rootDir":"dist/app"}\n' "$SCRIPT_ID" > .clasp.json
+      - name: clasp push
+        run: npx clasp push --force
+      - name: clasp deploy
+        env:
+          DEPLOYMENT_ID: ${{ secrets.DEPLOYMENT_ID }}
+        run: |
+          if [ -n "$DEPLOYMENT_ID" ]; then
+            npx clasp deploy -i "$DEPLOYMENT_ID" -d "deploy ${GITHUB_SHA}"
+          else
+            echo "DEPLOYMENT_ID が未設定のため、コードの push のみ行いました。同じウェブアプリURLを更新するには Secrets に DEPLOYMENT_ID を追加してください。"
+          fi

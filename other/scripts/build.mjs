@@ -1,10 +1,9 @@
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, readdir, unlink, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { readAuthoringData } from './data.mjs';
 import { catalogFromTables } from '../../src/catalog.mjs';
-import { packRowsFromTables, PACK_SHEET_NAME } from '../../src/pack.mjs';
-import { stringifyCsv } from '../../src/csv.mjs';
+import { jsonHtmlDocument, packImageFiles } from '../../src/gas-data.mjs';
 import { build as bundle } from 'esbuild';
 import { createGenerator } from 'unocss';
 import { defineConfig } from '@tutorialkit/theme';
@@ -69,34 +68,36 @@ self.onmessage = event => {
   catch(error) { self.postMessage({itemId:item.id,passed:false,feedback:error.message}); }
 };`;
   const client = '/*\n' + notices.replaceAll('*/', '* /') + '\n*/\n' + javascript.replaceAll('</script', '<\\/script');
-  const [index, server, catalogCode, submissionCode, packCode] = await Promise.all([
+  const [index, server, submissionCode, gasDataCode] = await Promise.all([
     read('src/index.html'), read('src/gas/Code.gs'),
-    read('src/catalog.mjs'), read('src/submission.mjs'), read('src/pack.mjs')
+    read('src/submission.mjs'), read('src/gas-data.mjs')
   ]);
   const app = path.join(root, 'dist/app');
-  const sheets = path.join(root, 'dist/sheets');
-  await Promise.all([mkdir(app, { recursive: true }), mkdir(sheets, { recursive: true })]);
-  const shared = [editorFilesCode, uploadedFileCode, packCode, catalogCode, submissionCode].join('\n').replace(/^import .*;\n/gm, '').replace(/^export /gm, '');
+  await mkdir(app, { recursive: true });
+  await rm(path.join(root, 'dist/sheets'), { recursive: true, force: true });
+  const existing = await readdir(app);
+  await Promise.all(existing.filter(name => /^(Catalog|Images\d+)\.html$/.test(name)).map(name => unlink(path.join(app, name))));
+  const packedImages = packImageFiles(imageData);
+  const catalogHtml = jsonHtmlDocument('Catalog', { catalog, imageFiles: packedImages.index });
+  const shared = [editorFilesCode, uploadedFileCode, gasDataCode, submissionCode].join('\n').replace(/^import .*;\n/gm, '').replace(/^export /gm, '');
   const outputs = {
     'Index.html': index, 'Styles.html': `<style>\n${css}\n</style>`,
     'Client.html': `<script>\n${client}\n</script>`,
     'Grader.html': `<script type="application/json" id="grader-source">${safeJson(workerSource)}</script>`,
+    'Catalog.html': catalogHtml,
     'Code.gs': `${shared}\n${server}`,
     'appsscript.json': await read('src/gas/appsscript.json')
   };
+  for (const file of packedImages.files) outputs[`${file.name}.html`] = file.html;
   await Promise.all(Object.entries(outputs).map(([name, value]) => writeFile(path.join(app, name), value)));
-  const packRows = packRowsFromTables(tables, imageData);
-  const sheetCsv = stringifyCsv(packRows);
-  const sheetFile = path.join(sheets, 'practice.csv');
-  await writeFile(sheetFile, sheetCsv);
   const previewHtml = index.replace("<?!= include_('Styles'); ?>", () => outputs['Styles.html'])
     .replace("<?!= include_('Grader'); ?>", () => outputs['Grader.html'])
     .replace("<?!= include_('Client'); ?>", () => `<script>window.PRACTICE_PREVIEW=${safeJson({ catalog, imageData })};</script>\n${outputs['Client.html']}`);
-  return { catalog, tables, imageData, app, sheets, sheetFile, sheetCsv, packRows, previewHtml, browserModules, sheetName: PACK_SHEET_NAME };
+  return { catalog, tables, imageData, app, previewHtml, browserModules, imageFiles: packedImages };
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const { catalog, app, sheetFile } = await build();
+  const { catalog, app, imageFiles } = await build();
   console.log(`${catalog.length}件のレッスンをビルドしました。GAS用ファイル: ${app}`);
-  console.log(`スプレッドシート用CSV: ${sheetFile}`);
+  console.log(`問題データは Catalog.html と画像ファイル ${imageFiles.files.length} 個に埋め込みました。`);
 }

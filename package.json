@@ -7,7 +7,9 @@
     "dev": "node other/scripts/serve.mjs",
     "test": "node --test other/tests/*.test.mjs",
     "check:browser": "node other/scripts/check-render-grading.mjs",
-    "check:grading": "node other/scripts/grading-audit.mjs"
+    "check:grading": "node other/scripts/grading-audit.mjs",
+    "push": "npm run build && clasp push",
+    "deploy": "npm run build && clasp push && clasp deploy"
   },
   "engines": {
     "node": ">=22"
@@ -31,6 +33,7 @@
     "react-resizable-panels": "2.1.9"
   },
   "devDependencies": {
+    "@google/clasp": "^3.4.1",
     "@tutorialkit/theme": "1.6.0",
     "@unocss/reset": "0.59.4",
     "esbuild": "^0.28.2",

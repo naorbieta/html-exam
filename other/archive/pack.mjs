@@ -1,3 +1,4 @@
+// 旧形式: 問題データをスプレッドシートの「問題データ」シート（practice.csv）へ載せるためのパック処理。現在は data/ から dist/app の HTML へ埋め込んでいます。
 export const PACK_HEADERS = ['kind', 'id', 'field', 'part', 'value'];
 export const PACK_SHEET_NAME = '問題データ';
 export const PACK_CELL_LIMIT = 45000;

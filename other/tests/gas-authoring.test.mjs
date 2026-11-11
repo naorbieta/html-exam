@@ -4,15 +4,16 @@ import vm from 'node:vm';
 import { readFile } from 'node:fs/promises';
 import { readAuthoringData } from '../scripts/data.mjs';
 import { catalogFromTables } from '../../src/catalog.mjs';
-import { packRowsFromTables, tablesFromPack, PACK_SHEET_NAME } from '../../src/pack.mjs';
+import { jsonHtmlDocument, packImageFiles } from '../../src/gas-data.mjs';
 
-const serverCode = (await Promise.all(['pack.mjs','catalog.mjs','uploaded-file.mjs','submission.mjs'].map(name=>readFile(new URL('../../src/'+name,import.meta.url),'utf8')))).join('\n').replace(/^import .*;\n/gm,'').replace(/^export /gm,'') + '\n' + await readFile(new URL('../../src/gas/Code.gs',import.meta.url),'utf8');
+const serverCode = (await Promise.all(['gas-data.mjs','uploaded-file.mjs','submission.mjs'].map(name=>readFile(new URL('../../src/'+name,import.meta.url),'utf8')))).join('\n').replace(/^import .*;\n/gm,'').replace(/^export /gm,'') + '\n' + await readFile(new URL('../../src/gas/Code.gs',import.meta.url),'utf8');
 
 class Sheet {
-  constructor(name, rows = []) { this.name=name;this.rows=structuredClone(rows);this.hidden=false; }
+  constructor(name, rows = []) { this.name=name;this.rows=structuredClone(rows);this.hidden=false;this.frozenRows=0; }
   getName() { return this.name; }
   getDataRange() { return this.getRange(1,1,this.rows.length,this.rows[0]?.length || 0); }
   getLastRow() { return this.rows.length; }
+  getLastColumn() { return this.rows.reduce((max, row) => Math.max(max, row.length), 0); }
   getRange(row,col,height=1,width=1) {
     const range = {
       getValues:()=>this.rows.slice(row-1,row-1+height).map(values=>values.slice(col-1,col-1+width)),
@@ -23,69 +24,103 @@ class Sheet {
     };
     return range;
   }
+  insertColumnAfter(index) {
+    for (const row of this.rows) row.splice(index, 0, '');
+  }
   setFrozenRows(value) { this.frozenRows=value; }
   appendRow(row) { this.rows.push(row); }
 }
 
-function server(sheetRows, options = {}) {
+function server(options = {}) {
+  const files = { ...(options.files || {}) };
   const sheets = new Map();
-  if (sheetRows) sheets.set(PACK_SHEET_NAME, new Sheet(PACK_SHEET_NAME, sheetRows));
+  if (options.answerRows) sheets.set('answers', new Sheet('answers', options.answerRows));
   let released=0;
-  const spreadsheetId = options.spreadsheetId === undefined ? 'book' : options.spreadsheetId;
+  const meta={createdName:''};
+  const properties = { SPREADSHEET_ID: options.spreadsheetId === undefined ? 'book' : options.spreadsheetId };
   const book={getSheetByName:name=>sheets.get(name)||null,insertSheet:name=>{const sheet=new Sheet(name);sheets.set(name,sheet);return sheet;},getId:()=> 'book',getUrl:()=> 'https://example.invalid/book'};
   const context=vm.createContext({console:{log(){}},
-    PropertiesService:{getScriptProperties:()=>({getProperty:()=>spreadsheetId, setProperty(){}})},
+    PropertiesService:{getScriptProperties:()=>({getProperty:key=>properties[key] ?? null, setProperty:(key,value)=>{properties[key]=value;}})},
     LockService:{getScriptLock:()=>({waitLock(){},releaseLock(){released++;}})},
-    SpreadsheetApp:{openById:()=>book,create:()=>book}
+    SpreadsheetApp:{
+      getActiveSpreadsheet:()=>options.active === false ? null : (options.activeBook || (properties.SPREADSHEET_ID ? book : null)),
+      openById:()=>book,
+      create:name=>{meta.createdName=name;properties.SPREADSHEET_ID='book';return book;},
+      flush(){}
+    },
+    HtmlService:{createHtmlOutputFromFile:name=>{
+      if (!files[name]) throw new Error('ファイルがありません: ' + name);
+      return { getContent:()=>files[name] };
+    }},
+    Session:{
+      getActiveUser:()=>({getEmail:()=>options.email ?? ''}),
+      getEffectiveUser:()=>({getEmail:()=>options.email ?? ''})
+    }
   });
   vm.runInContext(serverCode,context);
-  return {context,sheets,book,releases:()=>released};
+  return {context,sheets,book,releases:()=>released,properties,meta,files,get createdName(){return meta.createdName;}};
 }
 
-test('CSVを取り込んだシートから問題と採点・画像を読み込み、差し替えると載せ替わる', async () => {
+function filesFor(catalog, imageData = {}) {
+  const packed = packImageFiles(imageData);
+  const files = { Catalog: jsonHtmlDocument('Catalog', { catalog, imageFiles: packed.index }) };
+  for (const file of packed.files) files[file.name] = file.html;
+  return files;
+}
+
+test('アプリに埋め込んだ問題と画像を読み、差し替えると載せ替わる', async () => {
   const { imageFiles, ...tables } = await readAuthoringData();
+  const catalog = catalogFromTables(tables);
   const imageData = { 'images/quiz-01-01.png': 'data:image/png;base64,AAAA' };
-  const pack = packRowsFromTables(tables, imageData);
-  const app = server(pack);
+  const app = server({ files: filesFor(catalog, imageData) });
   app.context.setup_();
   assert.ok(app.sheets.get('answers'));
   assert.equal(app.sheets.get('answers').frozenRows, 1);
-  const catalog = app.context.getCatalog();
-  assert.deepEqual(JSON.parse(JSON.stringify(catalog.map(quiz => quiz.id))), catalogFromTables(tables).map(quiz => quiz.id));
-  const hello = catalog.find(quiz => quiz.id === 'quiz-01').items[0];
+  assert.deepEqual(JSON.parse(JSON.stringify(app.sheets.get('answers').rows[0])), ['記録ID', 'タイムスタンプ', 'ユーザー', 'セッションID', 'レッスンID', '問題ID', '回答内容', '正誤', 'フィードバック']);
+  const loaded = app.context.getCatalog();
+  assert.deepEqual(JSON.parse(JSON.stringify(loaded.map(quiz => quiz.id))), catalog.map(quiz => quiz.id));
+  const hello = loaded.find(quiz => quiz.id === 'quiz-01').items[0];
   assert.equal(hello.grading.kind, 'code');
   assert.match(hello.grading.config.check, /Hello World/);
   const images = app.context.getQuizImages('quiz-01');
   assert.equal(images['images/quiz-01-01.png'], 'data:image/png;base64,AAAA');
 
-  const swapped = packRowsFromTables({
-    quizzes: [['id','number','title','description','course'],['new-1',1,'差し替えレッスン','導入','JavaScript / 初級']],
-    items: [['id','quiz_id','position','type','title','description','required','context','language','reference_editable'],['new-a','new-1',1,'short_text','新しい問い','','true','','','false']],
-    options: [['item_id','position','value']],
-    images: [['quiz_id','position','path','alt']],
-    graders: [['item_id','kind','config','example','feedback','hint','starter'],['new-a','text','{"accept":["はい"]}','はい','ちがいます','','']]
-  });
-  app.sheets.get(PACK_SHEET_NAME).rows = swapped;
+  const swapped = [{
+    id: 'new-1', number: 1, title: '差し替えレッスン', description: '導入', course: 'JavaScript / 初級',
+    images: [],
+    items: [{ id: 'new-a', type: 'short_text', title: '新しい問い', description: '', required: true, grading: { kind: 'text', config: { accept: ['はい'] }, example: 'はい', feedback: 'ちがいます' } }]
+  }];
+  Object.assign(app.files, filesFor(swapped));
   const next = app.context.getCatalog();
   assert.deepEqual([...next.map(quiz => quiz.id)], ['new-1']);
   assert.equal(next[0].items[0].grading.config.accept[0], 'はい');
-  const saved = JSON.stringify(app.sheets.get(PACK_SHEET_NAME).rows);
+  const savedAnswers = JSON.stringify(app.sheets.get('answers').rows);
   app.context.setup_();
-  assert.equal(JSON.stringify(app.sheets.get(PACK_SHEET_NAME).rows), saved);
-  assert.ok(app.releases() >= 1);
+  assert.equal(JSON.stringify(app.sheets.get('answers').rows), savedAnswers);
 });
 
-test('問題データシートが無い場合は取り込み手順を案内する', () => {
-  const app = server(null);
-  assert.throws(() => app.context.setup_(), /問題データ/);
-  assert.throws(() => app.context.getCatalog(), /問題データ/);
+test('回答ログのシートが無ければ作成し、スプレッドシートも自動で用意する', () => {
+  const catalog = [{ id: 'q1', images: [], items: [] }];
+  const app = server({ files: filesFor(catalog), spreadsheetId: null, active: false });
+  const url = app.context.setup_();
+  assert.equal(url, 'https://example.invalid/book');
+  assert.equal(app.createdName, 'Web Practice 回答ログ');
+  assert.equal(app.properties.SPREADSHEET_ID, 'book');
+  assert.ok(app.sheets.get('answers'));
 });
 
-test('GAS読み込み時の入力エラーでもロックを解放する', async () => {
-  const { imageFiles, ...tables } = await readAuthoringData();
-  const pack = packRowsFromTables(tables);
-  pack[1][0] = '';
-  const app = server(pack);
-  assert.throws(() => app.context.getCatalog(), /問題データ/);
-  assert.equal(app.releases(), 1);
+test('旧answers見出しは新しい列構成へ移行する', () => {
+  const catalog = [{ id: 'q1', images: [], items: [] }];
+  const oldHeader = ['attempt_id', 'submitted_at', 'session_id', 'quiz_id', 'item_id', 'answer', 'browser_result'];
+  const app = server({ files: filesFor(catalog), answerRows: [oldHeader, ['attempt-1', 't', 's', 'q1', 'a1', '1', '{"passed":true}']] });
+  app.context.setup_();
+  assert.deepEqual(JSON.parse(JSON.stringify(app.sheets.get('answers').rows[0])), ['記録ID', 'タイムスタンプ', 'ユーザー', 'セッションID', 'レッスンID', '問題ID', '回答内容', '正誤', 'フィードバック']);
+  assert.equal(app.sheets.get('answers').rows[1][0], 'attempt-1');
+  assert.equal(app.sheets.get('answers').rows[1][3], 's');
+});
+
+test('埋め込みデータが壊れていてもロックを使わずに案内する', () => {
+  const app = server({ files: { Catalog: 'broken' } });
+  assert.throws(() => app.context.getCatalog(), /形式|JSON|Unexpected/);
+  assert.equal(app.releases(), 0);
 });

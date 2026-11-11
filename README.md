@@ -15,27 +15,22 @@ npm run dev
 
 ## GASへ配置する
 
-問題データはアプリ本体とは別に、スプレッドシートへ置く1枚のCSVで載せます。CSVを差し替えると、設問・画像・採点処理ごと載せ替わります。スプレッドシート上で設問を直接編集する運用はしません。
+問題データは `data/test/` が正本です。ビルドすると設問・採点・参考画像が `dist/app` の中（`Catalog.html` と分割した画像HTML）に埋め込まれ、アプリと一緒にデプロイされます。スプレッドシートには回答ログだけを記録します。
 
-1. `npm run build`を実行します。
-2. 出力は次の2か所です。
-   - `dist/app/` … GASへ貼り付けるアプリ（`.gs` / `.html` / `appsscript.json`）
-   - `dist/sheets/practice.csv` … スプレッドシートへ取り込む問題データ（1ファイル）
-3. [Googleスプレッドシート](https://sheets.google.com/)で新しい表を作り、`practice.csv`を取り込みます。インポート設定では、テキストの数値・日付・数式への変換をオフにします。取り込んだシート名を `問題データ` にします。CSVには設問・採点プログラム・参考画像が含まれ、現状は約20MBあります。大きなGIFを含むため、取り込みには時間がかかることがあります。
-4. [Apps Script](https://script.google.com/)で新しいプロジェクトを作り、`dist/app/`内のファイルを同じ名前で作成して内容を貼り付けます。`.gs`はスクリプト、`.html`はHTMLとして作成します。`appsscript.json`はプロジェクト設定でマニフェストの表示を有効にして置き換えます。
-5. スクリプトプロパティに `SPREADSHEET_ID` を設定し、エディターで `setup_` を一度実行します。回答を保存する `answers` シートが作成されます。URLは実行ログに表示されます。
-6. 「デプロイ」→「新しいデプロイ」→「ウェブアプリ」を選びます。実行するユーザーを自分にし、初回はアクセスできるユーザーも自分に設定してデプロイします。
-7. 発行されたURLで回答・採点を試します。回答とブラウザーでの採点結果が `answers` シートに記録されます。
+手元で初めて出すときは、Apps Script のスクリプトIDを `.clasp.json` に書き、`npx clasp login` のあと `npm run deploy` を実行します。詳細と GitHub Actions（`main` への push で自動デプロイ）の設定は[GASへの自動デプロイ](other/docs/deploy.md)を参照してください。
 
-データを載せ替えるときは、新しい `practice.csv` を同じ `問題データ` シートへ上書き取り込みます。アプリ本体の更新があるときだけ `dist/app/` を差し替えて、新しいバージョンをデプロイします。
+1. `npm run build`（または `npm run deploy`）を実行します。出力は `dist/app/` だけです。
+2. `clasp` で `dist/app` をアップロードし、ウェブアプリとしてデプロイします。初回は「デプロイ」→「新しいデプロイ」→「ウェブアプリ」でも構いません。実行するユーザーを自分にし、アクセスできるユーザーもまず自分に設定します。
+3. エディターで `setup_` を一度実行するか、スクリプトを記録用のスプレッドシートにバインドします。シートが無ければ「Web Practice 回答ログ」が作られ、`answers` シートに見出しが入ります。スクリプトプロパティ `SPREADSHEET_ID` に表のIDが保存されます。URLは実行ログに表示されます。
+4. 発行されたURLで回答・採点を試します。回答は `answers` シートに、時刻・ユーザー（取得できる場合）・レッスンID・問題ID・回答内容・正誤・フィードバックとして残ります。
+
+問題や画面を更新したあとは、もう一度 `npm run deploy`（または GitHub の `main` へ push）すれば、問題データも含めて置き換わります。以前の「問題データ」シートや `practice.csv` は不要です。既存の `answers` シートはそのまま使え、古い見出しは `setup_` で新しい列構成へ移行します。
 
 GASではHTML内にCSSとJavaScriptを埋め込んで配信します。画面とコードの実行はブラウザー、問題の取得と回答の保存はGASが担当します。フォントはGoogle FontsからHTTPSで読み込みます。
 
-旧構成（「レッスン」「設問」の2枚や、アプリに同梱したData.html）から更新する場合は、`dist/app/` を差し替えたうえで、新しいCSVを `問題データ` として取り込み、`SPREADSHEET_ID` を設定して `setup_` を実行してください。既存の回答記録はそのまま残せます。
-
 ## 問題を追加・編集する
 
-正本は `data/test/` 以下のMarkdownとTypeScriptです。編集後に `npm run build` すると `dist/sheets/practice.csv` へ書き出されます。採点TSはビルド時にJavaScriptへコンパイルされ、CSVに埋め込まれるため、CSVの差し替えだけで採点も更新されます。
+正本は `data/test/` 以下のMarkdownとTypeScriptです。編集後に `npm run build` すると、採点TSがJavaScriptへコンパイルされ、問題データごと `dist/app` に埋め込まれます。
 
 フォルダは1レッスン単位です。
 
@@ -62,8 +57,7 @@ HTMLのstyle要素は、エディタではindex.htmlとstyle.cssに分けて表�
 src/                 画面・採点エンジン・GASサーバー
 data/test/           問題の正本（Markdown・TypeScript・素材）
 data/grader.ts       採点TS用の型
-dist/app/            GASへ配置するアプリ（ビルド成果）
-dist/sheets/         スプレッドシートへ置くCSV（ビルド成果）
+dist/app/            GASへ配置するアプリと問題データ（ビルド成果）
 other/scripts/       ビルドとローカル表示
 other/tests/         テスト
 other/docs/          編集手順などの文書
@@ -75,6 +69,7 @@ npm test
 npm run check:browser
 npm run check:grading
 npm run build
+npm run deploy
 ```
 
 `npm run check:browser`で表示されるURLをブラウザーで開き、「検証する」を押すと、表示問題の解答例と誤答を実際に描画して検証します。検証ツールの実習では、本文・CSSの変更、回答の保存と復元、リセット後の再採点も検証します。結果は画面と一時フォルダ内の`results.txt`に出力します。

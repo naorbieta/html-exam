@@ -1,9 +1,9 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { flushSync } from 'react-dom';
-import { AnswerWorkspace } from '../src/answer-workspace.jsx';
-import { readExercise } from '../src/exercise-frame.jsx';
-import { gradeAnswer } from '../src/grader.mjs';
+import { AnswerWorkspace } from '../answer-workspace.jsx';
+import { readExercise } from '../exercise-frame.jsx';
+import { gradeAnswer } from '../grader.mjs';
 
 export async function checkExercises(catalog) {
   const quiz = catalog.find(q => q.id === 'web-55'), lines = [];

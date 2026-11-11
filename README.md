@@ -55,11 +55,11 @@ HTMLのstyle要素は、エディタではindex.htmlとstyle.cssに分けて表�
 
 ```text
 src/                 画面・採点エンジン・GASサーバー
+src/scripts/         ビルドとローカル表示
+src/tests/           テスト
 data/test/           問題の正本（Markdown・TypeScript・素材）
 data/grader.ts       採点TS用の型
 dist/app/            GASへ配置するアプリと問題データ（ビルド成果）
-scripts/             ビルドとローカル表示
-tests/               テスト
 docs/                編集手順などの文書
 ```
 

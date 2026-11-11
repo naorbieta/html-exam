@@ -5,7 +5,7 @@ import path from 'node:path';
 import { build,transform } from 'esbuild';
 import { parseHTML } from 'linkedom/worker';
 import { readAuthoringData } from './data.mjs';
-import { catalogFromTables } from '../src/catalog.mjs';
+import { catalogFromTables } from '../catalog.mjs';
 import { openHeadless, wantsHeadless } from './headless-chrome.mjs';
 
 const catalog=catalogFromTables(await readAuthoringData()), variations={};

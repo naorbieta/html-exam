@@ -4,11 +4,11 @@ import vm from 'node:vm';
 import { parseHTML } from 'linkedom';
 import { readFile } from 'node:fs/promises';
 import { parseCsv } from '../scripts/csv.mjs';
-import { catalogFromTables } from '../src/catalog.mjs';
-import { parseJsonHtml, assembleImages, GAS_HTML_BYTE_LIMIT } from '../src/gas-data.mjs';
+import { catalogFromTables } from '../catalog.mjs';
+import { parseJsonHtml, assembleImages, GAS_HTML_BYTE_LIMIT } from '../gas-data.mjs';
 import { build } from '../scripts/build.mjs';
-import { lessonDescription } from '../src/lesson-content.mjs';
-import { withInitialAnswers } from '../src/step-progress.mjs';
+import { lessonDescription } from '../lesson-content.mjs';
+import { withInitialAnswers } from '../step-progress.mjs';
 
 const fixture = () => ({
   quizzes: [['id','number','title','description'],['q1',1,'データ型','改行\nと "引用符", を保つ']],

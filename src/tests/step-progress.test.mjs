@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { withInitialAnswers, recordGrade, changeAnswer, itemResults } from '../src/step-progress.mjs';
-import { validateSubmission } from '../src/submission.mjs';
+import { withInitialAnswers, recordGrade, changeAnswer, itemResults } from '../step-progress.mjs';
+import { validateSubmission } from '../submission.mjs';
 const quiz = { id: 'quiz', items: [{ id: 'first', type: 'short_text', required: true }, { id: 'second', type: 'code', required: true }] };
 const first = { itemId: 'first', passed: true, feedback: '' };
 const second = { itemId: 'second', passed: false, feedback: '再確認してください。' };

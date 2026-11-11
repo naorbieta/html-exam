@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { catalogFromTables } from '../src/catalog.mjs';
-import { gradeAnswer } from '../src/grader.mjs';
+import { catalogFromTables } from '../catalog.mjs';
+import { gradeAnswer } from '../grader.mjs';
 
 const fixture = () => ({
   lessons: [['分野','レッスン番号','レッスン名','導入文'], ['Web',1,'リスト','私が書いた前段の説明\nを残す。']],

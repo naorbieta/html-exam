@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { gradeAnswer } from '../src/grader.mjs';
-import { validateSubmission } from '../src/submission.mjs';
+import { gradeAnswer } from '../grader.mjs';
+import { validateSubmission } from '../submission.mjs';
 
 const item={id:'file',type:'file',required:true,grading:{kind:'file',config:{extension:'.js'},feedback:'.jsを選んでください。'}};
 test('JavaScriptファイルは空でも受け付け、他の拡張子・ファイル未選択を拒否する', () => {

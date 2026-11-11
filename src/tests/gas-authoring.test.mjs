@@ -3,10 +3,10 @@ import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import { readFile } from 'node:fs/promises';
 import { readAuthoringData } from '../scripts/data.mjs';
-import { catalogFromTables } from '../src/catalog.mjs';
-import { jsonHtmlDocument, packImageFiles } from '../src/gas-data.mjs';
+import { catalogFromTables } from '../catalog.mjs';
+import { jsonHtmlDocument, packImageFiles } from '../gas-data.mjs';
 
-const serverCode = (await Promise.all(['gas-data.mjs','uploaded-file.mjs','submission.mjs'].map(name=>readFile(new URL('../src/'+name,import.meta.url),'utf8')))).join('\n').replace(/^import .*;\n/gm,'').replace(/^export /gm,'') + '\n' + await readFile(new URL('../src/gas/Code.gs',import.meta.url),'utf8');
+const serverCode = (await Promise.all(['gas-data.mjs','uploaded-file.mjs','submission.mjs'].map(name=>readFile(new URL('../'+name,import.meta.url),'utf8')))).join('\n').replace(/^import .*;\n/gm,'').replace(/^export /gm,'') + '\n' + await readFile(new URL('../gas/Code.gs',import.meta.url),'utf8');
 
 class Sheet {
   constructor(name, rows = []) { this.name=name;this.rows=structuredClone(rows);this.hidden=false;this.frozenRows=0; }

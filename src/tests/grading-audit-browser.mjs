@@ -1,5 +1,5 @@
-import { gradeAnswer } from '../src/grader.mjs';
-import { gradeRenderedAnswer } from '../src/render-grader.mjs';
+import { gradeAnswer } from '../grader.mjs';
+import { gradeRenderedAnswer } from '../render-grader.mjs';
 
 export async function auditGrading(catalog, variations, report) {
   const records = [];

@@ -3,11 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node scripts/build.mjs",
-    "dev": "node scripts/serve.mjs",
-    "test": "node --test tests/*.test.mjs",
-    "check:browser": "node scripts/check-render-grading.mjs",
-    "check:grading": "node scripts/grading-audit.mjs",
+    "build": "node src/scripts/build.mjs",
+    "dev": "node src/scripts/serve.mjs",
+    "test": "node --test src/tests/*.test.mjs",
+    "check:browser": "node src/scripts/check-render-grading.mjs",
+    "check:grading": "node src/scripts/grading-audit.mjs",
     "push": "npm run build && clasp push",
     "deploy": "npm run build && clasp push && clasp deploy"
   },

@@ -8,7 +8,7 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { parseHTML } from 'linkedom';
 
-const { outputFiles } = await build({ entryPoints: [fileURLToPath(new URL('../src/answer-workspace.jsx', import.meta.url))], bundle: true, write: false, platform: 'node', format: 'cjs', packages: 'external', jsx: 'automatic', loader: { '.module.css': 'empty', '.css': 'empty' } });
+const { outputFiles } = await build({ entryPoints: [fileURLToPath(new URL('../answer-workspace.jsx', import.meta.url))], bundle: true, write: false, platform: 'node', format: 'cjs', packages: 'external', jsx: 'automatic', loader: { '.module.css': 'empty', '.css': 'empty' } });
 const module = { exports: {} };
 const randomMath = Object.create(Math);
 vm.runInNewContext(outputFiles[0].text, { module, exports: module.exports, require: createRequire(import.meta.url), console, Math: randomMath });

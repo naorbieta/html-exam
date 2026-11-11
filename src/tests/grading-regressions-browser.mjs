@@ -1,5 +1,5 @@
-import { gradeAnswer } from '../src/grader.mjs';
-import { gradeRenderedAnswer } from '../src/render-grader.mjs';
+import { gradeAnswer } from '../grader.mjs';
+import { gradeRenderedAnswer } from '../render-grader.mjs';
 
 export async function checkGradingRegressions(catalog) {
   const items = new Map(catalog.flatMap(quiz=>quiz.items.map(item=>[item.id,item]))), lines=[];

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { lessonDescription, referenceSource } from '../src/lesson-content.mjs';
+import { lessonDescription, referenceSource } from '../lesson-content.mjs';
 
 test('エディタへ移したHTMLとコード見出しを問題文に重ねて表示しない', () => {
   const code = '<!DOCTYPE html>\n<html><head><style>p{color:red}</style></head><body><p>本文</p></body></html>';

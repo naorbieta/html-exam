@@ -2,8 +2,8 @@ import { readFile, writeFile, mkdir, readdir, unlink, rm } from 'node:fs/promise
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { readAuthoringData } from './data.mjs';
-import { catalogFromTables } from '../src/catalog.mjs';
-import { jsonHtmlDocument, packImageFiles } from '../src/gas-data.mjs';
+import { catalogFromTables } from '../catalog.mjs';
+import { jsonHtmlDocument, packImageFiles } from '../gas-data.mjs';
 import { build as bundle } from 'esbuild';
 import { createGenerator } from 'unocss';
 import { defineConfig } from '@tutorialkit/theme';
@@ -11,7 +11,7 @@ import { transformDirectives } from '@unocss/transformer-directives';
 import MagicString from 'magic-string';
 import { collectNotices } from './notices.mjs';
 
-export const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+export const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const read = name => readFile(path.join(root, name), 'utf8');
 const safeJson = value => JSON.stringify(value).replaceAll('<', '\\u003c').replaceAll('\u2028', '\\u2028').replaceAll('\u2029', '\\u2029');
 

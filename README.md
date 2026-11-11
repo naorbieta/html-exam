@@ -17,7 +17,7 @@ npm run dev
 
 問題データは `data/test/` が正本です。ビルドすると設問・採点・参考画像が `dist/app` の中（`Catalog.html` と分割した画像HTML）に埋め込まれ、アプリと一緒にデプロイされます。スプレッドシートには回答ログだけを記録します。
 
-手元で初めて出すときは、Apps Script のスクリプトIDを `.clasp.json` に書き、`npx clasp login` のあと `npm run deploy` を実行します。詳細と GitHub Actions（`main` への push で自動デプロイ）の設定は[GASへの自動デプロイ](other/docs/deploy.md)を参照してください。
+手元で初めて出すときは、Apps Script のスクリプトIDを `.clasp.json` に書き、`npx clasp login` のあと `npm run deploy` を実行します。詳細と GitHub Actions（`main` への push で自動デプロイ）の設定は[GASへの自動デプロイ](docs/deploy.md)を参照してください。
 
 1. `npm run build`（または `npm run deploy`）を実行します。出力は `dist/app/` だけです。
 2. `clasp` で `dist/app` をアップロードし、ウェブアプリとしてデプロイします。初回は「デプロイ」→「新しいデプロイ」→「ウェブアプリ」でも構いません。実行するユーザーを自分にし、アクセスできるユーザーもまず自分に設定します。
@@ -43,7 +43,7 @@ data/test/js/01-hajimete-no-javascript/
 data/test/html-css/10-html-structure/
 ```
 
-`js/` は「JavaScript / 初級」、`html-css/` は「HTML・CSS・Web基礎」です。具体的な書き方は[問題の編集手順](other/docs/editing-questions.md)を参照してください。
+`js/` は「JavaScript / 初級」、`html-css/` は「HTML・CSS・Web基礎」です。具体的な書き方は[問題の編集手順](docs/editing-questions.md)を参照してください。
 
 エディタ、プレビュー、採点エンジンはアプリ側（`src/`）にあり、各問題の採点TSはそれを呼び出して判定します。コードを書く問題は、模範解答の文字列と一致するかではなく、実行・描画した結果が条件を満たすかで判定します。レッスンの主題が特定の構文そのもの（例: `switch` 文を使う、テンプレートリテラルを使う）である場合に限り、ソース上の構文チェックを併用します。
 
@@ -58,10 +58,9 @@ src/                 画面・採点エンジン・GASサーバー
 data/test/           問題の正本（Markdown・TypeScript・素材）
 data/grader.ts       採点TS用の型
 dist/app/            GASへ配置するアプリと問題データ（ビルド成果）
-other/scripts/       ビルドとローカル表示
-other/tests/         テスト
-other/docs/          編集手順などの文書
-other/archive/       本流に使わない資料・旧データ
+scripts/             ビルドとローカル表示
+tests/               テスト
+docs/                編集手順などの文書
 ```
 
 ```sh

@@ -1,5 +1,5 @@
 import { acceptCompletion, autocompletion, closeBrackets } from '@codemirror/autocomplete';
-import { defaultKeymap, history, historyKeymap } from '@codemirror/commands';
+import { defaultKeymap, history, historyKeymap, indentLess, insertTab, temporarilySetTabFocusMode } from '@codemirror/commands';
 import { bracketMatching, foldGutter, indentOnInput, indentUnit } from '@codemirror/language';
 import { searchKeymap } from '@codemirror/search';
 import { Compartment, EditorSelection, EditorState, type Extension } from '@codemirror/state';
@@ -13,13 +13,12 @@ import {
   lineNumbers,
   scrollPastEnd,
 } from '@codemirror/view';
-import { useEffect, useRef, useState, type MutableRefObject } from 'react';
+import { useEffect, useRef, useState, type MutableRefObject, type RefObject } from 'react';
 import { classNames } from '../../utils/classnames.js';
 import { debounce } from '../../utils/debounce.js';
 import type { Theme } from '../types.js';
 import { BinaryContent } from './BinaryContent.js';
 import { getTheme, reconfigureTheme } from './cm-theme.js';
-import { indentKeyBinding } from './indent.js';
 import { getLanguage } from './languages.js';
 
 export interface EditorDocument {
@@ -68,6 +67,14 @@ interface Props {
 
 type EditorStates = Map<string, EditorState>;
 
+function isComposing(view: EditorView) {
+  return view.composing || view.compositionStarted;
+}
+
+function markComposing(view: EditorView, composing: boolean) {
+  view.dom.setAttribute('data-composing', composing ? 'true' : 'false');
+}
+
 export function CodeMirrorEditor({
   label = "コードの解答",
   id,
@@ -91,6 +98,10 @@ export function CodeMirrorEditor({
   const editorStatesRef = useRef<EditorStates>();
   const onScrollRef = useRef(onScroll);
   const onChangeRef = useRef(onChange);
+  const lastFileRef = useRef<string>();
+  const languagePathRef = useRef<string>();
+  const pendingCompositionSync = useRef(false);
+  const syncFromPropsRef = useRef<() => void>(() => {});
 
   const isBinaryFile = doc?.value instanceof Uint8Array;
 
@@ -98,6 +109,31 @@ export function CodeMirrorEditor({
   onChangeRef.current = onChange;
   docRef.current = doc;
   themeRef.current = theme;
+
+  syncFromPropsRef.current = () => {
+    const view = viewRef.current;
+    const editorStates = editorStatesRef.current;
+    const current = docRef.current;
+    const currentTheme = themeRef.current;
+    if (!view || !editorStates || !currentTheme) {
+      return;
+    }
+    syncEditorFromProps({
+      view,
+      doc: current,
+      theme: currentTheme,
+      settings,
+      language,
+      readOnly,
+      label,
+      onScrollRef,
+      debounceScroll,
+      editorStates,
+      autoFocusOnDocumentChange,
+      lastFileRef,
+      languagePathRef,
+    });
+  };
 
   useEffect(() => {
     const onUpdate = debounce((update: EditorUpdate) => {
@@ -117,6 +153,8 @@ export function CodeMirrorEditor({
           newSelection !== previousSelection &&
           (newSelection === undefined || previousSelection === undefined || !newSelection.eq(previousSelection));
 
+        markComposing(view, isComposing(view));
+
         if (
           docRef.current &&
           !docRef.current.loading &&
@@ -132,13 +170,25 @@ export function CodeMirrorEditor({
       },
     });
 
+    markComposing(view, false);
     viewRef.current = view;
+
+    const retryAfterComposition = () => {
+      markComposing(view, isComposing(view));
+      if (!pendingCompositionSync.current) {
+        return;
+      }
+      pendingCompositionSync.current = false;
+      syncFromPropsRef.current();
+    };
+    view.contentDOM.addEventListener('compositionend', retryAfterComposition);
 
     // we grab the style tag that codemirror mounts
     const codemirrorStyleTag = document.head.children[0];
     codemirrorStyleTag.setAttribute('data-astro-transition-persist', 'codemirror');
 
     return () => {
+      view.contentDOM.removeEventListener('compositionend', retryAfterComposition);
       viewRef.current?.destroy();
       viewRef.current = undefined;
     };
@@ -156,36 +206,21 @@ export function CodeMirrorEditor({
 
   useEffect(() => {
     editorStatesRef.current = new Map<string, EditorState>();
+    lastFileRef.current = undefined;
+    languagePathRef.current = undefined;
   }, [id]);
 
   useEffect(() => {
-    const editorStates = editorStatesRef.current!;
-    const view = viewRef.current!;
-    const theme = themeRef.current!;
-
-    if (!doc) {
-      setNoDocument(view);
+    const view = viewRef.current;
+    if (!view) {
       return;
     }
-
-    if (doc.value instanceof Uint8Array) {
+    if (doc && !(doc.value instanceof Uint8Array) && lastFileRef.current === doc.filePath && isComposing(view)) {
+      pendingCompositionSync.current = true;
       return;
     }
-
-    let state = editorStates.get(doc.filePath);
-
-    if (!state) {
-      state = newEditorState(doc.value, theme, settings, onScrollRef, debounceScroll, label, [
-        language.of([]),
-        readOnly.of([EditorState.readOnly.of(doc.loading || !!doc.readOnly), EditorView.contentAttributes.of({ 'aria-readonly': String(!!doc.readOnly) })]),
-      ]);
-
-      editorStates.set(doc.filePath, state);
-    }
-
-    view.setState(state);
-
-    setEditorDocument(view, theme, language, readOnly, autoFocusOnDocumentChange, doc as TextEditorDocument);
+    pendingCompositionSync.current = false;
+    syncFromPropsRef.current();
   }, [id, doc?.value, doc?.filePath, doc?.loading, doc?.readOnly, autoFocusOnDocumentChange]);
 
   return (
@@ -199,6 +234,70 @@ export function CodeMirrorEditor({
 export default CodeMirrorEditor;
 
 CodeMirrorEditor.displayName = 'CodeMirrorEditor';
+
+function syncEditorFromProps({
+  view,
+  doc,
+  theme,
+  settings,
+  language,
+  readOnly,
+  label,
+  onScrollRef,
+  debounceScroll,
+  editorStates,
+  autoFocusOnDocumentChange,
+  lastFileRef,
+  languagePathRef,
+}: {
+  view: EditorView;
+  doc?: EditorDocument;
+  theme: Theme;
+  settings?: EditorSettings;
+  language: Compartment;
+  readOnly: Compartment;
+  label: string;
+  onScrollRef: MutableRefObject<OnScrollCallback | undefined>;
+  debounceScroll: number;
+  editorStates: EditorStates;
+  autoFocusOnDocumentChange: boolean;
+  lastFileRef: RefObject<string | undefined>;
+  languagePathRef: RefObject<string | undefined>;
+}) {
+  if (!doc) {
+    lastFileRef.current = undefined;
+    setNoDocument(view);
+    return;
+  }
+
+  if (doc.value instanceof Uint8Array) {
+    return;
+  }
+
+  // Replacing the EditorView state mid-composition immediately commits IME text.
+  if (lastFileRef.current === doc.filePath && isComposing(view)) {
+    return;
+  }
+
+  const switchingFile = lastFileRef.current !== doc.filePath;
+  let state = editorStates.get(doc.filePath);
+
+  if (!state) {
+    state = newEditorState(doc.value, theme, settings, onScrollRef, debounceScroll, label, [
+      language.of([]),
+      readOnly.of([EditorState.readOnly.of(doc.loading || !!doc.readOnly), EditorView.contentAttributes.of({ 'aria-readonly': String(!!doc.readOnly) })]),
+    ]);
+
+    editorStates.set(doc.filePath, state);
+  }
+
+  if (switchingFile) {
+    view.setState(state);
+    lastFileRef.current = doc.filePath;
+  }
+
+  setEditorDocument(view, theme, language, readOnly, autoFocusOnDocumentChange && switchingFile, doc as TextEditorDocument, languagePathRef);
+}
 
 function newEditorState(
   content: string,
@@ -223,6 +322,12 @@ function newEditorState(
             event.preventDefault();
           }
         },
+        compositionstart: (_event, view) => {
+          markComposing(view, true);
+        },
+        compositionend: (_event, view) => {
+          markComposing(view, false);
+        },
       }),
       getTheme(theme, settings),
       history(),
@@ -231,7 +336,8 @@ function newEditorState(
         ...historyKeymap,
         ...searchKeymap,
         { key: 'Tab', run: acceptCompletion },
-        indentKeyBinding,
+        { key: 'Tab', run: insertTab, shift: indentLess },
+        { key: 'Escape', run: temporarilySetTabFocusMode },
       ]),
       indentUnit.of('\t'),
       autocompletion({
@@ -281,6 +387,7 @@ function setEditorDocument(
   readOnly: Compartment,
   autoFocus: boolean,
   doc: TextEditorDocument,
+  languagePathRef: RefObject<string | undefined>,
 ) {
   if (doc.value !== view.state.doc.toString()) {
     view.dispatch({
@@ -296,6 +403,11 @@ function setEditorDocument(
   view.dispatch({
     effects: [readOnly.reconfigure([EditorState.readOnly.of(doc.loading || !!doc.readOnly), EditorView.contentAttributes.of({ 'aria-readonly': String(!!doc.readOnly) })])],
   });
+
+  if (languagePathRef.current === doc.filePath) {
+    return;
+  }
+  languagePathRef.current = doc.filePath;
 
   getLanguage(doc.filePath).then((languageSupport) => {
     if (!languageSupport) {

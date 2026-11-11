@@ -58,7 +58,7 @@ test('採用した問題・画像・採点条件をGAS向けに生成する', as
   const exam = catalog.filter(quiz => quiz.id.startsWith('exam-'));
   assert.deepEqual(practice.map(quiz => quiz.id).sort(), retained.map(quizId).sort());
   assert.deepEqual(exam.map(quiz => quiz.id), ['exam-html', 'exam-js', 'exam-php', 'exam-git', 'exam-terminal', 'exam-design']);
-  assert.equal(exam.flatMap(quiz => quiz.items).length, 37);
+  assert.equal(exam.flatMap(quiz => quiz.items).length, 54);
   assert.ok(!JSON.stringify(tables).match(/owlet/i), '配信データには製品固有の記載を含めない');
   assert.doesNotMatch(JSON.stringify(tables), /ガーディアン|guardian/i);
   const inventory=JSON.parse(await readFile(new URL('./fixtures/forms.json', import.meta.url),'utf8')).source.inventory;

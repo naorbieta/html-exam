@@ -1,6 +1,6 @@
 ---
-id: exam-html-03
-number: 3
+id: exam-html-04
+number: 4
 type: 単一選択
 title: 写真のように色数が多く、多少の劣化が許される画像に適している形式はどれですか？
 required: true

@@ -1,6 +1,6 @@
 ---
-id: exam-js-07
-number: 7
+id: exam-js-08
+number: 8
 type: 単一選択
 title: 次の配列で、fruits[1] の値はどれですか？
 required: true

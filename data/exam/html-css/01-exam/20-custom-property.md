@@ -1,6 +1,6 @@
 ---
-id: exam-html-11
-number: 11
+id: exam-html-20
+number: 20
 type: 単一選択
 title: 次のCSSを適用したとき、p 要素の文字色はどうなりますか？
 required: true

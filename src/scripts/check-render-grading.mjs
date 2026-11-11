@@ -21,12 +21,12 @@ const invalid = {
  'web-57-answer-2':'.unrelated{padding-right:30px}',
  'web-72-answer-2':'img{filter:blur(5px)}',
  'web-74-answer-1':'.wrapper{display:grid;grid-template-columns:repeat(4,200px);gap:20px}',
- 'exam-html-12':'footer{position:relative;bottom:0;left:0;width:100%}'
+ 'exam-html-14':'.menu{display:block}'
 };
 const valid = {
- 'exam-html-12':[
-  'footer{position:fixed;inset:auto 0 0 0}',
-  '#footer{position:fixed;bottom:0;left:0;right:0}'
+ 'exam-html-14':[
+  'ul{display:flex}',
+  '.menu{display:inline-flex;gap:8px}'
  ]
 };
 const page=`<!doctype html><meta charset="utf-8"><title>表示採点の検証</title><button id="run">検証する</button><pre id="results"></pre><script>${bundle.outputFiles[0].text.replaceAll('</script','<\\/script')}</script><script>

@@ -13,9 +13,9 @@ function exampleOf(item) {
   return item.grading.example;
 }
 
-test('試験カタログは6カテゴリ・37問で練習データと分かれている', () => {
+test('試験カタログは6カテゴリ・54問で練習データと分かれている', () => {
   assert.deepEqual(exam.map(quiz => quiz.id), ['exam-html', 'exam-js', 'exam-php', 'exam-git', 'exam-terminal', 'exam-design']);
-  assert.equal(items.length, 37);
+  assert.equal(items.length, 54);
   assert.ok(catalog.some(quiz => quiz.id === 'quiz-01'), '練習用データは残す');
   assert.ok(catalog.some(quiz => quiz.course === 'HTML・CSS・Web基礎'), '練習用データは残す');
 });
@@ -32,7 +32,8 @@ test('試験の誤答は不正解になる', () => {
     'exam-js-02': "const name = '花子';\nconsole.log(name);",
     'exam-js-03': "console.log('合格');",
     'exam-js-05': 'function maxNumber(a, b) { return a; }',
-    'exam-js-08': "console.log('こんにちは、' + name + 'さん');",
+    'exam-js-12': "console.log('こんにちは、' + name + 'さん');",
+    'exam-js-09': "console.log(fruits);",
     'exam-terminal-04': 'cd docs'
   };
   for (const item of gradable) {
@@ -48,7 +49,8 @@ test('書き方が違っても結果が同じなら試験のコード問題は�
     'exam-js-02': 'let user = "太郎";\nconsole.log(user);',
     'exam-js-03': "console.log(score >= 60 ? '合格' : '不合格');",
     'exam-js-05': 'function maxNumber(a, b) { return Math.max(a, b); }',
-    'exam-js-08': 'const message = `こんにちは、${name}さん`;\nconsole.log(message);',
+    'exam-js-12': 'const message = `こんにちは、${name}さん`;\nconsole.log(message);',
+    'exam-js-09': 'for (const item of fruits) console.log(item);',
     'exam-terminal-04': 'mkdir -p ./docs/'
   };
   for (const [id, answer] of Object.entries(variants)) {

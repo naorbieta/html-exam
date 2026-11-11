@@ -1,6 +1,6 @@
 ---
-id: exam-js-08
-number: 8
+id: exam-js-12
+number: 12
 type: コード
 title: |-
   変数 name はすでに用意されています（再宣言しないでください）。

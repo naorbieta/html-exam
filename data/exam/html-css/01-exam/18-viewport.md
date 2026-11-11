@@ -1,6 +1,6 @@
 ---
-id: exam-html-10
-number: 10
+id: exam-html-18
+number: 18
 type: 単一選択
 title: スマートフォンでもページ幅を端末に合わせて表示するために、head へ置く viewport の指定として正しいものはどれですか？
 required: true

@@ -1,6 +1,6 @@
 ---
-id: exam-html-04
-number: 4
+id: exam-html-05
+number: 5
 type: 単一選択
 title: box-sizing が border-box のとき、width で指定した値に含まれる範囲はどれですか？
 required: true

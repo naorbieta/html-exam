@@ -1,6 +1,6 @@
 ---
-id: exam-html-07
-number: 7
+id: exam-html-10
+number: 10
 type: 単一選択
 title: 擬似クラス :empty が当たる要素はどれですか？
 required: true

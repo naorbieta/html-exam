@@ -1,6 +1,6 @@
 ---
-id: exam-html-09
-number: 9
+id: exam-html-16
+number: 16
 type: 単一選択
 title: 同じページ内にある id="contact" の見出しへ移動するリンクとして正しいものはどれですか？
 required: true

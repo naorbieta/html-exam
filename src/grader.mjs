@@ -1,6 +1,7 @@
 import { parseHTML } from 'linkedom/worker';
 import { codeSource } from './editor-files.mjs';
 import { isUploadedFile } from './uploaded-file.mjs';
+import { gradeTerminalAnswer } from './terminal-shell.mjs';
 let domCoercionApplied = false;
 
 function normalized(value) {
@@ -97,6 +98,7 @@ export function gradeAnswer(item, answer, allAnswers = {}) {
     const passed = Boolean(isUploadedFile(answer) && answer.name.length > rule.config.extension.length && answer.name.toLowerCase().endsWith(rule.config.extension.toLowerCase()));
     return { itemId:item.id,passed,feedback:passed ? '正解です。' : rule.feedback };
   }
+  if (rule.kind === 'terminal') return gradeTerminalAnswer(item, answer);
   if (rule.kind === 'manual') return { itemId: item.id, passed: false, reviewRequired: true, feedback: rule.feedback };
   if (rule.kind === 'dom') {
     const prior = allAnswers[rule.config.previous];

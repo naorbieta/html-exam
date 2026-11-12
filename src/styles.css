@@ -69,3 +69,17 @@ button:disabled{cursor:default}
 .preview-input{position:absolute;inset:40px 12px auto;padding:16px;background:var(--tk-background-primary);border:1px solid var(--tk-border-primary);border-radius:4px;box-shadow:0 4px 16px #0002}
 .preview-input label{display:block}
 .preview-input button{padding:8px 16px;margin:8px 8px 0 0;border:1px solid var(--tk-border-primary);border-radius:4px}
+
+.terminal-question{height:100%;display:flex;flex-direction:column;padding:20px 24px;box-sizing:border-box;min-height:0;max-width:960px;margin:0 auto}
+.terminal-question .exercise-prompt{margin:0 0 12px}
+.terminal-form{flex:1;display:flex;flex-direction:column;min-height:0}
+.terminal-workspace{flex:1;display:flex;flex-direction:column;gap:8px;min-height:0}
+.terminal-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-size:13px}
+.terminal-screen{flex:1;min-height:300px;overflow:auto;background:#1b1d23;color:#e3e6eb;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Noto Sans Mono CJK JP",monospace;font-size:14px;line-height:1.55;padding:12px 14px;border-radius:6px;cursor:text}
+.terminal-line{margin:0;white-space:pre-wrap;word-break:break-all;font:inherit;color:inherit;background:none}
+.terminal-welcome{color:#9aa4b2}
+.terminal-notice{color:#ffb4a8}
+.terminal-prompt-user{color:#7ee787}
+.terminal-prompt-path{color:#79c0ff}
+.terminal-input-row{display:flex;align-items:baseline}
+.terminal-input{flex:1;min-width:2ch;background:transparent;border:0;outline:0;color:inherit;font:inherit;padding:0;margin:0;caret-color:#e3e6eb}

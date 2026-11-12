@@ -4,6 +4,7 @@ import { Nav } from './vendor/tutorialkit/react/Nav.tsx';
 import { Button } from './vendor/tutorialkit/react/Button.tsx';
 import { gradeRenderedAnswer } from './render-grader.mjs';
 import { AnswerWorkspace, CodeWorkspace } from './answer-workspace.jsx';
+import { TerminalAnswer } from './terminal-workspace.jsx';
 import { codeSource } from './editor-files.mjs';
 import { lessonDescription, referenceSource } from './lesson-content.mjs';
 import { TutorialLayout, topBarButton } from './tutorial-layout.jsx';
@@ -120,8 +121,8 @@ function App() {
     if (collectedAnswer && JSON.stringify(collectedAnswer) !== JSON.stringify(practiceRef.current.quizzes[current.id]?.answers[item.id])) edit(item, collectedAnswer);
     const state = practiceRef.current, data = withInitialAnswers(current, state.quizzes[current.id] || { answers: {}, attemptId: crypto.randomUUID() });
     const value = data.answers[item.id];
-    if (item.required && (Array.isArray(value) ? !value.length : item.type === 'file' ? !value?.name : item.type === 'dom_task' ? !value?.text : item.type === 'code' ? !codeSource(value).trim() : !String(value || '').trim())) {
-      setError(item.type === 'file' ? 'ファイルを選んでください。' : ['multiple_choice', 'checkboxes'].includes(item.type) ? '回答を選んでください。' : '回答を入力してください。');
+    if (item.required && (Array.isArray(value) ? !value.length : item.type === 'file' ? !value?.name : item.type === 'dom_task' ? !value?.text : item.type === 'terminal' ? !value?.commands?.some(command => command.trim()) : item.type === 'code' ? !codeSource(value).trim() : !String(value || '').trim())) {
+      setError(item.type === 'file' ? 'ファイルを選んでください。' : item.type === 'terminal' ? 'ターミナルにコマンドを入力してください。' : ['multiple_choice', 'checkboxes'].includes(item.type) ? '回答を選んでください。' : '回答を入力してください。');
       document.getElementById(`answer-${item.id}`)?.focus();
       return;
     }
@@ -177,8 +178,11 @@ function App() {
       {item.context && <p className="source-prose mb-4">{item.context}</p>}
       {!reference && itemDescription && <p className="source-prose">{itemDescription}</p>}
     </>}
-    <AnswerWorkspace quiz={current} item={item} answers={draft.answers} theme={theme} saving={saving}
-      onChange={(question, value) => { if (!busy.current) edit(question, value); }} onSubmit={submit} />
+    {item.type === 'terminal'
+      ? <TerminalAnswer item={item} value={draft.answers[item.id]} saving={saving}
+        onChange={(question, value) => { if (!busy.current) edit(question, value); }} onSubmit={submit} />
+      : <AnswerWorkspace quiz={current} item={item} answers={draft.answers} theme={theme} saving={saving}
+        onChange={(question, value) => { if (!busy.current) edit(question, value); }} onSubmit={submit} />}
   </>;
   return <div className="h-full" onClick={navigate}>
     <TutorialLayout title="Web制作" mobileView={mobileView} setMobileView={setMobileView}
@@ -189,7 +193,7 @@ function App() {
       navigation={<Nav key={current.id} lesson={lesson} navList={navList} />}
       progress={<div className="exercise-progress"><progress aria-label="問題の進捗" value={activeIndex + (graded?.passed ? 1 : 0)} max={current.items.length} /><span>{activeIndex + 1} / {current.items.length}</span></div>}
       content={content}
-      editor={<div key={item.id} className={item.type === 'code' || reference ? 'h-full' : 'single-question'}>
+      editor={<div key={item.id} className={item.type === 'terminal' ? 'terminal-question' : item.type === 'code' || reference ? 'h-full' : 'single-question'}>
         {reference ? <div className="reference-workspace">
           <div className="reference-code"><CodeWorkspace reference item={{ id: `${item.id}-reference`, language: 'html', referenceEditable: item.referenceEditable, grading: { starter: reference } }} value={item.referenceEditable ? draft.references?.[item.id] ?? reference : reference} answers={{}} theme={theme} saving={saving} onChange={editReference} /></div>
           <div className="single-question reference-answer">{answer}</div>

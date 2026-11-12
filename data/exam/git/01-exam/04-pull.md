@@ -1,15 +1,11 @@
 ---
 id: exam-git-04
 number: 4
-type: 単一選択
-title: リモートの最新の変更を、自分の作業コピーへ取り込む操作はどれですか？
+type: ターミナル
+title: ~/team のリモート（origin）には、チームメンバーが新しいコミットを push しています。git pull で main を最新にしてから、feature ブランチを作って切り替えてください。
 required: true
-choices:
-  - git pull
-  - git commit
-  - git init
-  - git branch
-answers:
-  - git pull
-feedback: git pull はリモートの最新を取り込みます。commit は手元の記録、init は新規作成、branch は枝の操作です。
+example:
+  - 'git pull'
+  - 'git switch -c feature'
+feedback: 先に git pull でリモートの変更を取り込み、そのあと git switch -c feature（または git checkout -b feature）でブランチを作って切り替えてください。
 ---

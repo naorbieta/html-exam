@@ -49,6 +49,7 @@ export async function build() {
   const graderCode = await read('src/grader.mjs');
   const editorFilesCode = (await read('src/editor-files.mjs')).replace(/^export /gm, '');
   const uploadedFileCode = (await read('src/uploaded-file.mjs')).replace(/^export /gm, '');
+  const terminalShellCode = (await read('src/terminal-shell.mjs')).replace(/^export /gm, '');
   const imageData = {};
   for (const quiz of catalog) for (const image of quiz.images) {
     if (!/^images\/[\w.-]+\.(png|gif|jpg|jpeg|webp)$/.test(image.path)) throw new Error(`画像パスを確認してください: ${image.path}`);
@@ -61,7 +62,7 @@ export async function build() {
   const { css, javascript, browserModules } = await bundleClient();
   const notices = await collectNotices(root, browserModules);
   await writeFile(path.join(root, 'THIRD_PARTY_NOTICES.md'), notices);
-  const workerSource = '/*\n' + notices.replaceAll('*/', '* /') + '\n*/\n' + workerDom.replace(/export \{[^}]+\};?\s*$/, '') + '\n' + editorFilesCode + '\n' + uploadedFileCode + '\n' + graderCode.replace(/^import .*;\n/gm, '').replace(/^export /gm, '') + `
+  const workerSource = '/*\n' + notices.replaceAll('*/', '* /') + '\n*/\n' + workerDom.replace(/export \{[^}]+\};?\s*$/, '') + '\n' + editorFilesCode + '\n' + uploadedFileCode + '\n' + terminalShellCode + '\n' + graderCode.replace(/^import .*;\n/gm, '').replace(/^export /gm, '') + `
 self.onmessage = event => {
   const { item, answer, answers } = event.data;
   try { self.postMessage(gradeAnswer(item, answer, answers)); }

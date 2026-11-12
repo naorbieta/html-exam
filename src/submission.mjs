@@ -15,13 +15,16 @@ export function validateSubmission(payload, catalog) {
       if (!value || typeof value !== 'object' || Array.isArray(value) || typeof value.text !== 'string' || value.text.length > 20000 || typeof value.color !== 'string' || value.color.length > 200 || typeof value.visible !== 'boolean') throw new Error('実習ページを読み直して、もう一度採点してください。');
     } else if (item.type === 'code' && typeof value === 'object') {
       if (!isFileAnswer(value) || JSON.stringify(value).length > 20000) throw new Error('コードのファイル形式と20,000文字の上限を確認してください。');
+    } else if (item.type === 'terminal') {
+      if (value === '') value = { commands: [] };
+      if (!isTerminalAnswer(value)) throw new Error('ターミナルの回答を読み取れません。「やり直す」を押して、もう一度入力してください。');
     } else if (item.type === 'checkboxes') {
       if (!Array.isArray(value) || new Set(value).size !== value.length || value.some(option => !item.options.includes(option))) throw new Error('チェックボックスの回答を選び直してください。');
     } else {
       if (typeof value !== 'string' || value.length > 20000) throw new Error('回答は20,000文字以内のテキストにしてください。');
       if (item.type === 'multiple_choice' && value !== '' && !item.options.includes(value)) throw new Error('選択肢の回答を選び直してください。');
     }
-    const empty = Array.isArray(value) ? !value.length : item.type === 'file' ? !value.name : item.type === 'dom_task' ? !value?.text.trim() : item.type === 'code' ? !codeSource(value).trim() : !value.trim();
+    const empty = Array.isArray(value) ? !value.length : item.type === 'file' ? !value.name : item.type === 'dom_task' ? !value?.text.trim() : item.type === 'terminal' ? !value.commands.some(command => command.trim()) : item.type === 'code' ? !codeSource(value).trim() : !value.trim();
     if (item.required && empty) throw new Error('必須の解答欄をすべて入力してください。');
     answers.push({ item, value });
   }
@@ -41,3 +44,9 @@ export function sheetText(value) {
 import { codeSource, isFileAnswer } from './editor-files.mjs';
 import { isUploadedFile } from './uploaded-file.mjs';
 
+
+function isTerminalAnswer(value) {
+  return Boolean(value && typeof value === 'object' && !Array.isArray(value) && Array.isArray(value.commands) &&
+    value.commands.length <= 200 && value.commands.every(command => typeof command === 'string' && command.length <= 1000) &&
+    JSON.stringify(value).length <= 20000);
+}

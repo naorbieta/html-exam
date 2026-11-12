@@ -28,7 +28,8 @@ export const answerTypes = {
   'コード': 'code',
   'ページ編集': 'dom_task',
   'CSS調査': 'inspection',
-  'ファイル': 'file'
+  'ファイル': 'file',
+  'ターミナル': 'terminal'
 };
 
 const typeNames = Object.fromEntries(Object.entries(answerTypes).map(([ja, en]) => [en, ja]));
@@ -68,7 +69,7 @@ export function functionBody(fn) {
 function normalizeGrader(exported, file) {
   if (!exported || typeof exported !== 'object' || Array.isArray(exported)) fail(file, 'default export は採点オブジェクトにしてください。');
   const { kind, check, cases, ...rest } = exported;
-  if (!['text', 'code', 'render', 'dom', 'file', 'manual'].includes(kind)) fail(file, 'kind を確認してください。');
+  if (!['text', 'code', 'render', 'dom', 'file', 'manual', 'terminal'].includes(kind)) fail(file, 'kind を確認してください。');
   const config = { ...rest };
   if (typeof check === 'function') config.check = functionBody(check);
   else if (typeof check === 'string') config.check = check;
@@ -131,6 +132,11 @@ function buildSimpleGrader(data, type, file) {
 }
 
 function exampleOf(data, type, grader, file) {
+  if (type === 'terminal') {
+    if (grader.kind !== 'terminal') fail(file, 'ターミナル問題には kind: \'terminal\' の採点TSを置いてください。');
+    if (!Array.isArray(data.example) || !data.example.length) fail(file, 'ターミナル問題の example には、入力するコマンドを1行ずつリストで書いてください。');
+    return JSON.stringify({ commands: data.example.map(String) });
+  }
   if (data.example != null && data.example !== '') return String(data.example);
   if (grader.kind === 'file') {
     const ext = grader.config.extension;

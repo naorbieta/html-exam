@@ -58,7 +58,7 @@ feedback: 出力結果や用語をもう一度確認してください。
 | --- | --- |
 | `id` | 設問ID。公開後は変更しません |
 | `number` | レッスン内の設問番号 |
-| `type` | `短文` / `長文` / `単一選択` / `複数選択` / `コード` / `ページ編集` / `CSS調査` / `ファイル` |
+| `type` | `短文` / `長文` / `単一選択` / `複数選択` / `コード` / `ページ編集` / `CSS調査` / `ファイル` / `ターミナル` |
 | `title` | 設問文 |
 | `choices` | 選択問題の選択肢 |
 | `answers` | 正解（選択問題は選択肢の文言そのもの。複数選択は複数行） |
@@ -125,3 +125,44 @@ npm run build
 問題・採点・参考画像は `dist/app/Catalog.html` と、サイズ制限に収まるよう分割した `Images01.html` などに書き出されます。スプレッドシートへCSVを取り込む手順は不要です。
 
 新しい画像を追加したら `lesson.md` の `images` に書いて再ビルドし、`npm run deploy`（または `main` への push）でアプリごと更新します。
+
+## ターミナル問題（コマンドを入力して答える）
+
+ターミナル操作とGitの試験は `type: ターミナル` にします。画面に試験用のターミナルが表示され、受験者はコマンドを入力して Enter で実行します。GASの上で動くよう、ファイルとGitはブラウザー内の仮想環境（`src/terminal-shell.mjs`）で再現します。採点は入力した文字列ではなく、**初期状態から入力したコマンドを順に実行し直したあとの状態**で判定します。
+
+```yaml
+---
+id: exam-terminal-02
+number: 2
+type: ターミナル
+title: 今いる ~/site/css から cd .. で1つ上の ~/site に移動し、docs フォルダを作ってください。
+required: true
+example:
+  - 'cd ..'
+  - 'mkdir docs'
+feedback: cd .. で ~/site に移動してから mkdir docs を実行してください。
+---
+```
+
+`example` は模範解答のコマンドを1行ずつリストで書きます（テストで正解になることを確認します）。同じ名前の `.ts` に、初期状態 `initial` と判定 `check(h)` を書きます。
+
+```ts
+const grader: Grader = {
+  kind: 'terminal',
+  initial: {
+    cwd: '~/site/css',
+    files: { '~/site/index.html': '<h1>サイト</h1>\n', '~/site/css/': '' },   // 末尾が / ならフォルダ
+    repos: { '~/blog': { remote: 'https://github.com/example/blog.git', commits: [{ message: '作成', files: { 'index.html': '...' } }] } },
+    remotes: { 'https://github.com/example/team.git': { commits: [/* リモートだけにあるコミットも書けます */] } },
+    overrides: { '~/blog/style.css': '変更後の内容' }   // リポジトリを作ったあとの未コミットの変更
+  },
+  check(h) {
+    h.assert(h.isDir('~/site/docs'), '~/site に docs フォルダがありません。');
+    h.assert(h.cwd === '~/site', '最後は ~/site にいる状態にしてください。');
+  }
+};
+```
+
+`h` で使えるもの: `cwd`（`~/site` の形）、`exists` / `isDir` / `isFile` / `read` / `list`（パスは `~/` から）、`repo('~/blog')`（`branch`・`head`・`branches`・`log[].message/files`・`staged`・`unstaged`・`untracked`・`remote`）、`repos()`、`remote(url)`（`branches`・`log()`）、`commands`（入力したコマンド）。
+
+使えるコマンドは `pwd` `ls [-a -l]` `cd` `mkdir [-p]` `touch` `cat` `echo`（`>` `>>`）`cp [-r]` `mv` `rm [-r -f]` `rmdir` `clear` `history` `help` と、`git init / status / add / commit / log / branch / switch / checkout / restore / clone / pull / push / fetch / remote` です。それ以外は本物のbashと同じく `command not found` になり、`git diff` などの未対応のサブコマンドは「この試験用ターミナルでは使えません」と表示します。Git はコミットIDも含めて決定的に再現するので、同じ操作なら同じ結果になります。回答ログには、入力したコマンドの一覧・やり直した回数・最終状態（ファイルとリポジトリの要約）が記録されます。

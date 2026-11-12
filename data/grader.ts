@@ -33,6 +33,37 @@ export type GraderHelpers = {
   answers?: Record<string, string>;
 };
 
+/** ターミナル問題の初期状態。パスは ~ から書きます。末尾が / ならフォルダです。 */
+export type TerminalInitial = {
+  cwd?: string;
+  files?: Record<string, string>;
+  repos?: Record<string, { commits: { message: string; files: Record<string, string> }[]; branch?: string; remote?: string }>;
+  remotes?: Record<string, { commits: { message: string; files: Record<string, string> }[] }>;
+  overrides?: Record<string, string | null>;
+};
+
+export type TerminalRepo = {
+  root: string; branch: string; head: string | null; branches: Record<string, string>; remote: string | null;
+  upstream: Record<string, string>;
+  log: { id: string; message: string; files: Record<string, string> }[];
+  staged: string[]; unstaged: string[]; untracked: string[]; index: Record<string, string>;
+};
+
+/** kind: 'terminal' の check(h) に渡される操作後の状態です。 */
+export type TerminalHelpers = {
+  assert: (condition: unknown, message?: string) => void;
+  commands: string[];
+  cwd: string;
+  exists: (path: string) => boolean;
+  isDir: (path: string) => boolean;
+  isFile: (path: string) => boolean;
+  read: (path: string) => string | null;
+  list: (path: string) => string[];
+  repo: (path: string) => TerminalRepo | null;
+  repos: () => TerminalRepo[];
+  remote: (url: string) => { branches: Record<string, string>; log: (branch?: string) => { id: string; message: string; files: Record<string, string> }[] } | null;
+};
+
 export type GraderCase = {
   label?: string;
   prompts?: string[];
@@ -46,8 +77,10 @@ export type GraderCase = {
 };
 
 export type Grader = {
-  kind: 'text' | 'code' | 'render' | 'dom' | 'file' | 'manual';
-  check?: string | ((h: GraderHelpers) => unknown);
+  kind: 'text' | 'code' | 'render' | 'dom' | 'file' | 'manual' | 'terminal';
+  /** ターミナル問題の初期状態（ファイル・リポジトリ・リモート） */
+  initial?: TerminalInitial;
+  check?: string | ((h: GraderHelpers & TerminalHelpers) => unknown);
   cases?: GraderCase[];
   requires?: string[];
   requirementHint?: string;

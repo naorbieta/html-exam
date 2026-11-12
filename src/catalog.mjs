@@ -17,7 +17,7 @@ export function catalogFromTables(tables) {
   const byQuiz = new Map(quizzes.map(q => [q.id, q]));
   if (byQuiz.size !== quizzes.length) throw new Error('問題IDが重複しています。');
   const byItem = new Map();
-  const types = ['short_text', 'paragraph', 'multiple_choice', 'checkboxes', 'code', 'dom_task', 'inspection', 'file'];
+  const types = ['short_text', 'paragraph', 'multiple_choice', 'checkboxes', 'code', 'dom_task', 'inspection', 'file', 'terminal'];
   for (const row of read('items')) {
     if (!byQuiz.has(row.quiz_id) || !types.includes(row.type) || byItem.has(row.id)) {
       throw new Error(`解答欄 ${row.id} の問題ID・形式・IDを確認してください。`);
@@ -41,7 +41,7 @@ export function catalogFromTables(tables) {
   if (tables.graders) for (const row of read('graders')) {
     if (!byItem.has(row.item_id)) throw new Error(`採点条件の解答欄 ${row.item_id} がありません。`);
     const item = byItem.get(row.item_id);
-    if (item.grading || !['text', 'code', 'render', 'manual', 'dom', 'file'].includes(row.kind)) throw new Error(`採点条件 ${row.item_id} の重複・形式を確認してください。`);
+    if (item.grading || !['text', 'code', 'render', 'manual', 'dom', 'file', 'terminal'].includes(row.kind)) throw new Error(`採点条件 ${row.item_id} の重複・形式を確認してください。`);
     let config;
     try { config = JSON.parse(row.config); } catch { throw new Error(`採点条件 ${row.item_id} のconfigを確認してください。`); }
     if (!config || typeof config !== 'object' || Array.isArray(config)) throw new Error(`採点条件 ${row.item_id} のconfigを確認してください。`);

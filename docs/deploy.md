@@ -29,19 +29,9 @@
 5. 回答ログ用の表を用意します。スクリプトをスプレッドシートにバインドするか、エディターで `setup_` を1回実行します。`setup_` は、スクリプトプロパティ `SPREADSHEET_ID` が無ければ新しいスプレッドシート「Web Practice 回答ログ」を作り、`answers` シートを用意します。シートが既にあればそれを使います。URLは実行ログに出ます。
 6. ウェブアプリのURLで動作を確認します。回答すると `answers` シートに、時刻・ユーザー（取得できる場合）・問題ID・回答・正誤・フィードバックが残ります。ウェブアプリの「実行するユーザー」が自分自身で、アクセスが学外の一般アカウントのときは、メールアドレスが空欄になることがあります。
 
-## GitHub Actions から手動でデプロイする
+## 更新したあとにデプロイする
 
-リポジトリの Settings → Secrets and variables → Actions に次を追加します。
-
-| Secret | 内容 |
-| --- | --- |
-| `CLASPRC_JSON` | `clasp login` のあと、`~/.clasprc.json` の中身をそのまま貼り付けます |
-| `SCRIPT_ID` | Apps Script のスクリプトID（`.clasp.json` の `scriptId` と同じ） |
-| `DEPLOYMENT_ID` | （推奨）既存ウェブアプリのデプロイID。未設定だとコードの push だけで、公開URLは更新されません |
-
-デプロイは自動では動きません（`main` に push・マージしても実行されません）。GitHub のリポジトリ画面で **Actions タブ → Deploy GAS → Run workflow** を押し、ブランチ（通常は `main`）を選んで手動で実行します。実行すると `.github/workflows/deploy.yml` が `npm run build` → `clasp push` を行い、`DEPLOYMENT_ID` があればそのデプロイを更新します。
-
-認証情報はリポジトリに置かず、Secrets だけに保存してください。ログイン状態が切れたら、手元で `npx clasp login` をやり直して `CLASPRC_JSON` を更新します。
+問題や画面を変えたら、手元で `npm run deploy` を実行します（ビルド → `clasp push` → `clasp deploy`）。ログイン状態が切れていたら `npx clasp login` をやり直してください。認証情報（`~/.clasprc.json`）と `.clasp.json` はリポジトリに入れません。GitHub への push やマージではデプロイされません。
 
 ## 画像ファイルの分割について
 

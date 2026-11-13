@@ -124,7 +124,7 @@ npm run build
 
 問題・採点・参考画像は `dist/app/Catalog.html` と、サイズ制限に収まるよう分割した `Images01.html` などに書き出されます。スプレッドシートへCSVを取り込む手順は不要です。
 
-新しい画像を追加したら `lesson.md` の `images` に書いて再ビルドし、`npm run deploy`（または Actions タブの Deploy GAS から Run workflow で手動実行）でアプリごと更新します。
+新しい画像を追加したら `lesson.md` の `images` に書いて再ビルドし、`npm run deploy` でアプリごと更新します。
 
 ## ターミナル問題（コマンドを入力して答える）
 

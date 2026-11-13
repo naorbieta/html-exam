@@ -1,6 +1,6 @@
 # 問題の編集手順
 
-正本は `data/exam/`（試験）と `data/test/`（練習）のレッスンフォルダです。編集したら `npm run build` で `dist/app` に問題データを埋め込みます。画面では試験が先に表示されます。GASへ出す手順は[GASへの自動デプロイ](deploy.md)を参照してください。
+正本は `data/exam/`（試験）と `data/test/`（練習）のレッスンフォルダです。編集したら `npm run build` で `dist/app` に問題データを埋め込みます。画面では試験が先に表示されます。GASへ出す手順は[GASへのデプロイ](deploy.md)を参照してください。
 
 ## レッスンの置き方
 
@@ -124,7 +124,7 @@ npm run build
 
 問題・採点・参考画像は `dist/app/Catalog.html` と、サイズ制限に収まるよう分割した `Images01.html` などに書き出されます。スプレッドシートへCSVを取り込む手順は不要です。
 
-新しい画像を追加したら `lesson.md` の `images` に書いて再ビルドし、`npm run deploy`（または `main` への push）でアプリごと更新します。
+新しい画像を追加したら `lesson.md` の `images` に書いて再ビルドし、`npm run deploy` でアプリごと更新します。
 
 ## ターミナル問題（コマンドを入力して答える）
 

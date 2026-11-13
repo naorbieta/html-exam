@@ -17,14 +17,14 @@ npm run dev
 
 問題データは `data/exam/`（試験）と `data/test/`（練習）が正本です。ビルドすると設問・採点・参考画像が `dist/app` の中（`Catalog.html` と分割した画像HTML）に埋め込まれ、アプリと一緒にデプロイされます。画面では試験が先に並び、練習用レッスンはその後ろに残ります。スプレッドシートには回答ログだけを記録します。
 
-手元で初めて出すときは、Apps Script のスクリプトIDを `.clasp.json` に書き、`npx clasp login` のあと `npm run deploy` を実行します。詳細と GitHub Actions（`main` への push で自動デプロイ）の設定は[GASへの自動デプロイ](docs/deploy.md)を参照してください。
+手元で初めて出すときは、Apps Script のスクリプトIDを `.clasp.json` に書き、`npx clasp login` のあと `npm run deploy` を実行します。詳細と GitHub Actions からのデプロイ（Actions タブの Deploy GAS から Run workflow で手動実行）の設定は[GASへのデプロイ](docs/deploy.md)を参照してください。
 
 1. `npm run build`（または `npm run deploy`）を実行します。出力は `dist/app/` だけです。
 2. `clasp` で `dist/app` をアップロードし、ウェブアプリとしてデプロイします。初回は「デプロイ」→「新しいデプロイ」→「ウェブアプリ」でも構いません。実行するユーザーを自分にし、アクセスできるユーザーもまず自分に設定します。
 3. エディターで `setup_` を一度実行するか、スクリプトを記録用のスプレッドシートにバインドします。シートが無ければ「Web Practice 回答ログ」が作られ、`answers` シートに見出しが入ります。スクリプトプロパティ `SPREADSHEET_ID` に表のIDが保存されます。URLは実行ログに表示されます。
 4. 発行されたURLで回答・採点を試します。回答は `answers` シートに、時刻・ユーザー（取得できる場合）・レッスンID・問題ID・回答内容・正誤・フィードバックとして残ります。
 
-問題や画面を更新したあとは、もう一度 `npm run deploy`（または GitHub の `main` へ push）すれば、問題データも含めて置き換わります。以前の「問題データ」シートや `practice.csv` は不要です。既存の `answers` シートはそのまま使え、古い見出しは `setup_` で新しい列構成へ移行します。
+問題や画面を更新したあとは、もう一度 `npm run deploy`（または GitHub の Actions タブの Deploy GAS から Run workflow で手動実行）すれば、問題データも含めて置き換わります。以前の「問題データ」シートや `practice.csv` は不要です。既存の `answers` シートはそのまま使え、古い見出しは `setup_` で新しい列構成へ移行します。
 
 GASではHTML内にCSSとJavaScriptを埋め込んで配信します。画面とコードの実行はブラウザー、問題の取得と回答の保存はGASが担当します。フォントはGoogle FontsからHTTPSで読み込みます。
 

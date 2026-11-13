@@ -1,8 +1,8 @@
 name: Deploy GAS
 
+# GitHub の Actions タブから手動で実行したときだけデプロイします（push では動きません）。
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
 
 jobs:
   deploy:

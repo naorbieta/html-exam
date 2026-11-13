@@ -1,4 +1,4 @@
-# GASへの自動デプロイ
+# GASへのデプロイ
 
 問題の正本は `data/exam/`（試験）と `data/test/`（練習）です。`npm run build` で `dist/app` にアプリ本体と問題データ（Catalog.html と分割した画像HTML）を出力します。スプレッドシートには回答ログだけを記録します。
 
@@ -29,7 +29,7 @@
 5. 回答ログ用の表を用意します。スクリプトをスプレッドシートにバインドするか、エディターで `setup_` を1回実行します。`setup_` は、スクリプトプロパティ `SPREADSHEET_ID` が無ければ新しいスプレッドシート「Web Practice 回答ログ」を作り、`answers` シートを用意します。シートが既にあればそれを使います。URLは実行ログに出ます。
 6. ウェブアプリのURLで動作を確認します。回答すると `answers` シートに、時刻・ユーザー（取得できる場合）・問題ID・回答・正誤・フィードバックが残ります。ウェブアプリの「実行するユーザー」が自分自身で、アクセスが学外の一般アカウントのときは、メールアドレスが空欄になることがあります。
 
-## GitHub Actions で main への push 時にデプロイする
+## GitHub Actions から手動でデプロイする
 
 リポジトリの Settings → Secrets and variables → Actions に次を追加します。
 
@@ -39,7 +39,7 @@
 | `SCRIPT_ID` | Apps Script のスクリプトID（`.clasp.json` の `scriptId` と同じ） |
 | `DEPLOYMENT_ID` | （推奨）既存ウェブアプリのデプロイID。未設定だとコードの push だけで、公開URLは更新されません |
 
-`main` に push すると、`.github/workflows/deploy.yml` が `npm run build` → `clasp push` を実行し、`DEPLOYMENT_ID` があればそのデプロイを更新します。
+デプロイは自動では動きません（`main` に push・マージしても実行されません）。GitHub のリポジトリ画面で **Actions タブ → Deploy GAS → Run workflow** を押し、ブランチ（通常は `main`）を選んで手動で実行します。実行すると `.github/workflows/deploy.yml` が `npm run build` → `clasp push` を行い、`DEPLOYMENT_ID` があればそのデプロイを更新します。
 
 認証情報はリポジトリに置かず、Secrets だけに保存してください。ログイン状態が切れたら、手元で `npx clasp login` をやり直して `CLASPRC_JSON` を更新します。
 

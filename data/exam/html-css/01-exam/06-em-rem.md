@@ -2,14 +2,27 @@
 id: exam-html-06
 number: 6
 type: 単一選択
-title: html 要素の font-size が 16px、親要素の font-size が 20px のとき、2rem の大きさはどれですか？
+title: |-
+  次のCSSのとき、.child の文字の大きさ（2rem）は何px になりますか？
 required: true
 choices:
-  - 16px
-  - 20px
-  - 32px
-  - 40px
+  - "16px"
+  - "20px"
+  - "32px"
+  - "40px"
 answers:
-  - 32px
-feedback: rem はルート（html）の font-size を基準にします。16px の 2倍なので 32px です。em なら親の 20px を基準にします。
+  - "32px"
+feedback: "rem はルート（html 要素）の font-size を基準にします。em なら親要素の font-size が基準です。"
 ---
+
+```html label="index.html"
+<div class="parent">
+  <p class="child">テキスト</p>
+</div>
+```
+
+```css label="style.css"
+html    { font-size: 16px; }
+.parent { font-size: 20px; }
+.child  { font-size: 2rem; }
+```

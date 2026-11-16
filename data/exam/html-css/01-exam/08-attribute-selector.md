@@ -2,19 +2,21 @@
 id: exam-html-08
 number: 8
 type: 単一選択
-title: 次のHTMLに対して、セレクタ a[target="_blank"] が当たる要素はどれですか？
+title: |-
+  次のHTMLに、セレクタ a[target="_blank"] でスタイルを指定しました。
+  スタイルが当たるリンクはどれですか？
 required: true
 choices:
-  - 1 だけ
-  - 2 だけ
-  - 1 と 2 の両方
-  - どれにも当たらない
+  - "リンク1 だけ"
+  - "リンク2 だけ"
+  - "リンク1 とリンク2 の両方"
+  - "どちらにも当たらない"
 answers:
-  - 1 だけ
-feedback: 属性セレクタ [target="_blank"] は、target 属性の値が _blank の要素にだけ当たります。
+  - "リンク1 だけ"
+feedback: "属性セレクタ [target=\"_blank\"] は、target 属性の値が _blank の要素にだけ当たります。"
 ---
 
-```html
-<a href="https://example.com/" target="_blank">1</a>
-<a href="#top">2</a>
+```html label="index.html"
+<a href="https://example.com/" target="_blank">リンク1</a>
+<a href="#top">リンク2</a>
 ```

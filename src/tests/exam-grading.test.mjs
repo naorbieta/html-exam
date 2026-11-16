@@ -14,7 +14,8 @@ const byId = id => items.find(item => item.id === id);
 const commands = list => ({ commands: list });
 
 function exampleOf(item) {
-  return item.grading.example;
+  // 複数選択の正解は JSON の配列で入っています。
+  return item.type === 'checkboxes' ? JSON.parse(item.grading.example) : item.grading.example;
 }
 
 test('試験カタログは6カテゴリ・54問で練習データと分かれている', () => {
@@ -64,14 +65,17 @@ const terminalVariants = {
 
 test('試験の誤答は不正解になる', () => {
   const wrong = {
-    'exam-js-02': "const name = '花子';\nconsole.log(name);",
-    'exam-js-03': "console.log('合格');",
+    'exam-js-02': "console.log('太郎');",
+    'exam-js-03': "function judge(score) { return score > 60 ? '合格' : '不合格'; }",
     'exam-js-05': 'function maxNumber(a, b) { return a; }',
-    'exam-js-12': "console.log('こんにちは、' + name + 'さん');",
-    'exam-js-09': "console.log(fruits);"
+    'exam-js-12': "function greet(name) { return 'こんにちは、' + name + 'さん'; }",
+    'exam-js-09': "function showAll(list) { console.log(list[0]); }"
   };
+  const wrongChoices = item => item.type === 'checkboxes'
+    ? [[exampleOf(item)[0]], [...exampleOf(item), item.options.find(option => !exampleOf(item).includes(option))], [item.options.find(option => !exampleOf(item).includes(option))]]
+    : [item.options.find(option => option !== exampleOf(item))];
   for (const item of gradable) {
-    const answers = item.type === 'terminal' ? terminalWrong[item.id].map(commands) : [wrong[item.id] ?? item.options.find(option => option !== exampleOf(item))];
+    const answers = item.type === 'terminal' ? terminalWrong[item.id].map(commands) : wrong[item.id] ? [wrong[item.id]] : wrongChoices(item);
     assert.ok(answers.length && answers.every(answer => answer != null && answer !== ''), `${item.id} に誤答を用意してください`);
     for (const answer of answers) {
       const result = gradeAnswer(item, answer);
@@ -83,15 +87,24 @@ test('試験の誤答は不正解になる', () => {
 test('書き方が違っても結果が同じなら試験のコード問題は正解になる', () => {
   const variants = {
     'exam-js-02': 'let user = "太郎";\nconsole.log(user);',
-    'exam-js-03': "console.log(score >= 60 ? '合格' : '不合格');",
+    'exam-js-03': "const judge = score => score >= 60 ? '合格' : '不合格';",
     'exam-js-05': 'function maxNumber(a, b) { return Math.max(a, b); }',
-    'exam-js-12': 'const message = `こんにちは、${name}さん`;\nconsole.log(message);',
-    'exam-js-09': 'for (const item of fruits) console.log(item);'
+    'exam-js-12': 'function greet(name) {\n  const message = `こんにちは、${name}さん`;\n  return message;\n}',
+    'exam-js-09': 'function showAll(list) { let i = list.length; while (i > 0) { i--; console.log(list[i]); } }'
   };
   for (const [id, answer] of Object.entries(variants)) {
     const result = gradeAnswer(byId(id), answer);
     assert.equal(result.passed, true, `${id}: ${result.feedback}`);
   }
+});
+
+test('複数選択は選んだ順番に関係なく正解になる（順不同）', () => {
+  for (const item of items.filter(item => item.type === 'checkboxes')) {
+    const answer = exampleOf(item);
+    assert.ok(answer.length >= 2, `${item.id} は正解が2つ以上`);
+    assert.equal(gradeAnswer(item, [...answer].reverse()).passed, true, item.id);
+  }
+  assert.ok(items.filter(item => item.type === 'checkboxes').length >= 2);
 });
 
 test('ターミナル問題は別解（-p・相対/絶対パス・switch/checkout など）も正解になる', () => {

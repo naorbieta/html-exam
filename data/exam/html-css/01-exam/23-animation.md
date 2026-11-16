@@ -2,14 +2,25 @@
 id: exam-html-23
 number: 23
 type: 単一選択
-title: CSSで要素を時間とともに動かすとき、途中の変化を定義する規則として正しいものはどれですか？
+title: |-
+  CSSアニメーションで、「0% のときは左、100% のときは右」のように、動きの途中の状態を定義するときに使う書き方はどれですか？
 required: true
 choices:
-  - "@keyframes（animation プロパティと組み合わせる）"
-  - "@media（画面幅の切り替え）"
-  - "@import（別のCSSを読み込む）"
-  - "!important（優先度を上げる）"
+  - "@keyframes"
+  - "@media"
+  - "@import"
+  - "!important"
 answers:
-  - "@keyframes（animation プロパティと組み合わせる）"
-feedback: アニメーションの途中経過は @keyframes で定義し、animation プロパティで要素に適用します。
+  - "@keyframes"
+feedback: "動きの途中の状態は @keyframes で定義し、animation プロパティで要素に適用します。"
 ---
+
+```css label="style.css（？？？ の部分）"
+？？？ slide {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(200px); }
+}
+.box {
+  animation: slide 2s;
+}
+```

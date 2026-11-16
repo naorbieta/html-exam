@@ -6,15 +6,16 @@ const grader: Grader = {
   html: '<!doctype html><html><body><ul class="menu"><li>ホーム</li><li>案内</li><li>連絡</li></ul></body></html>',
   async check(h) {
     const menu = h.el('.menu') || h.el('ul');
-    h.assert(menu, 'メニューの要素を残してください。');
+    h.assert(menu, 'メニュー（.menu）の要素が見つかりません。HTML は元のままにしてください。');
     await h.frame();
     const display = h.css(menu).display;
-    h.assert(display === 'flex' || display === 'inline-flex', 'flexbox（display: flex または inline-flex）を使ってください。');
-    const items = h.all('.menu li, .menu > *');
-    h.assert(items.length >= 2, 'メニューの項目を残してください。');
+    h.assert(display === 'flex' || display === 'inline-flex', '.menu が flexbox になっていません。');
+    const items = h.all('.menu > li');
+    h.assert(items.length >= 3, 'メニューの項目（li）が3つ見つかりません。HTML は元のままにしてください。');
     await h.frame();
-    const tops = items.map(item => h.rect(item).top);
-    h.assert(tops.every(top => Math.abs(top - tops[0]) < 2), '項目が横一列に並ぶようにしてください。');
+    const rects = items.map(item => h.rect(item));
+    h.assert(rects.every(rect => Math.abs(rect.top - rects[0].top) < 2), '項目が横一列に並んでいません。');
+    h.assert(rects.every((rect, index) => index === 0 || rect.left > rects[index - 1].left), '項目が左から順に並んでいません。');
   }
 };
 

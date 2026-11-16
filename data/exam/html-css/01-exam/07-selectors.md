@@ -1,15 +1,34 @@
 ---
 id: exam-html-07
 number: 7
-type: 単一選択
-title: セレクタの意味として、正しい組み合わせはどれですか？
+type: 複数選択
+title: |-
+  次のHTMLに、セレクタ .menu > li でスタイルを指定しました。
+  スタイルが当たる li はどれですか？
 required: true
 choices:
-  - "A B は子孫（間接）、A > B は直下の子、A + B は直後の隣接"
-  - "A B は直下の子、A > B は隣接、A + B は子孫（間接）"
-  - "A B は隣接、A > B は子孫（間接）、A + B は直下の子"
-  - "A B も A > B も A + B も、同じ範囲に当たる"
+  - "A"
+  - "B"
+  - "C"
+  - "D"
 answers:
-  - "A B は子孫（間接）、A > B は直下の子、A + B は直後の隣接"
-feedback: 空白は子孫全般、> は直下の子だけ、+ は直後の兄弟（隣接）です。
+  - "A"
+  - "B"
+feedback: "「>」は直下の子だけに当たります。空白（.menu li）なら子孫すべてに当たります。"
 ---
+
+```html label="index.html"
+<ul class="menu">
+  <li>A</li>
+  <li>B
+    <ul>
+      <li>C</li>
+    </ul>
+  </li>
+</ul>
+<ul class="sub">
+  <li>D</li>
+</ul>
+```
+
+当たるものが2つ以上あるときは、すべて選んでください。

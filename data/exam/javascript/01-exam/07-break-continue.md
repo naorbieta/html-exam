@@ -2,14 +2,27 @@
 id: exam-js-07
 number: 7
 type: 単一選択
-title: 繰り返し処理について、正しい組み合わせはどれですか？
+title: |-
+  次のコードを実行すると、コンソールに表示される数字はどれですか？
 required: true
 choices:
-  - break は繰り返しそのものを終了し、continue は今の周だけを飛ばして次の周へ進む
-  - break も continue も、繰り返しを必ず最初からやり直す
-  - continue は繰り返しそのものを終了し、break は今の周だけを飛ばす
-  - break と continue は、関数を終了するための命令である
+  - "1 と 3"
+  - "1 と 2 と 3"
+  - "1 と 3 と 5"
+  - "1 と 2 と 3 と 4 と 5"
 answers:
-  - break は繰り返しそのものを終了し、continue は今の周だけを飛ばして次の周へ進む
-feedback: break は中断（ループを抜ける）、continue は今の周の残りをスキップします。
+  - "1 と 3"
+feedback: "continue はその周の残りを飛ばして次の周へ、break は繰り返しそのものを終わらせます。"
 ---
+
+```js
+for (let i = 1; i <= 5; i++) {
+  if (i === 2) {
+    continue;
+  }
+  if (i === 4) {
+    break;
+  }
+  console.log(i);
+}
+```

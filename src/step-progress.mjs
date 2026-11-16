@@ -30,13 +30,33 @@ export function itemResults(draft) {
   return Object.fromEntries(Object.entries(results).filter(([, result]) => !result.unscored && !result.reviewRequired));
 }
 
+// 試験（コース名が「試験 / …」）は、設問を好きな順に解けるようにします。
+export function isExam(quiz) {
+  return String(quiz?.course || '').startsWith('試験');
+}
+
+// 試験で不正解のときに見せる文。答えそのもの（模範のコマンドや正しい選択肢）は出さず、
+// ターミナル・コードでは「いまの状態のどこが条件に合わないか」だけを伝えます。
+export function examFeedback(item, graded) {
+  if (!graded || graded.passed) return '';
+  if (!['terminal', 'code'].includes(item?.type)) return '';
+  const failed = (graded.checks || []).filter(check => !check.passed).map(check => check.label).find(Boolean);
+  if (failed) return failed;
+  return graded.feedback && graded.feedback !== item.grading?.feedback ? graded.feedback : '';
+}
+
 export function changeAnswer(quiz, draft, item, value) {
   const index = quiz.items.indexOf(item);
   const results = itemResults(draft);
+  // 練習: その設問と後続の採点を取り消す（後続は前の回答を引き継ぐことがあるため）。
+  // 試験: 設問どうしは独立しているので、変更した設問の採点だけを取り消す。
+  const kept = isExam(quiz)
+    ? quiz.items.filter(question => question !== item && results[question.id])
+    : quiz.items.slice(0, index).filter(question => results[question.id]);
   return {
     ...draft,
     answers: { ...draft.answers, [item.id]: value },
-    itemResults: Object.fromEntries(quiz.items.slice(0, index).filter(question => results[question.id]).map(question => [question.id, results[question.id]])),
+    itemResults: Object.fromEntries(kept.map(question => [question.id, results[question.id]])),
     result: null,
     savedAt: null
   };

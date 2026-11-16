@@ -78,7 +78,7 @@ export function AnswerWorkspace({ quiz, item, answers, theme, saving, onChange, 
             required={item.required && item.type === 'multiple_choice'}
             checked={Array.isArray(value) ? value.includes(option) : value === option}
             onChange={event => onChange(item, item.type === 'multiple_choice' ? option : event.target.checked ? [...(value || []), option] : (value || []).filter(answer => answer !== option))} />
-          <span>{option}</span>
+          <span className={/[{};<>]|^[@!]|^[\w-]+\s*:\s|\(.*\)/.test(option) ? 'choice-code' : undefined}>{option}</span>
         </label>) : ['paragraph', 'inspection'].includes(item.type) ?
           <textarea id={id} name={item.id} className="answer-control" aria-label={item.type === 'inspection' ? '調べたCSS' : '解答'} aria-required={item.required} rows={item.type === 'inspection' ? 2 : 3} maxLength={20000} value={value || ''} onChange={event => onChange(item, event.target.value)} /> :
           <input id={id} name={item.id} className="answer-control short-answer" aria-label="解答" aria-required={item.required} maxLength={20000} value={value || ''} onChange={event => onChange(item, event.target.value)} />}

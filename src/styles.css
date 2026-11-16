@@ -83,3 +83,27 @@ button:disabled{cursor:default}
 .terminal-prompt-path{color:#79c0ff}
 .terminal-input-row{display:flex;align-items:baseline}
 .terminal-input{flex:1;min-width:2ch;background:transparent;border:0;outline:0;color:inherit;font:inherit;padding:0;margin:0;caret-color:#e3e6eb}
+
+/* 設問の説明（左ペイン）: コード・表示例・図 */
+.question-heading{font-size:13px;color:var(--tk-text-secondary);margin:0 0 4px;font-weight:500}
+.question-title{font-size:20px;line-height:1.7;margin:0 0 16px;font-weight:600;white-space:pre-wrap;overflow-wrap:anywhere}
+.question-body{display:flex;flex-direction:column;gap:14px;margin-bottom:16px}
+.question-body p{margin:0;line-height:1.8}
+.question-body ul{margin:0;padding-left:1.4em;list-style:disc;line-height:1.8}
+.question-body h3{font-size:15px;font-weight:600;margin:6px 0 0}
+.question-body .inline-code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Noto Sans Mono CJK JP",monospace;font-size:.92em;padding:1px 5px;border-radius:4px;background:var(--tk-background-secondary);border:1px solid var(--tk-border-primary)}
+.question-body figure{margin:0}
+.question-body figcaption{font-size:12px;color:var(--tk-text-secondary);margin-bottom:4px}
+.question-code pre{margin:0;padding:12px 14px;border-radius:6px;background:#1b1d23;color:#e3e6eb;font:14px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,"Noto Sans Mono CJK JP",monospace;white-space:pre;overflow:auto}
+.question-preview iframe{display:block;width:100%;border:1px solid var(--tk-border-primary);border-radius:6px;background:#fff}
+.question-figure img{display:block;max-width:100%;height:auto;border-radius:6px;background:#fff;border:1px solid var(--tk-border-primary)}
+.section-intro{font-size:14px;color:var(--tk-text-secondary);margin:0 0 20px;padding:12px 14px;border-radius:6px;background:var(--tk-background-secondary)}
+.exam-steps{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.exam-step{min-width:30px;height:30px;padding:0 6px;border-radius:6px;border:1px solid var(--tk-border-primary);font-size:13px;background:var(--tk-background-primary);color:var(--tk-text-primary)}
+.exam-step[aria-current="step"]{border-color:var(--tk-border-accent);box-shadow:0 0 0 2px var(--tk-border-accent) inset;font-weight:600}
+.exam-step[data-state="answered"]{background:var(--tk-background-secondary)}
+.exam-step[data-state="passed"]{background:#e6f4ea;border-color:#81c995;color:#1e4620}
+.exam-step[data-state="failed"]{background:#fce8e6;border-color:#f28b82;color:#5f2120}
+.markdown-content .question-title{font-size:19px;line-height:1.7;font-weight:600;margin:0 0 16px;letter-spacing:0}
+.markdown-content .question-code pre code{background:none!important;padding:0!important;border:0!important;color:inherit;font:inherit;white-space:inherit}
+.answer-choice .choice-code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Noto Sans Mono CJK JP",monospace;font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere}

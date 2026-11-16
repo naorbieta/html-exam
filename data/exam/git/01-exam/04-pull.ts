@@ -41,10 +41,10 @@ const grader: Grader = {
     const repo = h.repo('~/team');
     h.assert(repo, '~/team のリポジトリが見つかりません。');
     const remote = h.remote('https://github.com/example/team.git');
-    h.assert(repo.branches.main === remote.branches.main, 'main がリモートの最新になっていません。git pull を実行してください。');
+    h.assert(repo.branches.main === remote.branches.main, '手元の main が、リモートの最新の状態になっていません。');
     h.assert(repo.branches.feature, 'feature ブランチがありません。');
-    h.assert(repo.branch === 'feature', 'feature ブランチに切り替えてください（git branch で確認できます）。');
-    h.assert(repo.branches.feature === repo.branches.main, 'feature は最新の main から作ってください。先に git pull してからブランチを作ります。');
+    h.assert(repo.branch === 'feature', 'いまのブランチが feature ではありません。');
+    h.assert(repo.branches.feature === repo.branches.main, 'feature が、最新の main から作られていません。');
     h.assert(h.read('~/team/news.html') === '<p>お知らせ</p>\n', 'リモートで追加された news.html がありません。');
   }
 };

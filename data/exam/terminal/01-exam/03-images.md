@@ -7,5 +7,8 @@ required: true
 example:
   - 'ls'
   - 'mv top.jpg logo.png images/'
-feedback: ls でファイルを確認し、拡張子が .jpg と .png のファイルだけを mv で images フォルダに移動してください。HTML・CSS・JavaScriptのファイルは動かしません。
+feedback: 画像ファイル（.jpg と .png）だけが images フォルダの中にあり、ほかのファイルは ~/site に残っている状態にしてください。
 ---
+
+- 画像ファイルは ~/site から無くなり、images フォルダの中にある状態にします（コピーではなく移動）。
+- HTML・CSS・JavaScript のファイルは動かしません。

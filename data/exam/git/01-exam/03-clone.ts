@@ -20,9 +20,9 @@ const grader: Grader = {
   },
   check(h) {
     const clones = h.repos().filter(repo => repo.remote === 'https://github.com/example/portfolio.git');
-    h.assert(clones.length > 0, 'リポジトリがクローンされていません。URLを確認して git clone してください。');
+    h.assert(clones.length > 0, 'リモートリポジトリの複製が見つかりません。URLを確認してください。');
     const repo = clones.find(item => item.root === h.cwd);
-    h.assert(repo, 'クローンしたフォルダに cd で移動してください（pwd で確認できます）。');
+    h.assert(repo, 'いまいる場所が、複製してできたフォルダではありません。');
     h.assert(h.read(repo.root + '/index.html') === '<h1>Portfolio</h1>\n' && h.read(repo.root + '/README.md') === '# portfolio\n', 'クローンしたフォルダにリモートのファイルがありません。');
   }
 };

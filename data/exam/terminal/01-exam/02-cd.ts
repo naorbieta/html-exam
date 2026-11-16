@@ -10,9 +10,9 @@ const grader: Grader = {
     }
   },
   check(h) {
-    h.assert(!h.exists('~/site/css/docs'), 'docs が css フォルダの中に作られています。先に cd .. で ~/site に移動してください。');
+    h.assert(!h.exists('~/site/css/docs'), 'docs が css フォルダの中にできています。docs を作る場所は ~/site です。');
     h.assert(h.isDir('~/site/docs'), '~/site に docs フォルダがありません。');
-    h.assert(h.cwd === '~/site', '最後は ~/site にいる状態にしてください（pwd で確認できます）。');
+    h.assert(h.cwd === '~/site', 'いまいる場所が ~/site ではありません。');
     h.assert(h.read('~/site/index.html') === '<h1>サイト</h1>\n' && h.read('~/site/css/style.css') === 'body { margin: 0; }\n', 'もとからあるファイルは変更しないでください。');
   }
 };

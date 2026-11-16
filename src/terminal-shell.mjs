@@ -233,11 +233,10 @@ export function createShell(initial = {}) {
   commands.clear = () => ({ out: '', err: '', code: 0, clear: true });
   commands.history = () => ok(state.history.map((line, i) => `${String(i + 1).padStart(5)}  ${line}\n`).join(''));
   commands.help = () => ok([
+    // 試験の答えにつながらないよう、オプションや使い方は載せず、使えるコマンド名だけを示します。
     '使えるコマンド:',
-    '  pwd  ls [-a] [-l]  cd  mkdir [-p]  touch  cat  echo（> >> で書き込み）',
-    '  cp [-r]  mv  rm [-r] [-f]  rmdir  clear  history  whoami',
-    '  git init / status / add / commit -m / log [--oneline] / branch / switch [-c]',
-    '      checkout [-b] / restore / clone / pull / push / fetch / remote -v',
+    '  pwd  ls  cd  mkdir  touch  cat  echo  cp  mv  rm  rmdir  clear  history  whoami',
+    '  git（init status add commit log branch switch checkout restore clone pull push fetch remote）',
     '↑↓ で入力履歴、Tab で名前の補完ができます。'
   ].join('\n') + '\n');
   commands.echo = args => {

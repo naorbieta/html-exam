@@ -27,12 +27,12 @@ const grader: Grader = {
   check(h) {
     const repo = h.repo('~/blog');
     h.assert(repo, '~/blog のリポジトリが見つかりません。');
-    h.assert(repo.log.length >= 2, 'まだコミットしていません。git add about.html のあと git commit -m "メッセージ" を実行してください。');
+    h.assert(repo.log.length >= 2, 'まだ新しいコミットがありません。');
     h.assert(repo.log[0].files['about.html'] === '<p>はじめまして。Webデザインを勉強中です。</p>\n', 'about.html の変更がコミットされていません。');
-    h.assert(repo.log.every(commit => commit.files['style.css'] === 'body { margin: 0; }\n'), 'style.css の変更までコミットされています。about.html だけを git add してください。');
-    h.assert(h.read('~/blog/style.css') === 'body { margin: 0; color: #333; }\n', 'style.css の変更が消えています。変更は残したままにしてください。');
+    h.assert(repo.log.every(commit => commit.files['style.css'] === 'body { margin: 0; }\n'), 'style.css の変更までコミットに入っています。コミットに入れるのは about.html だけです。');
+    h.assert(h.read('~/blog/style.css') === 'body { margin: 0; color: #333; }\n', '手元の style.css の変更が消えています。');
     const remote = h.remote('https://github.com/example/blog.git');
-    h.assert(remote.branches.main === repo.head, 'リモートに push されていません。git push を実行してください。');
+    h.assert(remote.branches.main === repo.head, 'リモート（origin）の main に、まだコミットが届いていません。');
   }
 };
 

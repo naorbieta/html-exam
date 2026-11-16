@@ -105,5 +105,5 @@ button:disabled{cursor:default}
 .exam-step[data-state="passed"]{background:#e6f4ea;border-color:#81c995;color:#1e4620}
 .exam-step[data-state="failed"]{background:#fce8e6;border-color:#f28b82;color:#5f2120}
 .markdown-content .question-title{font-size:19px;line-height:1.7;font-weight:600;margin:0 0 16px;letter-spacing:0}
-.markdown-content .question-code pre code{background:none!important;padding:0!important;border:0!important;color:inherit;font:inherit;white-space:inherit}
+.markdown-content .question-code pre code{background:none!important;padding:0!important;border:0!important;box-shadow:none!important;margin:0!important;border-radius:0!important;color:inherit;font:inherit;white-space:inherit}
 .answer-choice .choice-code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Noto Sans Mono CJK JP",monospace;font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere}

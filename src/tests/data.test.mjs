@@ -49,23 +49,12 @@ test('関連先のない行・重複ID・列ずれを検出する', () => {
 
 test('採用した問題・画像・採点条件をGAS向けに生成する', async () => {
   const { catalog, tables, imageData, app, previewHtml, browserModules } = await build();
-  const original = JSON.parse(await readFile(new URL('./fixtures/forms.json', import.meta.url), 'utf8')).forms;
-  const removed = new Set(['web-01']);
-  const expandedCounts = { 'quiz-04': 9, 'web-13': 6, 'web-15': 7, 'web-20': 6 };
-  const quizId = form => `${form.collection === 'web' ? 'web' : 'quiz'}-${String(form.number).padStart(2,'0')}`;
-  const retained = original.filter(form => !removed.has(quizId(form)));
-  const practice = catalog.filter(quiz => !quiz.id.startsWith('exam-'));
-  const exam = catalog.filter(quiz => quiz.id.startsWith('exam-'));
-  assert.deepEqual(practice.map(quiz => quiz.id).sort(), retained.map(quizId).sort());
-  assert.deepEqual(exam.map(quiz => quiz.id), ['exam-html', 'exam-js', 'exam-php', 'exam-git', 'exam-terminal', 'exam-design']);
-  assert.equal(exam.flatMap(quiz => quiz.items).length, 54);
+  assert.deepEqual(catalog.map(quiz => quiz.id), ['exam-html', 'exam-js', 'exam-php', 'exam-git', 'exam-terminal', 'exam-design']);
+  assert.equal(catalog.flatMap(quiz => quiz.items).length, 54);
   assert.ok(!JSON.stringify(tables).match(/owlet/i), '配信データには製品固有の記載を含めない');
   assert.doesNotMatch(JSON.stringify(tables), /ガーディアン|guardian/i);
-  const inventory=JSON.parse(await readFile(new URL('./fixtures/forms.json', import.meta.url),'utf8')).source.inventory;
-  assert.deepEqual([...original.map(f=>f.formId)].sort(),inventory.map(f=>f.formId).sort());
-  assert.deepEqual([...new Set(catalog.map(q=>q.course))],['試験 / HTML・CSS','試験 / JavaScript','試験 / PHP','試験 / Git','試験 / ターミナル操作','試験 / デザイン理論','JavaScript / 初級','HTML・CSS・Web基礎']);
-  for (const form of retained) {
-    const quiz = practice.find(q => q.id === quizId(form));
+  assert.deepEqual([...new Set(catalog.map(q => q.course))], ['試験 / HTML・CSS', '試験 / JavaScript', '試験 / PHP', '試験 / Git', '試験 / ターミナル操作', '試験 / デザイン理論']);
+  for (const quiz of catalog) {
     assert.ok(quiz.items.every(item => item.grading));
     for (const item of quiz.items) assert.doesNotMatch(lessonDescription(quiz, item), /<!doctype\s+html>|<html\b/i, `${item.id}: 参照HTMLが問題文に残っている`);
     for (const item of quiz.items.filter(item => item.type === 'code')) {
@@ -73,18 +62,14 @@ test('採用した問題・画像・採点条件をGAS向けに生成する', as
       assert.doesNotMatch(lessonDescription(quiz, item), /^\s*(?:let|const|var)\s+[\w$]+\s*(?:=[^\n]*|;)\s*$/m, `${item.id}: 編集用のJavaScriptが問題文に残っている`);
       if (item.grading.starter) assert.equal(withInitialAnswers({ items: [item] }).answers[item.id], item.grading.starter);
     }
-    assert.equal(quiz.items.length, expandedCounts[quiz.id] || form.items.filter(item => item.type !== 'image').length);
-    const sourceImages = ['web-27', 'web-32'].includes(quiz.id) ? [] : form.items.flatMap(i => i.images || []).map(i => i.path);
-    assert.deepEqual(quiz.images.map(i => i.path), sourceImages);
     for (const image of quiz.images) assert.match(imageData[image.path], /^data:image\/(png|gif|jpeg|webp);base64,/);
   }
-  assert.equal(practice.flatMap(quiz=>quiz.items).length, retained.reduce((sum, form) => sum + (expandedCounts[quizId(form)] || form.items.filter(item => item.type !== 'image').length),0));
   assert.equal(Object.keys(imageData).length, new Set(catalog.flatMap(quiz => quiz.images.map(image => image.path))).size);
   const { readdir } = await import('node:fs/promises');
   const appFiles = (await readdir(app)).sort();
   assert.ok(appFiles.includes('Catalog.html'));
   const imageFileNames = appFiles.filter(name => /^Images\d+\.html$/.test(name));
-  assert.ok(imageFileNames.length > 0);
+  assert.equal(imageFileNames.length > 0, Object.keys(imageData).length > 0);
   assert.deepEqual(appFiles.filter(name => name !== 'Catalog.html' && !/^Images\d+\.html$/.test(name)), ['Client.html', 'Code.gs', 'Grader.html', 'Index.html', 'Styles.html', 'appsscript.json']);
   const bundled = parseJsonHtml(await readFile(`${app}/Catalog.html`, 'utf8'));
   assert.deepEqual(bundled.catalog.map(quiz => quiz.id), catalog.map(quiz => quiz.id));

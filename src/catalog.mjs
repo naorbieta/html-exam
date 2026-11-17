@@ -11,7 +11,7 @@ export function catalogFromTables(tables) {
     });
   };
   const quizzes = read('quizzes').map(row => ({
-    id: row.id, number: Number(row.number), title: row.title, description: row.description, course: row.course || 'JavaScript / 初級',
+    id: row.id, number: Number(row.number), title: row.title, description: row.description, course: row.course || '試験',
     items: [], images: []
   }));
   const byQuiz = new Map(quizzes.map(q => [q.id, q]));

@@ -7,10 +7,11 @@ import { changeAnswer, recordGrade, isExam, examExplanation, itemResults, nextUn
 const catalog = catalogFromTables(await readAuthoringData());
 const exams = catalog.filter(quiz => quiz.id.startsWith('exam-'));
 
-test('試験は6カテゴリで、どれも「試験」として好きな順に解ける', () => {
+test('カタログは試験6カテゴリだけで、どれも好きな順に解ける', () => {
+  assert.equal(catalog.length, 6);
   assert.equal(exams.length, 6);
-  assert.ok(exams.every(isExam));
-  assert.ok(catalog.filter(quiz => !quiz.id.startsWith('exam-')).every(quiz => !isExam(quiz)));
+  assert.ok(catalog.every(isExam));
+  assert.equal(catalog.filter(quiz => !quiz.id.startsWith('exam-')).length, 0);
 });
 
 test('試験では、あとの設問を先に解いても、前の未確定の設問を変えても採点が消えない', () => {

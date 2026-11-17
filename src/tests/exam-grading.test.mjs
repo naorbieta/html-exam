@@ -18,11 +18,10 @@ function exampleOf(item) {
   return item.type === 'checkboxes' ? JSON.parse(item.grading.example) : item.grading.example;
 }
 
-test('試験カタログは6カテゴリ・54問で練習データと分かれている', () => {
-  assert.deepEqual(exam.map(quiz => quiz.id), ['exam-html', 'exam-js', 'exam-php', 'exam-git', 'exam-terminal', 'exam-design']);
+test('カタログは試験6カテゴリ・54問だけである', () => {
+  assert.deepEqual(catalog.map(quiz => quiz.id), ['exam-html', 'exam-js', 'exam-php', 'exam-git', 'exam-terminal', 'exam-design']);
+  assert.deepEqual(exam.map(quiz => quiz.id), catalog.map(quiz => quiz.id));
   assert.equal(items.length, 54);
-  assert.ok(catalog.some(quiz => quiz.id === 'quiz-01'), '練習用データは残す');
-  assert.ok(catalog.some(quiz => quiz.course === 'HTML・CSS・Web基礎'), '練習用データは残す');
 });
 
 test('ターミナル操作とGitは、すべてターミナルに入力して答える問題になっている', () => {

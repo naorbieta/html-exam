@@ -71,22 +71,23 @@ function filesFor(catalog, imageData = {}) {
 test('アプリに埋め込んだ問題と画像を読み、差し替えると載せ替わる', async () => {
   const { imageFiles, ...tables } = await readAuthoringData();
   const catalog = catalogFromTables(tables);
-  const imageData = { 'images/quiz-01-01.png': 'data:image/png;base64,AAAA' };
-  const app = server({ files: filesFor(catalog, imageData) });
+  const samplePath = 'images/sample.png';
+  const withImage = catalog.map((quiz, index) => index === 0 ? { ...quiz, images: [{ path: samplePath, alt: '例' }] } : quiz);
+  const imageData = { [samplePath]: 'data:image/png;base64,AAAA' };
+  const app = server({ files: filesFor(withImage, imageData) });
   app.context.setup_();
   assert.ok(app.sheets.get('answers'));
   assert.equal(app.sheets.get('answers').frozenRows, 1);
   assert.deepEqual(JSON.parse(JSON.stringify(app.sheets.get('answers').rows[0])), ['記録ID', 'タイムスタンプ', 'ユーザー', 'セッションID', 'レッスンID', '問題ID', '回答内容', '正誤', 'フィードバック']);
   const loaded = app.context.getCatalog();
   assert.deepEqual(JSON.parse(JSON.stringify(loaded.map(quiz => quiz.id))), catalog.map(quiz => quiz.id));
-  const hello = loaded.find(quiz => quiz.id === 'quiz-01').items[0];
-  assert.equal(hello.grading.kind, 'code');
-  assert.match(hello.grading.config.check, /Hello World/);
-  const images = app.context.getQuizImages('quiz-01');
-  assert.equal(images['images/quiz-01-01.png'], 'data:image/png;base64,AAAA');
+  assert.ok(loaded.every(quiz => quiz.id.startsWith('exam-')));
+  assert.ok(loaded[0].items[0].grading);
+  const images = app.context.getQuizImages(catalog[0].id);
+  assert.equal(images[samplePath], 'data:image/png;base64,AAAA');
 
   const swapped = [{
-    id: 'new-1', number: 1, title: '差し替えレッスン', description: '導入', course: 'JavaScript / 初級',
+    id: 'new-1', number: 1, title: '差し替えレッスン', description: '導入', course: '試験 / 確認',
     images: [],
     items: [{ id: 'new-a', type: 'short_text', title: '新しい問い', description: '', required: true, grading: { kind: 'text', config: { accept: ['はい'] }, example: 'はい', feedback: 'ちがいます' } }]
   }];

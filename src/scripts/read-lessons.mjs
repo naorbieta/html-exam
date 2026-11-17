@@ -4,11 +4,6 @@ import { transform } from 'esbuild';
 import { pathToFileURL } from 'node:url';
 import { parseFrontmatter } from './frontmatter.mjs';
 
-export const practiceCourseFolders = {
-  js: 'JavaScript / 初級',
-  'html-css': 'HTML・CSS・Web基礎'
-};
-
 export const examCourseFolders = {
   'html-css': '試験 / HTML・CSS',
   javascript: '試験 / JavaScript',
@@ -17,8 +12,6 @@ export const examCourseFolders = {
   terminal: '試験 / ターミナル操作',
   design: '試験 / デザイン理論'
 };
-
-export const courseFolders = practiceCourseFolders;
 
 export const answerTypes = {
   '短文': 'short_text',
@@ -168,8 +161,7 @@ async function listLessonsIn(base, folders, found) {
 async function listLessonDirs(root) {
   const found = [];
   await listLessonsIn(path.join(root, 'data', 'exam'), examCourseFolders, found);
-  await listLessonsIn(path.join(root, 'data', 'test'), practiceCourseFolders, found);
-  if (!found.length) throw new Error('data/exam または data/test にレッスンフォルダがありません。');
+  if (!found.length) throw new Error('data/exam にレッスンフォルダがありません。');
   return found;
 }
 

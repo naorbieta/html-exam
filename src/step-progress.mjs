@@ -35,21 +35,39 @@ export function isExam(quiz) {
   return String(quiz?.course || '').startsWith('試験');
 }
 
-// 試験で不正解のときに見せる文。答えそのもの（模範のコマンドや正しい選択肢）は出さず、
-// ターミナル・コードでは「いまの状態のどこが条件に合わないか」だけを伝えます。
-export function examFeedback(item, graded) {
-  if (!graded || graded.passed) return '';
-  if (!['terminal', 'code'].includes(item?.type)) return '';
-  const failed = (graded.checks || []).filter(check => !check.passed).map(check => check.label).find(Boolean);
-  if (failed) return failed;
-  return graded.feedback && graded.feedback !== item.grading?.feedback ? graded.feedback : '';
+// 試験では、回答前に解説を出さず、採点して確定したあと（次へ進む前）に出します。
+// 選択問題は feedback（解説）を、ターミナル・コードはそれに加えて、満たせなかった条件の説明も出します。
+export function examExplanation(item, graded) {
+  if (!graded) return '';
+  const parts = [];
+  if (!graded.passed && ['terminal', 'code'].includes(item?.type)) {
+    for (const check of graded.checks || []) {
+      if (!check.passed && check.label) parts.push(check.label);
+    }
+  }
+  const explanation = item?.grading?.feedback || '';
+  if (explanation) parts.push(explanation);
+  return [...new Set(parts)].join('\n\n');
+}
+
+// 現在の設問の次から探し、未回答（未採点）の設問があればその位置を返します。すべて確定していれば -1 です。
+export function nextUnansweredIndex(quiz, draft, fromIndex = 0) {
+  const results = itemResults(draft);
+  const total = quiz.items.length;
+  if (!total) return -1;
+  for (let step = 1; step <= total; step++) {
+    const index = (fromIndex + step) % total;
+    if (!results[quiz.items[index].id]) return index;
+  }
+  return -1;
 }
 
 export function changeAnswer(quiz, draft, item, value) {
+  if (isExam(quiz) && itemResults(draft)[item.id]) return draft;
   const index = quiz.items.indexOf(item);
   const results = itemResults(draft);
   // 練習: その設問と後続の採点を取り消す（後続は前の回答を引き継ぐことがあるため）。
-  // 試験: 設問どうしは独立しているので、変更した設問の採点だけを取り消す。
+  // 試験: 確定前なら、変更した設問の採点だけを取り消す。確定後の回答は変えられません。
   const kept = isExam(quiz)
     ? quiz.items.filter(question => question !== item && results[question.id])
     : quiz.items.slice(0, index).filter(question => results[question.id]);
@@ -63,6 +81,7 @@ export function changeAnswer(quiz, draft, item, value) {
 }
 
 export function recordGrade(quiz, draft, graded) {
+  if (isExam(quiz) && itemResults(draft)[graded.itemId]) return draft;
   const results = { ...itemResults(draft), [graded.itemId]: graded };
   const items = quiz.items.map(item => results[item.id]);
   return {

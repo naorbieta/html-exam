@@ -1,6 +1,6 @@
-# Web Practice
+# Web試験
 
-JavaScript、HTML・CSS、Web制作の基礎問題を、画面上で1問ずつ回答する学習アプリです。問題文（設問・コード・図）を左のサイドに表示し、右側で回答・採点して次へ進みます。試験は設問番号から好きな順に解けます。各設問は1回だけ採点し、確定後に解説を見て「次へ」で次の未回答へ進みます。回答済みの設問は番号から見返せますが、内容は変えられません。記述・選択問題は通常の回答欄、コード問題は言語に対応したTutorialKitのエディタを使います。スマホでは「問題」「解答」で切り替えます。回答・採点結果・途中の進捗を保存します。練習では、前の設問に戻って修正できます。
+HTML・CSS、JavaScript、PHP、Git、ターミナル、デザインの試験を、画面上で1問ずつ回答する試験アプリです。問題文（設問・コード・図）を左のサイドに表示し、右側で回答・採点します。設問番号から好きな順に解けます。各設問は1回だけ採点し、確定後に解説を見て「次へ」で次の未回答へ進みます。回答済みの設問は番号から見返せますが、内容は変えられません。記述・選択問題は通常の回答欄、コード問題は言語に対応したTutorialKitのエディタを使います。スマホでは「問題」「解答」で切り替えます。回答・採点結果・途中の進捗を保存します。
 
 ## ローカルで開く
 
@@ -15,7 +15,7 @@ npm run dev
 
 ## GASへ配置する
 
-問題データは `data/exam/`（試験）と `data/test/`（練習）が正本です。ビルドすると設問・採点・参考画像が `dist/app` の中（`Catalog.html` と分割した画像HTML）に埋め込まれ、アプリと一緒にデプロイされます。画面では試験が先に並び、練習用レッスンはその後ろに残ります。スプレッドシートには回答ログだけを記録します。
+問題データは `data/exam/` が正本です。ビルドすると設問・採点が `dist/app` の中（`Catalog.html` と、画像がある場合は分割した画像HTML）に埋め込まれ、アプリと一緒にデプロイされます。スプレッドシートには回答ログだけを記録します。
 
 手元で初めて出すときは、Apps Script のスクリプトIDを `.clasp.json` に書き、`npx clasp login` のあと `npm run deploy` を実行します。詳細は[GASへのデプロイ](docs/deploy.md)を参照してください。
 
@@ -30,7 +30,7 @@ GASではHTML内にCSSとJavaScriptを埋め込んで配信します。画面と
 
 ## 問題を追加・編集する
 
-正本は `data/exam/`（試験）と `data/test/`（練習）以下のMarkdownとTypeScriptです。編集後に `npm run build` すると、採点TSがJavaScriptへコンパイルされ、問題データごと `dist/app` に埋め込まれます。
+正本は `data/exam/` 以下のMarkdownとTypeScriptです。編集後に `npm run build` すると、採点TSがJavaScriptへコンパイルされ、問題データごと `dist/app` に埋め込まれます。
 
 フォルダは1レッスン単位です。試験はカテゴリごとに1レッスンへまとめています。
 
@@ -41,21 +41,19 @@ data/exam/php/01-exam/
 data/exam/git/01-exam/
 data/exam/terminal/01-exam/
 data/exam/design/01-exam/
-data/test/js/01-hajimete-no-javascript/
   lesson.md          レッスンの導入文と参考画像
   01-code.md         設問（問題文とメタデータ）
   01-code.ts         採点（コード問題など、判定が必要なとき）
-  images/            素材
-data/test/html-css/10-html-structure/
+  images/            素材（使うとき）
 ```
 
-`data/exam/` の各フォルダは「試験 / HTML・CSS」など6つの試験カテゴリに、`data/test/js/` は「JavaScript / 初級」、`data/test/html-css/` は「HTML・CSS・Web基礎」に対応します。具体的な書き方は[問題の編集手順](docs/editing-questions.md)を参照してください。
+`data/exam/` の各フォルダは「試験 / HTML・CSS」など6つの試験カテゴリに対応します。具体的な書き方は[問題の編集手順](docs/editing-questions.md)を参照してください。
 
 エディタ、プレビュー、採点エンジンはアプリ側（`src/`）にあり、各問題の採点TSはそれを呼び出して判定します。コードを書く問題は、模範解答の文字列と一致するかではなく、実行・描画した結果が条件を満たすかで判定します。レッスンの主題が特定の構文そのもの（例: `switch` 文を使う、テンプレートリテラルを使う）である場合に限り、ソース上の構文チェックを併用します。
 
 HTMLのstyle要素は、エディタではindex.htmlとstyle.cssに分けて表示します。両ファイルの編集内容を保存し、採点時に結合します。コード問題はエディタの下にプレビューを表示します。JavaScriptは「実行」、HTML/CSSは編集後に更新されます。表示結果を予想する問題では、参照コードだけを表示します。コードを編集して調べる実習は「コード」「プレビュー」で表示を切り替えます。
 
-学習用の採点結果はブラウザーで計算し、GASへ保存します。JavaScriptはWorkerで実行し、CSSは通信とスクリプト実行を制限したiframeで描画します。
+採点結果はブラウザーで計算し、GASへ保存します。JavaScriptはWorkerで実行し、CSSは通信とスクリプト実行を制限したiframeで描画します。
 
 ## ソースと確認
 
@@ -64,7 +62,6 @@ src/                 画面・採点エンジン・GASサーバー
 src/scripts/         ビルドとローカル表示
 src/tests/           テスト
 data/exam/           試験問題の正本（Markdown・TypeScript）
-data/test/           練習問題の正本（Markdown・TypeScript・素材）
 data/grader.ts       採点TS用の型
 dist/app/            GASへ配置するアプリと問題データ（ビルド成果）
 docs/                編集手順などの文書
@@ -78,7 +75,7 @@ npm run build
 npm run deploy
 ```
 
-`npm run check:browser`で表示されるURLをブラウザーで開き、「検証する」を押すと、表示問題の解答例と誤答を実際に描画して検証します。検証ツールの実習では、本文・CSSの変更、回答の保存と復元、リセット後の再採点も検証します。結果は画面と一時フォルダ内の`results.txt`に出力します。あわせて `src/scripts/check-terminal-ui.mjs` がヘッドレスChromeで試験のターミナル問題に実際にキー入力し（Enter・Tab補完・↑履歴・日本語入力の変換中のEnter・やり直す）、模範解答が正解になることを確認します（`npm run check:terminal` で単独実行もできます）。
+`npm run check:browser`で表示されるURLをブラウザーで開き、「検証する」を押すと、表示問題の解答例と誤答を実際に描画して検証します。結果は画面と一時フォルダ内の`results.txt`に出力します。あわせて `src/scripts/check-terminal-ui.mjs` がヘッドレスChromeで試験のターミナル問題に実際にキー入力し（Enter・Tab補完・↑履歴・日本語入力の変換中のEnter・やり直す）、模範解答が正解になることを確認します（`npm run check:terminal` で単独実行もできます）。
 
 `npm run check:grading`は全設問について、正答・書式を変えた正答・空欄・初期コード・不正な選択などを検証します。表示されたURLで「検証する」を押すと、結果を画面と一時フォルダ内の`results.json`に出力します。
 

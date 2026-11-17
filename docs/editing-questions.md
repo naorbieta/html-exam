@@ -1,6 +1,6 @@
 # 問題の編集手順
 
-正本は `data/exam/`（試験）と `data/test/`（練習）のレッスンフォルダです。編集したら `npm run build` で `dist/app` に問題データを埋め込みます。画面では試験が先に表示されます。GASへ出す手順は[GASへのデプロイ](deploy.md)を参照してください。
+正本は `data/exam/` のレッスンフォルダです。編集したら `npm run build` で `dist/app` に問題データを埋め込みます。GASへ出す手順は[GASへのデプロイ](deploy.md)を参照してください。
 
 ## レッスンの置き方
 
@@ -11,8 +11,6 @@ data/exam/php/01-exam/                      試験 / PHP
 data/exam/git/01-exam/                      試験 / Git
 data/exam/terminal/01-exam/                 試験 / ターミナル操作
 data/exam/design/01-exam/                   試験 / デザイン理論
-data/test/js/01-hajimete-no-javascript/     JavaScript / 初級（練習）
-data/test/html-css/10-html-structure/       HTML・CSS・Web基礎（練習）
 ```
 
 フォルダ名は `{レッスン番号2桁}-{スラッグ}` にします。番号は分野ごとに付け、欠番があってもそのまま使います。各フォルダには `lesson.md` と、設問ごとの Markdown を置きます。採点が必要な設問には、同じ名前の TypeScript を添えます。画像は `images/` に入れ、`lesson.md` から参照します。
@@ -21,14 +19,14 @@ data/test/html-css/10-html-structure/       HTML・CSS・Web基礎（練習）
 
 ```markdown
 ---
-id: quiz-01
-course: JavaScript / 初級
+id: exam-js
+course: 試験 / JavaScript
 number: 1
-title: はじめてのJavaScript
+title: JavaScript
 images:
-  - file: images/quiz-01-01.png
-    path: images/quiz-01-01.png
-    alt: 第1問 はじめてのJavaScriptの参考画像
+  - file: images/example.png
+    path: images/example.png
+    alt: 参考画像
 ---
 
 導入文をここに書きます。
@@ -40,17 +38,19 @@ images:
 
 ```markdown
 ---
-id: quiz-03-answer-1
+id: exam-js-01
 number: 1
-type: 短文
-title: |-
-  ①
-  console.log(8 + 2);
-  コンソールに出力される結果は何でしょう？
+type: 単一選択
+title: 次のうち、正しい説明はどれですか？
 required: true
+choices:
+  - "説明A"
+  - "説明B"
+  - "説明C"
+  - "説明D"
 answers:
-  - "10"
-feedback: 出力結果や用語をもう一度確認してください。
+  - "説明A"
+feedback: 解説をここに書きます。採点後に表示されます。
 ---
 ```
 
@@ -92,9 +92,9 @@ feedback: 出力結果や用語をもう一度確認してください。
 
 設問文（`title`）でも `` `コード` `` と `**強調**` が使えます。
 
-### 試験の問題を書くときの決まり
+### 問題を書くときの決まり
 
-- 試験（`data/exam/`）は、設問番号から好きな順に解けます。各設問は1回だけ回答でき、採点後は確定します。回答済みの番号から見返せますが、やり直すことはできません。
+- 設問番号から好きな順に解けます。各設問は1回だけ回答でき、採点後は確定します。回答済みの番号から見返せますが、やり直すことはできません。
 - 採点したあとに正誤と `feedback`（解説）を表示し、「次へ」で次の未回答へ進みます。解説は回答前には出しません。ターミナル・コード問題では、満たせなかった条件の説明（`h.assert` のメッセージ）もあわせて出します。メッセージには**答えのコマンドや書き方を書かず**、「いまの状態のどこが条件と違うか」を書きます。
 - ターミナル・Git の問題文には、使うコマンドを書かず、目指す状態を書きます（テストで確認します）。
 - 順番が関係ない答えは、`複数選択`（正解を複数書く）にします。選んだ順番に関係なく採点されます。

@@ -1,6 +1,6 @@
 function doGet() {
   return HtmlService.createTemplateFromFile('Index').evaluate()
-    .setTitle('Web Practice').addMetaTag('viewport', 'width=device-width, initial-scale=1');
+    .setTitle('Web試験').addMetaTag('viewport', 'width=device-width, initial-scale=1');
 }
 
 function include_(name) {

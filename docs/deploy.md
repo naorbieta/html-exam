@@ -1,6 +1,6 @@
 # GASへのデプロイ
 
-問題の正本は `data/exam/`（試験）と `data/test/`（練習）です。`npm run build` で `dist/app` にアプリ本体と問題データ（Catalog.html と分割した画像HTML）を出力します。スプレッドシートには回答ログだけを記録します。
+問題の正本は `data/exam/` です。`npm run build` で `dist/app` にアプリ本体と問題データ（Catalog.html と、画像がある場合は分割した画像HTML）を出力します。スプレッドシートには回答ログだけを記録します。
 
 ## 手元で初めてデプロイする
 

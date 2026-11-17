@@ -18,8 +18,8 @@ const fields = [
   { id: 'reason', type: 'paragraph', title: '理由は？', description: '', required: true },
   { id: 'kind', type: 'multiple_choice', title: 'データ型は？', description: '', required: true, options: ['数値', '文字列'] }
 ].map(field => ({ ...field, grading: {} }));
-function render(items, answers = {}, saving = false, index = 0) {
-  const markup = renderToStaticMarkup(React.createElement(AnswerWorkspace, { quiz: { id: 'fixture', number: 1, items }, item: items[index], answers, theme: 'light', saving, onChange() {}, onSubmit() {} }));
+function render(items, answers = {}, saving = false, index = 0, locked = false) {
+  const markup = renderToStaticMarkup(React.createElement(AnswerWorkspace, { quiz: { id: 'fixture', number: 1, items }, item: items[index], answers, theme: 'light', saving, locked, onChange() {}, onSubmit() {} }));
   return parseHTML(`<html><body>${markup}</body></html>`).document;
 }
 
@@ -103,6 +103,17 @@ test('予測用の参照コードにはプレビューを出さず、編集す�
 test('採点中はフォームへの入力を無効にする', () => {
   const doc = render(fields, {}, true);
   assert.ok(doc.querySelector('fieldset').hasAttribute('disabled'));
+});
+
+test('確定した設問は入力を無効にし、コードはプレビュー付きの閲覧だけにする', () => {
+  const lockedChoice = render(fields, { kind: '数値' }, false, 2, true);
+  assert.ok(lockedChoice.querySelector('fieldset').hasAttribute('disabled'));
+  assert.equal(lockedChoice.querySelector('input[checked]').value, '数値');
+  const code = { id: 'program', type: 'code', title: '計算する関数', grading: {} };
+  const lockedCode = render([code], { program: 'return 10;' }, false, 0, true);
+  assert.match(lockedCode.body.textContent, /プレビュー/);
+  assert.equal(lockedCode.querySelector('iframe[title="コードのプレビュー"]').getAttribute('sandbox'), 'allow-scripts');
+  assert.ok([...lockedCode.querySelectorAll('button')].every(button => button.textContent !== 'ひな形を入力'));
 });
 
 test('ファイルを選ぶ問題ではコードエディタを表示せず、選択用の入力欄を表示する', () => {

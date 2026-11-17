@@ -8,7 +8,7 @@ import { TerminalAnswer } from './terminal-workspace.jsx';
 import { codeSource } from './editor-files.mjs';
 import { lessonDescription, referenceSource } from './lesson-content.mjs';
 import { TutorialLayout, topBarButton } from './tutorial-layout.jsx';
-import { withInitialAnswers, itemResults, changeAnswer, recordGrade, isExam, examFeedback } from './step-progress.mjs';
+import { withInitialAnswers, itemResults, changeAnswer, recordGrade, isExam, examExplanation, nextUnansweredIndex } from './step-progress.mjs';
 import { QuestionBody, Inline } from './question-body.jsx';
 import './styles.css';
 
@@ -76,6 +76,7 @@ function App() {
   }
   function edit(editedItem, value) {
     const state = practiceRef.current, data = withInitialAnswers(current, state.quizzes[current.id]);
+    if (isExam(current) && itemResults(data)[editedItem.id]) return;
     if (data.answers[editedItem.id] === value) return;
     commit({ ...state, quizzes: { ...state.quizzes, [current.id]: { ...changeAnswer(current, data, editedItem, value), attemptId: crypto.randomUUID() } } });
     setSaveStatus(''); setError('');
@@ -113,12 +114,19 @@ function App() {
     requestAnimationFrame(() => { document.getElementById('answer-prompt')?.focus(); document.querySelector('main')?.scrollTo(0, 0); });
   }
   function next() {
-    if (!graded?.passed && !isExam(current)) return;
+    if (isExam(current)) {
+      const index = nextUnansweredIndex(current, draft, activeIndex);
+      if (index >= 0 && index !== activeIndex) openStep(index);
+      else if (index < 0 && catalog[quizIndex + 1]) openQuiz(catalog[quizIndex + 1]);
+      return;
+    }
+    if (!graded?.passed) return;
     if (activeIndex < current.items.length - 1) openStep(activeIndex + 1);
     else if (catalog[quizIndex + 1]) openQuiz(catalog[quizIndex + 1]);
   }
   async function submit(event, collectedAnswer) {
     event.preventDefault(); if (busy.current) return;
+    if (isExam(current) && itemResults(withInitialAnswers(current, practiceRef.current.quizzes[current.id] || { answers: {} }))[item.id]) return;
     if (collectedAnswer && JSON.stringify(collectedAnswer) !== JSON.stringify(practiceRef.current.quizzes[current.id]?.answers[item.id])) edit(item, collectedAnswer);
     const state = practiceRef.current, data = withInitialAnswers(current, state.quizzes[current.id] || { answers: {}, attemptId: crypto.randomUUID() });
     const value = data.answers[item.id];
@@ -185,21 +193,24 @@ function App() {
   const answer = <>
     {!pageExercise && choiceHint && <p className="text-sm text-tk-text-secondary mb-3">{choiceHint}</p>}
     {item.type === 'terminal'
-      ? <TerminalAnswer item={item} value={draft.answers[item.id]} saving={saving}
+      ? <TerminalAnswer item={item} value={draft.answers[item.id]} saving={saving} locked={exam && !!graded}
         onChange={(question, value) => { if (!busy.current) edit(question, value); }} onSubmit={submit} />
-      : <AnswerWorkspace quiz={current} item={item} answers={draft.answers} theme={theme} saving={saving}
+      : <AnswerWorkspace quiz={current} item={item} answers={draft.answers} theme={theme} saving={saving} locked={exam && !!graded}
         onChange={(question, value) => { if (!busy.current) edit(question, value); }} onSubmit={submit} />}
   </>;
   const stepState = (question, index) => results[question.id] ? (results[question.id].passed ? 'passed' : 'failed') : draft.answers[question.id] !== undefined && index !== activeIndex ? 'answered' : 'open';
   const progressBar = exam
-    ? <div className="exercise-progress"><nav className="exam-steps" aria-label="設問の一覧（好きな順に解けます）">
+    ? <div className="exercise-progress"><nav className="exam-steps" aria-label="設問の一覧（未回答は好きな順、回答済みは確認のみ）">
       {current.items.map((question, index) => <button key={question.id} type="button" className="exam-step" data-state={stepState(question, index)}
         aria-current={index === activeIndex ? 'step' : undefined} aria-label={`第${index + 1}問`} disabled={saving} onClick={() => openStep(index)}>{index + 1}</button>)}
     </nav></div>
     : <div className="exercise-progress"><progress aria-label="問題の進捗" value={activeIndex + (graded?.passed ? 1 : 0)} max={current.items.length} /><span>{activeIndex + 1} / {current.items.length}</span></div>;
-  const hasNext = activeIndex < current.items.length - 1 || Boolean(catalog[quizIndex + 1]);
-  // 試験では、正誤だけを示し、答えにつながる解説は出しません（ターミナル・コードは状態の説明だけ）。
-  const feedbackText = graded && !graded.passed ? (exam ? examFeedback(item, graded) : graded.feedback) : '';
+  const nextOpen = exam ? nextUnansweredIndex(current, draft, activeIndex) : -1;
+  const hasNext = exam
+    ? (graded ? nextOpen >= 0 || Boolean(draft.result && catalog[quizIndex + 1]) : nextOpen >= 0 && nextOpen !== activeIndex)
+    : activeIndex < current.items.length - 1 || Boolean(catalog[quizIndex + 1]);
+  // 試験では、採点して確定したあと（次へ進む前）に正誤と解説を出します。回答前には出しません。
+  const feedbackText = !graded ? '' : exam ? examExplanation(item, graded) : (graded.passed ? '' : graded.feedback);
   return <div className="h-full" onClick={navigate}>
     <TutorialLayout title="Web制作" mobileView={mobileView} setMobileView={setMobileView}
       actions={<>
@@ -222,8 +233,8 @@ function App() {
             {error && <p className="text-tk-text-negative" role="alert">{error}</p>}
             {graded && <>
               <p className={`flex items-center gap-2 font-medium ${graded.reviewRequired ? 'text-tk-text-secondary' : graded.passed ? 'text-tk-text-positive' : 'text-tk-text-negative'}`}><span className={graded.reviewRequired ? 'i-ph-clock' : graded.passed ? 'i-ph-check-circle' : 'i-ph-x-circle'} />{graded.reviewRequired ? '確認待ち' : graded.passed ? '正解' : '不正解'}</p>
-              {feedbackText && <p className="source-prose mt-2 leading-6">{feedbackText}</p>}
-              {draft.result && activeIndex === current.items.length - 1 && draft.result.total > 0 && <p className="text-sm mt-2">{draft.result.correct} / {draft.result.total} 正解</p>}
+              {feedbackText && <p className="source-prose mt-2 leading-6 whitespace-pre-wrap">{feedbackText}</p>}
+              {draft.result && draft.result.total > 0 && <p className="text-sm mt-2">{draft.result.correct} / {draft.result.total} 正解</p>}
             </>}
             <span className="text-xs text-tk-text-secondary" role="status">{saveStatus}</span>
           </div>
@@ -231,7 +242,6 @@ function App() {
             {activeIndex > 0 && <Button variant="secondary" type="button" disabled={saving} onClick={() => openStep(activeIndex - 1)}>戻る</Button>}
             {exam ? <>
               {!graded && <Button key="grade" type="submit" form="answer-form" disabled={saving}>{saving ? '処理中…' : '採点する'}</Button>}
-              {graded && !graded.passed && <Button key="regrade" variant="secondary" type="submit" form="answer-form" disabled={saving}>{saving ? '処理中…' : 'もう一度採点する'}</Button>}
               {hasNext && <Button key="continue" variant={graded ? undefined : 'secondary'} type="button" disabled={saving} onClick={event => { event.preventDefault(); next(); }}>{graded ? '次へ' : 'あとで解く（次へ）'}</Button>}
             </> : graded?.passed && !error ? hasNext && <Button key="continue" type="button" onClick={event => { event.preventDefault(); next(); }}>次へ</Button> : <Button key="grade" type="submit" form="answer-form" disabled={saving}>{saving ? '処理中…' : item.grading.kind === 'manual' ? '回答を保存' : graded ? 'もう一度採点する' : '採点する'}</Button>}
           </div>

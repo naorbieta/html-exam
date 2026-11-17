@@ -23,7 +23,7 @@ function Prompt({ text }) {
   return <><span className="terminal-prompt-user">{match[1]}</span>:<span className="terminal-prompt-path">{match[2]}</span>$ </>;
 }
 
-export function TerminalWorkspace({ item, value, saving, onChange }) {
+export function TerminalWorkspace({ item, value, saving, onChange, locked = false }) {
   const initial = item.grading?.config?.initial || {};
   const start = useRef(null);
   if (!start.current) {
@@ -47,6 +47,7 @@ export function TerminalWorkspace({ item, value, saving, onChange }) {
   const report = (nextCommands, nextResets) => onChange?.(terminalValue(nextCommands, nextResets, shellRef.current.snapshot()));
 
   function execute() {
+    if (locked) return;
     const shell = shellRef.current, line = input, prompt = shell.prompt();
     historyIndex.current = null; draft.current = ''; setInput('');
     if (!line.trim()) { setLines(previous => [...previous, { prompt, command: line, output: '' }]); return; }
@@ -75,7 +76,7 @@ export function TerminalWorkspace({ item, value, saving, onChange }) {
   }
   function onKeyDown(event) {
     if (event.nativeEvent.isComposing || event.keyCode === 229 || composing.current) return;
-    if (event.key === 'Enter') { event.preventDefault(); if (!saving) execute(); return; }
+    if (event.key === 'Enter') { event.preventDefault(); if (!saving && !locked) execute(); return; }
     if (event.key === 'Tab' && !event.shiftKey) { event.preventDefault(); complete(); return; }
     if (event.key === 'ArrowUp') { event.preventDefault(); showHistory(-1); return; }
     if (event.key === 'ArrowDown') { event.preventDefault(); showHistory(1); return; }
@@ -87,6 +88,7 @@ export function TerminalWorkspace({ item, value, saving, onChange }) {
     }
   }
   function reset() {
+    if (locked) return;
     shellRef.current = createShell(initial);
     const nextResets = resets + 1;
     setLines([]); setCommands([]); setInput(''); setNotice(''); setResets(nextResets);
@@ -97,8 +99,8 @@ export function TerminalWorkspace({ item, value, saving, onChange }) {
 
   return <div className="terminal-workspace">
     <div className="terminal-toolbar">
-      <span className="text-tk-text-secondary">コマンドを入力して Enter で実行します（入力 {commands.length} 回）</span>
-      <Button variant="secondary" type="button" disabled={saving} onClick={reset}>やり直す（初期状態に戻す）</Button>
+      <span className="text-tk-text-secondary">{locked ? '回答済みのターミナルです（入力は確認のみ）。' : `コマンドを入力して Enter で実行します（入力 ${commands.length} 回）`}</span>
+      {!locked && <Button variant="secondary" type="button" disabled={saving} onClick={reset}>やり直す（初期状態に戻す）</Button>}
     </div>
     <div ref={screenRef} className="terminal-screen" data-terminal-screen onClick={() => { if (!window.getSelection()?.toString()) inputRef.current?.focus(); }}>
       <p className="terminal-line terminal-welcome">{welcome}</p>
@@ -109,7 +111,7 @@ export function TerminalWorkspace({ item, value, saving, onChange }) {
       {notice && <p className="terminal-line terminal-notice" role="alert">{notice}</p>}
       <div className="terminal-input-row">
         <label htmlFor={`answer-${item.id}`} className="terminal-line"><Prompt text={shellRef.current.prompt()} /></label>
-        <input ref={inputRef} id={`answer-${item.id}`} className="terminal-input" data-terminal-input value={input} disabled={saving}
+        <input ref={inputRef} id={`answer-${item.id}`} className="terminal-input" data-terminal-input value={input} disabled={saving || locked} readOnly={locked}
           autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck={false} aria-label="ターミナルの入力"
           onChange={event => { setInput(event.target.value); }}
           onCompositionStart={() => { composing.current = true; }}
@@ -120,8 +122,8 @@ export function TerminalWorkspace({ item, value, saving, onChange }) {
   </div>;
 }
 
-export function TerminalAnswer({ item, value, saving, onChange, onSubmit }) {
+export function TerminalAnswer({ item, value, saving, onChange, onSubmit, locked = false }) {
   return <form id="answer-form" noValidate className="terminal-form" aria-label="解答" aria-busy={saving} onSubmit={event => onSubmit(event)}>
-    <TerminalWorkspace item={item} value={value} saving={saving} onChange={next => onChange(item, next)} />
+    <TerminalWorkspace item={item} value={value} saving={saving} locked={locked} onChange={next => onChange(item, next)} />
   </form>;
 }

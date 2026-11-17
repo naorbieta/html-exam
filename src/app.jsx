@@ -8,7 +8,7 @@ import { TerminalAnswer } from './terminal-workspace.jsx';
 import { codeSource } from './editor-files.mjs';
 import { lessonDescription, referenceSource } from './lesson-content.mjs';
 import { TutorialLayout, topBarButton } from './tutorial-layout.jsx';
-import { withInitialAnswers, itemResults, changeAnswer, recordGrade, isExam, examExplanation, nextUnansweredIndex } from './step-progress.mjs';
+import { withInitialAnswers, itemResults, changeAnswer, recordGrade, examExplanation, nextUnansweredIndex } from './step-progress.mjs';
 import { QuestionBody, Inline } from './question-body.jsx';
 import './styles.css';
 
@@ -76,7 +76,7 @@ function App() {
   }
   function edit(editedItem, value) {
     const state = practiceRef.current, data = withInitialAnswers(current, state.quizzes[current.id]);
-    if (isExam(current) && itemResults(data)[editedItem.id]) return;
+    if (itemResults(data)[editedItem.id]) return;
     if (data.answers[editedItem.id] === value) return;
     commit({ ...state, quizzes: { ...state.quizzes, [current.id]: { ...changeAnswer(current, data, editedItem, value), attemptId: crypto.randomUUID() } } });
     setSaveStatus(''); setError('');
@@ -114,19 +114,13 @@ function App() {
     requestAnimationFrame(() => { document.getElementById('answer-prompt')?.focus(); document.querySelector('main')?.scrollTo(0, 0); });
   }
   function next() {
-    if (isExam(current)) {
-      const index = nextUnansweredIndex(current, draft, activeIndex);
-      if (index >= 0 && index !== activeIndex) openStep(index);
-      else if (index < 0 && catalog[quizIndex + 1]) openQuiz(catalog[quizIndex + 1]);
-      return;
-    }
-    if (!graded?.passed) return;
-    if (activeIndex < current.items.length - 1) openStep(activeIndex + 1);
-    else if (catalog[quizIndex + 1]) openQuiz(catalog[quizIndex + 1]);
+    const index = nextUnansweredIndex(current, draft, activeIndex);
+    if (index >= 0 && index !== activeIndex) openStep(index);
+    else if (index < 0 && catalog[quizIndex + 1]) openQuiz(catalog[quizIndex + 1]);
   }
   async function submit(event, collectedAnswer) {
     event.preventDefault(); if (busy.current) return;
-    if (isExam(current) && itemResults(withInitialAnswers(current, practiceRef.current.quizzes[current.id] || { answers: {} }))[item.id]) return;
+    if (itemResults(withInitialAnswers(current, practiceRef.current.quizzes[current.id] || { answers: {} }))[item.id]) return;
     if (collectedAnswer && JSON.stringify(collectedAnswer) !== JSON.stringify(practiceRef.current.quizzes[current.id]?.answers[item.id])) edit(item, collectedAnswer);
     const state = practiceRef.current, data = withInitialAnswers(current, state.quizzes[current.id] || { answers: {}, attemptId: crypto.randomUUID() });
     const value = data.answers[item.id];
@@ -170,19 +164,15 @@ function App() {
   const reference = referenceSource(current, item);
   const itemDescription = (reference ? /^[.#][\w-]+\s*\{[\s\S]*\}$/.test(item.description?.trim()) ? '' : (item.description || '').replace(/(?:<!doctype\s+html>\s*)?<html\b[\s\S]*?<\/html>/gi, '') : item?.description || '').replace(/^コードを記述してください。\s*$/gm, '').trim();
   const description = lessonDescription(current, item).replace(/^解答欄にJavaScriptのコードを入力してください。\s*$/gm, '').trim().replace(/\n{3,}/g, '\n\n');
-  const sections = current.id === 'quiz-04' ? [...description.matchAll(/^[①②③]（?[^\n]*/gm)] : [];
-  const scopedDescription = sections.length === current.items.length && sections[activeIndex]
-    ? description.slice(sections[activeIndex].index, sections[activeIndex + 1]?.index).trim() : '';
   const pageExercise = ['code', 'dom_task', 'inspection'].includes(item.type);
-  const exam = isExam(current);
   const results = draft ? itemResults(draft) : {};
-  const intro = scopedDescription || description;
+  const intro = description;
   // 左ペイン = 問題文（設問・説明・コード・図）、右ペイン = 解答欄、の配置をすべての形式でそろえます。
   const content = <article className="markdown-content text-tk-elements-content-textColor">
     <h1>{current.title}</h1>
-    {intro && (!exam || activeIndex === 0) && <p className={`source-prose ${exam ? 'section-intro' : ''}`}>{intro}</p>}
+    {intro && activeIndex === 0 && <p className="source-prose section-intro">{intro}</p>}
     {prompt && <>
-      {exam && <p className="question-heading">第{activeIndex + 1}問（全{current.items.length}問）</p>}
+      <p className="question-heading">第{activeIndex + 1}問（全{current.items.length}問）</p>
       <h2 id="answer-prompt" tabIndex={-1} className="question-title"><Inline text={prompt} /></h2>
     </>}
     {item.context && <p className="source-prose mb-4">{item.context}</p>}
@@ -193,26 +183,22 @@ function App() {
   const answer = <>
     {!pageExercise && choiceHint && <p className="text-sm text-tk-text-secondary mb-3">{choiceHint}</p>}
     {item.type === 'terminal'
-      ? <TerminalAnswer item={item} value={draft.answers[item.id]} saving={saving} locked={exam && !!graded}
+      ? <TerminalAnswer item={item} value={draft.answers[item.id]} saving={saving} locked={!!graded}
         onChange={(question, value) => { if (!busy.current) edit(question, value); }} onSubmit={submit} />
-      : <AnswerWorkspace quiz={current} item={item} answers={draft.answers} theme={theme} saving={saving} locked={exam && !!graded}
+      : <AnswerWorkspace quiz={current} item={item} answers={draft.answers} theme={theme} saving={saving} locked={!!graded}
         onChange={(question, value) => { if (!busy.current) edit(question, value); }} onSubmit={submit} />}
   </>;
   const stepState = (question, index) => results[question.id] ? (results[question.id].passed ? 'passed' : 'failed') : draft.answers[question.id] !== undefined && index !== activeIndex ? 'answered' : 'open';
-  const progressBar = exam
-    ? <div className="exercise-progress"><nav className="exam-steps" aria-label="設問の一覧（未回答は好きな順、回答済みは確認のみ）">
+  const progressBar = <div className="exercise-progress"><nav className="exam-steps" aria-label="設問の一覧（未回答は好きな順、回答済みは確認のみ）">
       {current.items.map((question, index) => <button key={question.id} type="button" className="exam-step" data-state={stepState(question, index)}
         aria-current={index === activeIndex ? 'step' : undefined} aria-label={`第${index + 1}問`} disabled={saving} onClick={() => openStep(index)}>{index + 1}</button>)}
-    </nav></div>
-    : <div className="exercise-progress"><progress aria-label="問題の進捗" value={activeIndex + (graded?.passed ? 1 : 0)} max={current.items.length} /><span>{activeIndex + 1} / {current.items.length}</span></div>;
-  const nextOpen = exam ? nextUnansweredIndex(current, draft, activeIndex) : -1;
-  const hasNext = exam
-    ? (graded ? nextOpen >= 0 || Boolean(draft.result && catalog[quizIndex + 1]) : nextOpen >= 0 && nextOpen !== activeIndex)
-    : activeIndex < current.items.length - 1 || Boolean(catalog[quizIndex + 1]);
-  // 試験では、採点して確定したあと（次へ進む前）に正誤と解説を出します。回答前には出しません。
-  const feedbackText = !graded ? '' : exam ? examExplanation(item, graded) : (graded.passed ? '' : graded.feedback);
+    </nav></div>;
+  const nextOpen = nextUnansweredIndex(current, draft, activeIndex);
+  const hasNext = graded ? nextOpen >= 0 || Boolean(draft.result && catalog[quizIndex + 1]) : nextOpen >= 0 && nextOpen !== activeIndex;
+  // 採点して確定したあと（次へ進む前）に正誤と解説を出します。回答前には出しません。
+  const feedbackText = graded ? examExplanation(item, graded) : '';
   return <div className="h-full" onClick={navigate}>
-    <TutorialLayout title="Web制作" mobileView={mobileView} setMobileView={setMobileView}
+    <TutorialLayout title="Web試験" mobileView={mobileView} setMobileView={setMobileView}
       actions={<>
         <button type="button" title="回答を書き出す" aria-label="回答を書き出す" className={topBarButton} onClick={exportAnswers}><span className="i-ph-download-simple" /></button>
         <button type="button" title="テーマを切り替える" aria-label="テーマを切り替える" className={topBarButton} onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}><span className={theme === 'dark' ? 'i-ph-sun-dim-duotone' : 'i-ph-moon-stars-duotone'} /></button>
@@ -240,10 +226,8 @@ function App() {
           </div>
           <div className="exercise-footer-actions">
             {activeIndex > 0 && <Button variant="secondary" type="button" disabled={saving} onClick={() => openStep(activeIndex - 1)}>戻る</Button>}
-            {exam ? <>
-              {!graded && <Button key="grade" type="submit" form="answer-form" disabled={saving}>{saving ? '処理中…' : '採点する'}</Button>}
-              {hasNext && <Button key="continue" variant={graded ? undefined : 'secondary'} type="button" disabled={saving} onClick={event => { event.preventDefault(); next(); }}>{graded ? '次へ' : 'あとで解く（次へ）'}</Button>}
-            </> : graded?.passed && !error ? hasNext && <Button key="continue" type="button" onClick={event => { event.preventDefault(); next(); }}>次へ</Button> : <Button key="grade" type="submit" form="answer-form" disabled={saving}>{saving ? '処理中…' : item.grading.kind === 'manual' ? '回答を保存' : graded ? 'もう一度採点する' : '採点する'}</Button>}
+            {!graded && <Button key="grade" type="submit" form="answer-form" disabled={saving}>{saving ? '処理中…' : '採点する'}</Button>}
+            {hasNext && <Button key="continue" variant={graded ? undefined : 'secondary'} type="button" disabled={saving} onClick={event => { event.preventDefault(); next(); }}>{graded ? '次へ' : 'あとで解く（次へ）'}</Button>}
           </div>
         </div>
       </footer>}

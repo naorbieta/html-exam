@@ -84,15 +84,19 @@ test('1問ずつ採点し、全問を解くまで一括保存用の結果を作�
   assert.equal(validateSubmission(payload, [quiz]).answers.length, 2);
 });
 
-test('回答の変更はその設問と後続の採点を取り消し、前の採点と入力を保持する', () => {
-  const draft = { answers: { first: '10', second: 'old' }, result: { items: [first, second] } };
-  const later = changeAnswer(quiz, draft, quiz.items[1], 'new');
-  assert.deepEqual(later.answers, { first: '10', second: 'new' });
-  assert.deepEqual(itemResults(later), { first });
-  assert.equal(later.result, null);
-  const earlier = changeAnswer(quiz, draft, quiz.items[0], '20');
-  assert.deepEqual(itemResults(earlier), {});
-  assert.equal(earlier.answers.second, 'old');
+test('確定した回答は変えられず、未確定の回答だけ変えられる', () => {
+  const graded = { answers: { first: '10', second: 'old' }, result: { items: [first, second] } };
+  const locked = changeAnswer(quiz, graded, quiz.items[1], 'new');
+  assert.equal(locked, graded);
+  assert.equal(locked.answers.second, 'old');
+  const open = { answers: { first: '10' }, itemResults: { first } };
+  const edited = changeAnswer(quiz, open, quiz.items[1], 'new');
+  assert.deepEqual(edited.answers, { first: '10', second: 'new' });
+  assert.deepEqual(itemResults(edited), { first });
+  assert.equal(edited.result, null);
+  const blocked = changeAnswer(quiz, open, quiz.items[0], '20');
+  assert.equal(blocked, open);
+  assert.equal(blocked.answers.first, '10');
 });
 
 test('確認待ちの設問は不正解数に含めず、回答を保存できる', () => {

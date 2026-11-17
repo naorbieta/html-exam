@@ -30,7 +30,7 @@ export function itemResults(draft) {
   return Object.fromEntries(Object.entries(results).filter(([, result]) => !result.unscored && !result.reviewRequired));
 }
 
-// 試験（コース名が「試験 / …」）は、設問を好きな順に解けるようにします。
+// このアプリのコースは試験専用です。コース名は「試験 / …」で始まります。
 export function isExam(quiz) {
   return String(quiz?.course || '').startsWith('試験');
 }
@@ -63,14 +63,10 @@ export function nextUnansweredIndex(quiz, draft, fromIndex = 0) {
 }
 
 export function changeAnswer(quiz, draft, item, value) {
-  if (isExam(quiz) && itemResults(draft)[item.id]) return draft;
-  const index = quiz.items.indexOf(item);
+  if (itemResults(draft)[item.id]) return draft;
   const results = itemResults(draft);
-  // 練習: その設問と後続の採点を取り消す（後続は前の回答を引き継ぐことがあるため）。
-  // 試験: 確定前なら、変更した設問の採点だけを取り消す。確定後の回答は変えられません。
-  const kept = isExam(quiz)
-    ? quiz.items.filter(question => question !== item && results[question.id])
-    : quiz.items.slice(0, index).filter(question => results[question.id]);
+  // 確定後の回答は変えられません。未確定なら、変更した設問の採点だけを取り消します。
+  const kept = quiz.items.filter(question => question !== item && results[question.id]);
   return {
     ...draft,
     answers: { ...draft.answers, [item.id]: value },
@@ -81,7 +77,7 @@ export function changeAnswer(quiz, draft, item, value) {
 }
 
 export function recordGrade(quiz, draft, graded) {
-  if (isExam(quiz) && itemResults(draft)[graded.itemId]) return draft;
+  if (itemResults(draft)[graded.itemId]) return draft;
   const results = { ...itemResults(draft), [graded.itemId]: graded };
   const items = quiz.items.map(item => results[item.id]);
   return {

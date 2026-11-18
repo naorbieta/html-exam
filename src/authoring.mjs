@@ -1,5 +1,5 @@
 export const lessonColumns = ['分野','レッスン番号','レッスン名','導入文','参考画像','画像の説明','レッスンID'];
-export const questionColumns = ['分野','レッスン番号','設問','回答形式','選択肢','正解','初期コード','解答例','補足','不正解時のメッセージ','ヒント','言語','採点方法','採点コード','参照HTML','採点ルール','設問ID','設問番号','必須','参照コードの編集','設問の説明'];
+export const questionColumns = ['分野','レッスン番号','設問','回答形式','選択肢','正解','初期コード','解答例','不正解時のメッセージ','言語','採点方法','採点コード','参照HTML','採点ルール','設問ID','設問番号','必須','設問の説明'];
 export const answerTypes = { '単一選択':'multiple_choice', '複数選択':'checkboxes', 'コード':'code', 'ターミナル':'terminal' };
 export const gradingMethods = ['正解と照合','コンソール出力','JavaScript実行','HTML・CSS表示','登録済み'];
 
@@ -23,9 +23,9 @@ const lessonKey = row => `${row['分野'].trim()}\t${Number(row['レッスン番
 export function tablesFromAuthoring(source) {
   const tables = {
     quizzes: [['id','number','title','description','course']],
-    items: [['id','quiz_id','position','type','title','description','required','context','language','reference_editable']],
+    items: [['id','quiz_id','position','type','title','description','required','language']],
     options: [['item_id','position','value']], images: [['quiz_id','position','path','alt']],
-    graders: [['item_id','kind','config','example','feedback','hint','starter']]
+    graders: [['item_id','kind','config','example','feedback','starter']]
   };
   const lessons = new Map(), ids = new Set(), positions = new Map();
   for (const row of authorRows(source.lessons, 'レッスン', ['分野','レッスン番号','レッスン名','導入文'])) {
@@ -59,7 +59,7 @@ export function tablesFromAuthoring(source) {
       if (options.length < 2 || new Set(options.map(value => value.normalize('NFKC').replace(/\s/g,'').toLowerCase())).size !== options.length) fail('選択肢を重複なしで2つ以上入力してください。');
       if (!correct.length || correct.some(value => !options.includes(value)) || type === 'multiple_choice' && correct.length !== 1) fail('正解には選択肢の文言をそのまま入力してください。単一選択の正解は1つです。');
     }
-    for (const name of ['必須','参照コードの編集']) if (row[name] && !['はい','いいえ','true','false'].includes(row[name].toLowerCase())) fail(`${name}は「はい」か「いいえ」を入力してください。`);
+    if (row['必須'] && !['はい','いいえ','true','false'].includes(row['必須'].toLowerCase())) fail('必須は「はい」か「いいえ」を入力してください。');
     const method = row['採点方法'] || (row['採点ルール'] ? '登録済み' : '正解と照合');
     if (!gradingMethods.includes(method)) fail(`採点方法は ${gradingMethods.join('・')} から選んでください。`);
     if (type === 'terminal' && method !== '登録済み') fail('ターミナル問題は採点ルール（採点TS）を選んでください。');
@@ -87,9 +87,9 @@ export function tablesFromAuthoring(source) {
     const starter = row['初期コード'] || '';
     if (method !== '登録済み' && type === 'code' && /^\s*<(?:!doctype\s+html|html\b)/i.test(starter)) config.documentAnswer = true;
     const example = method === '正解と照合' ? (type === 'checkboxes' ? JSON.stringify(correct) : correct[0]) : row['解答例'] || '';
-    tables.items.push([id,quizId,position,type,row['設問'],row['設問の説明'] || '',String(enabled(row['必須'],true)),row['補足'] || '',row['言語'] || '',String(enabled(row['参照コードの編集']))]);
+    tables.items.push([id,quizId,position,type,row['設問'],row['設問の説明'] || '',String(enabled(row['必須'],true)),row['言語'] || '']);
     options.forEach((value, index) => tables.options.push([id,index + 1,value]));
-    tables.graders.push([id,kind,JSON.stringify(config),example,row['不正解時のメッセージ'] || '回答をもう一度確認してください。',row['ヒント'] || '',starter]);
+    tables.graders.push([id,kind,JSON.stringify(config),example,row['不正解時のメッセージ'] || '回答をもう一度確認してください。',starter]);
   }
   for (const [key, id] of lessons) if (!positions.has(id)) throw new Error(`レッスン「${key.replace('\t',' / ')}」に設問がありません。「設問」シートに追加してください。`);
   return tables;
@@ -110,14 +110,13 @@ export function authoringFromTables(tables) {
       const grader = graders.find(grader => grader.item_id === item.id), config = JSON.parse(grader.config);
       const simple = grader.kind === 'text' && Object.keys(config).length === 1 && (config.accept || config.acceptSets?.length === 1);
       if (!simple) source.rules[item.id] = { kind: grader.kind, config };
-      // A separate cell preserves multiline CSS observations without mixing them into the prompt.
       const row = {
         '分野':quiz.course,'レッスン番号':quiz.number,'設問':item.title,'回答形式':Object.keys(answerTypes).find(key=>answerTypes[key] === item.type),
         '選択肢':options.filter(option=>option.item_id === item.id).sort((a,b)=>a.position-b.position).map(option=>option.value).join('\n'),
         '正解':simple ? (config.accept || config.acceptSets[0]).join('\n') : '', '初期コード':grader.starter,'解答例':simple ? '' : grader.example,
-        '補足':item.context,'不正解時のメッセージ':grader.feedback,'ヒント':grader.hint,'言語':item.language,
+        '不正解時のメッセージ':grader.feedback,'言語':item.language,
         '採点方法':simple ? '正解と照合' : '登録済み','採点ルール':simple ? '' : item.id,'設問ID':item.id,'設問番号':item.position,
-        '必須':enabled(item.required) ? 'はい' : 'いいえ','参照コードの編集':enabled(item.reference_editable) ? 'はい' : 'いいえ',
+        '必須':enabled(item.required) ? 'はい' : 'いいえ',
         '設問の説明':item.description
       };
       source.questions.push(questionColumns.map(key=>row[key] || ''));

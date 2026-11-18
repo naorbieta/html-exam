@@ -88,7 +88,6 @@ export type Grader = {
   html?: string;
   target?: string;
   documentAnswer?: boolean;
-  htmlAnswer?: boolean;
   scaffold?: { detect: string; prefix?: string; after?: string };
   accept?: string[];
   acceptSets?: string[][];

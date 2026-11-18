@@ -75,17 +75,13 @@ function ensureAnswerLog_(book) {
     sheet.setFrozenRows(1);
     return sheet;
   }
-  const lastColumn = Math.max(sheet.getLastColumn(), 1);
-  const header = sheet.getRange(1, 1, 1, lastColumn).getValues()[0].map(value => String(value ?? '').trim());
-  if (header[0] === 'attempt_id') {
-    if (header[2] !== 'ユーザー' && header[2] !== 'user_email') sheet.insertColumnAfter(2);
-    sheet.getRange(1, 1, 1, ANSWER_HEADERS.length).setValues([ANSWER_HEADERS]);
-    sheet.setFrozenRows(1);
-    return sheet;
-  }
-  if (header[0] !== ANSWER_HEADERS[0] && sheet.getLastRow() <= 1) {
-    sheet.getRange(1, 1, 1, ANSWER_HEADERS.length).setValues([ANSWER_HEADERS]);
-    sheet.setFrozenRows(1);
+  if (sheet.getLastRow() <= 1) {
+    const lastColumn = Math.max(sheet.getLastColumn(), 1);
+    const header = sheet.getRange(1, 1, 1, lastColumn).getValues()[0].map(value => String(value ?? '').trim());
+    if (header[0] !== ANSWER_HEADERS[0]) {
+      sheet.getRange(1, 1, 1, ANSWER_HEADERS.length).setValues([ANSWER_HEADERS]);
+      sheet.setFrozenRows(1);
+    }
   }
   return sheet;
 }

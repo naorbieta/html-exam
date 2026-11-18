@@ -110,14 +110,11 @@ test('回答ログのシートが無ければ作成し、スプレッドシー�
   assert.ok(app.sheets.get('answers'));
 });
 
-test('旧answers見出しは新しい列構成へ移行する', () => {
+test('空の answers シートなら、現在の見出しを書く', () => {
   const catalog = [{ id: 'q1', images: [], items: [] }];
-  const oldHeader = ['attempt_id', 'submitted_at', 'session_id', 'quiz_id', 'item_id', 'answer', 'browser_result'];
-  const app = server({ files: filesFor(catalog), answerRows: [oldHeader, ['attempt-1', 't', 's', 'q1', 'a1', '1', '{"passed":true}']] });
+  const app = server({ files: filesFor(catalog), answerRows: [['未設定']] });
   app.context.setup_();
   assert.deepEqual(JSON.parse(JSON.stringify(app.sheets.get('answers').rows[0])), ['記録ID', 'タイムスタンプ', 'ユーザー', 'セッションID', 'レッスンID', '問題ID', '回答内容', '正誤', 'フィードバック']);
-  assert.equal(app.sheets.get('answers').rows[1][0], 'attempt-1');
-  assert.equal(app.sheets.get('answers').rows[1][3], 's');
 });
 
 test('埋め込みデータが壊れていてもロックを使わずに案内する', () => {

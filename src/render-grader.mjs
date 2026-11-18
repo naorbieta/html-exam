@@ -12,7 +12,7 @@ async function runCheck({ config, answer, answers, scenario, token }) {
   };
   try {
     const fullDocument = value => typeof value === 'string' && /^\s*<(?:!doctype\s+html|html\b)/i.test(value);
-    const documentAnswer = config.htmlAnswer || config.documentAnswer && fullDocument(answer);
+    const documentAnswer = Boolean(config.documentAnswer) && fullDocument(answer);
     const source = documentAnswer ? answer : config.html;
     const parsed = new DOMParser().parseFromString(source || '<body></body>', 'text/html');
     parsed.querySelectorAll('script,object,embed,link,meta,base').forEach(element => element.remove());

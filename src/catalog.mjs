@@ -24,8 +24,8 @@ export function catalogFromTables(tables) {
     }
     const item = {
       id: row.id, position: Number(row.position), type: row.type,
-      title: row.title, description: row.description, context: row.context || '', language: row.language || '', required: row.required.toLowerCase() === 'true',
-      referenceEditable: row.reference_editable?.toLowerCase() === 'true', options: []
+      title: row.title, description: row.description, language: row.language || '', required: row.required.toLowerCase() === 'true',
+      options: []
     };
     byItem.set(item.id, item);
     byQuiz.get(row.quiz_id).items.push(item);
@@ -45,7 +45,7 @@ export function catalogFromTables(tables) {
     let config;
     try { config = JSON.parse(row.config); } catch { throw new Error(`採点条件 ${row.item_id} のconfigを確認してください。`); }
     if (!config || typeof config !== 'object' || Array.isArray(config)) throw new Error(`採点条件 ${row.item_id} のconfigを確認してください。`);
-    item.grading = { kind: row.kind, config, example: row.example, feedback: row.feedback, hint: row.hint, starter: row.starter };
+    item.grading = { kind: row.kind, config, example: row.example, feedback: row.feedback, starter: row.starter };
   }
   for (const quiz of quizzes) {
     if (!quiz.id || !quiz.title || !Number.isInteger(quiz.number) || !quiz.items.length) {

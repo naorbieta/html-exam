@@ -178,16 +178,13 @@ async function readQuestion(file, graderFile) {
     title: String(data.title),
     description: body || String(data.description ?? ''),
     required: enabled(data.required, true),
-    context: data.context == null ? '' : String(data.context),
     language: data.language == null ? '' : String(data.language),
-    referenceEditable: enabled(data.reference_editable ?? data.referenceEditable, false),
     options,
     grader: {
       kind: grader.kind,
       config: grader.config,
       example: exampleOf(data, type, grader, file),
       feedback: data.feedback == null ? '回答をもう一度確認してください。' : String(data.feedback),
-      hint: data.hint == null ? '' : String(data.hint),
       starter: data.starter == null ? '' : String(data.starter)
     }
   };
@@ -225,10 +222,10 @@ async function collectImages(lessonDir, data, lessonId, lessonTitle) {
 export async function loadLessons(root) {
   const tables = {
     quizzes: [['id', 'number', 'title', 'description', 'course']],
-    items: [['id', 'quiz_id', 'position', 'type', 'title', 'description', 'required', 'context', 'language', 'reference_editable']],
+    items: [['id', 'quiz_id', 'position', 'type', 'title', 'description', 'required', 'language']],
     options: [['item_id', 'position', 'value']],
     images: [['quiz_id', 'position', 'path', 'alt']],
-    graders: [['item_id', 'kind', 'config', 'example', 'feedback', 'hint', 'starter']]
+    graders: [['item_id', 'kind', 'config', 'example', 'feedback', 'starter']]
   };
   const imageFiles = {};
   const ids = new Set();
@@ -268,11 +265,11 @@ export async function loadLessons(root) {
       seenPositions.add(question.position);
       tables.items.push([
         question.id, id, question.position, question.type, question.title, question.description,
-        String(question.required), question.context, question.language, String(question.referenceEditable)
+        String(question.required), question.language
       ]);
       question.options.forEach((value, index) => tables.options.push([question.id, index + 1, value]));
       const g = question.grader;
-      tables.graders.push([question.id, g.kind, JSON.stringify(g.config), g.example, g.feedback, g.hint, g.starter]);
+      tables.graders.push([question.id, g.kind, JSON.stringify(g.config), g.example, g.feedback, g.starter]);
     }
   }
   return { tables, imageFiles };

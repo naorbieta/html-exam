@@ -163,7 +163,6 @@ function App() {
       <p className="question-heading">第{activeIndex + 1}問（全{current.items.length}問）</p>
       <h2 id="answer-prompt" tabIndex={-1} className="question-title"><Inline text={prompt} /></h2>
     </>}
-    {item.context && <p className="source-prose mb-4">{item.context}</p>}
     {itemDescription && <QuestionBody text={itemDescription} />}
     <ReferenceImages quiz={current} onZoom={setZoomImage} />
   </article>;

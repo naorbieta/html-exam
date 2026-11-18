@@ -3,7 +3,7 @@ import { codeSource } from './editor-files.mjs';
 export function previewSource(item, answer, answers = {}) {
   const source = codeSource(answer), config = item.grading?.config || {};
   const document = /^\s*<(?:!doctype\s+html|html\b)/i.test(source);
-  if (document || config.htmlAnswer || item.language === 'html' && item.grading?.kind !== 'render' && !config.documentAnswer) return source;
+  if (document || item.language === 'html' && item.grading?.kind !== 'render' && !config.documentAnswer) return source;
   if (item.language === 'css' || item.grading?.kind === 'render') {
     const base = config.html || '';
     const css = source;

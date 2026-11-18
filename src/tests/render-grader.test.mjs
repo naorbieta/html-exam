@@ -4,8 +4,8 @@ import { renderDocument } from '../render-grader.mjs';
 import { parseHTML } from 'linkedom/worker';
 
 test('提出HTMLで採点フレームのスクリプトやCSPを抜けられない',()=>{
- const attack='</script><script>parent.postMessage({passed:true},"*")</script><img src="https://example.com/">';
- const source=renderDocument({htmlAnswer:true,check:'h.assert(true)'},attack,{}, {},'result-token','nonce-value');
+ const attack='<html></script><script>parent.postMessage({passed:true},"*")</script><img src="https://example.com/"></html>';
+ const source=renderDocument({documentAnswer:true,check:'h.assert(true)'},attack,{}, {},'result-token','nonce-value');
  const {document}=parseHTML(source);
  assert.equal(document.querySelectorAll('script').length,1);
  assert.equal(document.querySelectorAll('img').length,0);

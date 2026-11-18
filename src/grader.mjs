@@ -73,7 +73,7 @@ export function executeCode(source, rule, scenario = {}) {
   };
   let code = source;
   try { h.doctype = parseHTML(source).document.doctype; } catch {}
-  if (rule.htmlAnswer || rule.documentAnswer && /^\s*<(?:!doctype\s+html|html\b|form\b)/i.test(source)) {
+  if (rule.documentAnswer && /^\s*<(?:!doctype\s+html|html\b|form\b)/i.test(source)) {
     const student = parseHTML(/<html[\s>]/i.test(source) ? source : '<!doctype html><html><head></head><body>' + source + '</body></html>');
     document.documentElement.innerHTML = student.document.documentElement.innerHTML;
     code = [...document.querySelectorAll('script')].map(script => script.textContent).join('\n');

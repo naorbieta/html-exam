@@ -10,28 +10,22 @@ const items = catalog.flatMap(quiz => quiz.items);
 test('自動採点対象の解答例がすべて採点条件を満たす', () => {
   let count = 0;
   for (const quiz of catalog) {
-    const answers = Object.fromEntries(quiz.items.map(item => [item.id, ['checkboxes', 'dom_task', 'file'].includes(item.type) && item.grading.kind !== 'manual' ? JSON.parse(item.grading.example) : item.grading.example]));
+    const answers = Object.fromEntries(quiz.items.map(item => [item.id, item.type === 'checkboxes' ? JSON.parse(item.grading.example) : item.grading.example]));
     for (const item of quiz.items) {
-      if (['manual', 'render'].includes(item.grading.kind)) continue;
+      if (item.grading.kind === 'render') continue;
       const result = gradeAnswer(item, answers[item.id], answers);
       assert.equal(result.passed, true, `第${quiz.number}問 ${item.id}: ${result.feedback}`);
       count++;
     }
   }
   assert.ok(count > 0);
-  assert.equal(count, items.filter(item => !['manual', 'render'].includes(item.grading.kind)).length);
+  assert.equal(count, items.filter(item => item.grading.kind !== 'render').length);
 });
 
 test('初期コードだけでは問題の解答にならない', () => {
   const fields = items.filter(item => item.type === 'code' && item.grading.starter && item.grading.kind !== 'render');
   assert.ok(fields.length > 0);
   for (const field of fields) assert.equal(gradeAnswer(field, field.grading.starter).passed, false, field.id);
-});
-
-test('全文を表示する継続問題は、前問の宣言を重ねずに採点する', () => {
-  const field = { id: 'assignment', type: 'code', grading: { kind: 'code', config: { completeProgram: true, previous: ['declaration'], check: "h.assert(userName === '太郎');" } } };
-  assert.equal(gradeAnswer(field, "let userName='太郎';", { declaration: 'let userName;' }).passed, true);
-  assert.equal(gradeAnswer(field, "let userName='花子';", { declaration: 'let userName;' }).passed, false);
 });
 
 test('構文エラーを解答欄単位のフィードバックとして返す', () => {
@@ -51,9 +45,8 @@ test('チェックボックスはクリックした順序によらず完全一�
   assert.equal(gradeAnswer(field, [...correct, extra]).passed, false);
 });
 
-test('説明文の自由回答をキーワード一致で採点せず、選択肢の中だけで正誤を判定する', () => {
+test('選択問題は選択肢の中だけで正誤を判定する', () => {
   for (const field of items) {
-    if (['short_text', 'paragraph'].includes(field.type)) assert.equal(field.grading.config.patterns, undefined, field.id);
     if (field.type !== 'multiple_choice') continue;
     const passes = field.options.filter(value => gradeAnswer(field, value).passed);
     assert.equal(passes.length, 1, field.id);

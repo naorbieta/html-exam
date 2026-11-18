@@ -3,10 +3,10 @@ import { createRoot } from 'react-dom/client';
 import { Nav } from './vendor/tutorialkit/react/Nav.tsx';
 import { Button } from './vendor/tutorialkit/react/Button.tsx';
 import { gradeRenderedAnswer } from './render-grader.mjs';
-import { AnswerWorkspace, CodeWorkspace } from './answer-workspace.jsx';
+import { AnswerWorkspace } from './answer-workspace.jsx';
 import { TerminalAnswer } from './terminal-workspace.jsx';
 import { codeSource } from './editor-files.mjs';
-import { lessonDescription, referenceSource } from './lesson-content.mjs';
+import { lessonDescription } from './lesson-content.mjs';
 import { TutorialLayout, topBarButton } from './tutorial-layout.jsx';
 import { withInitialAnswers, itemResults, changeAnswer, recordGrade, examExplanation, nextUnansweredIndex } from './step-progress.mjs';
 import { QuestionBody, Inline } from './question-body.jsx';
@@ -25,14 +25,7 @@ function callServer(name, ...args) {
 function readSession() {
   try {
     const saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
-    if (saved && typeof saved === 'object' && saved.quizzes) {
-      for (const draft of Object.values(saved.quizzes)) {
-        if (Object.values(draft.itemResults || {}).some(result => result.unscored || result.reviewRequired) || draft.result?.items?.some(result => result.unscored || result.reviewRequired)) {
-          draft.itemResults = itemResults(draft); draft.result = null;
-        }
-      }
-      return saved;
-    }
+    if (saved && typeof saved === 'object' && saved.quizzes) return saved;
   } catch {}
   return { sessionId: crypto.randomUUID(), quizzes: {} };
 }
@@ -81,10 +74,6 @@ function App() {
     commit({ ...state, quizzes: { ...state.quizzes, [current.id]: { ...changeAnswer(current, data, editedItem, value), attemptId: crypto.randomUUID() } } });
     setSaveStatus(''); setError('');
   }
-  function editReference(value) {
-    const state = sessionRef.current, data = state.quizzes[current.id] || { answers: {}, attemptId: crypto.randomUUID() };
-    commit({ ...state, quizzes: { ...state.quizzes, [current.id]: { ...data, references: { ...data.references, [item.id]: value } } } });
-  }
   function openQuiz(quiz) {
     if (busy.current) return;
     const state = sessionRef.current;
@@ -124,8 +113,8 @@ function App() {
     if (collectedAnswer && JSON.stringify(collectedAnswer) !== JSON.stringify(sessionRef.current.quizzes[current.id]?.answers[item.id])) edit(item, collectedAnswer);
     const state = sessionRef.current, data = withInitialAnswers(current, state.quizzes[current.id] || { answers: {}, attemptId: crypto.randomUUID() });
     const value = data.answers[item.id];
-    if (item.required && (Array.isArray(value) ? !value.length : item.type === 'file' ? !value?.name : item.type === 'dom_task' ? !value?.text : item.type === 'terminal' ? !value?.commands?.some(command => command.trim()) : item.type === 'code' ? !codeSource(value).trim() : !String(value || '').trim())) {
-      setError(item.type === 'file' ? 'ファイルを選んでください。' : item.type === 'terminal' ? 'ターミナルにコマンドを入力してください。' : ['multiple_choice', 'checkboxes'].includes(item.type) ? '回答を選んでください。' : '回答を入力してください。');
+    if (item.required && (Array.isArray(value) ? !value.length : item.type === 'terminal' ? !value?.commands?.some(command => command.trim()) : item.type === 'code' ? !codeSource(value).trim() : !String(value || '').trim())) {
+      setError(item.type === 'terminal' ? 'ターミナルにコマンドを入力してください。' : ['multiple_choice', 'checkboxes'].includes(item.type) ? '回答を選んでください。' : '回答を入力してください。');
       document.getElementById(`answer-${item.id}`)?.focus();
       return;
     }
@@ -161,10 +150,9 @@ function App() {
   const lesson = { id: current.id, data: { title: current.title, i18n }, part: { id: current.course, title: current.course }, prev: lessonLink(catalog[quizIndex - 1]), next: lessonLink(catalog[quizIndex + 1]) };
   const navList = [...new Set(catalog.map(quiz => quiz.course))].map(course => ({ id: course, title: course, type: 'part', sections: catalog.filter(quiz => quiz.course === course).map(quiz => ({ ...lessonLink(quiz), type: 'lesson' })) }));
   const prompt = !item || item.title === 'JavaScriptのコードをここに入力してください。' ? '' : item.title.replace(/[（(]画像参照[）)]/g, '').trim();
-  const reference = referenceSource(current, item);
-  const itemDescription = (reference ? /^[.#][\w-]+\s*\{[\s\S]*\}$/.test(item.description?.trim()) ? '' : (item.description || '').replace(/(?:<!doctype\s+html>\s*)?<html\b[\s\S]*?<\/html>/gi, '') : item?.description || '').replace(/^コードを記述してください。\s*$/gm, '').trim();
-  const description = lessonDescription(current, item).replace(/^解答欄にJavaScriptのコードを入力してください。\s*$/gm, '').trim().replace(/\n{3,}/g, '\n\n');
-  const pageExercise = ['code', 'dom_task', 'inspection'].includes(item.type);
+  const itemDescription = (item?.description || '').replace(/^コードを記述してください。\s*$/gm, '').trim();
+  const description = lessonDescription(current).replace(/^解答欄にJavaScriptのコードを入力してください。\s*$/gm, '').trim().replace(/\n{3,}/g, '\n\n');
+  const pageExercise = item.type === 'code';
   const results = draft ? itemResults(draft) : {};
   const intro = description;
   // 左ペイン = 問題文（設問・説明・コード・図）、右ペイン = 解答欄、の配置をすべての形式でそろえます。
@@ -206,11 +194,8 @@ function App() {
       navigation={<Nav key={current.id} lesson={lesson} navList={navList} />}
       progress={progressBar}
       content={content}
-      editor={<div key={item.id} className={item.type === 'terminal' ? 'terminal-question' : item.type === 'code' || reference ? 'h-full' : 'single-question'}>
-        {reference ? <div className="reference-workspace">
-          <div className="reference-code"><CodeWorkspace reference item={{ id: `${item.id}-reference`, language: 'html', referenceEditable: item.referenceEditable, grading: { starter: reference } }} value={item.referenceEditable ? draft.references?.[item.id] ?? reference : reference} answers={{}} theme={theme} saving={saving} onChange={editReference} /></div>
-          <div className="single-question reference-answer">{answer}</div>
-        </div> : answer}
+      editor={<div key={item.id} className={item.type === 'terminal' ? 'terminal-question' : item.type === 'code' ? 'h-full' : 'single-question'}>
+        {answer}
       </div>}
       results={<footer className="exercise-footer">
         <div className="exercise-footer-inner">
@@ -218,7 +203,7 @@ function App() {
             {storageError && <p className="text-tk-text-negative" role="alert">保存できません。「回答を書き出す」で保存してください。</p>}
             {error && <p className="text-tk-text-negative" role="alert">{error}</p>}
             {graded && <>
-              <p className={`flex items-center gap-2 font-medium ${graded.reviewRequired ? 'text-tk-text-secondary' : graded.passed ? 'text-tk-text-positive' : 'text-tk-text-negative'}`}><span className={graded.reviewRequired ? 'i-ph-clock' : graded.passed ? 'i-ph-check-circle' : 'i-ph-x-circle'} />{graded.reviewRequired ? '確認待ち' : graded.passed ? '正解' : '不正解'}</p>
+              <p className={`flex items-center gap-2 font-medium ${graded.passed ? 'text-tk-text-positive' : 'text-tk-text-negative'}`}><span className={graded.passed ? 'i-ph-check-circle' : 'i-ph-x-circle'} />{graded.passed ? '正解' : '不正解'}</p>
               {feedbackText && <p className="source-prose mt-2 leading-6 whitespace-pre-wrap">{feedbackText}</p>}
               {draft.result && draft.result.total > 0 && <p className="text-sm mt-2">{draft.result.correct} / {draft.result.total} 正解</p>}
             </>}

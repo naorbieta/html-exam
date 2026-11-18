@@ -4,15 +4,14 @@ export function previewSource(item, answer, answers = {}) {
   const source = codeSource(answer), config = item.grading?.config || {};
   const document = /^\s*<(?:!doctype\s+html|html\b)/i.test(source);
   if (document || config.htmlAnswer || item.language === 'html' && item.grading?.kind !== 'render' && !config.documentAnswer) return source;
-  const previous = (config.completeProgram ? [] : config.previous || []).map(id => codeSource(answers[id]));
   if (item.language === 'css' || item.grading?.kind === 'render') {
-    const base = [...previous].reverse().find(value => /^\s*<(?:!doctype\s+html|html\b)/i.test(value)) || config.html || '';
-    const css = previous.filter(value => !/^\s*</.test(value)).concat(source).join('\n');
+    const base = config.html || '';
+    const css = source;
     return base + `<style>${css.includes('{') ? css : `${config.target || 'body'}{${css}}`}</style>`;
   }
   const context = (config.context || []).filter(entry => !new RegExp('\\b(?:let|const|var|function)\\s+' + entry.name + '\\b').test(source)).map(entry => entry.code).join('\n');
   const scaffold = config.scaffold && !new RegExp(config.scaffold.detect).test(source) ? config.scaffold : {};
-  const script = [context, config.prefix, scaffold.prefix, ...previous, source, scaffold.after].filter(Boolean).join('\n');
+  const script = [context, config.prefix, scaffold.prefix, source, scaffold.after].filter(Boolean).join('\n');
   return (config.html || '') + `<script>${script.replace(/<\/script/gi, '<\\/script')}</script>`;
 }
 

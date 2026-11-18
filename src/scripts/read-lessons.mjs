@@ -14,14 +14,9 @@ export const examCourseFolders = {
 };
 
 export const answerTypes = {
-  '短文': 'short_text',
-  '長文': 'paragraph',
   '単一選択': 'multiple_choice',
   '複数選択': 'checkboxes',
   'コード': 'code',
-  'ページ編集': 'dom_task',
-  'CSS調査': 'inspection',
-  'ファイル': 'file',
   'ターミナル': 'terminal'
 };
 
@@ -62,7 +57,7 @@ export function functionBody(fn) {
 function normalizeGrader(exported, file) {
   if (!exported || typeof exported !== 'object' || Array.isArray(exported)) fail(file, 'default export は採点オブジェクトにしてください。');
   const { kind, check, cases, ...rest } = exported;
-  if (!['text', 'code', 'render', 'dom', 'file', 'manual', 'terminal'].includes(kind)) fail(file, 'kind を確認してください。');
+  if (!['text', 'code', 'render', 'terminal'].includes(kind)) fail(file, 'kind を確認してください。');
   const config = { ...rest };
   if (typeof check === 'function') config.check = functionBody(check);
   else if (typeof check === 'string') config.check = check;
@@ -88,7 +83,6 @@ export async function compileGraderFile(file) {
 function inferMethod(data, hasGrader) {
   if (data.method) return data.method;
   if (hasGrader) return '登録済み';
-  if (asTypeSafe(data.type) === 'file') return 'ファイル拡張子';
   return '正解と照合';
 }
 
@@ -106,12 +100,6 @@ function answersOf(data) {
 function buildSimpleGrader(data, type, file) {
   const method = inferMethod(data, false);
   const correct = answersOf(data);
-  if (method === 'ファイル拡張子') {
-    if (type !== 'file' || correct.length !== 1 || !/^\.[a-z\d]+$/i.test(correct[0])) {
-      fail(file, 'ファイル問題の正解には「.js」のような拡張子を1つ書いてください。');
-    }
-    return { kind: 'file', config: { extension: correct[0] } };
-  }
   if (method === 'コンソール出力') {
     if (!correct.length || type !== 'code') fail(file, 'コンソール出力の問題は、正解に期待する出力を1行ずつ書いてください。');
     return { kind: 'code', config: { check: `h.assert(JSON.stringify(h.logText()) === ${JSON.stringify(JSON.stringify(correct))}, 'コンソールの出力を確認してください。');` } };
@@ -131,10 +119,6 @@ function exampleOf(data, type, grader, file) {
     return JSON.stringify({ commands: data.example.map(String) });
   }
   if (data.example != null && data.example !== '') return String(data.example);
-  if (grader.kind === 'file') {
-    const ext = grader.config.extension;
-    return JSON.stringify({ name: 'example' + ext, content: '' });
-  }
   if (grader.kind === 'text') {
     const correct = grader.config.accept || grader.config.acceptSets?.[0];
     return type === 'checkboxes' ? JSON.stringify(correct || []) : (correct?.[0] ?? '');

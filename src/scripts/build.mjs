@@ -48,7 +48,6 @@ export async function build() {
   const workerDom = await read('node_modules/linkedom/worker.js');
   const graderCode = await read('src/grader.mjs');
   const editorFilesCode = (await read('src/editor-files.mjs')).replace(/^export /gm, '');
-  const uploadedFileCode = (await read('src/uploaded-file.mjs')).replace(/^export /gm, '');
   const terminalShellCode = (await read('src/terminal-shell.mjs')).replace(/^export /gm, '');
   const imageData = {};
   for (const quiz of catalog) for (const image of quiz.images) {
@@ -62,7 +61,7 @@ export async function build() {
   const { css, javascript, browserModules } = await bundleClient();
   const notices = await collectNotices(root, browserModules);
   await writeFile(path.join(root, 'THIRD_PARTY_NOTICES.md'), notices);
-  const workerSource = '/*\n' + notices.replaceAll('*/', '* /') + '\n*/\n' + workerDom.replace(/export \{[^}]+\};?\s*$/, '') + '\n' + editorFilesCode + '\n' + uploadedFileCode + '\n' + terminalShellCode + '\n' + graderCode.replace(/^import .*;\n/gm, '').replace(/^export /gm, '') + `
+  const workerSource = '/*\n' + notices.replaceAll('*/', '* /') + '\n*/\n' + workerDom.replace(/export \{[^}]+\};?\s*$/, '') + '\n' + editorFilesCode + '\n' + terminalShellCode + '\n' + graderCode.replace(/^import .*;\n/gm, '').replace(/^export /gm, '') + `
 self.onmessage = event => {
   const { item, answer, answers } = event.data;
   try { self.postMessage(gradeAnswer(item, answer, answers)); }
@@ -80,7 +79,7 @@ self.onmessage = event => {
   await Promise.all(existing.filter(name => /^(Catalog|Images\d+)\.html$/.test(name)).map(name => unlink(path.join(app, name))));
   const packedImages = packImageFiles(imageData);
   const catalogHtml = jsonHtmlDocument('Catalog', { catalog, imageFiles: packedImages.index });
-  const shared = [editorFilesCode, uploadedFileCode, gasDataCode, submissionCode].join('\n').replace(/^import .*;\n/gm, '').replace(/^export /gm, '');
+  const shared = [editorFilesCode, gasDataCode, submissionCode].join('\n').replace(/^import .*;\n/gm, '').replace(/^export /gm, '');
   const outputs = {
     'Index.html': index, 'Styles.html': `<style>\n${css}\n</style>`,
     'Client.html': `<script>\n${client}\n</script>`,

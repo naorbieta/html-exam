@@ -12,7 +12,7 @@ const catalog=catalogFromTables(await readAuthoringData()), variations={};
 const js = async source => (await transform(source,{loader:'js',minifyWhitespace:true,charset:'utf8',target:'es2022'})).code;
 const css = async source => (await transform(source,{loader:'css',minify:true,target:'chrome120'})).code;
 for(const quiz of catalog) for(const item of quiz.items) {
-  if(!['code','inspection'].includes(item.type))continue;
+  if(item.type!=='code')continue;
   const source=item.grading.example;
   if(/^\s*</.test(source)) {
     const {document}=parseHTML(source);

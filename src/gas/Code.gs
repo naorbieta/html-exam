@@ -112,7 +112,7 @@ function submitQuiz(payload) {
     const rows = answers.map(({ item, value }) => {
       const text = value && typeof value === 'object' ? JSON.stringify(value) : value;
       const result = results.find(result => result.itemId === item.id);
-      const passed = result.reviewRequired ? '要確認' : (result.passed ? '正解' : '不正解');
+      const passed = result.passed ? '正解' : '不正解';
       return [payload.attemptId, now, user, payload.sessionId, quiz.id, item.id, sheetText(text), passed, result.feedback || ''];
     });
     const range = sheet.getRange(lastRow + 1, 1, rows.length, ANSWER_HEADERS.length).setNumberFormat('@');

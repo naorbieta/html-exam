@@ -9,11 +9,7 @@ export function validateSubmission(payload, catalog) {
   for (const item of quiz.items) {
     let value = payload.answers[item.id];
     if (value === undefined || value === null) value = item.type === 'checkboxes' ? [] : '';
-    if (item.type === 'file') {
-      if (!isUploadedFile(value)) throw new Error('20,000文字以内のファイルを選んでください。');
-    } else if (item.type === 'dom_task') {
-      if (!value || typeof value !== 'object' || Array.isArray(value) || typeof value.text !== 'string' || value.text.length > 20000 || typeof value.color !== 'string' || value.color.length > 200 || typeof value.visible !== 'boolean') throw new Error('実習ページを読み直して、もう一度採点してください。');
-    } else if (item.type === 'code' && typeof value === 'object') {
+    if (item.type === 'code' && typeof value === 'object') {
       if (!isFileAnswer(value) || JSON.stringify(value).length > 20000) throw new Error('コードのファイル形式と20,000文字の上限を確認してください。');
     } else if (item.type === 'terminal') {
       if (value === '') value = { commands: [] };
@@ -24,14 +20,14 @@ export function validateSubmission(payload, catalog) {
       if (typeof value !== 'string' || value.length > 20000) throw new Error('回答は20,000文字以内のテキストにしてください。');
       if (item.type === 'multiple_choice' && value !== '' && !item.options.includes(value)) throw new Error('選択肢の回答を選び直してください。');
     }
-    const empty = Array.isArray(value) ? !value.length : item.type === 'file' ? !value.name : item.type === 'dom_task' ? !value?.text.trim() : item.type === 'terminal' ? !value.commands.some(command => command.trim()) : item.type === 'code' ? !codeSource(value).trim() : !value.trim();
+    const empty = Array.isArray(value) ? !value.length : item.type === 'terminal' ? !value.commands.some(command => command.trim()) : item.type === 'code' ? !codeSource(value).trim() : !value.trim();
     if (item.required && empty) throw new Error('必須の解答欄をすべて入力してください。');
     answers.push({ item, value });
   }
   const results = payload.grading?.items;
   if (!Array.isArray(results) || results.length !== quiz.items.length ||
       new Set(results.map(result => result?.itemId)).size !== quiz.items.length ||
-      results.some(result => !quiz.items.some(item => item.id === result?.itemId) || typeof result.passed !== 'boolean' || (result.reviewRequired !== undefined && typeof result.reviewRequired !== 'boolean') || typeof result.feedback !== 'string' || result.feedback.length > 2000)) {
+      results.some(result => !quiz.items.some(item => item.id === result?.itemId) || typeof result.passed !== 'boolean' || typeof result.feedback !== 'string' || result.feedback.length > 2000)) {
     throw new Error('採点結果を確認できません。もう一度採点してください。');
   }
   return { quiz, answers, results };
@@ -42,7 +38,6 @@ export function sheetText(value) {
   return /^[=+\-@\t\r]/.test(text) ? "'" + text : text;
 }
 import { codeSource, isFileAnswer } from './editor-files.mjs';
-import { isUploadedFile } from './uploaded-file.mjs';
 
 
 function isTerminalAnswer(value) {

@@ -12,7 +12,7 @@ import { withInitialAnswers } from '../step-progress.mjs';
 
 const fixture = () => ({
   quizzes: [['id','number','title','description'],['q1',1,'データ型','改行\nと "引用符", を保つ']],
-  items: [['id','quiz_id','position','type','title','description','required','max_files','max_file_mb'],['a1','q1',1,'short_text','結果は？','','true','','']],
+  items: [['id','quiz_id','position','type','title','description','required','max_files','max_file_mb'],['a1','q1',1,'code','結果は？','','true','','']],
   options: [['item_id','position','value']],
   images: [['quiz_id','position','path','alt'],['q1',1,'images/example.png','コード例']]
 });
@@ -98,7 +98,7 @@ test('採用した問題・画像・採点条件をGAS向けに生成する', as
 test('同じ問題番号でも分野ごとの問題を保持して読み込む', () => {
   const tables=fixture();tables.quizzes[0].push('course');tables.quizzes[1].push('JavaScript');
   tables.quizzes.push(['web1',1,'HTMLの構造','','HTML・CSS']);
-  tables.items.push(['html1','web1',1,'paragraph','HTMLを記述','','true','','']);
+  tables.items.push(['html1','web1',1,'code','HTMLを記述','','true','','']);
   const catalog=catalogFromTables(tables);
   assert.deepEqual(catalog.map(q=>[q.id,q.course,q.number]),[['q1','JavaScript',1],['web1','HTML・CSS',1]]);
 });

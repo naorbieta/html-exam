@@ -6,7 +6,7 @@ import { readAuthoringData } from '../scripts/data.mjs';
 import { catalogFromTables } from '../catalog.mjs';
 import { jsonHtmlDocument, packImageFiles } from '../gas-data.mjs';
 
-const serverCode = (await Promise.all(['gas-data.mjs','uploaded-file.mjs','submission.mjs'].map(name=>readFile(new URL('../'+name,import.meta.url),'utf8')))).join('\n').replace(/^import .*;\n/gm,'').replace(/^export /gm,'') + '\n' + await readFile(new URL('../gas/Code.gs',import.meta.url),'utf8');
+const serverCode = (await Promise.all(['gas-data.mjs','submission.mjs'].map(name=>readFile(new URL('../'+name,import.meta.url),'utf8')))).join('\n').replace(/^import .*;\n/gm,'').replace(/^export /gm,'') + '\n' + await readFile(new URL('../gas/Code.gs',import.meta.url),'utf8');
 
 class Sheet {
   constructor(name, rows = []) { this.name=name;this.rows=structuredClone(rows);this.hidden=false;this.frozenRows=0; }
@@ -89,7 +89,7 @@ test('アプリに埋め込んだ問題と画像を読み、差し替えると�
   const swapped = [{
     id: 'new-1', number: 1, title: '差し替えレッスン', description: '導入', course: '試験 / 確認',
     images: [],
-    items: [{ id: 'new-a', type: 'short_text', title: '新しい問い', description: '', required: true, grading: { kind: 'text', config: { accept: ['はい'] }, example: 'はい', feedback: 'ちがいます' } }]
+    items: [{ id: 'new-a', type: 'multiple_choice', title: '新しい問い', description: '', required: true, options: ['はい', 'いいえ'], grading: { kind: 'text', config: { accept: ['はい'] }, example: 'はい', feedback: 'ちがいます' } }]
   }];
   Object.assign(app.files, filesFor(swapped));
   const next = app.context.getCatalog();

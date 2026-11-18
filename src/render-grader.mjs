@@ -1,8 +1,6 @@
 // The checker runs in an opaque frame; submitted HTML cannot execute scripts or make requests.
 export function renderDocument(config, answer, answers, scenario, token, nonce) {
-  const previousAnswers = { ...answers };
-  for (const id of config.previous || []) previousAnswers[id] = codeSource(answers[id]);
-  const payload = JSON.stringify({ config, answer: codeSource(answer), answers: previousAnswers, scenario, token }).replaceAll('<', '\\u003c');
+  const payload = JSON.stringify({ config, answer: codeSource(answer), answers, scenario, token }).replaceAll('<', '\\u003c');
   return `<!doctype html><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'nonce-${nonce}' 'unsafe-eval'; style-src 'unsafe-inline'; img-src data:; font-src 'none'; base-uri 'none'; form-action 'none'"><body><script nonce="${nonce}">(${runCheck.toString()})(${payload})<\/script>`;
 }
 
@@ -15,8 +13,7 @@ async function runCheck({ config, answer, answers, scenario, token }) {
   try {
     const fullDocument = value => typeof value === 'string' && /^\s*<(?:!doctype\s+html|html\b)/i.test(value);
     const documentAnswer = config.htmlAnswer || config.documentAnswer && fullDocument(answer);
-    const previous = (config.previous || []).map(id => answers[id] || '');
-    const source = documentAnswer ? answer : config.documentAnswer && [...previous].reverse().find(fullDocument) || config.html;
+    const source = documentAnswer ? answer : config.html;
     const parsed = new DOMParser().parseFromString(source || '<body></body>', 'text/html');
     parsed.querySelectorAll('script,object,embed,link,meta,base').forEach(element => element.remove());
     for (const element of parsed.querySelectorAll('*')) for (const attr of [...element.attributes]) {
@@ -29,8 +26,7 @@ async function runCheck({ config, answer, answers, scenario, token }) {
     document.head.append(...parsed.head.childNodes);
     document.body.replaceChildren(...parsed.body.childNodes);
     if (!documentAnswer) {
-      const combined = previous.filter(value => !fullDocument(value)).concat(answer).join('\n');
-      const css = combined.replace(/\/\*[\s\S]*?\*\//g, '');
+      const css = String(answer || '').replace(/\/\*[\s\S]*?\*\//g, '');
       const style = document.createElement('style');
       style.textContent = css.includes('{') ? css : `${config.target || 'body'}{${css}}`;
       document.body.append(style);

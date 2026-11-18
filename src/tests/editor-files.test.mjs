@@ -2,7 +2,6 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { splitEditorFiles, codeSource, isFileAnswer } from '../editor-files.mjs';
 import { gradeAnswer } from '../grader.mjs';
-import { withInitialAnswers } from '../step-progress.mjs';
 
 const source = '<html><head><style>p{color:red}</style><style media="print">p{font-size:12px}</style></head><body><p>本文</p></body></html>';
 
@@ -53,7 +52,7 @@ test('保存済みHTMLのスクリプトも分け、外部スクリプトとJSON
  assert.deepEqual(saved.files,{'index.html':html,'script.js':'保持するコード'});
 });
 
-test('従来のコード回答を読み込み、ファイル回答でもJavaScriptを採点して次問へ引き継ぐ', () => {
+test('従来のコード回答を読み込み、分割したファイル回答でもJavaScriptを採点する', () => {
   assert.equal(splitEditorFiles('console.log(1);'), null);
   assert.equal(codeSource('console.log(1);'), 'console.log(1);');
   const answer = splitEditorFiles('<html><head><style>p{color:red}</style></head><body><p id="text">元</p><script>document.getElementById("text").textContent="変更";</script></body></html>');
@@ -61,8 +60,6 @@ test('従来のコード回答を読み込み、ファイル回答でもJavaScri
   assert.equal(gradeAnswer(field, answer).passed, true);
   answer.files['script.js'] = answer.files['script.js'].replace('textContent="変更"', 'textContent="違う文"');
   assert.equal(gradeAnswer(field, answer).passed, false);
-  const next = { id: 'next', type: 'code', grading: { starter: source, config: { documentAnswer: true, previous: ['first'] } } };
-  assert.deepEqual(withInitialAnswers({ items: [field, next] }, { activeIndex: 1, answers: { first: answer } }).answers.next, answer);
   assert.equal(isFileAnswer({ entry: 'index.html', files: { 'index.html': '', '../escape.css': '' } }), false);
   assert.equal(isFileAnswer({ entry: 'index.html', files: { 'index.html': '', 'style.css': 1 } }), false);
 });

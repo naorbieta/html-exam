@@ -1,7 +1,7 @@
 export const lessonColumns = ['分野','レッスン番号','レッスン名','導入文','参考画像','画像の説明','レッスンID'];
 export const questionColumns = ['分野','レッスン番号','設問','回答形式','選択肢','正解','初期コード','解答例','補足','不正解時のメッセージ','ヒント','言語','採点方法','採点コード','参照HTML','採点ルール','設問ID','設問番号','必須','参照コードの編集','設問の説明'];
-export const answerTypes = { '短文':'short_text', '長文':'paragraph', '単一選択':'multiple_choice', '複数選択':'checkboxes', 'コード':'code', 'ページ編集':'dom_task', 'CSS調査':'inspection', 'ファイル':'file' };
-export const gradingMethods = ['正解と照合','コンソール出力','JavaScript実行','HTML・CSS表示','ファイル拡張子','登録済み'];
+export const answerTypes = { '単一選択':'multiple_choice', '複数選択':'checkboxes', 'コード':'code', 'ターミナル':'terminal' };
+export const gradingMethods = ['正解と照合','コンソール出力','JavaScript実行','HTML・CSS表示','登録済み'];
 
 function authorRows(table, label, required) {
   const [header, ...rows] = table || [];
@@ -60,16 +60,14 @@ export function tablesFromAuthoring(source) {
       if (!correct.length || correct.some(value => !options.includes(value)) || type === 'multiple_choice' && correct.length !== 1) fail('正解には選択肢の文言をそのまま入力してください。単一選択の正解は1つです。');
     }
     for (const name of ['必須','参照コードの編集']) if (row[name] && !['はい','いいえ','true','false'].includes(row[name].toLowerCase())) fail(`${name}は「はい」か「いいえ」を入力してください。`);
-    const method = row['採点方法'] || (row['採点ルール'] ? '登録済み' : type === 'file' ? 'ファイル拡張子' : '正解と照合');
+    const method = row['採点方法'] || (row['採点ルール'] ? '登録済み' : '正解と照合');
     if (!gradingMethods.includes(method)) fail(`採点方法は ${gradingMethods.join('・')} から選んでください。`);
+    if (type === 'terminal' && method !== '登録済み') fail('ターミナル問題は採点ルール（採点TS）を選んでください。');
     let kind = 'text', config;
     if (method === '登録済み') {
       const rule = source.rules?.[row['採点ルール']];
       if (!rule) fail('採点ルールが見つかりません。登録済みのルールを選んでください。');
       kind = rule.kind; config = JSON.parse(JSON.stringify(rule.config));
-    } else if (method === 'ファイル拡張子') {
-      if (type !== 'file' || correct.length !== 1 || !/^\.[a-z\d]+$/i.test(correct[0])) fail('回答形式を「ファイル」にし、正解に「.js」のような拡張子を1つ入力してください。');
-      kind='file'; config={extension:correct[0]};
     } else if (method === '正解と照合') {
       if (!correct.length) fail('正解を入力してください。');
       if (type === 'code') fail('コードの採点方法を選んでください。');
@@ -88,8 +86,7 @@ export function tablesFromAuthoring(source) {
     if (row['参照HTML']) config.html = row['参照HTML'];
     const starter = row['初期コード'] || '';
     if (method !== '登録済み' && type === 'code' && /^\s*<(?:!doctype\s+html|html\b)/i.test(starter)) config.documentAnswer = true;
-    if (['dom_task','inspection'].includes(type) && method !== '登録済み') fail('この回答形式では対応する採点ルールを選んでください。');
-    const example = method === 'ファイル拡張子' ? JSON.stringify({name:'example'+correct[0],content:''}) : method === '正解と照合' ? (type === 'checkboxes' ? JSON.stringify(correct) : correct[0]) : row['解答例'] || '';
+    const example = method === '正解と照合' ? (type === 'checkboxes' ? JSON.stringify(correct) : correct[0]) : row['解答例'] || '';
     tables.items.push([id,quizId,position,type,row['設問'],row['設問の説明'] || '',String(enabled(row['必須'],true)),row['補足'] || '',row['言語'] || '',String(enabled(row['参照コードの編集']))]);
     options.forEach((value, index) => tables.options.push([id,index + 1,value]));
     tables.graders.push([id,kind,JSON.stringify(config),example,row['不正解時のメッセージ'] || '回答をもう一度確認してください。',row['ヒント'] || '',starter]);

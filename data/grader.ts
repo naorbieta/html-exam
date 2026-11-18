@@ -77,34 +77,20 @@ export type GraderCase = {
 };
 
 export type Grader = {
-  kind: 'text' | 'code' | 'render' | 'dom' | 'file' | 'manual' | 'terminal';
+  kind: 'text' | 'code' | 'render' | 'terminal';
   /** ターミナル問題の初期状態（ファイル・リポジトリ・リモート） */
   initial?: TerminalInitial;
   check?: string | ((h: GraderHelpers & TerminalHelpers) => unknown);
   cases?: GraderCase[];
   requires?: string[];
   requirementHint?: string;
-  previous?: string | string[];
-  completeProgram?: boolean;
   context?: { name: string; code: string }[];
-  aggregate?: string;
   html?: string;
+  target?: string;
   documentAnswer?: boolean;
   htmlAnswer?: boolean;
   scaffold?: { detect: string; prefix?: string; after?: string };
-  resolveUrl?: boolean;
-  target?: string;
-  htmlId?: boolean;
-  fragmentFor?: string;
-  task?: string;
-  selector?: string;
-  initialText?: string;
-  initialColor?: string;
-  exerciseHtml?: string;
-  contrast?: { background: string; minimum: number };
   accept?: string[];
   acceptSets?: string[][];
-  pairs?: { labels: string[]; numbers: string[] }[];
-  extension?: string;
   [key: string]: unknown;
 };

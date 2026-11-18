@@ -1,6 +1,5 @@
 import { parseHTML } from 'linkedom/worker';
 import { codeSource } from './editor-files.mjs';
-import { isUploadedFile } from './uploaded-file.mjs';
 import { gradeTerminalAnswer } from './terminal-shell.mjs';
 let domCoercionApplied = false;
 
@@ -94,22 +93,7 @@ export function gradeAnswer(item, answer, allAnswers = {}) {
   const rule = item.grading;
   if (!rule) return { passed: false, feedback: '採点条件が登録されていません。管理者にお知らせください。' };
   if (rule.kind === 'render') throw new Error('表示の採点にはブラウザーを使用してください。');
-  if (rule.kind === 'file') {
-    const passed = Boolean(isUploadedFile(answer) && answer.name.length > rule.config.extension.length && answer.name.toLowerCase().endsWith(rule.config.extension.toLowerCase()));
-    return { itemId:item.id,passed,feedback:passed ? '正解です。' : rule.feedback };
-  }
   if (rule.kind === 'terminal') return gradeTerminalAnswer(item, answer);
-  if (rule.kind === 'manual') return { itemId: item.id, passed: false, reviewRequired: true, feedback: rule.feedback };
-  if (rule.kind === 'dom') {
-    const prior = allAnswers[rule.config.previous];
-    const baselineText = prior?.text || rule.config.initialText;
-    const baselineColor = prior?.color || rule.config.initialColor;
-    const valid = answer && typeof answer.text === 'string' && typeof answer.color === 'string' && answer.visible === true;
-    const changed = rule.config.task === 'text'
-      ? valid && normalized(answer.text) !== normalized(baselineText) && normalized(answer.text).length > 0
-      : valid && normalized(answer.text) === normalized(baselineText) && normalized(answer.color) !== normalized(baselineColor) && !/rgba\([^)]*,\s*0\s*\)|transparent/.test(answer.color);
-    return { itemId: item.id, passed: Boolean(changed), feedback: changed ? '正解です。' : rule.feedback };
-  }
   const value = item.type === 'code' ? codeSource(answer) : String(answer ?? '');
   const result = { itemId: item.id, passed: false, feedback: rule.feedback, example: rule.example, checks: [] };
   if (!value.trim()) { result.feedback = '回答を入力してください。'; return result; }
@@ -117,46 +101,11 @@ export function gradeAnswer(item, answer, allAnswers = {}) {
     if (rule.kind === 'text') {
       result.passed = rule.config.accept?.some(expected => normalized(expected) === normalized(value)) || false;
       if (rule.config.acceptSets) result.passed = Array.isArray(answer) && rule.config.acceptSets.some(expected => JSON.stringify(expected.map(normalized).sort()) === JSON.stringify(answer.map(normalized).sort()));
-      if (rule.config.pairs) {
-        const text = value.normalize('NFKC');
-        result.passed = rule.config.pairs.every(pair => {
-          const labels = [...pair.labels].sort((a,b) => b.length-a.length).map(label => label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
-          const match = text.match(new RegExp('(?:'+labels.join('|')+')[^\\d\\n]{0,12}(\\d+(?:\\s*[・,、]\\s*\\d+)*)'));
-          return match && JSON.stringify((match[1].match(/\d+/g) || []).sort()) === JSON.stringify([...pair.numbers].sort());
-        });
-      }
-      if (rule.config.contrast) {
-        const hex = value.trim().match(/^#([a-f\d]{3}|[a-f\d]{6})$/i);
-        const rgb = color => { let h = color.slice(1); if (h.length === 3) h = [...h].map(c => c+c).join(''); return [0,2,4].map(i => parseInt(h.slice(i,i+2),16)); };
-        const luminance = values => values.map(v => { v /= 255; return v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4; }).reduce((sum,v,i) => sum + v * [.2126,.7152,.0722][i],0);
-        if (hex) { const a = luminance(rgb(value.trim())), b = luminance(rgb(rule.config.contrast.background)); result.passed = (Math.max(a,b)+.05)/(Math.min(a,b)+.05) >= rule.config.contrast.minimum; }
-      }
-      if (rule.config.htmlId || rule.config.fragmentFor) {
-        const readId = attributes => parseHTML(`<h2 ${String(attributes ?? '')}></h2>`).document.querySelector('h2')?.getAttribute('id') || '';
-        const id = readId(rule.config.htmlId ? value : allAnswers[rule.config.fragmentFor]);
-        result.passed = Boolean(id) && !/[\t\n\f\r ]/.test(id);
-        if (rule.config.fragmentFor && result.passed) {
-          const url = new URL(value.trim(), 'https://practice.invalid/');
-          result.passed = url.origin === 'https://practice.invalid' && url.pathname === '/test.html' && !url.search && decodeURIComponent(url.hash.slice(1)) === id;
-        }
-      }
-      if (rule.config.resolveUrl) {
-        const { base, target, relative } = rule.config.resolveUrl;
-        const input = value.trim();
-        const formatMatches = relative ? !/^(?:[a-z][a-z\d+.-]*:|[\\/#?])/i.test(input) : /^https?:\/\//i.test(input);
-        result.passed = formatMatches && new URL(input, base).href === target;
-      }
-      if (rule.config.patterns) result.passed = rule.config.patterns.every(pattern => new RegExp(pattern, 'iu').test(value.normalize('NFKC')));
     } else if (rule.kind === 'code') {
-      const source = rule.config.completeProgram ? value : (rule.config.previous || []).map(id => codeSource(allAnswers[id])).join('\n') + '\n' + value;
-      const outputs = [];
+      const source = value;
       for (const [index, scenario] of (rule.config.cases || [{}]).entries()) {
-        const output = executeCode(source, rule.config, scenario); outputs.push(output);
+        executeCode(source, rule.config, scenario);
         result.checks.push({ label: scenario.label || `テスト ${index + 1}`, passed: true });
-      }
-      if (rule.config.aggregate === 'one-winning-number') {
-        const wins = outputs.filter(output => output.alerts.some(text => /当た|当たり|正解|hit/i.test(text)));
-        if (wins.length !== 1) throw new Error('指定した数字だけが当たりになるようにしてください。');
       }
       result.passed = true;
     }

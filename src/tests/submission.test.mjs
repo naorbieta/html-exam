@@ -126,15 +126,3 @@ test('埋め込みのCatalogからカタログを読む', async () => {
   assert.deepEqual(JSON.parse(JSON.stringify(context.getCatalog())), [{ id: 'q1', items: [] }]);
 });
 
-test('実習ページの変更内容をGASへ保存でき、欠損・過大な回答を拒否する', async () => {
- const quiz=[{id:'exercise',items:[{id:'post',type:'dom_task',required:true}]}];
- const answer={text:'こんにちは',color:'rgb(0, 0, 255)',visible:true};
- const make=value=>({...payload(),quizId:'exercise',answers:{post:value},grading:{items:[{itemId:'post',passed:true,feedback:'正解です。'}]}});
- assert.deepEqual(validateSubmission(make(answer),quiz).answers[0].value,answer);
- for(const invalid of ['', {name:'old.png',dataUrl:'data:image/png;base64,AAAA'}, {...answer,text:''}, {...answer,text:'x'.repeat(20001)}, {...answer,color:5}, {...answer,visible:'true'}]) assert.throws(()=>validateSubmission(make(invalid),quiz));
- const rows=[['記録ID', 'タイムスタンプ', 'ユーザー', 'セッションID', 'レッスンID', '問題ID', '回答内容', '正誤', 'フィードバック']];
- const env=answerBook(rows);
- const context=await loadServer({PropertiesService:{getScriptProperties:()=>({getProperty:key=>env.properties[key]??null,setProperty:(key,value)=>{env.properties[key]=value;}})},SpreadsheetApp:env.spreadsheetApp,Session:env.session,LockService:{getScriptLock:()=>({waitLock(){},releaseLock(){}})}});
- context.getCatalog=()=>quiz;
- context.submitQuiz(make(answer));assert.deepEqual(JSON.parse(rows[1][6]),answer);
-});

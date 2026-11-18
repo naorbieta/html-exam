@@ -8,13 +8,13 @@ import { TerminalAnswer } from './terminal-workspace.jsx';
 import { codeSource } from './editor-files.mjs';
 import { lessonDescription } from './lesson-content.mjs';
 import { TutorialLayout, topBarButton } from './tutorial-layout.jsx';
+import { examLabel } from './exam-label.mjs';
 import { withInitialAnswers, itemResults, changeAnswer, recordGrade, examExplanation, nextUnansweredIndex } from './step-progress.mjs';
 import { QuestionBody, Inline } from './question-body.jsx';
 import './styles.css';
 
 const preview = window.EXAM_PREVIEW;
 const storageKey = 'html-exam-v1';
-const i18n = { partTemplate: '${title}' };
 
 function callServer(name, ...args) {
   return new Promise((resolve, reject) => {
@@ -146,9 +146,9 @@ function App() {
   if (!current) return <div className="p-8 bg-tk-elements-app-backgroundColor text-tk-elements-app-textColor h-full" aria-busy={!loadError}>
     {loadError ? <><p role="alert">{loadError}</p><Button onClick={load} className="mt-4">もう一度読み込む</Button></> : '問題を読み込んでいます。'}
   </div>;
-  const lessonLink = quiz => quiz && ({ id: quiz.id, title: quiz.title, href: `#${quiz.id}` });
-  const lesson = { id: current.id, data: { title: current.title, i18n }, part: { id: current.course, title: current.course }, prev: lessonLink(catalog[quizIndex - 1]), next: lessonLink(catalog[quizIndex + 1]) };
-  const navList = [...new Set(catalog.map(quiz => quiz.course))].map(course => ({ id: course, title: course, type: 'part', sections: catalog.filter(quiz => quiz.course === course).map(quiz => ({ ...lessonLink(quiz), type: 'lesson' })) }));
+  const lessonLink = quiz => quiz && ({ id: quiz.id, title: examLabel(quiz), href: `#${quiz.id}` });
+  const lesson = { id: current.id, data: { title: examLabel(current) }, prev: lessonLink(catalog[quizIndex - 1]), next: lessonLink(catalog[quizIndex + 1]) };
+  const navList = catalog.map(quiz => lessonLink(quiz));
   const prompt = !item || item.title === 'JavaScriptのコードをここに入力してください。' ? '' : item.title.replace(/[（(]画像参照[）)]/g, '').trim();
   const itemDescription = (item?.description || '').replace(/^コードを記述してください。\s*$/gm, '').trim();
   const description = lessonDescription(current).replace(/^解答欄にJavaScriptのコードを入力してください。\s*$/gm, '').trim().replace(/\n{3,}/g, '\n\n');

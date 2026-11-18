@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readAuthoringData } from '../scripts/data.mjs';
 import { catalogFromTables } from '../catalog.mjs';
 import { changeAnswer, recordGrade, isExam, examExplanation, itemResults, nextUnansweredIndex } from '../step-progress.mjs';
+import { examLabel } from '../exam-label.mjs';
 
 const catalog = catalogFromTables(await readAuthoringData());
 const exams = catalog.filter(quiz => quiz.id.startsWith('exam-'));
@@ -12,6 +13,11 @@ test('カタログは試験6カテゴリだけで、どれも好きな順に解�
   assert.equal(exams.length, 6);
   assert.ok(catalog.every(isExam));
   assert.equal(catalog.filter(quiz => !quiz.id.startsWith('exam-')).length, 0);
+});
+
+test('試験名は「試験 / 」を付けず、6つを1段で並べる', () => {
+  assert.deepEqual(catalog.map(examLabel), ['HTML・CSS', 'JavaScript', 'PHP', 'Git', 'ターミナル操作', 'デザイン理論']);
+  assert.ok(catalog.every(quiz => !examLabel(quiz).includes('試験 / ')));
 });
 
 test('試験では、あとの設問を先に解いても、前の未確定の設問を変えても採点が消えない', () => {

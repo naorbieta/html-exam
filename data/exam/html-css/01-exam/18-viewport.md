@@ -8,9 +8,9 @@ title: |-
 required: true
 choices:
   - "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
-  - "<meta name=\"viewport\" content=\"width=980\">"
-  - "<meta charset=\"UTF-8\">"
-  - "<title>スマートフォン</title>"
+  - "<meta name=\"viewport\" content=\"width=980, initial-scale=1\">"
+  - "<meta name=\"viewport\" content=\"width=device-width, initial-scale=0\">"
+  - "<meta name=\"viewport\" content=\"width=device-height, initial-scale=1\">"
 answers:
   - "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
 feedback: "レスポンシブ対応では、幅を端末の幅（device-width）に合わせ、初期の拡大率を 1 にする指定が基本です。"

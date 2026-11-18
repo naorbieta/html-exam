@@ -4,6 +4,7 @@ import { EditorPanel } from './vendor/tutorialkit/react/Panels/EditorPanel.tsx';
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 import resizeStyles from './vendor/tutorialkit/react/styles/resize-panel.module.css';
 import { CodePreview } from './code-preview.jsx';
+import { choicesUseCodeStyle } from './choice-style.mjs';
 
 export function CodeWorkspace({ item, value, answers, theme, saving, onChange, locked = false }) {
   const workspace = splitEditorFiles(value);
@@ -31,6 +32,7 @@ export function AnswerWorkspace({ item, answers, theme, saving, onChange, onSubm
   const id = `answer-${item.id}`;
   const value = answers[item.id];
   const choices = ['multiple_choice', 'checkboxes'].includes(item.type);
+  const codeStyle = choices && choicesUseCodeStyle(item.options);
   const options = useMemo(() => {
     const shuffled = [...(item.options || [])];
     for (let index = shuffled.length - 1; index > 0; index--) {
@@ -47,7 +49,7 @@ export function AnswerWorkspace({ item, answers, theme, saving, onChange, onSubm
             required={item.required && item.type === 'multiple_choice'}
             checked={Array.isArray(value) ? value.includes(option) : value === option}
             onChange={event => onChange(item, item.type === 'multiple_choice' ? option : event.target.checked ? [...(value || []), option] : (value || []).filter(answer => answer !== option))} />
-          <span className={/[{};<>]|^[@!]|^[\w-]+\s*:\s|\(.*\)/.test(option) ? 'choice-code' : undefined}>{option}</span>
+          <span className={codeStyle ? 'choice-code' : undefined}>{option}</span>
         </label>)}
       </fieldset>}
   </form>;

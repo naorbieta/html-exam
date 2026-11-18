@@ -99,3 +99,17 @@ test('CSSのコード問題はCSSファイルとして表示する', () => {
   const css = { id: 'layout', type: 'code', language: 'css', title: '中央に配置', grading: {} };
   assert.match(render([css]).body.textContent, /answer\.css/);
 });
+
+test('同じ設問の選択肢は、すべてコード表記か、すべて通常表記になる', () => {
+  const code = { id: 'grid', type: 'multiple_choice', title: '指定', options: ['repeat(3, 1fr)', '200px 200px 200px', '100%'], grading: {} };
+  const coded = render([code], { grid: '100%' });
+  const codeSpans = [...coded.querySelectorAll('label span')];
+  assert.equal(codeSpans.length, 3);
+  assert.ok(codeSpans.every(span => span.className.includes('choice-code')));
+  const prose = { id: 'why', type: 'multiple_choice', title: '理由', options: ['関連する情報が近くにまとまっていないから', '色の数が少ないから', 'フォントが太いから'], grading: {} };
+  const written = render([prose], { why: 'フォントが太いから' });
+  assert.ok([...written.querySelectorAll('label span')].every(span => !span.className.includes('choice-code')));
+  const mixed = { id: 'fruit', type: 'multiple_choice', title: '値', options: ['りんご', 'みかん', 'undefined'], grading: {} };
+  const mixedDoc = render([mixed], { fruit: 'りんご' });
+  assert.ok([...mixedDoc.querySelectorAll('label span')].every(span => !span.className.includes('choice-code')));
+});

@@ -29,7 +29,7 @@ for(const quiz of catalog) for(const item of quiz.items) {
   } else if(item.grading.kind==='code') variations[item.id]=await js(source);
 }
 const bundle=await build({entryPoints:[new URL('../tests/grading-audit-browser.mjs',import.meta.url).pathname],bundle:true,write:false,format:'iife',globalName:'gradingAudit',target:'es2022',minify:true});
-const output=path.join(tmpdir(),'html-test-grading-audit');await mkdir(output,{recursive:true});
+const output=path.join(tmpdir(),'html-exam-grading-audit');await mkdir(output,{recursive:true});
 const json=value=>JSON.stringify(value).replaceAll('<','\\u003c');
 const page=`<!doctype html><meta charset="utf-8"><title>全設問の採点確認</title><button id="run">検証する</button><p id="progress"></p><pre id="failures"></pre><script>${bundle.outputFiles[0].text.replaceAll('</script','<\\/script')}</script><script>
 document.querySelector('#run').onclick=async()=>{

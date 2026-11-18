@@ -12,7 +12,7 @@ export function TutorialLayout({ title, actions, navigation, progress, content, 
       <div className="flex items-center gap-2">{actions}</div>
     </nav>
     <main className="flex-1 min-h-0 relative overflow-hidden">
-      <PanelGroup direction="horizontal" className="h-full" autoSaveId="practice-main" id="practice-main">
+      <PanelGroup direction="horizontal" className="h-full" autoSaveId="exam-main" id="exam-main">
         <Panel defaultSize={40} minSize={30} maxSize={60} className={`h-full flex flex-col ${mobileView === 'editor' ? 'max-sm:hidden' : ''}`}>
           {navigation}
           <div className="flex-1 min-h-0 overflow-auto scrollbar-transparent p-6 sm:p-8">{content}</div>

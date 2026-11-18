@@ -11,16 +11,16 @@ function readJsonFile_(name) {
   return parseJsonHtml(HtmlService.createHtmlOutputFromFile(name).getContent());
 }
 
-function practiceData_() {
+function examData_() {
   return readJsonFile_('Catalog');
 }
 
 function getCatalog() {
-  return practiceData_().catalog;
+  return examData_().catalog;
 }
 
 function getQuizImages(quizId) {
-  const data = practiceData_();
+  const data = examData_();
   const quiz = data.catalog.find(q => q.id === quizId);
   if (!quiz) throw new Error('問題が見つかりません。ページを読み直してください。');
   const names = new Set();
@@ -62,7 +62,7 @@ function logSpreadsheet_() {
   }
   const id = properties.getProperty('SPREADSHEET_ID');
   if (id) return SpreadsheetApp.openById(id);
-  const book = SpreadsheetApp.create('Web Practice 回答ログ');
+  const book = SpreadsheetApp.create('Web試験 回答ログ');
   properties.setProperty('SPREADSHEET_ID', book.getId());
   return book;
 }

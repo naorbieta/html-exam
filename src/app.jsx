@@ -12,8 +12,8 @@ import { withInitialAnswers, itemResults, changeAnswer, recordGrade, examExplana
 import { QuestionBody, Inline } from './question-body.jsx';
 import './styles.css';
 
-const preview = window.PRACTICE_PREVIEW;
-const storageKey = 'javascript-practice-v2';
+const preview = window.EXAM_PREVIEW;
+const storageKey = 'html-exam-v1';
 const i18n = { partTemplate: '${title}' };
 
 function callServer(name, ...args) {
@@ -22,7 +22,7 @@ function callServer(name, ...args) {
     google.script.run.withSuccessHandler(resolve).withFailureHandler(error => reject(new Error(error.message || String(error))))[name](...args);
   });
 }
-function readPractice() {
+function readSession() {
   try {
     const saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
     if (saved && typeof saved === 'object' && saved.quizzes) {
@@ -55,39 +55,39 @@ function grade(item, answers) {
 
 function App() {
   const [catalog, setCatalog] = useState([]), [loadError, setLoadError] = useState('');
-  const [practice, setPractice] = useState(readPractice), practiceRef = useRef(practice);
+  const [session, setSession] = useState(readSession), sessionRef = useRef(session);
   const [storageError, setStorageError] = useState(false);
   const [mobileView, setMobileView] = useState('content');
   const [theme, setTheme] = useState(() => { try { return localStorage.getItem('tk_theme') === 'dark' ? 'dark' : 'light'; } catch { return 'light'; } });
   const [saving, setSaving] = useState(false), [error, setError] = useState(''), [saveStatus, setSaveStatus] = useState('');
   const busy = useRef(false), zoom = useRef();
   const [zoomImage, setZoomImage] = useState(null);
-  const current = catalog.find(quiz => quiz.id === practice.currentId) || catalog[0];
-  const draft = current ? withInitialAnswers(current, practice.quizzes[current.id] || { answers: {}, attemptId: crypto.randomUUID() }) : null;
+  const current = catalog.find(quiz => quiz.id === session.currentId) || catalog[0];
+  const draft = current ? withInitialAnswers(current, session.quizzes[current.id] || { answers: {}, attemptId: crypto.randomUUID() }) : null;
   const activeIndex = Math.min(draft?.activeIndex || 0, (current?.items.length || 1) - 1);
   const item = current?.items[activeIndex];
   const graded = draft && itemResults(draft)[item.id];
   const quizIndex = catalog.indexOf(current);
 
   function commit(next) {
-    practiceRef.current = next; setPractice(next);
+    sessionRef.current = next; setSession(next);
     try { localStorage.setItem(storageKey, JSON.stringify(next)); setStorageError(false); }
     catch { setStorageError(true); }
   }
   function edit(editedItem, value) {
-    const state = practiceRef.current, data = withInitialAnswers(current, state.quizzes[current.id]);
+    const state = sessionRef.current, data = withInitialAnswers(current, state.quizzes[current.id]);
     if (itemResults(data)[editedItem.id]) return;
     if (data.answers[editedItem.id] === value) return;
     commit({ ...state, quizzes: { ...state.quizzes, [current.id]: { ...changeAnswer(current, data, editedItem, value), attemptId: crypto.randomUUID() } } });
     setSaveStatus(''); setError('');
   }
   function editReference(value) {
-    const state = practiceRef.current, data = state.quizzes[current.id] || { answers: {}, attemptId: crypto.randomUUID() };
+    const state = sessionRef.current, data = state.quizzes[current.id] || { answers: {}, attemptId: crypto.randomUUID() };
     commit({ ...state, quizzes: { ...state.quizzes, [current.id]: { ...data, references: { ...data.references, [item.id]: value } } } });
   }
   function openQuiz(quiz) {
     if (busy.current) return;
-    const state = practiceRef.current;
+    const state = sessionRef.current;
     commit({ ...state, currentId: quiz.id, quizzes: { ...state.quizzes, [quiz.id]: withInitialAnswers(quiz, state.quizzes[quiz.id] || { answers: {}, attemptId: crypto.randomUUID() }) } });
     setError(''); setSaveStatus(''); setMobileView('content');
   }
@@ -108,7 +108,7 @@ function App() {
 
   function openStep(index) {
     if (busy.current) return;
-    const state = practiceRef.current, data = state.quizzes[current.id] || { answers: {}, attemptId: crypto.randomUUID() };
+    const state = sessionRef.current, data = state.quizzes[current.id] || { answers: {}, attemptId: crypto.randomUUID() };
     commit({ ...state, quizzes: { ...state.quizzes, [current.id]: withInitialAnswers(current, { ...data, activeIndex: index }) } });
     setError(''); setSaveStatus('');
     requestAnimationFrame(() => { document.getElementById('answer-prompt')?.focus(); document.querySelector('main')?.scrollTo(0, 0); });
@@ -120,9 +120,9 @@ function App() {
   }
   async function submit(event, collectedAnswer) {
     event.preventDefault(); if (busy.current) return;
-    if (itemResults(withInitialAnswers(current, practiceRef.current.quizzes[current.id] || { answers: {} }))[item.id]) return;
-    if (collectedAnswer && JSON.stringify(collectedAnswer) !== JSON.stringify(practiceRef.current.quizzes[current.id]?.answers[item.id])) edit(item, collectedAnswer);
-    const state = practiceRef.current, data = withInitialAnswers(current, state.quizzes[current.id] || { answers: {}, attemptId: crypto.randomUUID() });
+    if (itemResults(withInitialAnswers(current, sessionRef.current.quizzes[current.id] || { answers: {} }))[item.id]) return;
+    if (collectedAnswer && JSON.stringify(collectedAnswer) !== JSON.stringify(sessionRef.current.quizzes[current.id]?.answers[item.id])) edit(item, collectedAnswer);
+    const state = sessionRef.current, data = withInitialAnswers(current, state.quizzes[current.id] || { answers: {}, attemptId: crypto.randomUUID() });
     const value = data.answers[item.id];
     if (item.required && (Array.isArray(value) ? !value.length : item.type === 'file' ? !value?.name : item.type === 'dom_task' ? !value?.text : item.type === 'terminal' ? !value?.commands?.some(command => command.trim()) : item.type === 'code' ? !codeSource(value).trim() : !String(value || '').trim())) {
       setError(item.type === 'file' ? 'ファイルを選んでください。' : item.type === 'terminal' ? 'ターミナルにコマンドを入力してください。' : ['multiple_choice', 'checkboxes'].includes(item.type) ? '回答を選んでください。' : '回答を入力してください。');
@@ -141,10 +141,10 @@ function App() {
     finally { busy.current = false; setSaving(false); }
   }
   function exportAnswers() {
-    const state = practiceRef.current;
+    const state = sessionRef.current;
     const data = { exportedAt: new Date().toISOString(), sessionId: state.sessionId, quizzes: catalog.filter(quiz => state.quizzes[quiz.id]).map(quiz => ({ id: quiz.id, number: quiz.number, title: quiz.title, ...state.quizzes[quiz.id] })) };
     const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
-    const link = document.createElement('a'); link.href = url; link.download = 'javascript-answers.json'; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+    const link = document.createElement('a'); link.href = url; link.download = 'exam-answers.json'; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
   function navigate(event) {
     const link = event.target.closest('a[href^="#"]');

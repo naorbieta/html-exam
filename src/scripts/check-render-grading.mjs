@@ -9,7 +9,7 @@ import { openHeadless, wantsHeadless } from './headless-chrome.mjs';
 const tables=await readAuthoringData();
 const catalog=catalogFromTables(tables);
 const bundle=await build({entryPoints:[new URL('./browser-check-entry.jsx',import.meta.url).pathname],bundle:true,write:false,format:'iife',globalName:'renderGrader',minify:true,target:'es2022',jsx:'automatic',loader:{'.module.css':'empty','.css':'empty'},define:{'process.env.NODE_ENV':'"production"'}});
-const directory=path.join(tmpdir(),'web-practice-render-check');await mkdir(directory,{recursive:true});
+const directory=path.join(tmpdir(),'html-exam-render-check');await mkdir(directory,{recursive:true});
 const invalid = {
  'exam-html-14':'.menu{display:block}',
  'exam-html-24':'.cards{display:flex}'

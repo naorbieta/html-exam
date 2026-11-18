@@ -105,7 +105,7 @@ test('回答ログのシートが無ければ作成し、スプレッドシー�
   const app = server({ files: filesFor(catalog), spreadsheetId: null, active: false });
   const url = app.context.setup_();
   assert.equal(url, 'https://example.invalid/book');
-  assert.equal(app.createdName, 'Web Practice 回答ログ');
+  assert.equal(app.createdName, 'Web試験 回答ログ');
   assert.equal(app.properties.SPREADSHEET_ID, 'book');
   assert.ok(app.sheets.get('answers'));
 });

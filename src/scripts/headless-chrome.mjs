@@ -30,7 +30,7 @@ async function waitForFile(file, timeoutMs, started, child, logs) {
 export async function openHeadless(url, resultFile, { timeoutMs = 180000 } = {}) {
   await rm(resultFile, { force: true });
   const started = Date.now();
-  const profile = path.join(tmpdir(), `html-test-chrome-${process.pid}-${Math.random().toString(16).slice(2)}`);
+  const profile = path.join(tmpdir(), `html-exam-chrome-${process.pid}-${Math.random().toString(16).slice(2)}`);
   await mkdir(profile, { recursive: true });
   const chrome = await resolveChrome();
   const logs = [];
@@ -102,7 +102,7 @@ async function waitForJson(url, timeoutMs) {
 }
 
 export async function connectHeadlessCdp(url, { timeoutMs = 60000 } = {}) {
-  const profile = path.join(tmpdir(), `html-test-chrome-cdp-${process.pid}-${Math.random().toString(16).slice(2)}`);
+  const profile = path.join(tmpdir(), `html-exam-chrome-cdp-${process.pid}-${Math.random().toString(16).slice(2)}`);
   await mkdir(profile, { recursive: true });
   const port = await freePort();
   const chrome = await resolveChrome();

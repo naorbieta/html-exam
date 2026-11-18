@@ -93,7 +93,7 @@ self.onmessage = event => {
   await Promise.all(Object.entries(outputs).map(([name, value]) => writeFile(path.join(app, name), value)));
   const previewHtml = index.replace("<?!= include_('Styles'); ?>", () => outputs['Styles.html'])
     .replace("<?!= include_('Grader'); ?>", () => outputs['Grader.html'])
-    .replace("<?!= include_('Client'); ?>", () => `<script>window.PRACTICE_PREVIEW=${safeJson({ catalog, imageData })};</script>\n${outputs['Client.html']}`);
+    .replace("<?!= include_('Client'); ?>", () => `<script>window.EXAM_PREVIEW=${safeJson({ catalog, imageData })};</script>\n${outputs['Client.html']}`);
   return { catalog, tables, imageData, app, previewHtml, browserModules, imageFiles: packedImages };
 }
 
